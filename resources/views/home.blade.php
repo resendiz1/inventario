@@ -26,7 +26,7 @@
         </div>
         
         <div class="row mt-3 bg-white p-lg-3 p-sm-0 justify-content-around m-0 shadow-lg">
-            <div class="col-12 col-lg-5 col-md-6 col-sm-12 shadow-sm border border-success mb-sm-4">
+            <div class="col-12 col-lg-5 col-md-6 col-sm-12 shadow-sm border border-success mb-3">
                 <h3 class="text-center bg-success text-white">
                     Area de trabajo: <strong>Recursos Humanos</strong>
                 </h3>
@@ -123,7 +123,7 @@
         </div>
         
         
-        <div class="col-12 col-lg-5 col-md-6 col-sm-12 shadow-sm border border-success ">
+        <div class="col-12 col-lg-5 col-md-6 col-sm-12 shadow-sm border border-success mb-3">
             <h3 class="text-center bg-success text-white">
                 Area de trabajo: <strong>Higiene y aseguramiento</strong>
             </h3>

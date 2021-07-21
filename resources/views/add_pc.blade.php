@@ -19,9 +19,9 @@
         </div>
 
         <div class="col-12">
-            <form action="" class="mt-5 bg-white p-2 shadow-lg">
+            <form action="{{route('pc.create')}}" method="POST" class="mt-5 bg-white p-2 shadow-lg">
+                @csrf
                 <div class="row   m-lg-5 m-sm-2 p-lg-4 p-sm-0">
-
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
                         <label for="" class="font-weight-bold">Area de trabajo</label>
                         <select name="area" id="" class="form-control form-control-sm">
