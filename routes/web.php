@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\areaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\printerController;
@@ -26,3 +27,8 @@ Route::post('/add_ups', [upsController::class, 'create'])->name('ups.create');
 //rutas que se encargan de las impresoras
 Route::get('/add_printer', [printerController::class, 'store'])->name('add_printer');
 Route::post('/add_printer', [printerController::class, 'create'])->name('printer.create');
+
+
+//rutas de las areas de trabajo
+Route::get('/add_area', [areaController::class, 'store'])->name('add_area');
+Route::post('/add_area', [areaController::class, 'create'])->name('area.create');

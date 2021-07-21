@@ -81,7 +81,7 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 mt-3">
                         <div class="form-group">
                             <button class="btn btn-success btn-block font-weight-bold">
-                                <i class="fas fa-address-card"></i>
+                                <i class="fas fa-plus-circle"></i>
                                  Agregar
                             </button>
                         </div>

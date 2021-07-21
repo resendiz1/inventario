@@ -193,6 +193,7 @@
 
                     <div class="col-12  text-center">
                         <button class="btn btn-success btn-block font-weight-bold">
+                            <i class="fa fa-plus-circle mr-2 "></i>
                             Agregar
                         </button>
                     </div>
