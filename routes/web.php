@@ -29,6 +29,3 @@ Route::get('/add_printer', [printerController::class, 'store'])->name('add_print
 Route::post('/add_printer', [printerController::class, 'create'])->name('printer.create');
 
 
-//rutas de las areas de trabajo
-Route::get('/add_area', [areaController::class, 'store'])->name('add_area');
-Route::post('/add_area', [areaController::class, 'create'])->name('area.create');
