@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row mt-5 justify-content-around">
             <div class="col-2 text-center p-2 bg-primary rounded-pill">
-                <i class="fa fa-desktop text-white mr-2"></i>
+                <i class="fa fa-home text-white mr-2"></i>
                 <a href="{{route('home')}}" class="text-white font-weight-bold">
                     Inicio
                 </a>
