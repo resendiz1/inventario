@@ -1,12 +1,19 @@
 <?php
 
 use App\Http\Controllers\areaController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\printerController;
 use App\Http\Controllers\upsController;
 
-Route::view('/', 'home')->name('home');
+
+
+
+//rutas que se encargan de mostrar los resultados de la busqueda
+Route::get('/', [homeController::class, 'index'])->name('home');
+Route::post('/', [homeController::class, 'buscar'])->name('home.buscar');
+
 
 
 //rutas que se encargan de la gestions de las computadoras
