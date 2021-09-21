@@ -14,16 +14,16 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row mt-5 justify-content-around">
-            <div class="col-2 text-center p-2 bg-primary rounded-pill">
+            <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
                 <i class="fa fa-home text-white mr-2"></i>
                 <a href="{{route('home')}}" class="text-white font-weight-bold">
                     Inicio
                 </a>
             </div>
 
-            <div class="col-2 text-center p-2 bg-primary rounded-pill">
+            <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
                 <i class="fa fa-desktop text-white mr-2"></i>
                 <a href="{{route('add_pc')}}" class="text-white font-weight-bold">
                     Agregar PC
@@ -31,13 +31,13 @@
             </div>
             
             
-            <div class="col-2 text-center p-2 bg-primary rounded-pill">
+            <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
                 <i class="fa fa-charging-station text-white mr-2"></i>
                 <a href="{{route('add_ups')}}" class="text-white font-weight-bold">
                     Agregar Regulador
                 </a>
             </div>
-            <div class="col-2 text-center p-2 bg-primary rounded-pill">
+            <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
                 <i class="fa fa-print text-white mr-2"></i>
                 <a href="{{route('add_printer')}}" class="text-white font-weight-bold">
                     Agregar Impresoras
