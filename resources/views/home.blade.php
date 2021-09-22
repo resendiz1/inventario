@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-2 col-md-3 col-sm-4 text-center mb-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="computadoras" id="check">
+                        <input class="form-check-input checkbox" type="checkbox" name="computadoras" id="computadoras">
                         <label class="form-check-label" for="Computadoras">
                           <strong class="h4"> Computadoras </strong>
                         </label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="reguladores" id="check" >
+                        <input class="form-check-input checkbox" type="checkbox" name="reguladores" id="reguladores" >
                         <label class="form-check-label" for="Reguladores">
                             <strong class="h4"> Reguladores </strong>
                         </label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="impresoras" id="check" >
+                        <input class="form-check-input checkbox" type="checkbox" name="impresoras" id="impresoras" >
                         <label class="form-check-label" for="impresora">
                             <strong class="h4"> Impresoras </strong>
                         </label>
@@ -44,7 +44,7 @@
             <div class="row justify-content-center mt-3">
                 <div class="col-lg-2 col-md-3 col-sm-4 text-center mb-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="marca" id="check">
+                        <input class="form-check-input" type="checkbox" name="marca" id="marca">
                         <label class="form-check-label" for="Marca">
                           <strong class="h4"> Marca </strong>
                         </label>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="serie" id="check" >
+                        <input class="form-check-input" type="checkbox" name="serie" id="serie" >
                         <label class="form-check-label" for="# Serie">
                             <strong class="h4"> # Serie </strong>
                         </label>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="modelo" id="check" >
+                        <input class="form-check-input" type="checkbox" name="modelo" id="modelo" >
                         <label class="form-check-label" for="impresora">
                             <strong class="h4"> Modelo </strong>
                         </label>
@@ -102,7 +102,7 @@
         <div class="row justify-content-around">
 
 
-            @if ($resultado!="")
+            @if (isset($resultado))
                 
             
             @forelse ($resultado as $itemResultado)

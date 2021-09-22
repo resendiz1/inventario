@@ -19,7 +19,8 @@ class homeController extends Controller
         request()->validate([
             'busqueda' => 'required'
         ]);
-        $resultado = "";
+        
+        $resultado=null;
 
         if(request('impresoras')=='on'){
 
