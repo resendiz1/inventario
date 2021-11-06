@@ -79,4 +79,9 @@ class pcController extends Controller
         return redirect()->route('add_pc')->with('agregada', 'Computadora agregada al área de: '.request('area'));
 
     }
+
+
+    public function show(){
+        return view('resultados.pc');
+    }
 }

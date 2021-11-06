@@ -55,10 +55,10 @@
                         @enderror
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Marca</label>
-                            <input type="text" name="marca" class="form-control form-control-sm" value="Back-Ups">
+                            <input type="text" name="marca" class="form-control form-control-sm">
                             
                             @error('marca')
                             <div class="alert alert-danger font-weight-bold p-1">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Modelo</label>
                             <input type="text" name="modelo" class="form-control form-control-sm" value="SR80010">
@@ -84,6 +84,20 @@
                     </div>
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold">Titular del equipo</label>
+                            <input type="text" name="titular" class="form-control form-control-sm" value="Lorena Dominguez Dominguez">
+                            
+                            @error('titular')
+                                <div class="alert alert-danger font-weight-bold p-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Número de serie</label>
                             <input type="text" name="serie" class="form-control form-control-sm" value="KJHGK3654FG">

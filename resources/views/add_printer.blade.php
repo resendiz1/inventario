@@ -26,7 +26,7 @@
             <form action="{{route('printer.create')}}" method="POST" enctype="multipart/form-data" class="mt-5 bg-white p-lg-4 p-sm-1 shadow-lg ">
                 @csrf
                 <div class="row d-flex justify-content-center  p-lg-4 p-sm-1 m-2">
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <label for="" class="font-weight-bold">Area de trabajo</label>
                         <select name="area" id="" class="form-control form-control-sm">
                             <option value="Recursos humanos">Recursos Humanos</option>
@@ -54,9 +54,9 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
-                            <label for="" class="font-weight-bold">Marca</label>
-                            <input type="text" name="marca" value="Epson" class="form-control form-control-sm">
-                            @error('marca')
+                            <label for="" class="font-weight-bold">Titular del equipo</label>
+                            <input type="text" name="titular" value="{{old('titular')}}" class="form-control form-control-sm">
+                            @error('titular')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}
                                 </div>
@@ -66,8 +66,22 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
+                            <label for="" class="font-weight-bold">Marca</label>
+                            <input type="text" name="marca" value="{{old('marca')}}" class="form-control form-control-sm">
+                            @error('marca')
+                                <div class="alert alert-danger font-weight-bold p-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        <div class="form-group">
                             <label for="" class="font-weight-bold">Modelo</label>
-                            <input type="text" name="modelo" value="L122" class="form-control form-control-sm">
+                            <input type="text" name="modelo" value="{{'modelo'}}"  class="form-control form-control-sm">
                             @error('modelo')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}
@@ -96,10 +110,10 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Número de serie</label>
-                            <input type="text" name="serie" class="form-control form-control-sm" value="SDFDSF35436">
+                            <input type="text" name="serie" value="{{old('serie')}}" class="form-control form-control-sm">
                             @error('serie')
                                 <div class="alert alert-danger p-1 font-weight-bold">
                                     {{$message}}
@@ -111,8 +125,7 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Observaciones</label>
-                            <textarea name="observaciones" class="form-control form-control-sm" id="" cols="30" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptates repudiandae fugit eius? Doloremque, fugit hic ipsam nihil amet eligendi obcaecati harum voluptatibus quibusdam voluptates provident nam sunt beatae voluptas?
-                            </textarea>
+                            <textarea name="observaciones" value="{{old('observaciones')}}" class="form-control form-control-sm" id="" cols="30" rows="5">{{old('observaciones')}}</textarea>
                             @error('observaciones')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}
@@ -124,7 +137,10 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 text-center">
                         <div class="form-group">
-                            <input type="file" class="form-control font-weight-bold mt-5" name="imagen1">
+                            <input type="file" class="form-control font-weight-bold mt-5 imagen" id="imagen0" name="imagen1">
+                            <div id="previa0">
+
+                            </div>
                             @error('imagen1')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}
@@ -135,7 +151,10 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 text-center">
                         <div class="form-group">
-                            <input type="file" class="form-control font-weight-bold mt-5" name="imagen2" >
+                            <input type="file" class="form-control font-weight-bold mt-5 imagen" name="imagen2" >
+                            <div id="previa1">
+
+                            </div>
                             @error('imagen2')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}

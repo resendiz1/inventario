@@ -11,5 +11,5 @@ class Regulador extends Model
 
     protected $table = "reguladores";
 
-    protected $fillable = ['area', 'marca', 'modelo', 'serie', 'observaciones', 'imagen1', 'imagen2', 'imagen3'];
+    protected $fillable = ['area','titular', 'marca', 'modelo', 'serie', 'observaciones', 'imagen1', 'imagen2', 'imagen3'];
 }

@@ -21,6 +21,7 @@ class printerController extends Controller
         request()-> validate([
             'area' => 'required',
             'marca' => 'required',
+            'titular' => 'required',
             'modelo' => 'required',
             'tipo' => 'required',
             'serie' => 'required',
@@ -40,6 +41,7 @@ class printerController extends Controller
         //Agregando los datos a la BD   
         Impresora::create([
             'area' => request('area'),
+            'titular' => request('titular'),
             'marca' => request('marca'),
             'modelo' => request('marca'),
             'tipo' => request('tipo'),
@@ -56,5 +58,9 @@ class printerController extends Controller
    
 
 
+    }
+
+    public function show(){
+        return view('resultados.printer');
     }
 }

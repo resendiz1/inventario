@@ -21,7 +21,8 @@ class upsController extends Controller
             'observaciones' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required',
-            'imagen3' => 'required'
+            'imagen3' => 'required',
+            'titular' => 'required'
         ]);
 
             $imagen1 = request()->file('imagen1')->store('public');
@@ -30,6 +31,7 @@ class upsController extends Controller
 
         Regulador::create([
             'area' => request('area'),
+            'titular' => request('titular'),
             'marca' => request('marca'),
             'modelo' => request('modelo'),
             'serie' => request('serie'),
@@ -42,4 +44,8 @@ class upsController extends Controller
 
         return redirect()->route('add_ups')->with('agregado', 'No-Breake agregado a el area de: '. request('area'));
     }
+
+     public function show(){
+         return view('resultados.ups');
+     }
 }
