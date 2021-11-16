@@ -139,7 +139,7 @@
                         <div class="form-group">
                             <input type="file" class="form-control font-weight-bold mt-5 imagen" id="imagen0" name="imagen1">
                             <div id="previa0">
-
+                                <img  id="img_tag0" class="img-fluid" alt="">
                             </div>
                             @error('imagen1')
                                 <div class="alert alert-danger font-weight-bold p-1">
@@ -151,9 +151,9 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 text-center">
                         <div class="form-group">
-                            <input type="file" class="form-control font-weight-bold mt-5 imagen" name="imagen2" >
+                            <input type="file" class="form-control font-weight-bold mt-5 imagen" id="imagen1" name="imagen2" >
                             <div id="previa1">
-
+                                <img  id="img_tag1" class="img-fluid" alt="">
                             </div>
                             @error('imagen2')
                                 <div class="alert alert-danger font-weight-bold p-1">

@@ -24,7 +24,7 @@ class printerController extends Controller
             'titular' => 'required',
             'modelo' => 'required',
             'tipo' => 'required',
-            'serie' => 'required',
+            'serie' => 'required|unique:impresoras',
             'observaciones' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required'

@@ -28,7 +28,7 @@ class pcController extends Controller
             'ip' => 'required',
             'mac' => 'required',
             'tipo' => 'required',
-            'serie' => 'required',
+            'serie' => 'required|unique:computadoras',
             'frecuencia_ram' => 'required',
             'tipo_ram' => 'required',
             'size_hdd' => 'required',

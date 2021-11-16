@@ -127,38 +127,46 @@
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
-                            <input type="file" class="form-control" name="imagen1">
+                            <input type="file" class="form-control" name="imagen1" id="imagen0">
                         </div>
                         @error('imagen1')
                         <div class="alert alert-danger font-weight-bold p-1">
                             {{$message}}
                         </div>
                         @enderror
-                        <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid" alt="">
+
+                        <div class="col-12 p-3 shadow" id="previa0">
+                            <img id="img_tag0" class="img-fluid" alt="">
+                        </div>
+
                     </div>
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
-                            <input type="file" class="form-control" name="imagen2">
+                            <input type="file" class="imagen form-control" name="imagen2" id="imagen1">
                         </div>
                         @error('imagen2')
                         <div class="alert alert-danger font-weight-bold p-1">
                             {{$message}}
                         </div>
                         @enderror
-                        <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid" alt="">
+                        <div class="col-12 p-3 shadow" id="previa1">
+                            <img id="img_tag1" class="img-fluid" alt="">
+                        </div>
                     </div>
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
-                            <input type="file" class="form-control" name="imagen3">
+                            <input type="file" class="imagen form-control" name="imagen3" id="imagen2">
                         </div>
                         @error('imagen3')
                         <div class="alert alert-danger font-weight-bold p-1">
                             {{$message}}
                         </div>
                         @enderror
-                        <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid" alt="">
+                        <div class="col-12 p-3 shadow" id="previa2">
+                            <img id="img_tag2" class="imagen img-fluid" alt="">
+                        </div>
                     </div>
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 mt-3">
                         <div class="form-group">

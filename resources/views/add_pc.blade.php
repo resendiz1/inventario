@@ -323,8 +323,10 @@
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
                         <div class="form-group">
-                            <input type="file" min="0" name="imagen1" class="form-control font-weight-bold">
-                            <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid mt-2" alt="">
+                            <input type="file" min="0" name="imagen1" class="imagen form-control font-weight-bold" id="imagen0">
+                            <div class="col-12 p-2 shadow" id="previa0">
+                                <img class="img-fluid" id="img_tag0" alt="">
+                            </div>
                             @error('imagen1')
                             <div class="alert alert-danger alert-sm p-1 font-weight-bold">
                                 {{$message}}
@@ -335,8 +337,10 @@
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
                         <div class="form-group">
-                            <input type="file" min="0" name="imagen2" class="form-control font-weight-bold">
-                            <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid mt-2" alt="">
+                            <input type="file" min="0" name="imagen2" class="imagen form-control font-weight-bold" id="imagen1">
+                            <div class="col-12 p-2 shadow" id="previa1">
+                                <img class="img-fluid" id="img_tag1" alt="">
+                            </div>
                             @error('imagen2')
                             <div class="alert alert-danger alert-sm p-1 font-weight-bold">
                                 {{$message}}
@@ -347,8 +351,10 @@
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
                         <div class="form-group">
-                            <input type="file" min="0" name="imagen3" class="form-control font-weight-bold">
-                            <img src="img/mini-pc-xcy-x41-2105455.jpg" class="img-fluid mt-2" alt="">
+                            <input type="file" min="0" name="imagen3" class="imagen form-control font-weight-bold" id="imagen2">
+                            <div class="col-12 p-2 shadow" id="previa2">
+                                <img class="img-fluid" id="img_tag2" alt="">
+                            </div>
                             @error('imagen3')
                             <div class="alert alert-danger alert-sm p-1 font-weight-bold">
                                 {{$message}}

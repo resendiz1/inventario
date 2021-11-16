@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Computadora;
 use App\Models\Impresora;
 use App\Models\Regulador;
+use App\Models\Computadora;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class homeController extends Controller
 {
     public function index(){
-        return  view('home');
+
+        //Hago las consultas de la cantidad de cada dispositivo en la BD
+        $contador_computer = DB::select('select count(serie) from computadoras');
+        $contador_printer = DB::select('select count(serie) from impresoras');
+        $contador_ups = DB::select('select count(serie) from reguladores');
+
+
+
+
+        //Lo puse asi por que no me dejaba acceder al valor que queria, por que esta cosa es un objeto dento de un array, entonces esta medio loca la situación
+         $contadorComputadoras = $contador_computer[0]->{'count(serie)'};
+         $contadorImpresoras = $contador_printer[0]->{'count(serie)'};
+         $contadorReguladores = $contador_ups[0]->{'count(serie)'};
+
+        return view('home', compact('contadorComputadoras','contadorImpresoras', 'contadorReguladores'));  
     }
 
 
@@ -66,6 +81,58 @@ class homeController extends Controller
         }
 
 
-        return view('home', compact('resultado'));
+
+        //La concha de su hermana, ahora voy a tener que implementar este codigo dentro de aqui por que se borraba los contadores 
+        //y se queda en la funcion de alla arriba para qeu cargue los contadores al momentos de cargar el inicio
+                //Hago las consultas de la cantidad de cada dispositivo en la BD
+                $contador_computer = DB::select('select count(serie) from computadoras');
+                $contador_printer = DB::select('select count(serie) from impresoras');
+                $contador_ups = DB::select('select count(serie) from reguladores');
+        
+    
+                 $contadorComputadoras = $contador_computer[0]->{'count(serie)'};
+                 $contadorImpresoras = $contador_printer[0]->{'count(serie)'};
+                 $contadorReguladores = $contador_ups[0]->{'count(serie)'};
+
+
+
+
+
+
+
+
+        return view('home', compact('resultado', 'contadorComputadoras', 'contadorImpresoras', 'contadorReguladores'));
     }
+
+
+
+    public function show($series){
+
+        //Verifica si hay algun resultado en base a la query realizada, si es asi solo lo muestra
+        if($resultado = DB::select('select*from impresoras where serie ="'.$series.'"')){
+            return view('resultados.printer', compact('resultado'));
+        }
+
+
+
+        //Verifica si hay algun resultado en base a la query realizada, si es asi solo lo muestra
+        if($resultado = DB::select('select*from computadoras where serie ="'.$series.'"')){
+            return view('resultados.pc', compact('resultado'));
+        }
+
+
+
+        //Verifica si hay algun resultado en base a la query realizada, si es asi solo lo muestra
+        if($resultado = DB::select('select*from reguladores where serie ="'.$series.'"')){
+            return view('resultados.ups', compact('resultado'));
+        }
+    
+
+    }
+
+    public function count(){
+        $variable = 000;
+        return view('home', compact('variable'));
+    }
+
 }

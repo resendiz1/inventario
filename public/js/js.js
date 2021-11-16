@@ -1,6 +1,8 @@
 
 
 //Tomando los checkbox de Computadoras, reguladores e impresoras
+if(document.getElementById('computadoras')){
+
 let $computadoras = document.getElementById('computadoras'),
 $impresoras = document.getElementById('impresoras'),
 $reguladores = document.getElementById('reguladores')
@@ -42,6 +44,7 @@ $modelo.addEventListener('click', function(){
  $marca.checked=false
 })
 
+}
 
 
 

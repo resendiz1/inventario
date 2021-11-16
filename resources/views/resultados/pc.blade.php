@@ -20,25 +20,25 @@
         <div class="row">
             <div class="col-12 text-center mt-2">
                 <h3 class="font-weight-bold text-primary">
-                    Recursos Humanos
+                    {{$resultado[0]->area}}
                 </h3>
             </div>
 
             <div class="col-12 text-center">
                 <h4 class="font-weight-bold">
-                    Lorena Dominguez Dominguez
+                    {{$resultado[0]->usuario}}
                 </h4>
             </div>
 
             <div class="col-12 text-center">
                 <h1 class="font-weight-bold">
-                    Dell
+                    {{$resultado[0]->marca}}
                 </h1>
             </div>
 
             <div class="col-12 text-center">
                 <h4 class="font-weight-bold">
-                    Inspiron 2020
+                    {{$resultado[0]->modelo}}
                 </h4>
             </div>
  
@@ -54,112 +54,112 @@
                         <strong>
                             Tamaño de pantalla :
                         </strong>
-                        22"
+                        {{$resultado[0]->pulgadas}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Es touch:
                         </strong>
-                        Si
+                            {{$resultado[0]->touch}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             S. O.:
                         </strong>
-                        Windows 10 pro
+                            {{$resultado[0]->SO}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Dirección IP:
                         </strong>
-                        192.168.20.250
+                            {{$resultado[0]->ip}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Dirección MAC:
                         </strong>
-                        00:00:00:00:00
+                            {{$resultado[0]->mac}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Tipo:
                         </strong>
-                        Escritorio AIO
+                            {{$resultado[0]->tipo}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Número Serie:   
                         </strong>
-                        SDF6D5DSFSDF45
+                            {{$resultado[0]->serie}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Frecuencia de RAM (MHz):   
                         </strong>
-                        1600 mhz
+                                {{$resultado[0]->frecuencia_ram}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             DIMM O SODIMM:   
                         </strong>
-                        DIMM
+                            {{$resultado[0]->tipo_ram}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Tamaño del HDD:   
                         </strong>
-                            1000GB
+                            {{$resultado[0]->size_hdd}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Tamaño del SSD:   
                         </strong>
-                        240 GB
+                            {{$resultado[0]->size_ssd}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Slot 1 de RAM:   
                         </strong>
-                        2 GB
+                            {{$resultado[0]->slot1_ram}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Slot 2 de RAM:   
                         </strong>
-                        4 GB
+                            {{$resultado[0]->slot2_ram}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                           Slot 3 de RAM:   
                         </strong>
-                        0 GB
+                            {{$resultado[0]->slot3_ram}}
                     </div>
 
                     <div class="col-6 h5">
                         <strong>
                             Slot 4    
                         </strong>
-                        0 GB
+                            {{$resultado[0]->slot4_ram}}
                     </div>
 
                     <div class="col-12 h5">
                         <strong>
                             Procesador:
                         </strong>
-                        Intel Core i3 11va generación
+                        {{$resultado[0]->procesador}}
                     </div>
 
 
@@ -181,13 +181,13 @@
                     </ol>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://blog.soltekonline.com/content/images/2021/02/Best-Custom-PC-Builders.jpg" alt="First slide">
+                        <img class="d-block w-100" src="{{Storage::url($resultado[0]->imagen1)}}" alt="First slide">
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="https://m.media-amazon.com/images/I/819XYUimTuL._AC_SL1500_.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="{{Storage::url($resultado[0]->imagen2)}}" alt="Second slide">
                       </div>
                       <div class="carousel-item">
-                        <img class="d-block w-100" src="https://assets.spartangeek.com/cc/inwin-309-neg-05.png" alt="Third slide">
+                        <img class="d-block w-100" src="{{Storage::url($resultado[0]->imagen3)}}" alt="Third slide">
                       </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

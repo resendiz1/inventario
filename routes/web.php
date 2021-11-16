@@ -47,3 +47,9 @@ Route::get('/resultado_printer', [printerController::class, 'show'])->name('prin
 
 
 
+
+
+
+//Ruta que se encarga de mostrar todos los proyectos
+
+Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');

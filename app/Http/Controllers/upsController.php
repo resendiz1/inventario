@@ -17,7 +17,7 @@ class upsController extends Controller
             'area' => 'required',
             'marca' => 'required',
             'modelo' => 'required',
-            'serie' => 'required',
+            'serie' => 'required|unique:reguladores',
             'observaciones' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required',

@@ -4,3 +4,9 @@
     margin: auto;
 }
 
+.flotante{
+    position: fixed !important;
+    bottom: 45px;
+    left: 90px;
+}
+

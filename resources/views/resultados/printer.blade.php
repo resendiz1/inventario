@@ -20,25 +20,25 @@
     <div class="row justify-content-center">
         <div class="col-12 text-center mt-2">
             <h3 class="font-weight-bold text-primary">
-                Recursos Humanos
+               {{$resultado[0]->area}}
             </h3>
         </div>
 
         <div class="col-12 text-center">
             <h4 class="font-weight-bold">
-                Lorena Dominguez Dominguez
+                {{$resultado[0]->titular}}
             </h4>
         </div>
 
         <div class="col-12 text-center">
             <h1 class="font-weight-bold">
-                EPSON   
+                {{$resultado[0]->marca}}   
             </h1>
         </div>
 
         <div class="col-12 text-center">
             <h4 class="font-weight-bold">
-                L5100
+                {{$resultado[0]->modelo}}
             </h4>
         </div>
 
@@ -49,28 +49,28 @@
         <div class="col-12">
             <div class="row">
                 
-                <div class="col-6 h5 text-center">
+                <div class="col-6 col-sm-12 col-md-4 col-lg-3 h5 text-center">
                     <strong>
                        Laser o Tinta:   
                     </strong>
-                        Tinta
+                        {{$resultado[0]->tipo}}
                 </div>
 
                 
-                <div class="col-6 h5 text-center">
+                <div class="col-6 col-sm-12 col-md-4 col-lg-3 h5 text-center">
                     <strong>
                        Número Serie:   
                     </strong>
-                        SDF6D5DSFSDF45
+                        {{$resultado[0]->serie}}
                 </div>
 
 
 
-                <div class="col-12 h5">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-6 h5">
                     <strong>
                         Observaciones:
                     </strong>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam alias ipsum nulla dolorum illum, ut, dolorem libero non blanditiis facilis est minus saepe, labore quidem quo aliquam officia necessitatibus ea.
+                    {{$resultado[0]->observaciones}}
                 </div>
 
 
@@ -92,10 +92,10 @@
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://blog.soltekonline.com/content/images/2021/02/Best-Custom-PC-Builders.jpg" alt="First slide">
+                    <img class="d-block w-100" src="{{Storage::url($resultado[0]->imagen1)}}" alt="First slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="https://m.media-amazon.com/images/I/819XYUimTuL._AC_SL1500_.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="{{Storage::url($resultado[0]->imagen2)}}" alt="Second slide">
                   </div>
 
                 </div>

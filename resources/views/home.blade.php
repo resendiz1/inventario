@@ -5,20 +5,142 @@
     
 <div class="container ">
 
+
+{{-- Boton del login --}}
+    <div class="row flotante">
+        <div class="col-12">
+            <button class="btn btn-info text-white rounded-pill" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-key mr-2"></i>
+                <span class="font-weight-bold" >
+                    Login
+                </span>
+            </button>
+        </div>
+    </div>
+{{-- Termina boton del login --}}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="exampleModalLabel">
+              Entrar
+            </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+<form action="">
+              <div class="form-group mx-5">
+                  <label for="" class="font-weight-bold">Usuario: </label>
+                  <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group mx-5">
+                <label for="" class="font-weight-bold">Contraseña: </label>
+                <input type="text" class="form-control">
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Entrar</button>
+        </div>
+</form>
+      </div>
+    </div>
+  </div>
+  {{-- Termina modal del login --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <form action="{{route('home.buscar')}}" method="POST" enctype="multipart/form-data">
         @csrf
     <div class="row pt-5 d-flex justify-content-center">
  
-        <div class="col-12 text-center">
-            <img src="img/logo.png" class=" img-fluid" style="width: 200px;" alt="">
+
+        <div class="col-8">
+            <div class="row justify-centent-center mt-1 font-weight-bold">
+
+                <div class="col-12 text-center ">
+                   <h4 class="font-weight-bold p-3">
+                    Total de dispositivosa en Grupo PABSA
+                   </h4>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header p-1 bg-danger text-white">
+                            <i class="fa fa-desktop text-white mr-2"></i>
+                           Computadoras 
+                        </div>
+                        <div class="card-body text-center p-1">
+                            @if (isset($contadorComputadoras))
+                            {{$contadorComputadoras}}
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header p-1 bg-primary text-white">
+                            <i class="fa fa-print text-white mr-2"></i>
+                            Impresoras
+                        </div>
+                        <div class="card-body text-center p-1">
+                            @if (isset($contadorImpresoras))
+                                {{$contadorImpresoras}}
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header p-1 bg-success text-white">
+                            <i class="fa fa-charging-station text-white mr-2"></i>
+                           Reguladores 
+                        </div>
+                        <div class="card-body text-center p-1">
+                            @if (isset($contadorReguladores))
+                                {{$contadorReguladores}}
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+        <div class="col-12 text-center mt-5">
+            <img src="img/logo.png" class=" img-fluid" style="width: 150px;" alt="">
+        </div>
+
  
-        <div class="col-4 col-12 p-3 mt-5">
+        <div class="col-4 col-12 p-3 mt-1">
             <div class="row justify-content-center">
                 <div class="col-lg-2 col-md-3 col-sm-4 text-center mb-2">
                     <div class="form-check">
                         <input class="form-check-input checkbox" type="checkbox" name="computadoras" id="computadoras">
-                        <label class="form-check-label" for="Computadoras">
+                        <label class="form-check-label" for="computadoras">
                           <strong class="h4"> Computadoras </strong>
                         </label>
                       </div>
@@ -26,7 +148,7 @@
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
                         <input class="form-check-input checkbox" type="checkbox" name="reguladores" id="reguladores" >
-                        <label class="form-check-label" for="Reguladores">
+                        <label class="form-check-label" for="reguladores">
                             <strong class="h4"> Reguladores </strong>
                         </label>
                       </div>
@@ -34,10 +156,10 @@
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
                         <input class="form-check-input checkbox" type="checkbox" name="impresoras" id="impresoras" >
-                        <label class="form-check-label" for="impresora">
+                        <label class="form-check-label" for="impresoras">
                             <strong class="h4"> Impresoras </strong>
                         </label>
-                      </div>
+                    </div>
                 </div>
             </div>
 
@@ -45,7 +167,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-4 text-center mb-2">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="marca" id="marca">
-                        <label class="form-check-label" for="Marca">
+                        <label class="form-check-label" for="marca">
                           <strong class="h4"> Marca </strong>
                         </label>
                       </div>
@@ -53,7 +175,7 @@
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="serie" id="serie" >
-                        <label class="form-check-label" for="# Serie">
+                        <label class="form-check-label" for="serie">
                             <strong class="h4"> # Serie </strong>
                         </label>
                       </div>
@@ -61,7 +183,7 @@
                 <div class="col-4 col-lg-2 col-md-3 col-sm-4 text-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="modelo" id="modelo" >
-                        <label class="form-check-label" for="impresora">
+                        <label class="form-check-label" for="modelo">
                             <strong class="h4"> Modelo </strong>
                         </label>
                       </div>
@@ -77,7 +199,7 @@
                 placeholder="buscar"
                 autofocus autocomplete="address-level1">
                 @error('busqueda')
-                    <div class="alert alert-danger alert-sm p-1">
+                    <div class="alert alert-danger alert-sm p-1 mt-3 rounded-pill text-center">
                         {{$message}}
                     </div>
                 @enderror
@@ -119,10 +241,10 @@
                         <strong> Serial: </strong> {{$itemResultado->serie}}
                     </div>
                     <div class="col-12 mt-1">
-                        <button class="btn btn-primary">
+                        <a href="{{route('device.show', $itemResultado->serie)}}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>
                             Ver detalles
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
