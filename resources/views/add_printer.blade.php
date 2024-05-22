@@ -44,6 +44,8 @@
                             <option value="Almacén planta pecuarios">Almacén planta pecuarios</option>
                             <option value="Empaques planta mascotas">Empaques planta mascotas</option>
                             <option value="Producción planta mascotas">Producción planta mascotas</option>
+                            <option value="Seguridad e Higiene">Seguridad e Higiene</option>
+
                         </select>
                         @error('area')
                             <div class="alert alert-danger font-weight-bold p-1">

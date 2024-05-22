@@ -1,12 +1,18 @@
 <?php
 
-use App\Http\Controllers\areaController;
-use App\Http\Controllers\homeController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
-use App\Http\Controllers\printerController;
 use App\Http\Controllers\upsController;
+use App\Http\Controllers\areaController;
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\printerController;
 
+
+
+//rutas para agregar a los usuarios
+Route::get('/agregando_users', [Controller::class, 'show_formulario'])->name('agregar_usuarios');
+Route::post('/agregando_users/post', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios');
 
 
 

@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-4 text-center pt-4">
                     <h2 class="text-center titulos">
-                        Agregar UPS
+                        Agregar Telefono
                     </h2>
 
                     @if (session('agregado'))
@@ -30,23 +30,9 @@
                 <div class="row d-flex justify-content-center p-lg-4 p-sm-1 m-2">
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                        <label for="" class="font-weight-bold">Area de trabajo</label>
+                        <label for="" class="font-weight-bold">Usuario</label>
                         <select name="area" id="" class="form-control form-control-sm">
-                            <option value="Recursos humanos">Recursos Humanos</option>
-                            <option value="Seguridad e higiene" >Seguridad e higiene</option>
-                            <option value="Sistemas">Área de sistemas</option>
-                            <option value="Compras">Compras</option>
-                            <option value="Ventas pecuarios">Ventas pecuarios</option>
-                            <option value="Ventas mascotas">Ventas mascotas</option>
-                            <option value="Calidad y aseguramiento">Calidad y aseguramiento</option>
-                            <option value="Servicarga facturación">Servicarga facturación</option>
-                            <option value="Servicarga monitoreo">Servicarga monitoreo</option>
-                            <option value="Servicarga contabilidad">Servicarga contabilidad</option>
-                            <option value="Epaques planta pecuarios">Empaques planta pecuarios</option>
-                            <option value="Producción planta pecuarios">Producción pecuarios</option>
-                            <option value="Almacén planta pecuarios">Almacén planta pecuarios</option>
-                            <option value="Empaques planta mascotas">Empaques planta mascotas</option>
-                            <option value="Producción planta mascotas">Producción planta mascotas</option>
+                            <option value="Nombre del usuario">Nombre del usuario</option>
                         </select>
                         @error('area')
                         <div class="alert alert-danger font-weight-bold p-1">
@@ -72,23 +58,9 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Modelo</label>
-                            <input type="text" name="modelo" class="form-control form-control-sm" value="SR80010">
+                            <input type="text" name="modelo" class="form-control form-control-sm">
                             
                             @error('modelo')
-                                <div class="alert alert-danger font-weight-bold p-1">
-                                    {{$message}}
-                                </div>
-                            @enderror
-
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold">Titular del equipo</label>
-                            <input type="text" name="titular" class="form-control form-control-sm" value="Lorena Dominguez Dominguez">
-                            
-                            @error('titular')
                                 <div class="alert alert-danger font-weight-bold p-1">
                                     {{$message}}
                                 </div>
@@ -100,7 +72,7 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Número de serie</label>
-                            <input type="text" name="serie" class="form-control form-control-sm" value="KJHGK3654FG">
+                            <input type="text" name="serie" class="form-control form-control-sm">
                             
                             @error('serie')
                             <div class="alert alert-danger font-weight-bold p-1">
@@ -114,8 +86,7 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Observaciones</label>
-                            <textarea name="observaciones" class="form-control form-control-sm" id="" cols="30" rows="13">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus neque vel, eius quisquam, aliquid nemo enim eligendi recusandae, doloremque repudiandae distinctio quidem. Eligendi beatae ipsum consectetur repellat fuga ad dolorum!
-                            </textarea>
+                            <textarea name="observaciones" class="form-control form-control-sm" id="" cols="30" rows="13"></textarea>
 
                             @error('observaciones')
                             <div class="alert alert-danger font-weight-bold p-1">

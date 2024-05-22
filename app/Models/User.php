@@ -40,4 +40,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+
+//Poniendo de hijas a las demas tablas
+
+public function computadoras(){
+    return $this->hasMany(Computadora::class);
+}
+
+
+public function impresoras(){
+    return $this->hasMany(Impresora::class);
+}
+
+
+public function telefonos(){
+    return $this->hasMany(Telefono::class);
+}
+
+
+
+
+
+
+
+
 }

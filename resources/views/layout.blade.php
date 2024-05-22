@@ -37,12 +37,21 @@
                     Agregar Regulador
                 </a>
             </div>
+
             <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
                 <a href="{{route('add_printer')}}" class="text-white font-weight-bold">
                     <i class="fa fa-print text-white mr-2"></i>
                     Agregar Impresoras
                 </a>
             </div>
+
+            <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-danger rounded-pill">
+                <a href="{{route('agregar_usuarios')}}" class="text-white font-weight-bold">
+                    <i class="fa fa-user text-white mr-2"></i>
+                    Agregar Usuarios
+                </a>
+            </div>
+
         </div>
     </div>
 
