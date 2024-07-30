@@ -1,4 +1,3 @@
-
 @extends('layout')
 @section('title', 'Buscador')
 @section('content')

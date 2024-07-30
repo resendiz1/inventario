@@ -15,9 +15,7 @@ class pcController extends Controller
 
     public function create(){
         
-        // Computadora::create([
-        //     ''
-        // ]);
+      return request();
 
 
 

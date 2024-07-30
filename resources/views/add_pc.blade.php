@@ -1,4 +1,5 @@
 @extends('layout')
+@include('assets.nav')
 @section('title', 'Agregando PC')
 
 

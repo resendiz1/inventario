@@ -33,7 +33,7 @@ Route::get('/resultado_pc', [pcController::class, 'show'])->name('pc.show');
 
 
 //rutas que se encargan de los UPS
-Route::get('/add_ups', [upsController::class, 'store'])->name('add_ups');
+Route::get('/add_telefono', [upsController::class, 'store'])->name('add_telefono');
 Route::post('/add_ups', [upsController::class, 'create'])->name('ups.create');
 
 //ruta que va a los detalles del regulador

@@ -5,10 +5,7 @@
     <div class="row d-flex justify-content-center p-3 mt-2">
         <div class="col-12">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/logo.png" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center pt-4">
+                <div class="col-12 text-center pt-4">
                     <h1 class="text-center titulos">
                         Agregar Impresora
                     </h1>
