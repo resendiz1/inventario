@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class upsController extends Controller
 {
     public function store(){
-        return view('add_telefono') ;
+        return view('admin.add_telefono') ;
     }
 
     public function create(){
@@ -46,7 +46,7 @@ class upsController extends Controller
         return redirect()->route('add_ups')->with('agregado', 'No-Breake agregado a el area de: '. request('area'));
     }
 
-    
+
      public function show(){
          return view('resultados.ups');
      }

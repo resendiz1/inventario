@@ -1,4 +1,6 @@
-<div class="container-fluid">
+
+
+<div class="menu-flotante">
     <div class="row mt-1 justify-content-around">
         <div class="col-5 col-lg-1 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
             <a href="{{route('home')}}" class="text-white font-weight-bold">
@@ -30,7 +32,7 @@
         </div>
 
         <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-danger rounded-pill">
-            <a href="{{route('agregar_usuarios')}}" class="text-white font-weight-bold">
+            <a href="{{route('agregar.usuarios')}}" class="text-white font-weight-bold">
                 <i class="fa fa-user text-white mr-2"></i>
                 Agregar Usuarios
             </a>

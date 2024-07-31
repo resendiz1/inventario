@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
@@ -10,15 +9,25 @@ use App\Http\Controllers\printerController;
 
 
 
+Route::get('/', [homeController::class, 'index'])->name('home');
+Route::post('/', [Controller::class, 'ingreso_admin'])->name('ingreso.admin');
+Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin');
+
+//  Ingreso de usuarios
+
+
+
+
 //rutas para agregar a los usuarios
-Route::get('/agregando_users', [Controller::class, 'show_formulario'])->name('agregar_usuarios');
-Route::post('/agregando_users/post', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios');
+Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios');
+
+
+Route::post('/agregando_users', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios');
 
 
 
 //rutas que se encargan de mostrar los resultados de la busqueda
-Route::get('/', [homeController::class, 'index'])->name('home');
-Route::post('/', [homeController::class, 'buscar'])->name('home.buscar');
+
 
 
 

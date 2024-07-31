@@ -1,9 +1,8 @@
 @extends('layout')
 @include('assets.nav')
 @section('title', 'Agregando PC')
+@section('contenido')
 
-
-@section('content')
 <div class="container-fluid">
 
     <div class="row d-flex justify-content-center p-3 mt-2">

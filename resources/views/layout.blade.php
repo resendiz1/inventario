@@ -27,8 +27,8 @@
 
 
 
-    
-@yield('content')
+
+@yield('contenido')
 
 
 

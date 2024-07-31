@@ -1,5 +1,6 @@
 @extends('layout')
-@section('content')
+@include('assets.nav')
+@section('contenido')
 
 
 <div class="container mt-5">
@@ -9,8 +10,11 @@
     <div class="row justify-content-center">
         <div class="col-4 bg-white p-4">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12">
                     <h4 class="fw-bold">Agregar usuario</h4>
+                    @if (session('agregado'))
+                        <span class="text-success fw-bold">{{session('agregado')}}</span>
+                    @endif
                 </div>
                 
                 <div class="col-12 mt-3">
@@ -26,6 +30,11 @@
                         {!!$errors->first('email', '<small class="text-danger"> :message </small> ')!!}
                     </div>
 
+                    <div class="form-group">
+                        <label for="">Contraseña</label>
+                        <input type="password" name="password" value="{{old('password')}}" class="form-control">
+                        {!!$errors->first('password', '<small class="text-danger"> :message </small>')!!}
+                    </div>
                     
                     <div class="form-group">
                         <label for="">Puesto</label>
@@ -33,17 +42,24 @@
                         {!!$errors->first('puesto', '<small class="text-danger"> :message </small>')!!}
                     </div>
 
+
                     <div class="form-group">
                         <label for="">Planta</label>
                         <select name="planta" id="" class="form-control form-control-sm">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="1">Planta 1</option>
+                            <option value="2">Planta 2</option>
+                            <option value="3">Planta 3</option>
                         </select>
                     </div>
 
-                    <div class="form-group text-center">
-                        <button class="btn btn-success btn-sm w-100">Agregar</button>
+                    <div class="form-group">
+                        <label for="">Ubicación</label>
+                        <textarea name="ubicacion" class="form-control w-100" ></textarea>
+                        {!!$errors->first('ubicacion', '<small class="text-danger"> :message </small>')!!}
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-success">Agregar</button>
                     </div>
 
                 </div>

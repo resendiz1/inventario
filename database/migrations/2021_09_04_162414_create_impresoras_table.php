@@ -22,7 +22,7 @@ class CreateImpresorasTable extends Migration
             $table->string('tipo');
             $table->string('serie');
             $table->string('observaciones');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('imagen1');
             $table->string('imagen2');
             $table->timestamps();

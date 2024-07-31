@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Storage;
 class pcController extends Controller
 {
     public function store(){
-        return view('add_pc');
+        return view('admin.add_pc');
     }
 
 
     public function create(){
         
-      return request();
+      
 
 
 

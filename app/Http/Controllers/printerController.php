@@ -9,7 +9,7 @@ class printerController extends Controller
 {
 
     public function store(){
-        return view('add_printer');
+        return view('admin.add_printer');
     }
 
 
