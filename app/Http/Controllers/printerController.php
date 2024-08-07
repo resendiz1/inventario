@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Impresora;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,10 @@ class printerController extends Controller
 {
 
     public function store(){
-        return view('admin.add_printer');
+
+        $usuarios = User::all();
+        return view('admin.add_printer', compact('usuarios'));
+
     }
 
 
@@ -19,9 +23,8 @@ class printerController extends Controller
 
         //validando los datos
         request()-> validate([
-            'area' => 'required',
             'marca' => 'required',
-            'titular' => 'required',
+            'usuario' => 'required',
             'modelo' => 'required',
             'tipo' => 'required',
             'serie' => 'required|unique:impresoras',
@@ -40,8 +43,7 @@ class printerController extends Controller
         
         //Agregando los datos a la BD   
         Impresora::create([
-            'area' => request('area'),
-            'titular' => request('titular'),
+            'user_id' => request('usuario'),
             'marca' => request('marca'),
             'modelo' => request('marca'),
             'tipo' => request('tipo'),
@@ -53,7 +55,7 @@ class printerController extends Controller
         //Agregando los datos a la BD
 
 
-        return redirect()->route('add_printer')->with('agregado', 'Impresora agregada a el área de: ' .request('area'));
+        return redirect()->route('add_printer')->with('agregado', 'Impresora agregada');
 
    
 

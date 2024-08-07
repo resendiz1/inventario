@@ -18,7 +18,7 @@
         
         
         <div class="col-5 col-lg-2 col-md-6 col-sm-12 m-2 text-center p-2 bg-primary rounded-pill">
-            <a href="{{route('add_telefono')}}" class="text-white font-weight-bold">
+            <a href="{{route('add.telefono')}}" class="text-white font-weight-bold">
                 <i class="fa fa-charging-station text-white mr-2"></i>
                 Agregar Teléfono
             </a>

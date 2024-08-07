@@ -26,14 +26,25 @@
 
                     <div class="form-group">
                         <label for="">Correo Electronico</label>
-                        <input type="email" name="email" value="{{old('email')}}" class="form-control">
+                        <input type="email" name="email" value="{{old('email')}}" id="email" class="form-control">
                         {!!$errors->first('email', '<small class="text-danger"> :message </small> ')!!}
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Contraseña</label>
-                        <input type="password" name="password" value="{{old('password')}}" class="form-control">
-                        {!!$errors->first('password', '<small class="text-danger"> :message </small>')!!}
+                    <div class="form-group mx-3">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-12">
+                                <label for="">Contraseña</label>
+                            </div>
+                            <div class="col-9 p-0 m-0">
+                                <input type="password" name="password" id="password" value="{{old('password')}}" class="form-control">
+                            </div>
+                            <div class="col-1 p-0 my-0 mx-3">
+                                <input type="checkbox" id="view_password">
+                            </div>
+                            {!!$errors->first('password', '<small class="text-danger"> :message </small>')!!}
+                        </div>
+
+
                     </div>
                     
                     <div class="form-group">
@@ -72,6 +83,20 @@
 
 </div>
 
+
+
+<script>
+  const   $password = document.getElementById('password');
+  const   $email = document.getElementById('email');
+  const   $ver = document.getElementById('view_password');
+
+
+  $ver.onchange = function(e){
+    $password.type = $ver.checked ? "text" : "password"
+  }
+
+
+</script>
 
 
 @endsection

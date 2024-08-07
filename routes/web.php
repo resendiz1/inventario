@@ -6,7 +6,11 @@ use App\Http\Controllers\upsController;
 use App\Http\Controllers\areaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\printerController;
+use App\Http\Controllers\telefonoController;
 
+
+
+Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user');
 
 
 Route::get('/', [homeController::class, 'index'])->name('home');
@@ -42,11 +46,11 @@ Route::get('/resultado_pc', [pcController::class, 'show'])->name('pc.show');
 
 
 //rutas que se encargan de los UPS
-Route::get('/add_telefono', [upsController::class, 'store'])->name('add_telefono');
-Route::post('/add_ups', [upsController::class, 'create'])->name('ups.create');
+Route::get('/add_telefono', [telefonoController::class, 'store'])->name('add.telefono');
+Route::post('/add_telefono', [telefonoController::class, 'create'])->name('telefono.create');
 
 //ruta que va a los detalles del regulador
-Route::get('/resultado_ups', [upsController::class, 'show'])->name('ups.show');
+Route::get('/resultado_ups', [telefonoController::class, 'show'])->name('ups.show');
 
 
 

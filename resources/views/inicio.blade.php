@@ -19,7 +19,7 @@
 
             <div class="form-group m-0 mt-3">
                 <label for="password" class="m-0 p-0">Password</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password" id="password" class="form-control">
 
             </div>
 

@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Regulador;
+use App\Models\User;
+use App\Models\Telefono;
 use Illuminate\Http\Request;
 
-class upsController extends Controller
+class telefonoController extends Controller
 {
     public function store(){
-        return view('admin.add_telefono') ;
+
+        $usuarios = User::all();
+
+        return view('admin.add_telefono', compact('usuarios')) ;
     }
 
     public function create(){
 
+
         request()->validate([
-            'area' => 'required',
             'marca' => 'required',
             'modelo' => 'required',
-            'serie' => 'required|unique:reguladores',
+            'serie' => 'required|unique:telefonos',
             'observaciones' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required',
             'imagen3' => 'required',
-            'titular' => 'required'
+            'usuario' => 'required'
         ]);
 
             $imagen1 = request()->file('imagen1')->store('public');
@@ -30,10 +34,9 @@ class upsController extends Controller
             $imagen3 = request()->file('imagen3')->store('public');
 
 
-        Regulador::create([
-            'area' => request('area'),
-            'titular' => request('titular'),
+        Telefono::create([
             'marca' => request('marca'),
+            'user_id' => request('usuario'),
             'modelo' => request('modelo'),
             'serie' => request('serie'),
             'observaciones' => request('observaciones'),
@@ -43,8 +46,12 @@ class upsController extends Controller
         ]);
 
 
-        return redirect()->route('add_ups')->with('agregado', 'No-Breake agregado a el area de: '. request('area'));
+        return redirect()->route('add.telefono')->with('agregado', 'El telefono fue agregado');
     }
+
+
+
+
 
 
      public function show(){

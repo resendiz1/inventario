@@ -19,8 +19,6 @@ class Controller extends BaseController
         return view('admin.agregar_usuarios');
     }
 
-
-
     public function registrar_usuarios(){
 
        
@@ -48,8 +46,6 @@ class Controller extends BaseController
 
     }
 
-
-
     public function ingreso_admin(){
 
 
@@ -71,26 +67,28 @@ class Controller extends BaseController
 
         if(request('tipo') == 'usuario'){
             if(Auth::attempt($credenciales)){
-                return view('user.perfil');            
+                return redirect()->route('perfil.user');            
             }
             else{
                 return back()->with('error', 'Las creadenciales de usuario son incorrectas');
             }
         }
 
-
-
-
-
-
         
     }
 
+    public function perfil_user(){
+        return view('user.perfil');
+    }
 
 
     public function perfil_admin(){
         
         return view('admin.perfil');
     }
+
+
+
+
 
 }

@@ -18,6 +18,10 @@ class CreateTelefonosTable extends Migration
             $table->string('marca');
             $table->string('modelo');
             $table->string('serie');
+            $table->string('marca');
+            $table->string('imagen1');
+            $table->string('imagen2');
+            $table->string('imagen3');
             $table->string('observaciones');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
