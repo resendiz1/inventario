@@ -1,7 +1,10 @@
+@extends('layout')
+@section('contenido')
+@include('user.cabecera')
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-12 p-4 text-center">
+        <div class="col-12  text-center">
             <h2>Dispositivos</h2>
         </div>
     </div>
@@ -92,3 +95,5 @@
 
 
  </div>
+
+@endsection

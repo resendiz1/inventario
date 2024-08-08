@@ -78,7 +78,7 @@ class Controller extends BaseController
     }
 
     public function perfil_user(){
-        return view('user.perfil');
+        return view('user.perfil_dispositivos');
     }
 
 

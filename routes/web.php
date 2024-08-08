@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\tintasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\upsController;
@@ -65,10 +66,10 @@ Route::post('/add_printer', [printerController::class, 'create'])->name('printer
 Route::get('/resultado_printer', [printerController::class, 'show'])->name('printer.show');
 
 
-
-
-
-
 //Ruta que se encarga de mostrar todos los proyectos
 
-Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');
+// Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');
+
+
+//Rutas que funcionan en el perfil de los usuarios
+Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show');
