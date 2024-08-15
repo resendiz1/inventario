@@ -1,32 +1,29 @@
 @extends('layout')
 @section('contenido')
-@include('user.cabecera')    
+@include('user.cabecera') 
 
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h2>Tintas</h2>
+            <h2>Reportes</h2>
         </div>
     </div>
 
 
     <div class="row d-flex justify-content-around">
         
-        <div class="col-11 mx-1 bg-white p-4 shadow shadow-sm">
-            <button class="btn btn-light btn-sm m-1 font-weight-bold"  data-toggle="modal" data-target="#pedido">
+        <div class="col-12 mx-1 bg-white p-4 shadow shadow-sm">
+            <button class="btn btn-light btn-sm m-1 font-weight-bold" data-toggle="modal" data-target="#reporte">
                 <i class="fa fa-plus"></i>
-                Realizar pedido
+                Realizar reporte
             </button>
-            <h3 class="text-center">
-                Pedidos realizados
-            </h3>
-            <table class="table table-bordered table-responsive-md">
+            <table class="table table-bordered table-responsive-md" style="transition: 3s">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Fecha pedido</th>
-                        <th scope="col">Fecha entrega</th>
-                        <th scope="col">Colores</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Fecha de reporte</th>
+                        <th scope="col">Fecha de solución</th>
+                        <th scope="col">Detalles</th>
                         <th scope="col">Estado</th>
 
                     </tr>
@@ -34,10 +31,13 @@
                 <tbody>
                     
                     <tr>
-                        <td>Ejemplo 1</td>
+                        <td>001</td>
                         <td>2024-08-08</td>
                         <td>2024-08-08</td>
-                        <td>Azul, rojo, amarillo, negro</td>
+                        <td>
+                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </td>
+
                         <td class="text-start">
                             <div class="dropdown">
                                 <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -48,14 +48,17 @@
                                     <a class="dropdown-item" data-toggle="modal" data-target="#reenviar" style="cursor: pointer">Reenviar petición</a>
                                 </div>
                             </div>                            
-                        </td>                      
+                        </td>      
+
                     </tr>
                     
                     <tr>
-                        <td>Ejemplo 1</td>
+                        <td>001</td>
                         <td>2024-08-08</td>
                         <td>pendiente</td>
-                        <td>Azul, rojo, amarillo, negro</td>
+                        <td>
+                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        </td>
                         <td class="text-start"> <i class="fa fa-check-circle"></i> Completado </td>                      
                     </tr>
                     
@@ -90,63 +93,6 @@
   </div>
   <!-- Modal -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="pedido" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h4 class="text-center">Nuevo pedido de tintas</h4>
-                <hr>
-              <div class="form">
-
-                <div class="form-group px-3">
-                    <label for="" class="m-0">Número </label>
-                    <select name="" class="form-control">
-                        <option value="544">544</option>
-                        <option value="504">504</option>
-                        <option value="664">664</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-4 m-3 text-center border p-3">
-                            <label for="negro" class="m-0 h4">Negro</label> <br>
-                            <input type="checkbox" id="negro">
-                        </div>
-                        <div class="col-4 m-3 text-center border p-3">
-                            <label for="rosa" class="m-0 h4">Rosa </label> <br>
-                                <input type="checkbox" id="rosa">
-                            
-                        </div>
-                        <div class="col-4 m-3 text-center border p-3">
-                            <label for="azul" class="m-0 h4">Azul</label> <br>
-                            <input type="checkbox" id="azul">
-                        </div>
-                        <div class="col-4 m-3 text-center  border p-3">
-                            <label for="amarillo" class="m-0 h4">Amarillo</label> <br>
-                            <input type="checkbox" id="amarillo">
-                        </div>
-                    </div>
-                </div>
-
-
-              </div>
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-success">
-                <i class="fa fa-check"></i>
-                Confirmar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-
 
 
     <!-- Modal -->
@@ -170,4 +116,43 @@
 
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+                <h3>Nuevo reporte</h3><hr> <br>
+                <div class="form-group">
+                    <label for="" class="m-0">Descripción de la falla</label>
+                        <textarea type="text" class="form-control h-25 w-100"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="" class="m-0">Dispositivo que fallo</label>
+                        <select name="dispositivo" class="form-control">
+                            <option value="computadora">Computadora</option>
+                            <option value="telefono">Teléfono</option>
+                            <option value="impresora">Impresora</option>
+
+                        </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-success">
+                <i class="fa fa-check"></i>
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+
+
+
+
+
+
 @endsection
+    

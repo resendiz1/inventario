@@ -12,81 +12,102 @@
     <div class="row justify-content-center">
 
 
-        <div class="col-2 bg-white shadow shadow-sm mx-4 p-5">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Computadora</h3>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b> Marca: </b> Lenovo</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b> Modelo: </b> ThinkPad</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Sistema Operativo : </b> Windows 10</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Tamaño HDD : </b> 1000 GB </span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Tipo : </b> Escritorio </span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Tamaño SSD : </b> 1000 GB </span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Modelo : </b> Inspiron 5400 </span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-2 bg-white shadow shadow-sm mx-4 p-5">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Impresora</h3>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b> Marca: </b> Epson</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b> Modelo: </b> L4150</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Serie : </b> HELPOD12415245S </span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Tipo : </b> Tinta</span>
-                </div>
-                <div class="col-auto m-1">
-                    <span><b>Observaciones : </b> Lorem s. </span>
+        @forelse ($computadoras as $computadora)
+            <div class="col-2 bg-white shadow shadow-sm mx-4 p-5 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Computadora</h3>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b> Marca: </b> {{$computadora->marca}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b> Modelo: </b> {{$computadora->modelo}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Sistema Operativo : </b> {{$computadora->SO}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Tamaño HDD : </b> {{$computadora->size_hdd}} GB </span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Tipo : </b> {{$computadora->tipo}} </span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Tamaño SSD : </b> {{$computadora->size_ssd}} GB </span>
+                    </div>
                 </div>
             </div>
-        </div>
+        @empty
+            <li>No hay datos de computadoras</li>
+        @endforelse
+        
 
-        <div class="col-2 bg-white shadow shadow-sm mx-4 p-5">
+
+
+
+    
+
+        @forelse ($impresoras as $impresora)            
+            <div class="col-2 bg-white shadow shadow-sm mx-4 p-5 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Impresora</h3>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b> Marca: </b> {{$impresora->marca}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b> Modelo: </b> {{$impresora->modelo}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Serie : </b> {{$impresora->serie}} </span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Tipo : </b> {{$impresora->tipo}}</span>
+                    </div>
+                    <div class="col-auto m-1">
+                        <span><b>Observaciones : </b> {{$impresora->observaciones}}</span>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <li>No hay datos de impresoras</li>
+        @endforelse
+        
+
+
+
+
+        @forelse ($telefonos as $telefono)
+        <div class="col-2 bg-white shadow shadow-sm mx-4 p-5 mt-2">
             <div class="row">
                 <div class="col-12">
                     <h3>Teléfono</h3>
                 </div>
                 <div class="col-auto m-1">
-                    <span><b> Marca: </b> Panasonic</span>
+                    <span><b> Marca: </b> {{$telefono->marca}}</span>
                 </div>
                 <div class="col-auto m-1">
-                    <span><b> Modelo: </b> KX-HDDCDDSSDF</span>
+                    <span><b> Modelo: </b> {{$telefono->modelo}}</span>
                 </div>
                 <div class="col-auto m-1">
-                    <span><b>Serie : </b> HELPOD12415245S </span>
+                    <span><b>Serie : </b> {{$telefono->serie}} </span>
                 </div>
                 <div class="col-auto m-1">
-                    <span><b>Tipo : </b> Linea </span>
+                    <span><b>Tipo : </b> {{$telefono->tipo}} </span>
                 </div>
                 <div class="col-auto m-1">
-                    <span><b>Observaciones : </b> Lorem  </span>
+                    <span><b>Observaciones : </b> {{$telefono->observaciones}}  </span>
                 </div>
             </div>
         </div>
+
+        @empty
+            
+        @endforelse
+
+
 
 
 

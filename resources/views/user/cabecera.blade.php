@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col-4 text-center pt-2">
-                    <a href="#">
+                    <a href="{{route('tickets.show')}}">
                         <i class="fa-solid fa-laptop-file fa-3x"></i>
                         <h3>Tickets</h3>
                     </a>

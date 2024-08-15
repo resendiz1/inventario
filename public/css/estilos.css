@@ -56,3 +56,15 @@
   a:hover{
     color: black;
   }
+
+
+
+
+
+
+
+  input[type='checkbox']:hover{
+    color: rgb(240, 27, 8);
+    padding: 100px;
+    font-size: 30px;
+  }

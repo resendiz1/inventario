@@ -78,7 +78,16 @@ class Controller extends BaseController
     }
 
     public function perfil_user(){
-        return view('user.perfil_dispositivos');
+
+
+        $user = User::find(Auth::user()->id);
+        $computadoras = $user->computadoras;
+        $impresoras = $user->impresoras;
+        $telefonos = $user->telefonos;
+
+
+
+        return view('user.perfil_dispositivos', compact('computadoras', 'impresoras', 'telefonos'));
     }
 
 

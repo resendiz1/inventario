@@ -1,17 +1,18 @@
 <?php
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\tintasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\upsController;
 use App\Http\Controllers\areaController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\tintasController;
 use App\Http\Controllers\printerController;
+use App\Http\Controllers\ticketsController;
 use App\Http\Controllers\telefonoController;
 
 
 
-Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user');
+
 
 
 Route::get('/', [homeController::class, 'index'])->name('home');
@@ -72,4 +73,6 @@ Route::get('/resultado_printer', [printerController::class, 'show'])->name('prin
 
 
 //Rutas que funcionan en el perfil de los usuarios
-Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show');
+Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
+Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show')->middleware('auth');
+Route::get('/user/tickets', [ticketsController::class, 'show'])->name('tickets.show')->middleware('auth');
