@@ -76,3 +76,7 @@ Route::get('/resultado_printer', [printerController::class, 'show'])->name('prin
 Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
 Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show')->middleware('auth');
 Route::get('/user/tickets', [ticketsController::class, 'show'])->name('tickets.show')->middleware('auth');
+Route::post('/user/tintas/pedido', [tintasController::class, 'pedido'])->name('tintas.pedido')->middleware('auth');
+Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_completo'])->name('pedido.completo')->middleware('auth');
+
+Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');

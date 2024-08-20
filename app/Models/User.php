@@ -60,6 +60,15 @@ public function telefonos(){
     return $this->hasMany(Telefono::class);
 }
 
+public function pedidos(){
+    return $this->hasMany(Pedido::class);
+}
+
+
+public function reportes(){
+    return $this->hasMany(Reporte::class);
+}
+
 
 
 

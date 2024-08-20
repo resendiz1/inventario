@@ -1,11 +1,17 @@
 @extends('layout')
 @section('contenido')
 @include('user.cabecera') 
+@section('title', 'Reportes de fallas')
 
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
             <h2>Reportes</h2>
+            @if (session('reportado'))
+                <h5 class="font-weight-bold text-center text-success">
+                  {{session('reportado')}}
+                </h5>
+            @endif
         </div>
     </div>
 
@@ -20,7 +26,7 @@
             <table class="table table-bordered table-responsive-md" style="transition: 3s">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Dispositivo</th>
                         <th scope="col">Fecha de reporte</th>
                         <th scope="col">Fecha de solución</th>
                         <th scope="col">Detalles</th>
@@ -29,14 +35,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <tr>
-                        <td>001</td>
-                        <td>2024-08-08</td>
-                        <td>2024-08-08</td>
-                        <td>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </td>
+                   
+                @forelse ($reportes as $reporte)
+                  @if ($reporte->status == 'pendiente')
+                      <tr>
+                        <td>{{$reporte->dispositivo}}</td>
+                        <td>{{$reporte->fecha_reporte}}</td>
+                        <td>{{$reporte->fecha_solucion}}</td>
+                        <td>{{$reporte->descripcion}}</td>
 
                         <td class="text-start">
                             <div class="dropdown">
@@ -44,23 +50,31 @@
                                     Pendiente
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#completo" style="cursor: pointer">Completo</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#reenviar" style="cursor: pointer">Reenviar petición</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#c{{$reporte->id}}" style="cursor: pointer">Completo</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#r{{$reporte->id}}" style="cursor: pointer">Reenviar petición</a>
                                 </div>
                             </div>                            
                         </td>      
-
-                    </tr>
-                    
-                    <tr>
-                        <td>001</td>
-                        <td>2024-08-08</td>
-                        <td>pendiente</td>
-                        <td>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </td>
+                      </tr>
+                  @else
+                      <tr>
+                        <td>{{$reporte->dispositivo}}</td>
+                        <td>{{$reporte->fecha_reporte}}</td>
+                        <td>{{$reporte->fecha_solucion}}</td>
+                        <td>{{$reporte->descripcion}}</td>
                         <td class="text-start"> <i class="fa fa-check-circle"></i> Completado </td>                      
-                    </tr>
+                      </tr>     
+                      
+                  @endif
+                
+                @empty
+                    <li>No hay reportes</li>
+                @endforelse
+
+
+
+             
+                    
                     
                 </tbody>
             </table>
@@ -75,7 +89,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="completo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="c{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-body">
@@ -96,7 +110,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="reenviar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="r{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-body">
@@ -121,28 +135,35 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-body">
-                <h3>Nuevo reporte</h3><hr> <br>
+              <form action="{{route('reporte.post')}}" method="post">
+                @csrf @method('post')
+
+                <h3>Nuevo reporte</h3><hr> 
                 <div class="form-group">
                     <label for="" class="m-0">Descripción de la falla</label>
-                        <textarea type="text" class="form-control h-25 w-100"></textarea>
+                        <textarea type="text" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
                 </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label for="" class="m-0">Dispositivo que fallo</label>
-                        <select name="dispositivo" class="form-control">
-                            <option value="computadora">Computadora</option>
-                            <option value="telefono">Teléfono</option>
-                            <option value="impresora">Impresora</option>
+                    <select name="dispositivo" class="form-control">
+                      <option value="computadora">Computadora</option>
+                      <option value="telefono">Teléfono</option>
+                      <option value="impresora">Impresora</option>
+                      
+                    </select>
+                  </div>
 
-                        </select>
-                </div>
+          
+
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-success">
+              <button class="btn btn-success">
                 <i class="fa fa-check"></i>
                 Confirmar
               </button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
         </div>

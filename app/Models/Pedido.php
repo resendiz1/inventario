@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['numero', 'colores', 'user_id', 'fecha_pedido'];
+    protected $table = 'pedidos';
 }

@@ -1,11 +1,36 @@
 @extends('layout')
 @section('contenido')
-@include('user.cabecera')    
+@include('user.cabecera')
+@section('title', 'Pedido tintas')
+    
 
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
             <h2>Tintas</h2>
+            @if ($errors->first('checkboxes'))
+                <h5 class="text-danger font-weight-bold">Debe seleccionar almenos un color</h5>
+            @endif
+
+
+            @if (session('pedido_enviado'))
+                <h5 class="text-success text-center font-weight-bold">              
+                  {{session('pedido_enviado')}}
+                </h5>
+            @endif
+
+            @if (session('anticipado'))
+              <li class="text-danger text-center font-weight-bold h5">              
+                  {{session('anticipado')}}
+              </li>
+            @endif
+
+            @if (session('completado'))
+            <li class="text-success text-center font-weight-bold h5">              
+                {{session('completado')}}
+            </li>
+          @endif
+          
         </div>
     </div>
 
@@ -33,32 +58,50 @@
                 </thead>
                 <tbody>
                     
-                    <tr>
-                        <td>Ejemplo 1</td>
-                        <td>2024-08-08</td>
-                        <td>2024-08-08</td>
-                        <td>Azul, rojo, amarillo, negro</td>
+                  @forelse ($pedidos as $pedido)
+
+
+                    @if($pedido->status != "pendiente")
+
+                      <tr>
+                        <td>{{$pedido->numero}}</td>
+                        <td>{{$pedido->fecha_pedido}}</td>
+                        <td>{{$pedido->fecha_entrega}}</td>
+                        <td>{{$pedido->colores}}</td>
+                        <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td>                      
+                      </tr>
+
+                    @else
+                    
+    
+                      <tr>
+                        <td>{{$pedido->numero}}</td>
+                        <td>{{$pedido->fecha_pedido}}</td>
+                        <td>{{$pedido->fecha_entrega}}</td>
+                        <td>{{$pedido->colores}}</td>
+                        
                         <td class="text-start">
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                    Pendiente
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#completo" style="cursor: pointer">Completo</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#reenviar" style="cursor: pointer">Reenviar petición</a>
-                                </div>
-                            </div>                            
+                          <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                              Pendiente
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" data-toggle="modal" data-target="#c{{$pedido->id}}" style="cursor: pointer">Completo</a>
+                              <a class="dropdown-item" data-toggle="modal" data-target="#r{{$pedido->id}}" style="cursor: pointer">Reenviar petición</a>
+                            </div>
+                          </div>                            
                         </td>                      
-                    </tr>
+                      </tr>
+                    @endif
                     
-                    <tr>
-                        <td>Ejemplo 1</td>
-                        <td>2024-08-08</td>
-                        <td>pendiente</td>
-                        <td>Azul, rojo, amarillo, negro</td>
-                        <td class="text-start"> <i class="fa fa-check-circle"></i> Completado </td>                      
-                    </tr>
                     
+                    
+
+
+                    @empty
+                       <li>No hay datos</li> 
+                    @endforelse
+          
                 </tbody>
             </table>
         </div>
@@ -71,24 +114,7 @@
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="completo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h4>¿Se completo el pedido?</h4>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-success">
-            <i class="fa fa-check"></i>
-            Confirmar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal -->
+
 
     <!-- Modal -->
     <div class="modal fade" id="pedido" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -97,11 +123,11 @@
             <div class="modal-body">
               <h4 class="text-center">Nuevo pedido de tintas</h4>
                 <hr>
-              <div class="form">
-
+              <form method="POST" action="{{route('tintas.pedido')}}" class="form">
+                @csrf
                 <div class="form-group px-3">
                     <label for="" class="m-0">Número </label>
-                    <select name="" class="form-control">
+                    <select name="numero" class="form-control" value="{{old('numero')}}" >
                         <option value="544">544</option>
                         <option value="504">504</option>
                         <option value="664">664</option>
@@ -110,63 +136,99 @@
 
                 <div class="form-group">
                     <div class="row justify-content-center">
-                        <div class="col-4 m-3 text-center border p-3">
+                        <div class="col-4 m-3 text-center p-3">
                             <label for="negro" class="m-0 h4">Negro</label> <br>
-                            <input type="checkbox" id="negro">
+                            <input type="checkbox" value="Negro" id="negro" name="checkboxes[]">
                         </div>
-                        <div class="col-4 m-3 text-center border p-3">
+                        <div class="col-4 m-3 text-center p-3">
                             <label for="rosa" class="m-0 h4">Rosa </label> <br>
-                                <input type="checkbox" id="rosa">
+                                <input type="checkbox" value="Rosa" id="rosa" name="checkboxes[]">
                             
                         </div>
-                        <div class="col-4 m-3 text-center border p-3">
+                        <div class="col-4 m-3 text-center p-3">
                             <label for="azul" class="m-0 h4">Azul</label> <br>
-                            <input type="checkbox" id="azul">
+                            <input type="checkbox" value="Azul" id="azul" name="checkboxes[]">
                         </div>
-                        <div class="col-4 m-3 text-center  border p-3">
+                        <div class="col-4 m-3 text-center  p-3">
                             <label for="amarillo" class="m-0 h4">Amarillo</label> <br>
-                            <input type="checkbox" id="amarillo">
+                            <input type="checkbox" value="Amarillo" id="amarillo" name="checkboxes[]">
                         </div>
                     </div>
                 </div>
 
+                <button  class="btn btn-success m-2 w-100">
+                  <i class="fa fa-check"></i>
+                  Confirmar
+                </button>
+              </form>
+              <button type="button" class="btn btn-secondary m-2 w-100" data-dismiss="modal">Cerrar</button>
+
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+
+
+
+
+
+      @forelse ($pedidos as $pedido)
+                  <!-- Modal -->
+        <div class="modal fade" id="r{{$pedido->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4>¿Reenviar el pedido?</h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success">
+                  <i class="fa fa-paper-plane"></i>
+                  Reenviar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="c{{$pedido->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h4>¿Se completo el pedido?</h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                <form action="{{route('pedido.completo', $pedido->id)}}" method="POST">
+                  @csrf @method('PATCH')
+                  <button class="btn btn-success">
+                    <i class="fa fa-check"></i>
+                    Confirmar
+                  </button>
+                </form>
+
 
               </div>
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-success">
-                <i class="fa fa-check"></i>
-                Confirmar
-              </button>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Modal -->
+        <!-- Modal -->
+      @empty
+          
+      @endforelse
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="reenviar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h4>¿Reenviar el pedido?</h4>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-success">
-                <i class="fa fa-paper-plane"></i>
-                Reenviar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
+
+
 
 
 
