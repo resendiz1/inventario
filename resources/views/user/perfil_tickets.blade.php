@@ -86,14 +86,15 @@
 
 
 
+@forelse ($reportes as $reporte)
+    
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="c{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="c{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-body">
-          <h4>¿Se completo el pedido?</h4>
+          <h4>¿Se completo el pedido? </h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -106,13 +107,13 @@
     </div>
   </div>
   <!-- Modal -->
+  
 
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="r{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="r{{$reporte->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
             <div class="modal-body">
               <h4>¿Reenviar el pedido?</h4>
             </div>
@@ -127,8 +128,10 @@
         </div>
       </div>
       <!-- Modal -->
-
-
+      
+@empty
+@endforelse
+      
 
     <!-- Modal -->
     <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
