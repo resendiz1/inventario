@@ -12,6 +12,11 @@
                   {{session('reportado')}}
                 </h5>
             @endif
+            @if (session('completado'))
+            <h5 class="font-weight-bold text-center text-success">
+              {{session('completado')}}
+            </h5>
+        @endif
         </div>
     </div>
 
@@ -51,7 +56,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#c{{$reporte->id}}" style="cursor: pointer">Completo</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#r{{$reporte->id}}" style="cursor: pointer">Reenviar petición</a>
+                                    {{-- <a class="dropdown-item" data-toggle="modal" data-target="#r{{$reporte->id}}" style="cursor: pointer">Reenviar petición</a> --}}
                                 </div>
                             </div>                            
                         </td>      
@@ -94,18 +99,22 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-body">
-          <h4>¿Se completo el pedido? </h4>
+          <h4>¿Se completo el soporte? </h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-success">
-            <i class="fa fa-check"></i>
-            Confirmar
-          </button>
+          <form action="{{route('reporte.completo', $reporte->id)}}" method="POST">
+            @csrf @method('PATCH')
+            <button class="btn btn-success">
+              <i class="fa fa-check"></i>
+              Confirmar
+            </button>
+          </form>
+
         </div>
       </div>
     </div>
-  </div>
+</div>
   <!-- Modal -->
   
 

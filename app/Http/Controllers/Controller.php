@@ -29,6 +29,8 @@ class Controller extends BaseController
             'password' => 'required',
             'planta' => 'required',
             'ubicacion' => 'required',
+            'extension' => 'required',
+            
 
         ]);
 
@@ -39,6 +41,8 @@ class Controller extends BaseController
         $usuario->puesto = request('puesto');
         $usuario->planta = request('planta');
         $usuario->ubicacion = request('ubicacion');
+        $usuario->extension = request('extension');
+        $usuario->celular = request('celular');
         $usuario->password = bcrypt(request('password'));
         $usuario->save();
 

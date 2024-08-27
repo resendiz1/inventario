@@ -80,3 +80,4 @@ Route::post('/user/tintas/pedido', [tintasController::class, 'pedido'])->name('t
 Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_completo'])->name('pedido.completo')->middleware('auth');
 
 Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');
+Route::patch('/user/tickets/{id}/completo', [ticketsController::class, 'reporte_completo'])->name('reporte.completo');

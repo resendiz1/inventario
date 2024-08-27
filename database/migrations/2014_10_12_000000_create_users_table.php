@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('puesto');
             $table->string('planta');
+            $table->string('extension');
+            $table->string('celular')->nullable()->default('No hay celular');
             $table->string('password');
             $table->string('ubicacion');
             $table->timestamp('email_verified_at')->nullable();

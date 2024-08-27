@@ -39,4 +39,14 @@ class ticketsController extends Controller
 
 
     }
+
+    public function reporte_completo($id){
+
+     $reportes = Reporte::findOrFail($id);
+     $reportes->status = 'completado';
+     $reportes->save();
+     
+     return back()->with('completado', 'El reporte fue cerrado con éxito!');
+
+    }
 }
