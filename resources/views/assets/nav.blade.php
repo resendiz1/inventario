@@ -38,6 +38,14 @@
                  Usuarios
             </a>
         </div>
-
+        <div class="col-12 m-2 text-center">
+            <form action="{{route('cerrar.session.admin')}}" method="POST" >
+                @csrf
+                <button type="submit" class="btn btn-light btn-sm">
+                    <i class="fa fa-power-off  mr-2"></i>
+                    Cerrar Session
+                </button>
+            </form>
+        </div>
     </div>
 </div>

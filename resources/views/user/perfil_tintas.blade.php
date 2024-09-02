@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <h2>Tintas</h2>
+
             @if ($errors->first('checkboxes'))
                 <h5 class="text-danger font-weight-bold">Debe seleccionar almenos un color</h5>
             @endif
@@ -29,7 +30,7 @@
             <li class="text-success text-center font-weight-bold h5">              
                 {{session('completado')}}
             </li>
-          @endif
+            @endif
           
         </div>
     </div>
@@ -38,7 +39,7 @@
     <div class="row d-flex justify-content-around">
         
         <div class="col-11 mx-1 bg-white p-4 shadow shadow-sm">
-            <button class="btn btn-light btn-sm m-1 font-weight-bold"  data-toggle="modal" data-target="#pedido">
+            <button class="btn btn-dark btn-sm m-1 font-weight-bold"  data-toggle="modal" data-target="#pedido">
                 <i class="fa fa-plus"></i>
                 Realizar pedido
             </button>
@@ -48,6 +49,7 @@
             <table class="table table-bordered table-responsive-md">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Fecha pedido</th>
                         <th scope="col">Fecha entrega</th>
@@ -64,6 +66,7 @@
                     @if($pedido->status != "pendiente")
 
                       <tr>
+                        <td>{{$pedido->id}}</td>
                         <td>{{$pedido->numero}}</td>
                         <td>{{$pedido->fecha_pedido}}</td>
                         <td>{{$pedido->fecha_entrega}}</td>
@@ -75,6 +78,7 @@
                     
     
                       <tr>
+                        <td>{{$pedido->id}}</td>
                         <td>{{$pedido->numero}}</td>
                         <td>{{$pedido->fecha_pedido}}</td>
                         <td>{{$pedido->fecha_entrega}}</td>
@@ -120,9 +124,12 @@
     <div class="modal fade" id="pedido" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+              <h5 class="modal-title fw-bold">
+                Nuevo pedido de tintas
+              </h5>
+            </div>
             <div class="modal-body">
-              <h4 class="text-center">Nuevo pedido de tintas</h4>
-                <hr>
               <form method="POST" action="{{route('tintas.pedido')}}" class="form">
                 @csrf
                 <div class="form-group px-3">
@@ -131,26 +138,30 @@
                         <option value="544">544</option>
                         <option value="504">504</option>
                         <option value="664">664</option>
+                        <option value="otra">Mi impresora no es Epson</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-4 m-3 text-center p-3">
-                            <label for="negro" class="m-0 h4">Negro</label> <br>
+                    <div class="row justify-content-center ">
+
+                        <div class="col-2 m-1 text-center p-3">
+                            <label for="negro" class="m-0 h4 fw-bold">BK</label> <br>
                             <input type="checkbox" value="Negro" id="negro" name="checkboxes[]">
                         </div>
-                        <div class="col-4 m-3 text-center p-3">
-                            <label for="rosa" class="m-0 h4">Rosa </label> <br>
-                                <input type="checkbox" value="Rosa" id="rosa" name="checkboxes[]">
-                            
+
+                        <div class="col-2 m-1 text-center p-3">
+                            <label for="rosa" class="m-0 h4" style="color: magenta">M </label> <br>
+                            <input type="checkbox" value="Rosa" id="rosa" name="checkboxes[]">
                         </div>
-                        <div class="col-4 m-3 text-center p-3">
-                            <label for="azul" class="m-0 h4">Azul</label> <br>
+
+                        <div class="col-2 m-1 text-center p-3">
+                            <label for="azul" class="m-0 h4" style="color: rgb(0, 50, 252)">C</label> <br>
                             <input type="checkbox" value="Azul" id="azul" name="checkboxes[]">
                         </div>
-                        <div class="col-4 m-3 text-center  p-3">
-                            <label for="amarillo" class="m-0 h4">Amarillo</label> <br>
+
+                        <div class="col-2 m-1 text-center  p-3">
+                            <label for="amarillo" class="m-0 h4" style="color: rgb(170, 170, 40)">Y</label> <br>
                             <input type="checkbox" value="Amarillo" id="amarillo" name="checkboxes[]">
                         </div>
                     </div>

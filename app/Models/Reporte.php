@@ -12,4 +12,10 @@ class Reporte extends Model
     protected $fillable = ['dispositivo', 'descripcion', 'fecha_reporte', 'fecha_solucion', 'detalles_solucion', 'user_id'];
 
     protected $table = 'reportes';
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    
 }

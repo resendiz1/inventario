@@ -3,11 +3,12 @@
 @section('contenido')
 @section('title', 'Agregar usuarios')
 
-<div class="container mt-5">
+<div class="container-fluid mt-5">
     
     
     <div class="row justify-content-center">
-        <div class="col-4 bg-white p-4">
+        {{-- div que encierra el formulario del usuario --}}
+        <div class="col-sm-12 col-md-4  col-lg-2 bg-white p-4 mx-1 border border-5">
                 <form action="{{route('registrar.usuarios')}}" method="POST" >
                     @csrf
                 <div class="row">
@@ -91,6 +92,40 @@
                 </div>
              </form>
         </div>
+        {{-- div que encierra el formulario del usuario --}}
+        
+        <div class="col-sm-12 col-md-7  col-lgt-8 bg-white p-4 bg-white mx-1">
+            <h3>Lista de usuarios</h3>
+            <table class="table table-bordered table-responsive-sm p-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Correo Electronico</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Planta</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    @forelse ($usuarios as $usuario)               
+                        <tr>
+                            <td>{{$usuario->name}}</td>
+                            <td>{{$usuario->email}}</td> 
+                            <td>{{$usuario->celular}}</td>
+                            <td>{{$usuario->planta}}</td>                    
+                        </tr>  
+                    @empty
+                        
+                    @endforelse
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+
     </div>
 
 

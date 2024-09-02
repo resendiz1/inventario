@@ -15,7 +15,7 @@ class tintasController extends Controller
 
 
 
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::where('user_id', Auth::user()->id)->get();
 
         return view('user.perfil_tintas', compact('pedidos'));
 
@@ -44,7 +44,7 @@ class tintasController extends Controller
 
 
         //checar la fecha del ultimo pedido
-       $ultima_fecha_bruto = Pedido::latest('created_at')->value('fecha_pedido');
+        $ultima_fecha_bruto = Pedido::latest('created_at')->value('fecha_pedido');
         //substr($ultima_fecha_bruto, 0, 10);
 
         $ultima_fecha_bruto_recortada = substr($ultima_fecha_bruto, 0, 1);

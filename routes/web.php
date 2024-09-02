@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\directorioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\upsController;
@@ -15,9 +16,10 @@ use App\Http\Controllers\telefonoController;
 
 
 
-Route::get('/', [homeController::class, 'index'])->name('home');
+Route::get('/', [homeController::class, 'index'])->name('login');
 Route::post('/', [Controller::class, 'ingreso_admin'])->name('ingreso.admin');
-Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin');
+Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin')->middleware('auth:admin');
+Route::post('/admin/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session.admin');
 
 //  Ingreso de usuarios
 
@@ -26,8 +28,6 @@ Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin');
 
 //rutas para agregar a los usuarios
 Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios');
-
-
 Route::post('/agregando_users', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios');
 
 
@@ -81,3 +81,8 @@ Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_compl
 
 Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');
 Route::patch('/user/tickets/{id}/completo', [ticketsController::class, 'reporte_completo'])->name('reporte.completo');
+
+//directorio
+Route::get('/user/directorio', [directorioController::class, 'show'])->name('directorio.show')->middleware('auth');
+
+Route::post('/user/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session');

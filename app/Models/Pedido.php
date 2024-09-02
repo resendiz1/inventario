@@ -11,4 +11,12 @@ class Pedido extends Model
 
     protected $fillable = ['numero', 'colores', 'user_id', 'fecha_pedido'];
     protected $table = 'pedidos';
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+
 }

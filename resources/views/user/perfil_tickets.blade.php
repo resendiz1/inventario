@@ -24,13 +24,17 @@
     <div class="row d-flex justify-content-around">
         
         <div class="col-12 mx-1 bg-white p-4 shadow shadow-sm">
-            <button class="btn btn-light btn-sm m-1 font-weight-bold" data-toggle="modal" data-target="#reporte">
+            <button class="btn btn-dark btn-sm m-1 font-weight-bold" data-toggle="modal" data-target="#reporte">
                 <i class="fa fa-plus"></i>
                 Realizar reporte
             </button>
+            <h3 class="text-center">
+              Reportes realizados
+            </h3>
             <table class="table table-bordered table-responsive-md" style="transition: 3s">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">ID reporte</th>
                         <th scope="col">Dispositivo</th>
                         <th scope="col">Fecha de reporte</th>
                         <th scope="col">Fecha de solución</th>
@@ -44,6 +48,7 @@
                 @forelse ($reportes as $reporte)
                   @if ($reporte->status == 'pendiente')
                       <tr>
+                        <td># {{$reporte->id}}</td>
                         <td>{{$reporte->dispositivo}}</td>
                         <td>{{$reporte->fecha_reporte}}</td>
                         <td>{{$reporte->fecha_solucion}}</td>
@@ -63,6 +68,7 @@
                       </tr>
                   @else
                       <tr>
+                        <td># {{$reporte->id}}</td>
                         <td>{{$reporte->dispositivo}}</td>
                         <td>{{$reporte->fecha_reporte}}</td>
                         <td>{{$reporte->fecha_solucion}}</td>
@@ -146,11 +152,12 @@
     <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+              <h5>Nuevo reporte</h5>
+            </div>
             <div class="modal-body">
               <form action="{{route('reporte.post')}}" method="post">
                 @csrf @method('post')
-
-                <h3>Nuevo reporte</h3><hr> 
                 <div class="form-group">
                     <label for="" class="m-0">Descripción de la falla</label>
                         <textarea type="text" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>

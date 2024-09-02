@@ -11,6 +11,11 @@ class Computadora extends Model
 
     protected $fillable = ['area', 'marca', 'modelo', 'pulgadas', 'touch', 'so', 'procesador', 'usuario', 'ip', 'mac', 'tipo', 'serie', 'frecuencia_ram', 'tipo_ram', 'size_hdd', 'size_ssd', 'slot1_ram', 'slot2_ram', 'slot3_ram', 'slot4_ram', 'imagen1', 'imagen2', 'imagen3'];
 
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 
 
 

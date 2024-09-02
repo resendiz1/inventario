@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Pedido;
+use App\Models\Reporte;
+use App\Models\Telefono;
+use App\Models\Impresora;
+use App\Models\Computadora;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,7 +22,9 @@ class Controller extends BaseController
 
     public function show_formulario(){
 
-        return view('admin.agregar_usuarios');
+        $usuarios = User::all();
+
+        return view('admin.agregar_usuarios', compact('usuarios'));
     }
 
     public function registrar_usuarios(){
@@ -89,15 +97,32 @@ class Controller extends BaseController
         $impresoras = $user->impresoras;
         $telefonos = $user->telefonos;
 
-
-
         return view('user.perfil_dispositivos', compact('computadoras', 'impresoras', 'telefonos'));
     }
 
 
     public function perfil_admin(){
+
+
+        //ojala esto lo pudiera extraer en un archivo aparte
+        $cantidad_computadoras = Computadora::count();
+        $cantidad_impresoras = Impresora::count();
+        $cantidad_telefonos = Telefono::count();
+        $pedidos = Pedido::where('status', 'pendiente')->with('user')->get();
+        $reportes = Reporte::where('status', 'pendiente')->get();
+
+
+
+        return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes'));
+    }
+
+
+    public function cerrar_session(){
         
-        return view('admin.perfil');
+        Session::flush(); //Manda alv la session
+        Auth::logout();
+        return back();
+
     }
 
 
