@@ -71,3 +71,23 @@
     padding: 100px;
     font-size: 30px;
   }
+
+  .zoom_menu{
+    transition: transform 0.4s ease;
+  }
+
+  .zoom_menu:hover{
+    transform: scale(1.2);
+  }
+
+  .cascadia{
+    font-family: cascadia code;
+  }
+
+  .tabla-usuarios-scroll{
+    height: 800px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll; /* Muestra el scroll vertical cuando el contenido excede la altura */
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+  }

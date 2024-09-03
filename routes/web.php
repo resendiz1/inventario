@@ -19,7 +19,7 @@ use App\Http\Controllers\telefonoController;
 Route::get('/', [homeController::class, 'index'])->name('login');
 Route::post('/', [Controller::class, 'ingreso_admin'])->name('ingreso.admin');
 Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin')->middleware('auth:admin');
-Route::post('/admin/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session.admin');
+Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.session.admin');
 
 //  Ingreso de usuarios
 
@@ -27,8 +27,8 @@ Route::post('/admin/cerrar_sesion', [Controller::class, 'cerrar_session'])->name
 
 
 //rutas para agregar a los usuarios
-Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios');
-Route::post('/agregando_users', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios');
+Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios')->middleware('auth:admin');
+Route::post('/agregando_users', [Controller::class, 'registrar_usuarios'])->name('registrar.usuarios')->middleware('auth:admin');
 
 
 

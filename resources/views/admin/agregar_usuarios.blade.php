@@ -94,7 +94,7 @@
         </div>
         {{-- div que encierra el formulario del usuario --}}
         
-        <div class="col-sm-12 col-md-7  col-lgt-8 bg-white p-4 bg-white mx-1">
+        <div class="col-sm-12 col-md-7  col-lgt-8 bg-white p-4 bg-white mx-1 border border-4 tabla-usuarios-scroll">
             <h3>Lista de usuarios</h3>
             <table class="table table-bordered table-responsive-sm p-0">
                 <thead class="thead-dark">

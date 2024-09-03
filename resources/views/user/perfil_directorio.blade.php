@@ -5,10 +5,10 @@
 
 <div class="container-fluid ">
 
-    <div class="row mb-4  justify-content-center">
-        <div class="col-5 bg-white shadow shadow-sm p-3 text-center">
+    <div class="row mb-2  justify-content-center">
+        <div class="col-sm-12 col-md-9 col-lg-6 bg-white shadow shadow-sm p-3 text-center">
                 <h5 class="font-weight-bold">Buscar en el directorio: </h5>
-                <input type="search" id="buscador" class="form-control" placeholder="Buscar por:  nombre, extensión, correo, celular, puesto o planta">
+                <input type="search" id="buscador" class="form-control cascadia font-weight-bold negro" placeholder="Buscar por:  nombre, extensión, correo, celular, puesto o planta" autofocus >
         </div>
     </div>
 
@@ -16,30 +16,28 @@
     <div class="row justify-content-center" id="contenedor">
             @forelse ($usuarios as $usuario)
                 
-            <div class="col-sm-12 col-md-5 col-lg-2 p-2 border border-5 p-3 bg-white m-1">
+            <div class="col-sm-12 col-md-5 col-lg-3 border border-5 p-3 bg-white m-1">
                 <div class="row">
-                        <div class="col-12 text-center mb-3 h4 search">
-                            <b>{{$usuario->name}}</b>
+                        <div class="col-12 text-center search mb-2">
+                            <b class="h4">{{$usuario->name}}</b> 
+                            <br>
+                            <h6>{{$usuario->puesto}}</h6>
                         </div>
-                        <div class="col-12 m-1 search">
-                            <b>Email:</b> <br>
+                        <div class="col-12 m-1 mb-2">
+                            <b>Email : </b>
                             <span>{{$usuario->email}}</span>
                         </div>
-                        <div class="col-12 m-1">
-                            <b>Celular:</b> <br>
+                        <div class="col-12 m-1 mb-2">
+                            <b>Celular : </b> 
                             <span>{{$usuario->celular}}</span>
                         </div>
-                        <div class="col-12 m-1 search">
-                            <b>Extensión: </b> <br>
+                        <div class="col-12 m-1 mb-2">
+                            <b>Extensión : </b> 
                             <span>{{$usuario->extension}}</span>
                         </div>
-                        <div class="col-12 m-1 search">
-                            <b>Planta:</b> <br>
+                        <div class="col-12 m-1 mb-2">
+                            <b>Planta : </b>
                             <span>Planta {{$usuario->planta}}</span>
-                        </div>
-                        <div class="col-12 m-1 search">
-                            <b>Puesto:</b> <br>
-                            <span>{{$usuario->puesto}}</span>
                         </div>
                     </div>
                 </div>

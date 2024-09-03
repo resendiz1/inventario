@@ -49,7 +49,7 @@
                                     <td>{{$pedido->numero}}</td>                   
                                 </tr>     
                             @empty
-                                <li>No hay pedidos</li>
+             
                             @endforelse
 
 
@@ -82,7 +82,7 @@
                                     <td>{{$reporte->user->name}}</td>
                                     <td>{{$reporte->fecha_reporte}}</td>
                                     <td>{{$reporte->dispositivo}}</td>
-                                    <td>{{$reporte->descripcion}} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus, dolorem magni, hic deleniti dignissimos mollitia  </td>                     
+                                    <td>{{$reporte->descripcion}}</td>                     
                                 </tr>     
                             @empty
                                 
