@@ -22,7 +22,7 @@ class CreateTelefonosTable extends Migration
             $table->string('imagen2');
             $table->string('imagen3');
             $table->string('observaciones');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

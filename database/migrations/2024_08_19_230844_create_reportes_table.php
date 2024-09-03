@@ -19,9 +19,10 @@ class CreateReportesTable extends Migration
             $table->string('descripcion');
             $table->string('status')->nullable()->default('pendiente');
             $table->string('fecha_reporte');
+            $table->string('prioridad');
             $table->string('fecha_solucion')->nullable()->default('pendiente');
             $table->string('detalles_solucion')->nullable()->default('pendiente');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

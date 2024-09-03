@@ -126,6 +126,59 @@ class Controller extends BaseController
     }
 
 
+    public function eliminar_usuario($id){
+
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+
+        return back()->with('eliminado', 'El usuario fue eliminado');
+
+
+
+
+    }
+
+
+    public function actualizar_usuario($id){
+    
+        //encontrando el usuario
+        $usuario = User::findOrFail($id);
+        
+
+        //comparando, si son diferentes se aplica el cambio si no no se hace nada
+        if(request('password_edit') != $usuario->password){
+            $usuario->password = bcrypt(request('password_edit'));
+        }
+
+        
+        
+        request()->validate([
+            'nombre_edit' => 'required',
+            'email_edit' => 'required|email',
+            'puesto_edit' => 'required',
+            'planta_edit' => 'required',
+            'ubicacion_edit' => 'required',
+            'extension_edit' => 'required',
+        ]);
+
+
+        $usuario->name = request('nombre_edit');
+        $usuario->email = request('email_edit');
+        $usuario->puesto = request('puesto_edit');
+        $usuario->planta = request('planta_edit');
+        $usuario->ubicacion = request('ubicacion_edit');
+        $usuario->extension = request('extension_edit');
+        $usuario->celular = request('celular_edit');
+        $usuario->save();
+
+
+        return back()->with('editado', 'El usuario fue editado!');
+
+
+
+    }
+
+
 
 
 

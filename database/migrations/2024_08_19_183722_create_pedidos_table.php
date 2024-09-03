@@ -20,7 +20,7 @@ class CreatePedidosTable extends Migration
             $table->string('status')->nullable()->default('pendiente');
             $table->string('fecha_pedido');
             $table->string('fecha_entrega')->nullable()->default('pendiente');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

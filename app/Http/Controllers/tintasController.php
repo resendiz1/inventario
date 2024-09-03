@@ -13,9 +13,7 @@ class tintasController extends Controller
 {
     public function show(){
 
-
-
-        $pedidos = Pedido::where('user_id', Auth::user()->id)->get();
+        $pedidos = Pedido::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
         return view('user.perfil_tintas', compact('pedidos'));
 

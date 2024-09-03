@@ -23,7 +23,8 @@ Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.sessi
 
 //  Ingreso de usuarios
 
-
+Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar');
+Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario');
 
 
 //rutas para agregar a los usuarios

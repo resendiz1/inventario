@@ -3,8 +3,6 @@
 @section('title', "Perfil Admin")
 @include('assets.nav')
 
-
-
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
             <div class="col-2 text-center p-3 bg-white border border-3 m-2">
@@ -45,7 +43,7 @@
                                 <tr>
                                     <td>{{$pedido->user->name}}</td>
                                     <td>{{$pedido->fecha_pedido}}</td>
-                                    <td>{{$pedido->colores}}</td>
+                                    <td>{{implode(', ',json_decode($pedido->colores, true))}}</td>
                                     <td>{{$pedido->numero}}</td>                   
                                 </tr>     
                             @empty

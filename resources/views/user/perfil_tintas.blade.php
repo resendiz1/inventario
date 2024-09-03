@@ -70,7 +70,7 @@
                         <td>{{$pedido->numero}}</td>
                         <td>{{$pedido->fecha_pedido}}</td>
                         <td>{{$pedido->fecha_entrega}}</td>
-                        <td>{{$pedido->colores}}</td>
+                        <td>{{ implode(', ', json_decode($pedido->colores, true)) }} </td>
                         <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td>                      
                       </tr>
 
@@ -82,7 +82,7 @@
                         <td>{{$pedido->numero}}</td>
                         <td>{{$pedido->fecha_pedido}}</td>
                         <td>{{$pedido->fecha_entrega}}</td>
-                        <td>{{$pedido->colores}}</td>
+                        <td>{{ implode(', ', json_decode($pedido->colores, true)) }}</td>
                         
                         <td class="text-start">
                           <div class="dropdown">
@@ -237,6 +237,17 @@
       @endforelse
 
 
+{{-- aqui esta el html de mi menu contextual --}}
+<div class="menu-contextual" id="menuContextual">
+  <ul>
+      <li>
+        <a data-toggle="modal" data-target="#pedido">
+          <i class="fa fa-plus"></i>
+            Realizar Pedido
+        </a>
+      </li>
+  </ul>
+</div>
 
 
 

@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row mt-5 justify-content-center">
         <div class="col-3 mt-5 border border-3 bg-white p-4">
-         <form action="{{route('ingreso.admin')}}" method="POST">
+         <form action="{{asset(route('ingreso.admin'))}}" method="POST">
             @csrf
             <h3>Login</h3>
             @if (session('error'))
@@ -13,7 +13,7 @@
             
             <div class="form-group m-0">
                 <label for="email" class="m-0 p-0">Usuario</label>
-                <input type="text" value="seguridadehigiene3@grupopabsa.com" name="email" class="form-control" id="email" >
+                <input type="text" value="resendiz.galleta@gmail.com" name="email" class="form-control" id="email" >
 
             </div>
 

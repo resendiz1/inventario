@@ -164,13 +164,28 @@
                 </div>
                   <div class="form-group">
                     <label for="" class="m-0">Dispositivo que fallo</label>
+
                     <select name="dispositivo" class="form-control">
                       <option value="computadora">Computadora</option>
                       <option value="telefono">Teléfono</option>
                       <option value="impresora">Impresora</option>
-                      
+                      <option value="Otro">Otro</option>
                     </select>
+
                   </div>
+
+                  <div class="form-group">
+
+                    <label for="" class="m-0">Prioridad</label>
+
+                    <select name="prioridad" class="form-control">
+                      <option value="Baja">Baja</option>
+                      <option value="Media">Media</option>
+                      <option value="Alta">Alta</option>
+                    </select>
+
+                  </div>
+
 
           
 
@@ -191,7 +206,17 @@
 
 
 
-
+{{-- aqui esta el html de mi menu contextual --}}
+<div class="menu-contextual" id="menuContextual">
+  <ul>
+      <li>
+        <a data-toggle="modal" data-target="#reporte">
+          <i class="fa fa-plus"></i>
+            Realizar Reporte
+        </a>
+      </li>
+  </ul>
+</div>
 
 
 @endsection

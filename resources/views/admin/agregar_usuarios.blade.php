@@ -96,6 +96,13 @@
         
         <div class="col-sm-12 col-md-7  col-lgt-8 bg-white p-4 bg-white mx-1 border border-4 tabla-usuarios-scroll">
             <h3>Lista de usuarios</h3>
+            @if (session('eliminado'))
+                <h4 class="text-success font-weight-bold">{{session('eliminado')}}</h4>
+            @endif
+            @if (session('editado'))
+                <h4 class="text-success font-weight-bold">{{session('editado')}}</h4>
+            @endif
+
             <table class="table table-bordered table-responsive-sm p-0">
                 <thead class="thead-dark">
                     <tr>
@@ -103,6 +110,7 @@
                         <th scope="col">Correo Electronico</th>
                         <th scope="col">Celular</th>
                         <th scope="col">Planta</th>
+                        <th scope="col">Acciones</th>
 
                     </tr>
                 </thead>
@@ -113,7 +121,18 @@
                             <td>{{$usuario->name}}</td>
                             <td>{{$usuario->email}}</td> 
                             <td>{{$usuario->celular}}</td>
-                            <td>{{$usuario->planta}}</td>                    
+                            <td>{{$usuario->planta}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#e{{$usuario->id}}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-dark" data-toggle="modal" data-target="#a{{$usuario->id}}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </div>
+                            </td>                    
+
                         </tr>  
                     @empty
                         
@@ -123,28 +142,179 @@
                 </tbody>
             </table>
         </div>
-
-
-
     </div>
-
-
-
-
 </div>
 
 
 
+{{-- aqui van a estar los modales para la edicion y la eliminacion de los usuarios --}}
+@forelse ($usuarios as $usuario)
+    
+    <!-- Modal -->
+    <div class="modal fade" id="e{{$usuario->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>¿Desea eliminar al usuario? </h4>
+                </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <form action="{{route('usuario.eliminar', $usuario->id)}}" method="POST">
+                @csrf @method('PATCH')
+                <button class="btn btn-success">
+                    <i class="fa fa-check"></i>
+                    Confirmar
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="a{{$usuario->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                     <div class="modal-header bg-dark text-white h5 ">Actualizando Usuario</div>
+                        <div class="modal-body">
+                            <div class="row">                                
+                            <form action="{{route('actualizar.usuario', $usuario->id)}}" method="POST">
+                                @csrf @method('PATCH')
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="">Nombre completo</label>
+                                        <input type="text" name="nombre_edit" class="form-control form-control-sm" value="{{old('nombre_edit', $usuario->name)}}">
+                                        {!!$errors->first('nombre_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="">Correo Electronico</label>
+                                        <input type="email" name="email_edit" value="{{old('email_edit', $usuario->email)}}" id="email" class="form-control form-control-sm">
+                                        {!!$errors->first('email_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="">Celular</label>
+                                        <input type="tel" name="celular_edit" value="{{old('celular_edit', $usuario->celular)}}" id="celular" class="form-control form-control-sm">
+                                        {!!$errors->first('celular_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="">Extensión</label>
+                                        <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuario->extension)}}" id="extension" class="form-control form-control-sm">
+                                        {!!$errors->first('extension_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+            
+                                    <div class="form-group mx-3">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-12">
+                                                <label for="">Contraseña</label>
+                                            </div>
+                                            <div class="col-9 p-0 m-0">
+                                                <input type="password" name="password_edit" id="password1" value="{{old('password_edit', $usuario->password)}}" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-1 p-0 my-0 mx-3">
+                                                <input type="checkbox" id="view_password1">
+                                            </div>
+                                            {!!$errors->first('password_edit', '<small class="text-danger"> :message </small>')!!}
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="">Puesto</label>
+                                        <input type="text" name="puesto_edit" value="{{old('puesto_edit', $usuario->puesto)}}" class="form-control form-control-sm">
+                                        {!!$errors->first('puesto_edit', '<small class="text-danger"> :message </small>')!!}
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label for="">Planta</label>
+                                        <select name="planta_edit" value={{old('planta_edit', $usuario->planta)}} id="" class="form-control form-control-sm">
+                                            @if ($usuario->planta == 'Planta 1')
+                                                <option value="Planta 1" selected>Planta 1</option>
+                                                <option value="Planta 2">Planta 2</option>
+                                                <option value="Planta 3">Planta 3</option>
+                                            @endif
+                                            @if ($usuario->planta == 'Planta 2')
+                                                <option value="Planta 2" selected>Planta 2</option>
+                                                <option value="Planta 1">Planta 1</option>
+                                                <option value="Planta 3">Planta 3</option>
+                                            @endif
+                                            @if ($usuario->planta == 'Planta 3')
+                                                <option value="Planta 3" selected>Planta 3</option>
+                                                <option value="Planta 2">Planta 2</option>
+                                                <option value="Planta 1">Planta 1</option>
+                                            @endif
+
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="">Ubicación</label>
+                                        <textarea name="ubicacion_edit" class="form-control form-control-sm w-100" >{{old('ubicacion_edit', $usuario->ubicacion)}}</textarea>
+                                        {!!$errors->first('ubicacion_edit', '<small class="text-danger"> :message </small>')!!}
+                                    </div>            
+                                </div>
+                            </div>
+                        </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success">
+                                    <i class="fa fa-check"></i>
+                                    Confirmar
+                                </button>
+                                    </form>
+                            
+                            
+                                
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                
+                            </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Modal -->
+
+
+  @empty
+      
+  @endforelse
+{{-- aqui van a estar los modales para la edicion y la eliminacion de los usuarios --}}
+
+
+
+
+
+
+
+
+
 <script>
+{
   const   $password = document.getElementById('password');
-  const   $email = document.getElementById('email');
   const   $ver = document.getElementById('view_password');
 
 
   $ver.onchange = function(e){
     $password.type = $ver.checked ? "text" : "password"
   }
+}
 
+{
+
+  const   $password = document.getElementById('password1');
+  const   $ver = document.getElementById('view_password1');
+
+
+  $ver.onchange = function(e){
+    $password.type = $ver.checked ? "text" : "password"
+  }
+
+}
 
 </script>
 

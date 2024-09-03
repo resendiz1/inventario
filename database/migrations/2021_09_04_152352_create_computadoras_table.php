@@ -22,7 +22,7 @@ class CreateComputadorasTable extends Migration
             $table->string('size_hdd');
             $table->string('size_ssd');
             $table->string('SO');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('observaciones');
             $table->string('imagen1');
             $table->string('imagen2');
