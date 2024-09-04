@@ -26,7 +26,7 @@
 
 
             <div class="col-5 bg-white m-1 border border-3 mt-5">
-                <h3 class="py-3" >Pedidos de tintas pendientes</h3>
+                <h4 class="py-3 font-weight-bold" >Pedidos de tintas pendientes</h4>
 
                 <table class="table table-bordered table-responsive-md p-0">
                         <thead class="thead-dark">
@@ -62,7 +62,7 @@
 
 
             <div class="col-6 bg-white m-1 mt-5 border border-3">
-                <h3 class="py-3" >Reportes de usuarios</h3>
+                <h4 class="py-3 font-weight-bold" >Reportes de usuarios</h4>
 
                 <table class="table table-bordered table-responsive-md p-0">
                         <thead class="thead-light">

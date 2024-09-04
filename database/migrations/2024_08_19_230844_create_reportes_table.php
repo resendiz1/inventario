@@ -16,6 +16,7 @@ class CreateReportesTable extends Migration
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
             $table->string('dispositivo');
+            $table->string('otro')->nullable();
             $table->string('descripcion');
             $table->string('status')->nullable()->default('pendiente');
             $table->string('fecha_reporte');

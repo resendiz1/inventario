@@ -16,6 +16,7 @@ use App\Http\Controllers\telefonoController;
 
 
 
+// Route::get('/', [homeController::class, 'index'])->name('login');
 Route::get('/', [homeController::class, 'index'])->name('login');
 Route::post('/', [Controller::class, 'ingreso_admin'])->name('ingreso.admin');
 Route::get('/admin', [Controller::class, 'perfil_admin'])->name('perfil.admin')->middleware('auth:admin');
@@ -72,6 +73,7 @@ Route::get('/resultado_printer', [printerController::class, 'show'])->name('prin
 
 // Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');
 
+Route::get('/user/tickets/detalles/{id}', [ticketsController::class, 'detalle_reporte'])->name('detalle.reporte');
 
 //Rutas que funcionan en el perfil de los usuarios
 Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
@@ -79,6 +81,8 @@ Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show
 Route::get('/user/tickets', [ticketsController::class, 'show'])->name('tickets.show')->middleware('auth');
 Route::post('/user/tintas/pedido', [tintasController::class, 'pedido'])->name('tintas.pedido')->middleware('auth');
 Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_completo'])->name('pedido.completo')->middleware('auth');
+
+
 
 Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');
 Route::patch('/user/tickets/{id}/completo', [ticketsController::class, 'reporte_completo'])->name('reporte.completo');

@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row mt-5 justify-content-center">
         <div class="col-3 mt-5 border border-3 bg-white p-4">
-         <form action="{{asset(route('ingreso.admin'))}}" method="POST">
+         <form action="{{route('ingreso.admin')}}" method="POST">
             @csrf
             <h3>Login</h3>
             @if (session('error'))

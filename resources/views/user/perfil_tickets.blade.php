@@ -34,8 +34,8 @@
             <table class="table table-bordered table-responsive-md" style="transition: 3s">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID reporte</th>
-                        <th scope="col">Dispositivo</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Lo que falla</th>
                         <th scope="col">Fecha de reporte</th>
                         <th scope="col">Fecha de solución</th>
                         <th scope="col">Detalles</th>
@@ -48,8 +48,12 @@
                 @forelse ($reportes as $reporte)
                   @if ($reporte->status == 'pendiente')
                       <tr>
-                        <td># {{$reporte->id}}</td>
-                        <td>{{$reporte->dispositivo}}</td>
+                        <td class="text-center"># {{$reporte->id}}
+                        <td>
+                          <a href="{{route('detalle.reporte', $reporte->id)}}">
+                            {{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo}}
+                          </a>
+                        </td>
                         <td>{{$reporte->fecha_reporte}}</td>
                         <td>{{$reporte->fecha_solucion}}</td>
                         <td>{{$reporte->descripcion}}</td>
@@ -68,8 +72,8 @@
                       </tr>
                   @else
                       <tr>
-                        <td># {{$reporte->id}}</td>
-                        <td>{{$reporte->dispositivo}}</td>
+                        <td class="text-center"># {{$reporte->id}}
+                        <td>{{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo }}</td>
                         <td>{{$reporte->fecha_reporte}}</td>
                         <td>{{$reporte->fecha_solucion}}</td>
                         <td>{{$reporte->descripcion}}</td>
@@ -150,7 +154,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-header bg-dark text-white">
               <h5>Nuevo reporte</h5>
@@ -165,14 +169,22 @@
                   <div class="form-group">
                     <label for="" class="m-0">Dispositivo que fallo</label>
 
-                    <select name="dispositivo" class="form-control">
+                    <select name="dispositivo" id="dispositivo" class="form-control">
                       <option value="computadora">Computadora</option>
-                      <option value="telefono">Teléfono</option>
                       <option value="impresora">Impresora</option>
                       <option value="Otro">Otro</option>
                     </select>
 
                   </div>
+
+
+                  <div class="form-group" style="display: none"  id="otra_falla">
+                    <label for="">¿Que es lo que falla?</label>
+                    <input type="text" class="form-control" name="otro">
+                    <p class="text-danger">Recuerda que los sistemas Aspel, Teléfonos  y el enlace de red de planta a planta son de los proveedores externos. </p>
+                  </div>
+
+
 
                   <div class="form-group">
 
@@ -218,6 +230,27 @@
   </ul>
 </div>
 
+
+{{-- aqui van los scripts de esta seccion --}}
+
+<script>
+
+document.getElementById('dispositivo').addEventListener('change', function(){
+  
+  const otro = document.getElementById('otra_falla');
+
+  if(this.value === 'Otro'){
+    otro.style.display = 'block';
+  }
+  else{
+    otro.style.display = 'none';
+  }
+
+
+
+})
+
+</script>
 
 @endsection
     

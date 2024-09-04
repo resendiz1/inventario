@@ -19,26 +19,44 @@ class ticketsController extends Controller
 
     public function reporte(){
 
-        
-        request()->validate([
-            'descripcion' => 'required',
-            'dispositivo' => 'required'
-        ]);
 
 
+        if(request('dispositivo') == 'Otro'){
+
+            request()->validate([
+                'descripcion' => 'required',
+                'otro' => 'required'
+            ]);
+
+        }
+
+
+        else{
+            
+            request()->validate([
+                'descripcion' => 'required',
+                'dispositivo' => 'required'
+            ]);
+        }
+
+
+
+
+    
 
         Reporte::create([
             'dispositivo' => request('dispositivo'),
             'descripcion' => request('descripcion'),
             'fecha_reporte' => substr(Carbon::now(), 0, 10),
+            'otro' => request('otro'),
             'user_id' => Auth::user()->id,
         ]);
 
+
         return back()->with('reportado', 'El reporte fue enviado!');
-
-
-
+    
     }
+
 
     public function reporte_completo($id){
 
@@ -47,6 +65,14 @@ class ticketsController extends Controller
      $reportes->save();
      
      return back()->with('completado', 'El reporte fue cerrado con éxito!');
+
+    }
+
+
+    public function detalle_reporte($id){
+
+        
+        $reporte = Reporte::findOrFail($id);
 
     }
 }
