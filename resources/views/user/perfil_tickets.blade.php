@@ -3,20 +3,27 @@
 @include('user.cabecera') 
 @section('title', 'Reportes de fallas')
 
+
+{{-- 
 <div class="container">
+  <iframe src="https://www.milenio.com/" width="100%" height="700px"></iframe>
+</div> --}}
+
+
+<div class="container">
+
     <div class="row">
         <div class="col-12 text-center">
-            <h2>Reportes</h2>
             @if (session('reportado'))
                 <h5 class="font-weight-bold text-center text-success">
                   {{session('reportado')}}
                 </h5>
             @endif
             @if (session('completado'))
-            <h5 class="font-weight-bold text-center text-success">
-              {{session('completado')}}
-            </h5>
-        @endif
+                <h5 class="font-weight-bold text-center text-success">
+                  {{session('completado')}}
+                </h5>
+            @endif
         </div>
     </div>
 
@@ -73,7 +80,11 @@
                   @else
                       <tr>
                         <td class="text-center"># {{$reporte->id}}
-                        <td>{{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo }}</td>
+                        <td>
+                          <a href="{{route('detalle.reporte', $reporte->id)}}">
+                            {{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo}}
+                          </a>
+                        </td>
                         <td>{{$reporte->fecha_reporte}}</td>
                         <td>{{$reporte->fecha_solucion}}</td>
                         <td>{{$reporte->descripcion}}</td>

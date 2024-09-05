@@ -7,8 +7,6 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h2>Tintas</h2>
-
             @if ($errors->first('checkboxes'))
                 <h5 class="text-danger font-weight-bold">Debe seleccionar almenos un color</h5>
             @endif
@@ -53,7 +51,7 @@
                 Realizar pedido
             </button>
             <h3 class="text-center">
-                Pedidos realizados
+                Pedidos de tintas realizados
             </h3>
             <table class="table table-bordered table-responsive-md">
                 <thead class="thead-dark">
@@ -115,9 +113,18 @@
           
                 </tbody>
             </table>
+           <small>Página: {{$pedidos->currentPage()}}</small> 
         </div>
 
-    </div>
+
+
+        <div class="col-12 text-center mt-4">
+          {{$pedidos->links()}}
+        </div>
+
+
+
+      </div>
  </div> {{-- ciertre del container que cierra todo --}}
 
 

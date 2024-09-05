@@ -72,7 +72,9 @@ class ticketsController extends Controller
     public function detalle_reporte($id){
 
         
-        $reporte = Reporte::findOrFail($id);
+    $reporte = Reporte::findOrFail($id);
+
+    return view('user.detalle_reporte', compact('reporte'));
 
     }
 }

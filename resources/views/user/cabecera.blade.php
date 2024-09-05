@@ -74,8 +74,8 @@
 
                 <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('tickets.show')}}" >
-                        <i class="fa-solid fa-laptop-medical fa-2x  {{request()->path() == 'user/tickets' ? 'negro' : ''}} "></i>
-                        <h5 class="{{request()->path() == 'user/tickets' ? 'negro font-weight-bold' : '' }}">Reportes</h5>
+                        <i class="fa-solid fa-laptop-medical fa-2x  {{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }}">Reportes</h5>
                     </a>
                 </div>
 
