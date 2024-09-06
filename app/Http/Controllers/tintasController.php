@@ -42,11 +42,12 @@ class tintasController extends Controller
 
             request()->validate([
                 'numero' => 'required',
-                'marca' => 'required'
+                'marca' => 'required',
+                'checkboxes' => 'required|array|min:1',
                ]);
 
 
-             $colores = json_encode([request("marca")]);
+             $colores = json_encode(request('checkboxes'));
 
         }
 

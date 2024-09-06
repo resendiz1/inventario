@@ -17,6 +17,7 @@ class CreateSeguimientosTable extends Migration
             $table->id();
             $table->string('usuario');
             $table->string('fecha');
+            $table->foreignId('reporte_id')->constrained('reportes')->onDelete('cascade');
             $table->string('comentario');
             $table->timestamps();
         });
