@@ -78,14 +78,18 @@
 
                         @if ($reporte->status != 'completado')
                             <div class="col-12 mt-2">
-                                <div class="form-group">
-                                    <i class="fa fa-comment"></i>
-                                    <b>Usuario: </b>
-                                    <textarea name="comentario" class="form-control w-100 h-25"></textarea>
-                                </div>
-                                <div class="from-group">
-                                    <button class="btn btn-dark btn-sm">Enviar</button>
-                                </div>
+                                <form action="{{route('comentario.reporte.usuario')}}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <i class="fa fa-comment"></i>
+                                        <b>Usuario: </b>
+                                        <textarea name="comentario" class="form-control w-100 h-25"></textarea>
+                                        <input type="hidden" name="id" value="{{$reporte->id}}">
+                                    </div>
+                                    <div class="from-group">
+                                        <button class="btn btn-dark btn-sm">Enviar</button>
+                                    </div>
+                                </form>
                             </div>
                         @endif
 

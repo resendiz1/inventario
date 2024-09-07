@@ -86,6 +86,7 @@ Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_compl
 
 Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');
 Route::patch('/user/tickets/{id}/completo', [ticketsController::class, 'reporte_completo'])->name('reporte.completo');
+Route::post('/user/tickets/comentario/', [ticketsController::class, 'comentario_usuario'])->name('comentario.reporte.usuario');
 
 //directorio
 Route::get('/user/directorio', [directorioController::class, 'show'])->name('directorio.show')->middleware('auth');
