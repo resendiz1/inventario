@@ -1,6 +1,8 @@
-Se necesita un gesto de bd ya sea 
-- Laragon, XAMPP, etc.
-- Composer
+Se necesita un gestor de bd ya sea 
+<ul>
+    <li>- Laragon, XAMPP, etc. </li>
+    <li>- Composer</li>
+</ul>
 
 
 <li>git clone </li> <br>
