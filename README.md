@@ -3,8 +3,8 @@ Se necesita un gesto de bd ya sea
 - Composer
 
 
-git clone <br>
-composer install  <br>
-cp .env.example .env  <br>
-php artisan key:generato  <br>
-php artisan migrate --seed  <br>
+<li>git clone </li> <br>
+<li>composer install </li><br>
+<li>cp .env.example .env</li><br>
+<li>php artisan key:generato</li>  <br>
+<li>php artisan migrate --seed </li> <br>
