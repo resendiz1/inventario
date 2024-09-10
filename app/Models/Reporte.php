@@ -9,7 +9,7 @@ class Reporte extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['dispositivo', 'descripcion', 'fecha_reporte', 'fecha_solucion', 'detalles_solucion', 'user_id', 'otro'];
+    protected $fillable = ['dispositivo', 'descripcion', 'fecha_reporte', 'fecha_solucion', 'detalles_solucion', 'user_id', 'otro', 'prioridad'];
 
     protected $table = 'reportes';
 

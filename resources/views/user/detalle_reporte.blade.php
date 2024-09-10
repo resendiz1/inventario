@@ -1,3 +1,7 @@
+@php
+use Carbon\Carbon;
+@endphp 
+    
 @extends('layout')
 @section('contenido')
 @section('title', 'Detalle reporte')
@@ -12,6 +16,9 @@
                     <div class="col-12 bg-dark p-3 text-center text-white">
                         <h2>Ticket #{{$reporte->id}}</h2>
                         <a class="text-white font-weight-bold" href="{{route('tickets.show')}}">Volver</a>
+                        @if (session('comentado'))
+                            <h2 class="text-success">{{session('comentado')}}</h2>
+                        @endif
                     </div>
                 </div>
             @endif
@@ -44,13 +51,20 @@
     
                         <div class="col-12 m-2">
                             <b>Descripción: </b> 
-                            <span>{{$reporte->descripcion}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, incidunt alias nihil ratione eaque iure, labore.</span>
+                            <span>{{$reporte->descripcion}}.</span>
                         </div>
     
                         <div class="col-12 m-2">
-                            <b>Descripción: </b> 
-                            <span>{{$reporte->descripcion}}</span>
+                            <b>Estado: </b> 
+                            <span>{{$reporte->status}}</span>
                         </div>
+
+                        <div class="col-12 m-2">
+                            <b>Prioridad: </b> 
+                            <span>{{$reporte->prioridad}}</span>
+                        </div>
+
+
                     </div>
                 </div>
 
@@ -59,32 +73,31 @@
                     <h3>Seguimiento: </h3>
 
                     <div class="row">
-                        <div class="col-12 mt-3">
-                            <b class="h5">Usuario: </b>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, dolorem laborum saepe odit amet dolore ducimus asperiores, doloribus eos distinctio animi tempora totam similique, quis quas eum sed beatae itaque.</p>
-                            <small class="font-weight-bold text-dark">Hace 3 años</small>
-                        </div>
+                        @forelse ($comentarios as $comentario)
+                            <div class="col-12 mt-3">
+                                <b class="h5">{{$comentario->usuario}}: </b>
+                                <p class="mb-0">{{$comentario->comentario}}</p>
+                                <small class="font-weight-bold text-dark">{{Carbon::parse($comentario->created_at)->diffForHumans()}}</small>
+                            </div>
+                        @empty
+                            <li>Sin comentarios aún</li>
+                        @endforelse
 
 
-                        <div class="col-12 mt-3">
-                            <b class="h5">Sistemas: </b>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, dolorem laborum saepe odit amet dolore ducimus asperiores, doloribus eos distinctio animi tempora totam similique, quis quas eum sed beatae itaque.</p>
-                        </div>
-                        
-                        <div class="col-12 mt-3">
-                            <b class="h5">Sistemas: </b>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, dolorem laborum saepe odit amet dolore ducimus asperiores, doloribus eos distinctio animi tempora totam similique, quis quas eum sed beatae itaque.</p>
-                        </div>
+
+
 
                         @if ($reporte->status != 'completado')
                             <div class="col-12 mt-2">
-                                <form action="{{route('comentario.reporte.usuario')}}" method="POST">
+                                <form action="{{route('comentario.reporte.usuario', $reporte->id)}}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <i class="fa fa-comment"></i>
                                         <b>Usuario: </b>
-                                        <textarea name="comentario" class="form-control w-100 h-25"></textarea>
-                                        <input type="hidden" name="id" value="{{$reporte->id}}">
+                                        <textarea name="comentario" class="form-control w-100 h-25" autofocus></textarea>
+                                        @error('comentario')
+                                           <h1> {{ $message}} </h1>
+                                        @enderror
                                     </div>
                                     <div class="from-group">
                                         <button class="btn btn-dark btn-sm">Enviar</button>

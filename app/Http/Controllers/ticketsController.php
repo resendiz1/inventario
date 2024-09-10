@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Reporte;
+use App\Models\Seguimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,8 @@ class ticketsController extends Controller
 
             request()->validate([
                 'descripcion' => 'required',
-                'otro' => 'required'
+                'otro' => 'required',
+                'prioridad' => 'required'
             ]);
 
         }
@@ -35,7 +37,8 @@ class ticketsController extends Controller
             
             request()->validate([
                 'descripcion' => 'required',
-                'dispositivo' => 'required'
+                'dispositivo' => 'required',
+                'prioridad' => 'required'
             ]);
         }
 
@@ -47,6 +50,7 @@ class ticketsController extends Controller
         Reporte::create([
             'dispositivo' => request('dispositivo'),
             'descripcion' => request('descripcion'),
+            'prioridad' => request('prioridad'),
             'fecha_reporte' => substr(Carbon::now(), 0, 10),
             'otro' => request('otro'),
             'user_id' => Auth::user()->id,
@@ -73,16 +77,42 @@ class ticketsController extends Controller
 
         
         $reporte = Reporte::findOrFail($id);
-
-        return view('user.detalle_reporte', compact('reporte'));
+        $comentarios = Seguimiento::where('reporte_id', $id)->get();
+        return view('user.detalle_reporte', compact('reporte', 'comentarios'));
 
     }
 
 
 
 
-    public function comentario_usuario(){
-        return request();
+    public function comentario_usuario($id){
+        
+
+        $usuario = Auth::user()->name;
+        $fecha = substr(Carbon::now(),0, 11);
+
+
+        request()->validate([
+            'comentario' => 'required'
+        ]);
+
+        //guardando los datos con la asignacion masiva
+        Seguimiento::create([
+            'usuario' => $usuario,
+            "fecha" => $fecha,
+            'reporte_id' => $id,
+            'comentario' => request('comentario')
+        ]);
+
+
+        return back()->with('comentado', 'Listo! ');
+
+
+
+
+
+    
+
     }
 
 

@@ -1,6 +1,5 @@
 <?php
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\directorioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
 use App\Http\Controllers\upsController;
@@ -10,6 +9,9 @@ use App\Http\Controllers\tintasController;
 use App\Http\Controllers\printerController;
 use App\Http\Controllers\ticketsController;
 use App\Http\Controllers\telefonoController;
+use App\Http\Controllers\resguardoController;
+use App\Http\Controllers\directorioController;
+
 
 
 
@@ -86,9 +88,10 @@ Route::patch('/user/tintas/pedido/{id}', [tintasController::class, 'pedido_compl
 
 Route::post('/user/tickets/', [ticketsController::class, 'reporte'])->name('reporte.post');
 Route::patch('/user/tickets/{id}/completo', [ticketsController::class, 'reporte_completo'])->name('reporte.completo');
-Route::post('/user/tickets/comentario/', [ticketsController::class, 'comentario_usuario'])->name('comentario.reporte.usuario');
+Route::post('/user/tickets/comentario/{id}', [ticketsController::class, 'comentario_usuario'])->name('comentario.reporte.usuario');
 
 //directorio
 Route::get('/user/directorio', [directorioController::class, 'show'])->name('directorio.show')->middleware('auth');
 
 Route::post('/user/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session');
+Route::get('/user/resguardo', [resguardoController::class, 'show'])->name('user.resguardo');

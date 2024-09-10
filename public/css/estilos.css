@@ -128,3 +128,7 @@
       .menu-contextual ul li:hover {
           background-color: #f0f0f0;
       }
+
+      .font-size-18{
+        font-size: 18px;
+      }
