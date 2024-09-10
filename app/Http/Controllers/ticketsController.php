@@ -12,7 +12,7 @@ class ticketsController extends Controller
 {
     public function show(){
 
-        $reportes = Reporte::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $reportes = Reporte::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->simplePaginate(4);
 
         return view('user.perfil_tickets', compact('reportes'));
 

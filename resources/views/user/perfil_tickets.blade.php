@@ -39,7 +39,7 @@
               Reportes realizados
             </h3>
             <table class="table table-bordered table-responsive-md" style="transition: 3s">
-                <thead class="thead-dark">
+                <thead class="thead-dark ">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Lo que falla</th>
@@ -55,14 +55,14 @@
                 @forelse ($reportes as $reporte)
                   @if ($reporte->status == 'pendiente')
                       <tr>
-                        <td class="text-center"># {{$reporte->id}}
+                        <td class="text-center">{{$reporte->id}}
                         <td>
                           <a href="{{route('detalle.reporte', $reporte->id)}}">
                             {{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo}}
                           </a>
                         </td>
-                        <td>{{$reporte->fecha_reporte}}</td>
-                        <td>{{$reporte->fecha_solucion}}</td>
+                        <td><small>{{$reporte->fecha_reporte}}</small></td>
+                        <td><small>{{$reporte->fecha_solucion}}</small></td>
                         <td>{{$reporte->descripcion}}</td>
 
                         <td class="text-start">
@@ -79,14 +79,14 @@
                       </tr>
                   @else
                       <tr>
-                        <td class="text-center"># {{$reporte->id}}
+                        <td class="text-center">{{$reporte->id}}
                         <td>
                           <a href="{{route('detalle.reporte', $reporte->id)}}">
                             {{$reporte->dispositivo == 'Otro' ? $reporte->otro : $reporte->dispositivo}}
                           </a>
                         </td>
-                        <td>{{$reporte->fecha_reporte}}</td>
-                        <td>{{$reporte->fecha_solucion}}</td>
+                        <td><small>{{$reporte->fecha_reporte}}</small></td>
+                        <td><small>{{$reporte->fecha_solucion}}</small></td>
                         <td>{{$reporte->descripcion}}</td>
                         <td class="text-start"> <i class="fa fa-check-circle"></i> Completado </td>                      
                       </tr>     
@@ -104,9 +104,16 @@
                     
                 </tbody>
             </table>
-        </div>
 
+            <div class="row m-2">
+              <div class="col-12 text-center bg-white">
+                {{$reportes->links()}}
+              </div>
+            </div>
+
+        </div>
     </div>
+
  </div> {{-- ciertre del container que cierra todo --}}
 
 

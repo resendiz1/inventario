@@ -41,6 +41,8 @@ use Carbon\Carbon;
                             <b>Dispositivo: </b>
                             <span>{{$reporte->dispositivo}}</span>
                         </div>
+
+
                         
                         @if ($reporte->dispositivo == 'Otro')
                         <div class="col-12 m-2">
@@ -74,8 +76,8 @@ use Carbon\Carbon;
 
                     <div class="row">
                         @forelse ($comentarios as $comentario)
-                            <div class="col-12 mt-3">
-                                <b class="h5">{{$comentario->usuario}}: </b>
+                            <div class="col-12 mt-4">
+                                <b class="font-size-18">{{$comentario->usuario}}: </b>
                                 <p class="mb-0">{{$comentario->comentario}}</p>
                                 <small class="font-weight-bold text-dark">{{Carbon::parse($comentario->created_at)->diffForHumans()}}</small>
                             </div>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Reporte;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,16 +33,16 @@ class DatabaseSeeder extends Seeder
         $usuario->save();
 
 
+        // $this->call(AdminSeeder::class);
 
+        $users = User::all();
 
-        // $table->string('name');
-        // $table->string('email')->unique();
-        // $table->string('puesto');
-        // $table->string('planta');
-        // $table->string('extension');
-        // $table->string('celular')->nullable()->default('No hay celular');
-        // $table->string('password');
-        // $table->string('ubicacion');
+        foreach($users as $user){
+            Reporte::factory(100)->create([
+                'user_id' =>$user->id
+            ]);
+        }
+
 
 
 
