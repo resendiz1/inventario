@@ -95,3 +95,4 @@ Route::get('/user/directorio', [directorioController::class, 'show'])->name('dir
 
 Route::post('/user/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session');
 Route::get('/user/resguardo', [resguardoController::class, 'show'])->name('user.resguardo');
+Route::post('/user/resguardo/confirma/', [resguardoController::class, 'confirmar'])->name('confirma.resguardo');

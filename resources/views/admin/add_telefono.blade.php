@@ -75,6 +75,22 @@
 
                         </div>
                     </div>
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        <div class="form-group">
+
+                            <select name="tipo" id="" class="form-select form-control">
+                                <option value="Linea">Linea</option>
+                                <option value="Celular">Celular</option>
+                            </select>
+                            
+                            @error('tipo')
+                            <small class="text-danger">
+                                {{$message}}
+                            </small>
+                            @enderror
+
+                        </div>
+                    </div>
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">

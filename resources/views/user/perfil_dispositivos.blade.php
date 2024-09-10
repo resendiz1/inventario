@@ -9,6 +9,10 @@
     <div class="row">
         <div class="col-12  text-center">
             <h2>Dispositivos</h2>
+            <a href="{{route('user.resguardo')}}" class="font-weight-bold">
+                <i class="fa fa-eye"></i>
+                Ver resguardo
+            </a>
         </div>
     </div>
     

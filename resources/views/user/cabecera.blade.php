@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-12  text-center">
-                    <span>Planta {{Auth::user()->planta}}</span>
+                    <span>{{Auth::user()->planta}}</span>
                 </div>
 
 
@@ -52,8 +52,8 @@
 
                 <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('perfil.user')}}" >
-                        <i class="fa-solid fa-computer fa-2x {{request()->path() == 'user' ? 'negro' : ''}} "></i>
-                        <h5 class="{{request()->path() == 'user' ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
+                        <i class="fa-solid fa-computer fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
                     </a>
                 </div>
 
@@ -79,7 +79,7 @@
                     </a>
                 </div>
 
-                
+               
 
             </div>
         </div>

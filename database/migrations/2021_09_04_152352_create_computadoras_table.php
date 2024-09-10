@@ -16,6 +16,10 @@ class CreateComputadorasTable extends Migration
         Schema::create('computadoras', function (Blueprint $table) {
             $table->id();
             $table->string('marca');
+            $table->boolean('nuevo')->default(true);
+            $table->string('procesador');
+            $table->string('ram');
+            $table->string('accesorios');
             $table->string('tipo');
             $table->string('modelo');
             $table->string('numero_serie');

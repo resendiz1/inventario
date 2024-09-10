@@ -76,10 +76,10 @@ use Carbon\Carbon;
 
                     <div class="row">
                         @forelse ($comentarios as $comentario)
-                            <div class="col-12 mt-4">
+                            <div class="col-12 my-4">
                                 <b class="font-size-18">{{$comentario->usuario}}: </b>
                                 <p class="mb-0">{{$comentario->comentario}}</p>
-                                <small class="font-weight-bold text-dark">{{Carbon::parse($comentario->created_at)->diffForHumans()}}</small>
+                                <small class="font-weight-bold bd-highlight">{{Carbon::parse($comentario->created_at)->diffForHumans()}}</small>
                             </div>
                         @empty
                             <li>Sin comentarios aún</li>
@@ -90,12 +90,12 @@ use Carbon\Carbon;
 
 
                         @if ($reporte->status != 'completado')
-                            <div class="col-12 mt-2">
+                            <div class="col-12 mt-5 ">
                                 <form action="{{route('comentario.reporte.usuario', $reporte->id)}}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <i class="fa fa-comment"></i>
-                                        <b>Usuario: </b>
+                                        <b>{{Auth::user()->name}}: </b>
                                         <textarea name="comentario" class="form-control w-100 h-25" autofocus></textarea>
                                         @error('comentario')
                                            <h1> {{ $message}} </h1>

@@ -104,7 +104,7 @@
                     
                 </tbody>
             </table>
-
+            <small>Página: {{$reportes->currentPage()}}</small> 
             <div class="row m-2">
               <div class="col-12 text-center bg-white">
                 {{$reportes->links()}}

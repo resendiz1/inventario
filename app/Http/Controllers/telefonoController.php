@@ -23,6 +23,7 @@ class telefonoController extends Controller
             'modelo' => 'required',
             'serie' => 'required|unique:telefonos',
             'observaciones' => 'required',
+            'tipo' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required',
             'imagen3' => 'required',

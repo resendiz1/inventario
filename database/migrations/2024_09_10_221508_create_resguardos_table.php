@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImpresorasTable extends Migration
+class CreateResguardosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,10 @@ class CreateImpresorasTable extends Migration
      */
     public function up()
     {
-        Schema::create('impresoras', function (Blueprint $table) {
+        Schema::create('resguardos', function (Blueprint $table) {
             $table->id();
-            $table->string('marca');
-            $table->boolean('nuevo')->default(true);
-            $table->string('modelo');
-            $table->string('tipo');
-            $table->string('serie');
-            $table->string('observaciones');
+            $table->boolean('aceptado')->default(false);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('imagen1');
-            $table->string('imagen2');
             $table->timestamps();
         });
     }
@@ -35,6 +28,6 @@ class CreateImpresorasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('impresoras');
+        Schema::dropIfExists('resguardos');
     }
 }

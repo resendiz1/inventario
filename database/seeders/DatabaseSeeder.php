@@ -4,7 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Pedido;
 use App\Models\Reporte;
+use App\Models\Telefono;
+use App\Models\Impresora;
+use App\Models\Computadora;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,9 +42,33 @@ class DatabaseSeeder extends Seeder
         $users = User::all();
 
         foreach($users as $user){
-            Reporte::factory(100)->create([
+
+
+            Reporte::factory(30)->create([
                 'user_id' =>$user->id
             ]);
+
+
+
+
+            Computadora::factory(2)->create([
+                'user_id' => $user->id
+            ]);
+
+
+            Pedido::factory(3)->create([
+                'user_id' => $user->id
+            ]);
+
+            
+            Impresora::factory(1)->create([
+                'user_id' => $user->id
+            ]);
+
+            Telefono::factory(1)->create([
+                'user_id' => $user->id
+            ]);
+
         }
 
 

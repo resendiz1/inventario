@@ -69,6 +69,10 @@ public function reportes(){
     return $this->hasMany(Reporte::class);
 }
 
+public function resguardos(){
+    return $this->hasMany(Resguardo::class);
+}
+
 
 
 

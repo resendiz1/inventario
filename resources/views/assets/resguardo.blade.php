@@ -2,13 +2,32 @@
 @section('contenido')
 @section('title', 'Resguardo')
 
+@include('user.cabecera')
 
+
+<div class="container">
+  <div class="row justify-content-center">
+
+    <div class="col-12 text-center font-weight-bold p-3">
+      <a href="{{route('perfil.user')}}">
+        <i class="fa fa-arrow-left" ></i>
+        Volver
+      </a>
+    </div>
+
+    <div class="col-12 text-center font-weight-bold p-3">
+      @if (session('aceptado'))
+         <h4 class="text-success"> {{session('aceptado')}} </h4>
+      @endif
+    </div>
+
+  </div>
+</div>
 <!-- encabezado -->
-<div class="container bg-white p-3 border shadow">{{--  este es el contenedor de todo --}}
+<div class="container bg-white p-3 pt-5 border shadow">{{--  este es el contenedor de todo --}}
 
 
-  <div class="container px-5
-   py-2 ">
+  <div class="container px-5 py-2 ">
       <div class="row border border-5">
         
         <div class="col-sm-12 col-md-4  col-lg-4 centrar-verticalmente p-2 mt-2">
@@ -77,21 +96,21 @@
       </div>
 
 
-      <div class="row p-0 justify-content-center">
+      <div class="row p-0 border-bottom ">
 
-        <div class="col-4 p-3 font-size-18 text-center">
+        <div class="col-4 p-3 font-size-18 ">
           <b class="p-0 m-0">Nombre: </b> 
-          <span>Arturo Resendiz López</span>
+          <span>{{$usuario->name}}</span>
         </div>
 
-        <div class="col-4 p-3 font-size-18 text-center">
-          <b class="p-0 m-0">Área: </b> 
-          <span>Area de Sistemas</span>
+        <div class="col-4 p-3 font-size-18 ">
+          <b class="p-0 m-0">Puesto: </b> 
+          <span>{{$usuario->puesto}}</span>
         </div>
 
-        <div class="col-4 p-3 font-size-18 text-center">
-          <b class="p-0 m-0">Lugar de trabajo: </b> 
-          <span>Planta 1</span>
+        <div class="col-4 p-3 font-size-18 ">
+          <b class="p-0 m-0"> Planta: </b> 
+          <span>{{$usuario->planta}}</span>
         </div>
 
       </div>
@@ -101,57 +120,68 @@
 
 
   {{-- conjunto de dartos del equipo de computo --}}
+  @forelse ($computadoras as $computadora)
+
       <div class="row mt-4 px-2 border-top border-bottom">
         <div class="col-9 text-center" style="background-color: rgb(244, 233, 223)">
           <h5 class="mt-2 font-weight-bold">Datos del Equipo de Cómputo</h5>
         </div>
         <div class="col-3 mt-2">
-          <h5>  ¿Equipo Nuevo?  <b> <i class="fa fa-check-circle mx-1"></i> SI</b></h5>
+          <h5>  ¿Equipo Nuevo?  <b>
+            @if ($computadora->nuevo)
+              <i class="fa fa-check-circle mx-1 text-success"></i> Si               
+            @else
+              <i class="fa fa-xmark mx-1 text-danger"></i> No               
+              
+            @endif
+            
+            
+            </b></h5>
         </div>
       </div>
 
 
 
-      <div class="row p-3">
+      <div class="row p-3 border-bottom  mb-2">
 
         <div class="col-2 p-1 font-size-18">
           <b class="p-0 m-0">Marca: </b> 
-          <span class="font-size-18">DELL</span>
+          <span class="font-size-18">{{$computadora->marca}}</span>
         </div>
 
         <div class="col-3 p-1 font-size-18">
           <b class="p-0 m-0">Modelo: </b> 
-          <span>Inspiron 24 5420</span>
+          <span>{{$computadora->modelo}}</span>
         </div>
 
         <div class="col-2 p-1 font-size-18">
           <b class="p-0 m-0">RAM: </b> 
-          <span>12 GB</span>
+          <span>{{$computadora->ram}} GB</span>
         </div>
 
         <div class="col-2 p-1 font-size-18">
           <b class="p-0 m-0">HDD: </b> 
-          <span> 900 GB</span>
+          <span> {{$computadora->size_hdd}} GB</span>
         </div>
 
         <div class="col-2 p-1 font-size-18">
           <b class="p-0 m-0">SSD: </b> 
-          <span> 900 GB</span>
+          <span>{{$computadora->size_ssd}} GB</span>
         </div>
 
         <div class="col-2 p-1 font-size-18">
           <b class="p-0 m-0">Tipo: </b> 
-          <span>AIO</span>
+          <span>{{$computadora->tipo}}</span>
         </div>
 
         <div class="col-3 p-1 font-size-18">
           <b class="p-0 m-0">Número de serie: </b> 
-          <span>28946SDFS</span>
+          <span>{{$computadora->serie}}</span>
         </div>
 
         <div class="col-3 p-1 font-size-18">
           <b class="p-0 m-0">Procesador: </b> 
-          <span> Intel Core i5-4570</span>
+          <span> {{$computadora->procesador}}</span>
         </div>
 
 
@@ -160,11 +190,35 @@
           <span>Teclado y Mouse Inhalambricos</span>
         </div>
 
-
       </div>
-      
 
+
+
+      <div class="row p-3">
+    
+        <div class="col-4">
+          <img src="{{$computadora->imagen1}}" class="img-fluid" alt="">
+        </div>
+        
+        <div class="col-4">
+          <img src="{{$computadora->imagen2}}" class="img-fluid" alt="">
+        </div>
+    
+        <div class="col-4">
+          <img src="{{$computadora->imagen3}}" class="img-fluid" alt="">
+        </div>
+        
+      </div>
+
+
+
+    @empty
+      <li>No hay datos</li>
+    @endforelse
   {{-- conjunto de dartos del equipo de computo --}}
+
+
+
 
 
 
@@ -181,134 +235,219 @@
 
 
   {{-- conjunto de dartos de la impresora --}}
+  @forelse ($impresoras as $impresora)
+      
     <div class="row mt-4 px-2 border-top border-bottom">
       <div class="col-9 text-center" style="background-color: rgb(213, 232, 226)">
         <h5 class="mt-2 font-weight-bold">Datos del Equipo de Impresora</h5>
       </div>
-      <div class="col-3 mt-2">
-        <h5>  ¿Equipo Nuevo?  <b> <i class="fa fa-check-circle mx-1"></i> SI</b></h5>
-      </div>
-    </div>
 
+        <div class="col-3 mt-2">
+          <h5>  ¿Equipo Nuevo?  <b>
+            @if ($impresora->nuevo)
+              <i class="fa fa-check-circle mx-1 text-success"></i> Si               
+            @else
+              <i class="fa fa-xmark mx-1 text-danger"></i> No               
+              
+            @endif
+            
+            
+            </b></h5>
+        </div>
 
-    <div class="row p-3">
-
-      <div class="col-2 p-1 font-size-18">
-        <b class="p-0 m-0">Marca: </b> 
-        <span class="font-size-18">Epson</span>
-      </div>
-
-      <div class="col-2 p-1 font-size-18">
-        <b class="p-0 m-0">Modelo: </b> 
-        <span class="font-size-18">L3150</span>
       </div>
 
-      <div class="col-4 p-1 font-size-18">
-        <b class="p-0 m-0">Número de serie: </b> 
-        <span class="font-size-18">HKPLKJSDHFKJYEAR</span>
+
+      <div class="row p-3 border ">
+        
+        <div class="col-2 p-1 font-size-18">
+          <b class="p-0 m-0">Marca: </b> 
+          <span class="font-size-18">{{$impresora->marca}}</span>
+        </div>
+        
+        <div class="col-2 p-1 font-size-18">
+          <b class="p-0 m-0">Modelo: </b> 
+          <span class="font-size-18">{{$impresora->modelo}}</span>
+        </div>
+        
+        <div class="col-4 p-1 font-size-18">
+          <b class="p-0 m-0">Número de serie: </b> 
+          <span class="font-size-18">{{$impresora->serie}}</span>
+        </div>
+        
+        <div class="col-3 p-1 font-size-18">
+          <b class="p-0 m-0">Tipo: </b> 
+          <span class="font-size-18">{{$impresora->tipo}}</span>
+        </div>
+        
       </div>
-      
-      <div class="col-3 p-1 font-size-18">
-        <b class="p-0 m-0">Tipo: </b> 
-        <span class="font-size-18">Tinta</span>
-      </div>
+
+
+      <div class="row p-3 justify-content-center">
     
-    </div>
-  {{-- cionjunto de datos de la impresora --}}
+        <div class="col-6 text-center">
+          <img src="{{$impresora->imagen1}}" class="img-fluid" alt="">
+        </div>
+        
+        <div class="col-6 text-center">
+          <img src="{{$impresora->imagen2}}" class="img-fluid" alt="">
+        </div>
+    
+        
+      </div>
+
+      
+
+
+
+
+
+
+    @empty
+        <li>No hay datos</li>
+    @endforelse
+    {{-- cionjunto de datos de la impresora --}}
+
+
 
 
   {{-- conjunto de datos de el telefono --}}
+  @forelse ($telefonos as $telefono)
+      
   <div class="row mt-4 px-2 border-top border-bottom">
     <div class="col-9 text-center" style="background-color: rgb(244, 233, 223)">
       <h5 class="mt-2 font-weight-bold">Datos del Equipo de el Teléfono</h5>
     </div>
-    <div class="col-3 mt-2">
+    <div class="col-3 mt-2 text-white">
       <h5>  ¿Equipo Nuevo?  <b> <i class="fa fa-check-circle mx-1"></i> SI</b></h5>
     </div>
   </div>
 
-
+  
   <div class="row p-3">
-
+    
     <div class="col-3 p-1 font-size-18">
       <b class="p-0 m-0">Marca: </b> 
-      <span class="font-size-18">Panasonic</span>
+      <span class="font-size-18">{{$telefono->marca}}</span>
     </div>
-
+    
     <div class="col-3 p-1 font-size-18">
       <b class="p-0 m-0">Modelo: </b> 
-      <span class="font-size-18">KX-HDV130</span>
+      <span class="font-size-18">{{$telefono->modelo}}</span>
     </div>
-
+    
     <div class="col-4 p-1 font-size-18">
       <b class="p-0 m-0">Número de serie: </b> 
-      <span class="font-size-18">9LCTI1158207</span>
+      <span class="font-size-18">{{$telefono->serie}}</span>
     </div>
-
+    
     <div class="col-2 p-1 font-size-18">
       <b class="p-0 m-0">Tipo: </b> 
-      <span class="font-size-18">Fijo</span>
+      <span class="font-size-18">{{$telefono->tipo}}</span>
     </div>
-
+    
   </div>
-
-
 
 
 
   <div class="row p-3">
-
+    
     <div class="col-4">
-      <img src="https://picsum.photos/300/300" class="img-fluid" alt="">
+      <img src="{{$telefono->imagen1}}" class="img-fluid" alt="">
+    </div>
+    
+    <div class="col-4">
+      <img src="{{$telefono->imagen2}}" class="img-fluid" alt="">
     </div>
 
     <div class="col-4">
-      <img src="https://picsum.photos/300/300" class="img-fluid" alt="">
+      <img src="{{$telefono->imagen3}}" class="img-fluid" alt="">
     </div>
-
-    <div class="col-4">
-      <img src="https://picsum.photos/300/300" class="img-fluid" alt="">
-    </div>
-
+    
   </div>
 
 
+
+
+  @empty
+      <li>No hay datos</li>
+  @endforelse
+  
+    {{-- conjunto de datos de el telefono --}}
+  
+  
+  
+
+  
+  
   <div class="row p-3 justify-content-center">
     <div class="col-8 text-center">
+      
 
-      <h4 class="text-success"> 
-        <i class="fa fa-check-circle"></i>
-        <b>Aceptado por: </b>   
-        Arturo Resendiz López
-      </h4>
+      
 
-      <h4 class="text-danger">
-        <i class="fa fa-warning"></i>
-        Aún no es aceptado por el usuario
-
-      </h4>
 
     </div>
   </div>
 
-  <div class="row justify-content-center">
+  {{-- <div class="row justify-content-center">
     <div class="col-3 text-center">
       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
       Acepto <a href="#">Terminos y condiciones</a>
     </div>
-  </div>
+  </div> --}}
 
   <div class="row p-3 justify-content-center">
-    <div class="button-group text-center">
-      <button class="btn btn-success">
-        <i class="fa fa-check"></i>
-        Aceptar
-      </button>
-      <button class="btn btn-danger">
-        <i class="fa fa-xmark"></i>
-        Rechazar
-      </button>
-    </div>
+
+
+    <div class="col-12 text-center">
+      @if($resguardo[0]->aceptado == true)
+
+        <h4> 
+          <i class="fa fa-check-circle text-success"></i>
+          <b>Aceptado por: </b>   
+          {{$usuario->name}}
+        </h4>
+        
+        @else
+        
+        <div class="row justify-content-center">
+
+          <div class="col-12">
+            <h4>
+              <i class="fa fa-warning text-danger"></i>
+              Aún no es aceptado por el usuario
+            </h4>
+          </div>
+
+          <div class="col-2">
+
+            <button class="btn btn-danger">
+              <i class="fa fa-xmark"></i>
+              Rechazar
+            </button>
+
+          </div>
+
+          <div class="col-2">
+            <form action="{{route('confirma.resguardo')}}" method="POST">
+              @csrf
+              <input type="hidden" name="id_user" value="{{$usuario->id}}" id="">
+              <button class="btn btn-success">
+                <i class="fa fa-check"></i>
+                Aceptar
+              </button>
+            </form>
+          </div>
+
+
+        </div>
+
+        @endif
+        
+      </div>
+
+
   </div>
 
 
