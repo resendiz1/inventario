@@ -9,10 +9,17 @@
     <div class="row">
         <div class="col-12  text-center">
             <h2>Dispositivos</h2>
-            <a href="{{route('user.resguardo')}}" class="font-weight-bold">
+
+            <a href="{{route('user.resguardo')}}" class="font-weight-bold mx-3">
                 <i class="fa fa-eye"></i>
-                Ver resguardo
+                Resguardo
             </a>
+
+            <a href="{{route('user.accesos')}}" class="font-weight-bold mx-3">
+                <i class="fa fa-eye"></i>
+                Control de Accesos
+            </a>
+
         </div>
     </div>
     

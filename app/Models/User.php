@@ -73,6 +73,10 @@ public function resguardos(){
     return $this->hasMany(Resguardo::class);
 }
 
+public function accesos(){
+    return $this->hasMany(Acceso::class);
+}
+
 
 
 

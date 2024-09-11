@@ -125,7 +125,7 @@
                             <td>{{$usuario->celular}}</td>
                             <td>{{$usuario->planta}}</td>
                             <td> <a href="{{route('view.resguardo.admin', $usuario->id)}}"> Ver </a> </td>
-                            <td> <a href="#"> Ver </a> </td>
+                            <td> <a href="{{route('view.accesos.admin', $usuario->id)}}"> Ver </a> </td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#e{{$usuario->id}}">

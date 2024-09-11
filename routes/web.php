@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\accesosController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
@@ -29,6 +30,7 @@ Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.sessi
 Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar');
 Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario');
 Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin');
+Route::get('/admin/agregando_users/accesos/{id}', [accesosController::class, 'show_admin'] )->name('view.accesos.admin');
 
 //rutas para agregar a los usuarios
 Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios')->middleware('auth:admin');
@@ -97,3 +99,8 @@ Route::post('/user/cerrar_sesion', [Controller::class, 'cerrar_session'])->name(
 Route::get('/user/resguardo', [resguardoController::class, 'show'])->name('user.resguardo')->middleware('auth');
 Route::post('/user/resguardo/confirma/{id}', [Controller::class, 'aceptar_resguardo'])->name('confirma.resguardo');
 Route::post('/user/resguardo/observaciones', [resguardoController::class, 'observaciones'])->name('observaciones.resguardo');
+
+
+Route::get('/user/control_accesos', [accesosController::class, 'show'])->name('user.accesos');
+Route::post('/user/control_accesos/solicitar_sitio', [accesosController::class, 'solicita_sitio'])->name('peticion.sitio');
+Route::post('/user/control_accesos/solicitar_software', [accesosController::class, 'solicita_software'])->name('peticion.software');

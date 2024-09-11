@@ -26,10 +26,11 @@
 
   </div>
 </div>
-<!-- encabezado -->
 <div class="container bg-white p-3 pt-5 border shadow">{{--  este es el contenedor de todo --}}
 
 
+  
+  <!-- encabezado -->
   <div class="container px-5 py-2 ">
       <div class="row border border-5">
         
