@@ -18,6 +18,7 @@ class telefonoFactory extends Factory
             'nuevo' => $this->faker->boolean(),
             'modelo' => $this->faker->randomElement(['KX-HDV130', 'ASDFSS-DSF', 'ASDAD-534D']),
             'serie' => $this->faker->text(10),
+            'estado' => $this->faker->randomElement(['Nuevo', 'Usado']),
             'tipo' => $this->faker->randomElement(['Linea', 'Celular']),
             'imagen1' => $this->faker->randomElement(['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300']),
             'imagen2' => $this->faker->randomElement(['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300']),

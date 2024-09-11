@@ -28,6 +28,7 @@ class pcController extends Controller
             'size_ssd' => 'required',
             'size_ram' => 'required',
             'imagen1' => 'required',
+            'estado' => 'required',
             'imagen2' => 'required',
             'imagen3' => 'required',
             'observaciones' => 'required'
@@ -51,6 +52,7 @@ class pcController extends Controller
         $pc->size_hdd = request('size_hdd');
         $pc->size_ssd = request('size_ssd');
         $pc->SO = request('so');
+        $pc->estado = request('estado');
         $pc->user_id = request('usuario');
         $pc->observaciones = request('observaciones');
         $pc->imagen1 = request('imagen1');

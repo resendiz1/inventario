@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row d-flex justify-content-center p-3 mt-2">
-        <div class="col-12 mt-5 bg-white p-lg-4 p-sm-1 shadow-lg">
+        <div class="col-12 mt-5 bg-white p-lg-4 p-sm-1 border">
             <div class="row">
                 <div class="col-12 text-center">
                     <h3>Agregar Impresora</h3>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Laser o Tinta</label>
                             <select name="tipo" class="form-control form-control-sm">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Número de serie</label>
                             <input type="text" name="serie" value="{{old('serie')}}" class="form-control form-control-sm">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Observaciones</label>
                             <input name="observaciones" value="{{old('observaciones')}}" class="form-control form-control-sm" value="{{old('observaciones')}}">
@@ -99,6 +99,23 @@
                                 {{$message}}
                             </small>
                             @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold mb-0">Estado</label>
+                            <select name="estado"  class="form-control form-control-sm">
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Usado">Usado</option>
+                            </select>   
+
+                            @error('estado')
+                                <small class="text-danger p-1">
+                                    {{$message}}
+                                </small>
+                            @enderror
+                       
                         </div>
                     </div>
 

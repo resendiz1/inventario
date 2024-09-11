@@ -37,6 +37,12 @@ class DatabaseSeeder extends Seeder
         $usuario->save();
 
 
+
+
+
+
+
+
         // $this->call(AdminSeeder::class);
 
         $users = User::all();

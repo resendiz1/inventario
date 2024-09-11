@@ -3,7 +3,7 @@
 @section('title', "Perfil Admin")
 @include('assets.nav')
 
-    <div class="container-fluid mt-3">
+    {{-- <div class="container-fluid mt-3">
         <div class="row justify-content-center">
             <div class="col-2 text-center p-3 bg-white border border-3 m-2">
                 <b>Computadoras: </b> {{$cantidad_computadoras}}
@@ -15,7 +15,7 @@
                 <b>Teléfonos: </b> {{$cantidad_telefonos}}
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 
@@ -25,8 +25,8 @@
         <div class="row justify-content-center">
 
 
-            <div class="col-5 bg-white m-1 border border-3 mt-5">
-                <h4 class="py-3 font-weight-bold" >Pedidos de tintas pendientes</h4>
+            <div class="col-sm-12 col-md-5 col-lg-4 bg-white m-1 border border-5 mt-5 scroll-tabla">
+                <h4 class="py-3 font-weight-bold text-center" >Pedidos de tintas pendientes</h4>
 
                 <table class="table table-bordered table-responsive-md p-0">
                         <thead class="thead-dark">
@@ -61,9 +61,9 @@
 
 
 
-            <div class="col-6 bg-white m-1 mt-5 border border-3">
-                <h4 class="py-3 font-weight-bold" >Reportes de usuarios</h4>
-
+            <div class="col-sm-12 col-md-5 col-lg-7 bg-white m-1 mt-5 border border-3 scroll-tabla">
+                <h4 class="text-center py-3 font-weight-bold" >Reportes de usuarios</h4>
+                
                 <table class="table table-bordered table-responsive-md p-0">
                         <thead class="thead-light">
                             <tr>

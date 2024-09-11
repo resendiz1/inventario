@@ -18,7 +18,7 @@
                 @csrf
                 <div class="row d-flex justify-content-center p-lg-4 p-sm-1 m-2">
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
                         <label for="" class="font-weight-bold mb-0 mt-2">Usuario</label>
                         <select name="usuario"  class="form-control form-control-sm">
                             @forelse ($usuarios as $usuario)
@@ -77,8 +77,8 @@
                     </div>
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
-
-                            <select name="tipo" id="" class="form-select form-control">
+                            <label for="" class="font-weight-bold mb-0 mt-2" >Tipo</label>
+                            <select name="tipo" id="" class="form-select form-control form-control-sm">
                                 <option value="Linea">Linea</option>
                                 <option value="Celular">Celular</option>
                             </select>
@@ -92,10 +92,10 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0 mt-2">Observaciones</label>
-                            <input name="observaciones" value="{{old('observaciones')}}" class="form-control form-control-sm" id="" cols="30" rows="13">
+                            <textarea name="observaciones" class="w-100 form-control">{{old('observaciones')}}</textarea>
                             @error('observaciones')
                             <small class="text-danger">
                                 {{$message}}

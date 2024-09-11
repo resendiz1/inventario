@@ -15,7 +15,7 @@ class CreateResguardosTable extends Migration
     {
         Schema::create('resguardos', function (Blueprint $table) {
             $table->id();
-            $table->boolean('aceptado')->default(false);
+            $table->string('observaciones');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

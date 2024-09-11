@@ -1,33 +1,22 @@
 @extends('layout')
 @section('contenido')
 @section('title', 'Resguardo')
+@include('assets.nav')
 
-@include('user.cabecera')
 
-
-<div class="container">
+<div class="container mt-3">
   <div class="row justify-content-center">
-
-    <div class="col-12 text-center font-weight-bold p-3">
-      <a href="{{route('perfil.user')}}">
-        <i class="fa fa-arrow-left" ></i>
+    <div class="col-4 text-center h5">
+      <a href="{{route('agregar.usuarios')}}">
+        <i class="fa fa-arrow-left"></i>
         Volver
       </a>
     </div>
-
-    <div class="col-12 text-center font-weight-bold p-3">
-      @if (session('aceptado'))
-         <h4 class="text-success"> {{session('aceptado')}} </h4>
-      @endif
-      @if (session('observaciones'))
-      <h4 class="text-success"> {{session('observaciones')}} </h4>
-   @endif
-    </div>
-
   </div>
 </div>
+
 <!-- encabezado -->
-<div class="container bg-white p-3 pt-5 border shadow">{{--  este es el contenedor de todo --}}
+<div class="container bg-white p-3 pt-5 mt-2 border shadow">{{--  este es el contenedor de todo --}}
 
 
   <div class="container px-5 py-2 ">
@@ -99,19 +88,19 @@
       </div>
 
 
-      <div class="row p-0 border-bottom ">
+      <div class="row p-0 border-bottom justify-content-center">
 
-        <div class="col-4 p-3 font-size-18 ">
+        <div class="col-4 p-3 font-size-18 text-center">
           <b class="p-0 m-0">Nombre: </b> 
           <span>{{$usuario->name}}</span>
         </div>
 
-        <div class="col-4 p-3 font-size-18 ">
+        <div class="col-4 p-3 font-size-18 text-center">
           <b class="p-0 m-0">Puesto: </b> 
           <span>{{$usuario->puesto}}</span>
         </div>
 
-        <div class="col-4 p-3 font-size-18 ">
+        <div class="col-4 p-3 font-size-18 text-center">
           <b class="p-0 m-0"> Planta: </b> 
           <span>{{$usuario->planta}}</span>
         </div>
@@ -204,17 +193,17 @@
       </div>
 
       <div class="collapse multi-collapse" id="com{{$computadora->id}}">
-        <div class="row p-3">
+        <div class="row p-3 justify-content-center">
       
-          <div class="col-4">
+          <div class="col-4 text-center">
             <img src="{{$computadora->imagen1}}" class="img-fluid" alt="">
           </div>
           
-          <div class="col-4">
+          <div class="col-4 text-center">
             <img src="{{$computadora->imagen2}}" class="img-fluid" alt="">
           </div>
       
-          <div class="col-4">
+          <div class="col-4 text-center">
             <img src="{{$computadora->imagen3}}" class="img-fluid" alt="">
           </div>
           
@@ -379,17 +368,17 @@
 
 <div class="collapse multi-collapse" id="tel{{$telefono->id}}">
   
-  <div class="row p-3">
+  <div class="row p-3 justify-content-center">
     
-    <div class="col-4">
+    <div class="col-4 text-center">
       <img src="{{$telefono->imagen1}}" class="img-fluid" alt="">
     </div>
     
-    <div class="col-4">
+    <div class="col-4 text-center">
       <img src="{{$telefono->imagen2}}" class="img-fluid" alt="">
     </div>
   
-    <div class="col-4">
+    <div class="col-4 text-center">
       <img src="{{$telefono->imagen3}}" class="img-fluid" alt="">
     </div>
     
@@ -453,27 +442,6 @@
               Aún no es aceptado por el usuario
             </h4>
           </div>
-
-          <div class="col-2">
-
-            <button class="btn btn-danger" data-toggle="modal" data-target="#msj">
-              <i class="fa fa-xmark"></i>
-              Rechazar
-            </button>
-
-          </div>
-
-          <div class="col-2">
-            <form action="{{route('confirma.resguardo', $usuario->id)}}" method="POST">
-              @csrf
-              <button class="btn btn-success">
-                <i class="fa fa-check"></i>
-                Aceptar
-              </button>
-            </form>
-          </div>
-
-
         </div>
 
         @endif

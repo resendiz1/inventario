@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('puesto');
             $table->string('planta');
             $table->string('extension');
+            $table->boolean('resguardo_firmado')->default(false);
             $table->string('celular')->nullable()->default('No hay celular');
             $table->string('password');
             $table->string('ubicacion');

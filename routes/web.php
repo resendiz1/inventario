@@ -28,7 +28,7 @@ Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.sessi
 
 Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar');
 Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario');
-
+Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin');
 
 //rutas para agregar a los usuarios
 Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios')->middleware('auth:admin');
@@ -94,5 +94,6 @@ Route::post('/user/tickets/comentario/{id}', [ticketsController::class, 'comenta
 Route::get('/user/directorio', [directorioController::class, 'show'])->name('directorio.show')->middleware('auth');
 
 Route::post('/user/cerrar_sesion', [Controller::class, 'cerrar_session'])->name('cerrar.session');
-Route::get('/user/resguardo', [resguardoController::class, 'show'])->name('user.resguardo');
-Route::post('/user/resguardo/confirma/', [resguardoController::class, 'confirmar'])->name('confirma.resguardo');
+Route::get('/user/resguardo', [resguardoController::class, 'show'])->name('user.resguardo')->middleware('auth');
+Route::post('/user/resguardo/confirma/{id}', [Controller::class, 'aceptar_resguardo'])->name('confirma.resguardo');
+Route::post('/user/resguardo/observaciones', [resguardoController::class, 'observaciones'])->name('observaciones.resguardo');

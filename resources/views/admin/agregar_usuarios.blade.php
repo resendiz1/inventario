@@ -94,7 +94,7 @@
         </div>
         {{-- div que encierra el formulario del usuario --}}
         
-        <div class="col-sm-12 col-md-7  col-lgt-8 bg-white p-4 bg-white mx-1 border border-4 tabla-usuarios-scroll">
+        <div class="col-sm-12 col-md-7 col-lg-9 bg-white p-4 bg-white mx-1 border border-4 tabla-usuarios-scroll">
             <h3>Lista de usuarios</h3>
             @if (session('eliminado'))
                 <h4 class="text-success font-weight-bold">{{session('eliminado')}}</h4>
@@ -110,6 +110,8 @@
                         <th scope="col">Correo Electronico</th>
                         <th scope="col">Celular</th>
                         <th scope="col">Planta</th>
+                        <th scope="col">Resguardo</th>
+                        <th scope="col">Control Accesos</th>
                         <th scope="col">Acciones</th>
 
                     </tr>
@@ -122,6 +124,8 @@
                             <td>{{$usuario->email}}</td> 
                             <td>{{$usuario->celular}}</td>
                             <td>{{$usuario->planta}}</td>
+                            <td> <a href="{{route('view.resguardo.admin', $usuario->id)}}"> Ver </a> </td>
+                            <td> <a href="#"> Ver </a> </td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#e{{$usuario->id}}">

@@ -15,9 +15,11 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = new Admin();
+
         $admin->nombre = "Arturo Resendiz";
         $admin->password = bcrypt('password');
         $admin->email = "resendiz.galleta@gmail.com";
+        
         $admin->save();
     }
 }

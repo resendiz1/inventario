@@ -21,21 +21,51 @@ class resguardoController extends Controller
        $resguardo = $usuario->resguardos;
 
 
-       return view('assets.resguardo', compact('computadoras', 'impresoras', 'telefonos', 'usuario', 'resguardo'));
+       return view('assets.resguardo', compact('computadoras', 'impresoras', 'telefonos', 'usuario'));
 
 
     }
 
 
-    public function confirmar(){
+    public function observaciones(){
         
         $resguardo = new Resguardo();
-        $resguardo->user_id = request('id_user');
-        $resguardo->aceptado = true;
-        $resguardo->$resguardo;
+        $resguardo->user_id = request('id');
+        $resguardo->observaciones = request('observaciones');
         $resguardo->save();
+        return back()->with('observaciones',  'Las observaciones fueron enviadas!');
 
-        return back()->with('aceptado', 'Gracias por aceptar le resguardo!');
 
     }
+
+
+    // public function confirmar(){
+        
+    //     $resguardo = new Resguardo();
+    //     $resguardo->user_id = request('id_user');
+    //     $resguardo->aceptado = true;
+    //     $resguardo->$resguardo;
+    //     $resguardo->save();
+
+    //     return back()->with('aceptado', 'Gracias por aceptar le resguardo!');
+
+    // }
+
+
+    public function show_admin($id){
+        
+        $usuario = User::findOrFail($id); 
+        $computadoras = $usuario->computadoras;
+        $impresoras = $usuario->impresoras;
+        $telefonos = $usuario->telefonos;
+        $resguardo = $usuario->resguardos;
+ 
+ 
+        return view('admin.resguardo_admin', compact('computadoras', 'impresoras', 'telefonos', 'usuario'));
+ 
+ 
+     }
+
+
+
 }

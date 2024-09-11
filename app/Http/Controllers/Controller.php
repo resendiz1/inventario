@@ -179,6 +179,19 @@ class Controller extends BaseController
     }
 
 
+    public function aceptar_resguardo($id){
+        
+        
+        $usuario = User::findOrFail($id);
+        $usuario->resguardo_firmado = true;
+        $usuario->save();
+
+
+        return back()->with('aceptado', 'Gracias por aceptar le resguardo!');
+    
+    }
+
+
 
 
 

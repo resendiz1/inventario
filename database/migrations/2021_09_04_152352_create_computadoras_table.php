@@ -14,6 +14,7 @@ class CreateComputadorasTable extends Migration
     public function up()
     {
         Schema::create('computadoras', function (Blueprint $table) {
+
             $table->id();
             $table->string('marca');
             $table->boolean('nuevo')->default(true);
@@ -21,6 +22,7 @@ class CreateComputadorasTable extends Migration
             $table->string('ram');
             $table->string('accesorios');
             $table->string('tipo');
+            $table->string('estado');
             $table->string('modelo');
             $table->string('numero_serie');
             $table->string('size_hdd');
@@ -32,6 +34,7 @@ class CreateComputadorasTable extends Migration
             $table->string('imagen2');
             $table->string('imagen3');
             $table->timestamps();
+            
         });
     }
 

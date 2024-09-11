@@ -22,7 +22,7 @@
         </div>
 
 
-        <div class="col-12 mt-5 bg-white shadow rounded p-3">
+        <div class="col-12 mt-5 border bg-white  p-3">
             <h2 class="m-3 text-center">Agregar computadora</h2>
             <form action="{{route('pc.create')}}" method="POST" enctype="multipart/form-data" >
                 @csrf
@@ -30,7 +30,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Marca</label>
-                            <input type="text" value="DELL" class="form-control form-control-sm" name="marca">
+                            <input type="text"  class="form-control form-control-sm" name="marca">
 
                             @error('marca')
                             <small class="text-danger p-1">
@@ -44,7 +44,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Modelo</label>
-                            <input type="text" value="Inspiron 2020" class="form-control form-control-sm" name="modelo">
+                            <input type="text"  class="form-control form-control-sm" name="modelo">
 
                             @error('modelo')
                             <small class="text-danger p-1">
@@ -59,7 +59,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Sistema Operativo</label>
-                            <input type="text"  class="form-control form-control-sm" value="windows 10 64bits" name="so">
+                            <input type="text"  class="form-control form-control-sm"  name="so">
                         
                             @error('so')
                             <small class="text-danger p-1">
@@ -115,7 +115,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Número de serie</label>
-                            <input type="text" value="DKFJHGI534" class="form-control form-control-sm" name="numero_serie">
+                            <input type="text"  class="form-control form-control-sm" name="numero_serie">
                         
                         @error('numero_serie')
                         <small class="text-danger p-1">
@@ -129,10 +129,10 @@
 
 
                     
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Tamaño de HDD</label>
-                            <input type="number" min="20" value="300" placeholder="Gb" name="size_hdd" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" min="20"  placeholder="GB" name="size_hdd" class="form-control form-control-sm font-weight-bold">
                             @error('size_hdd')
                             <small class="text-danger p-1">
                                 {{$message}}
@@ -144,7 +144,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-1 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">RAM</label>
-                            <input type="number" value="3" min="0" name="size_ram" placeholder="Gb" class="form-control form-control-sm font-weight-bold">
+                            <input type="number"  min="1" name="size_ram" placeholder="GB" class="form-control form-control-sm font-weight-bold">
 
                             @error('slot4_ram')
                             <small class="text-danger p-1">
@@ -155,10 +155,10 @@
                     </div>
 
 
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Tamaño de SSD</label>
-                            <input type="number" min="20" value="250" name="size_ssd" placeholder="Gb" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" min="20"  name="size_ssd" placeholder="GB" class="form-control form-control-sm font-weight-bold">
                             
                             @error('size_ssd')
                             <small class="text-danger p-1">
@@ -169,11 +169,27 @@
                         </div>
                     </div>
 
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold mb-0">Estado</label>
+                            <select name="estado"  class="form-control form-control-sm">
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Usado">Usado</option>
+                            </select>   
+                            @error('estado')
+                            <small class="text-danger p-1">
+                                {{$message}}
+                            </small>
+                            @enderror
+                       
+                        </div>
+                    </div>
+
+
                     <div class="col-12  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Observaciones</label>
-                            <input type="text" value="lorem ipsum" name="observaciones"  class="form-control form-control-sm font-weight-bold">
-                            
+                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100"></textarea>
                             @error('observaciones')
                             <small class="text-danger">
                                 {{$message}}

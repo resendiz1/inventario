@@ -21,6 +21,7 @@ class CreateTelefonosTable extends Migration
             $table->string('modelo');
             $table->string('serie');
             $table->string('tipo');
+            $table->string('estado');
             $table->string('imagen1');
             $table->string('imagen2');
             $table->string('imagen3');

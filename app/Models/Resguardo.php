@@ -9,7 +9,7 @@ class Resguardo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'aceptado'];
+    protected $fillable = ['user_id', 'aceptado', 'observaciones'];
 
 
 
