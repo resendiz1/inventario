@@ -133,14 +133,16 @@
                             @csrf
                             <div class="form-group ">
                                 <label for="">Software: </label>
-                                <input type="text" name="software" class="form-control form-control-sm mt-3">
+                                <input type="text" placeholder="Aspel SAE" name="software" value="{{old('software')}}" class="form-control form-control-sm mt-3 suave"> <br>
+                                {!!$errors->first('software', '<small class="text-danger"> :message </small>')!!}
                             </div>
                         </th>
                         
                         <td>
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Justificación: </label>
-                                <textarea name="justificacion" class="form-control w-100" ></textarea>
+                                <textarea name="justificacion" placeholder="Necesito Aspel SAE por que trabajo con los registros de la empresa" class="form-control w-100 h-25 suave">{{old('justificacion_software')}}</textarea>
+                                {!!$errors->first('justificacion_software', '<small class="text-danger"> :message </small>')!!}<br>
                                 <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
                             </div>
                         </form>
@@ -186,14 +188,16 @@
                         <div class="form-group ">
                             <label for="">Sitio: </label>
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                            <input type="text" name="sitio" class="form-control form-control-sm mt-3">
+                            <input type="text" placeholder="DOF (Diario Oficial de la Federación)" name="sitio" value="{{old('sitio')}}" class="form-control form-control-sm mt-3 suave"> <br>
+                            {!!$errors->first('sitio', '<small class="text-danger"> :message </small>')!!}
                         </div>
                     </th>
                     
                     <td>
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Justificación: </label>
-                            <textarea name="justificacion" class="form-control w-100" ></textarea>
+                            <textarea name="justificacion_sitio" placeholder="Consulto diariamente este sitio saber el tipo de cambio" class="form-control w-100 h-25 suave" >{{old('justificacion_sitio')}}</textarea> 
+                            {!!$errors->first('justificacion_sitio', '<small class="text-danger"> :message </small>')!!}<br>
                             <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
                         </div>
                     </form>

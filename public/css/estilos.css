@@ -141,3 +141,10 @@
         overflow-y: scroll; /* Muestra el scroll vertical cuando el contenido excede la altura */
         overflow-x: hidden; /* Oculta el scroll horizontal */
       }
+
+      .suave {
+        background-color: rgba(231, 227, 227, 0.8); /* Blanco con opacidad del 80% */
+        border: none;
+        padding: 10px; /* Espaciado interno */
+        resize: vertical; /* Permite redimensionar solo verticalmente */
+    }

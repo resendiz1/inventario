@@ -31,12 +31,18 @@ class accesosController extends Controller
 
     public function solicita_sitio(){
 
+
+        request()->validate([
+            'sitio' => 'required',
+            'justificacion_sitio' => 'required'
+        ]);
+
         $acceso = new Acceso();
 
         $acceso->nombre = request('sitio');
         $acceso->user_id = Auth::user()->id;
         $acceso->tipo = 'Sitio';
-        $acceso->justificacion = request('justificacion');
+        $acceso->justificacion = request('justificacion_sitio');
 
         $acceso->save();
 
@@ -47,6 +53,11 @@ class accesosController extends Controller
 
 
     public function solicita_software(){
+
+        request()->validate([
+            'software' => 'required',
+            'justificacion_software' => 'required'
+        ]);
 
         $acceso = new Acceso();
         $acceso->nombre = request('software');
