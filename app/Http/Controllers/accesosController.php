@@ -89,5 +89,29 @@ class accesosController extends Controller
 
     }
 
+    public function autoriza_sitio($id){
+
+        $sitio = Acceso::findOrFail($id);
+        $sitio->status = true;
+        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->save();
+
+        return back()->with('sitio_autorizado', 'El sitio fue autorizado');
+
+
+    }
+
+    public function desautoriza_sitio($id){
+
+        $sitio = Acceso::findOrFail($id);
+        $sitio->status = false;
+        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->save();
+
+        return back()->with('sitio_desautorizado', 'El sitio fue desautorizado');
+
+
+    }
+
 
 }

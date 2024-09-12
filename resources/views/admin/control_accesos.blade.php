@@ -169,6 +169,16 @@
     <div class="row justify-content-center mt-5 mb-5">
         <div class="col-11 ">
             <h4>Acceso a la web requerido</h4>
+            @if (session('sitio_autorizado'))
+                <h5 class="text-success text-center">
+                  {{session('sitio_autorizado')}}
+                </h5>
+            @endif
+            @if (session('sitio_desautorizado'))
+            <h5 class="text-danger text-center">
+              {{session('sitio_desautorizado')}}
+            </h5>
+        @endif
             <table class="table border">
               @if (!empty($sitios[0]))
 
@@ -192,14 +202,18 @@
                         <td class="col-2">{{$sitio->status ? 'Autorizado' : 'No Autorizado'}}</td>
                         <td class="col-2">
                           <div class="btn-group">
-                            
-                            <button class="btn btn-success btn-sm" {{$sitio->status  ? 'disabled' : 'enable' }}>
-                              <i class="fa fa-check"></i>
-                            </button>
-  
+                            <form action="{{route('autorizar.sitio', $sitio->id)}}" method="POST">
+                              @csrf @method('PATCH')
+                              <button class="btn btn-success btn-sm" {{$sitio->status  ? 'disabled' : 'enable' }}>
+                                <i class="fa fa-check"></i>
+                              </button>
+                            </form>
+                            <form action="{{route('desautorizar.sitio', $sitio->id)}}" method="POST">
+                              @csrf @method('PATCH')
                             <button class="btn btn-danger btn-sm" {{!$sitio->status  ? 'disabled' : 'enable' }}>
                               <i class="fa fa-xmark"></i>
                             </button>
+                            </form>
   
                           </div>
                         </td>
