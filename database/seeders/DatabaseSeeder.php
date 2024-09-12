@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Acceso;
 use App\Models\Pedido;
 use App\Models\Reporte;
 use App\Models\Telefono;
@@ -72,6 +73,10 @@ class DatabaseSeeder extends Seeder
             ]);
 
             Telefono::factory(1)->create([
+                'user_id' => $user->id
+            ]);
+
+            Acceso::factory(2)->create([
                 'user_id' => $user->id
             ]);
 

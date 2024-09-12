@@ -30,7 +30,9 @@ Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.sessi
 Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar');
 Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario');
 Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin');
-Route::get('/admin/agregando_users/accesos/{id}', [accesosController::class, 'show_admin'] )->name('view.accesos.admin');
+Route::get('/admin/agregando_users/accesos/{id}', [accesosController::class, 'show_admin'] )->name('view.accesos.admin')->middleware('auth:admin');
+Route::patch('/admin/agregando_users/accesos/autoriza_software/{id}', [accesosController::class, 'autoriza_software'])->name('autorizar.software');
+rOUTE::patch('/admin/agregando_users/accesos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software'])->name('desautorizar.software');
 
 //rutas para agregar a los usuarios
 Route::get('/admin/agregando_users', [Controller::class, 'show_formulario'])->name('agregar.usuarios')->middleware('auth:admin');
@@ -101,6 +103,6 @@ Route::post('/user/resguardo/confirma/{id}', [Controller::class, 'aceptar_resgua
 Route::post('/user/resguardo/observaciones', [resguardoController::class, 'observaciones'])->name('observaciones.resguardo');
 
 
-Route::get('/user/control_accesos', [accesosController::class, 'show'])->name('user.accesos');
+Route::get('/user/control_accesos', [accesosController::class, 'show'])->name('user.accesos')->middleware('auth');
 Route::post('/user/control_accesos/solicitar_sitio', [accesosController::class, 'solicita_sitio'])->name('peticion.sitio');
 Route::post('/user/control_accesos/solicitar_software', [accesosController::class, 'solicita_software'])->name('peticion.software');

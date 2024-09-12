@@ -24,7 +24,7 @@ class accesosController extends Controller
         $sitios = $user->accesos()->where('tipo', 'sitio')->get();
         $software = $user->accesos()->where('tipo', 'software')->get();
 
-        return view('admin.control_accesos', compact('sitios', 'software'));
+        return view('admin.control_accesos', compact('sitios', 'software', 'user'));
     }
 
 
@@ -58,6 +58,34 @@ class accesosController extends Controller
 
 
         return back()->with('solicitado', 'El acceso fue solicitado');
+
+    }
+
+
+    public function autoriza_software($id){
+
+        
+
+        $software = Acceso::findOrFail($id);
+
+        $software->status = true;
+        $software->autorizo = Auth::guard('admin')->user()->nombre;
+        $software->save();
+
+
+        return back()->with('software_autorizado', 'El software se autorizo!');
+    
+    
+    }
+
+    public function desautoriza_software($id){
+
+        $software = Acceso::findOrFail($id);
+        $software->status = false;
+        $software->autorizo = Auth::guard('admin')->user()->nombre;
+        $software->save();
+
+        return back()->with('software_desautorizado', 'El software se desautorizo!');
 
     }
 

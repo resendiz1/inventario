@@ -85,15 +85,15 @@
     <div class="row font-size-18 justify-content-center">
 
         <div class="col-4 text-center">
-            <b>Fecha: </b> <span> {{now()}} </span>
+            <b>Fecha: </b> <span> {{substr($user->created_at, 0, 10)}} </span>
         </div>
 
         <div class="col-4 text-center">
-            <b>Área de trabajo: </b> <span>Area de Sistemas</span>
+            <b>Área de trabajo: </b> <span>{{$user->puesto}}</span>
         </div>
 
         <div class="col-4 text-center">
-            <b>Titular: </b> <span>Arturo Resendiz López</span>
+            <b>Titular: </b> <span>{{$user->name}}</span>
         </div>
 
     </div>
@@ -105,19 +105,51 @@
     <div class="row justify-content-center mt-5">
         <div class="col-11 ">
             <h4>Software requerido</h4>
+            @if (session('software_autorizado'))
+                <h5 class="text-center text-success font-weight-bold">{{session('software_autorizado')}}</h5>
+            @endif
+            @if (session('software_desautorizado'))
+            <h5 class="text-center text-danger font-weight-bold">{{session('software_desautorizado')}}</h5>
+        @endif
             <table class="table border">
+              @if (!empty($software[0]))
+
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col-1">Software</th>
-                    <th scope="col-11">Justificación</th>
+                    <th scope="col-2">Software</th>
+                    <th scope="col-6">Justificación</th>
+                    <th scope="col-2">Estado</th>
+                    <th scope="col-2">Autorizar</th>
+
                   </tr>
                 </thead>
+                  
+              @endif
                 <tbody>
                     @forelse ($software as $soft)
 
                     <tr>
                       <th class="col-2" >{{$soft->nombre}}</th>
-                      <td class="col-10"> {{$soft->justificacion}} </td>
+                      <td class="col-6"> {{$soft->justificacion}}</td>
+                      <td class="col-2"> {{$soft->status  ? 'Autorizado' : 'No Autorizado' }}</td>
+                      <td class="col-2">
+                        <div class="btn-group">
+                          <form action="{{route('autorizar.software', $soft->id)}}" method="POST">
+                            @csrf @method('PATCH')                            
+                            <button class="btn btn-success btn-sm" {{$soft->status  ? 'disabled' : 'enable' }}>
+                              <i class="fa fa-check"></i>
+                            </button>
+                          </form>
+
+                          <form action="{{route('desautorizar.software', $soft->id)}}" method="POST">
+                            @csrf @method('PATCH')
+                            <button class="btn btn-danger btn-sm" {{!$soft->status  ? 'disabled' : 'enable' }}>
+                              <i class="fa fa-xmark"></i>
+                            </button>
+                          </form>
+
+                        </div>
+                      </td>
                     </tr>
                         
                     @empty
@@ -138,21 +170,42 @@
         <div class="col-11 ">
             <h4>Acceso a la web requerido</h4>
             <table class="table border">
+              @if (!empty($sitios[0]))
+
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col-1">Sitio</th>
-                    <th scope="col-11">Justificación</th>
+                    <th scope="col-2">Sitio</th>
+                    <th scope="col-6">Justificación</th>
+                    <th scope="col-2">Estado</th>
+                    <th scope="col-2">Autorizar</th>
                   </tr>
                 </thead>
+                  
+              @endif
+
                 <tbody>
                 
                 @forelse ($sitios as $sitio)
                     <tr>
                         <th class="col-2">{{$sitio->nombre}}</th>
-                        <td class="col-8" >{{$sitio->justificacion}}</td>
+                        <td class="col-6">{{$sitio->justificacion}}</td>
+                        <td class="col-2">{{$sitio->status ? 'Autorizado' : 'No Autorizado'}}</td>
+                        <td class="col-2">
+                          <div class="btn-group">
+                            
+                            <button class="btn btn-success btn-sm" {{$sitio->status  ? 'disabled' : 'enable' }}>
+                              <i class="fa fa-check"></i>
+                            </button>
+  
+                            <button class="btn btn-danger btn-sm" {{!$sitio->status  ? 'disabled' : 'enable' }}>
+                              <i class="fa fa-xmark"></i>
+                            </button>
+  
+                          </div>
+                        </td>
                     </tr>
                 @empty
-                    
+                    <li>No hay datos</li>
                 @endforelse                 
 
                 </tbody>

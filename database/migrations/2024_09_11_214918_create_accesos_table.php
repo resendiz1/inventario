@@ -17,6 +17,8 @@ class CreateAccesosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('tipo');
+            $table->boolean('status')->default(false);
+            $table->string('autorizo')->nullable();
             $table->text('justificacion');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

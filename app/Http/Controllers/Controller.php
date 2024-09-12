@@ -67,6 +67,7 @@ class Controller extends BaseController
         if(request('tipo') == 'administrador' ){
             
             if(Auth::guard('admin')->attempt($credenciales)){
+                request()->session()->regenerate();
                 return redirect()->route('perfil.admin');            
             }
             else{
@@ -79,6 +80,7 @@ class Controller extends BaseController
 
         if(request('tipo') == 'usuario'){
             if(Auth::attempt($credenciales)){
+                request()->session()->regenerate();
                 return redirect()->route('perfil.user');            
             }
             else{
