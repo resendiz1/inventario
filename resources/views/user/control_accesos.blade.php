@@ -89,11 +89,11 @@
         </div>
 
         <div class="col-4 text-center">
-            <b>Área de trabajo: </b> <span>Area de Sistemas</span>
+            <b>Área de trabajo: </b> <span>{{{Auth::user()->puesto}}}</span>
         </div>
 
         <div class="col-4 text-center">
-            <b>Titular: </b> <span>Arturo Resendiz López</span>
+            <b>Titular: </b> <span>{{Auth::user()->name}}</span>
         </div>
 
     </div>

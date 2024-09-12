@@ -327,8 +327,17 @@
     <div class="col-9 text-center" style="background-color: rgb(244, 233, 223)">
       <h5 class="mt-2 font-weight-bold">Datos del Equipo de el Teléfono</h5>
     </div>
-    <div class="col-3 mt-2 text-white">
-      <h5>  ¿Equipo Nuevo?  <b> <i class="fa fa-check-circle mx-1"></i> SI</b></h5>
+    <div class="col-3 mt-2 ">
+      <h5>  ¿Equipo Nuevo?  
+      <b>
+        @if ($impresora->nuevo)
+          <i class="fa fa-check-circle mx-1 text-success"></i> Si               
+        @else
+          <i class="fa fa-xmark mx-1 text-danger"></i> No               
+        @endif
+      </b>
+    </h5>
+      
     </div>
   </div>
 

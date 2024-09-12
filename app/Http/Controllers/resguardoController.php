@@ -28,6 +28,10 @@ class resguardoController extends Controller
 
 
     public function observaciones(){
+
+        request()->validate([
+            'observaciones' => 'required'
+        ]);
         
         $resguardo = new Resguardo();
         $resguardo->user_id = request('id');

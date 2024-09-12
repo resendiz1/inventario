@@ -19,6 +19,12 @@
       @if (session('aceptado'))
          <h4 class="text-success"> {{session('aceptado')}} </h4>
       @endif
+      @error('observaciones')
+         <h4 class="text-danger"> 
+          <i class="fa fa-warning"></i>
+          {{$errors->first('observaciones')}} 
+        </h4>
+      @enderror
       @if (session('observaciones'))
       <h4 class="text-success"> {{session('observaciones')}} </h4>
    @endif
