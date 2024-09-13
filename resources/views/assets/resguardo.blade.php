@@ -471,7 +471,7 @@
           </div>
 
           <div class="col-2">
-            <form action="{{route('confirma.resguardo', $usuario->id)}}" method="POST">
+            <form action="{{route('confirma.resguardo', $usuario->id)}}" onsubmit="return confirma()" method="POST">
               @csrf
               <button class="btn btn-success">
                 <i class="fa fa-check"></i>
@@ -532,5 +532,14 @@
         </div>
         <!-- Modal -->
 
+
+
+        <script>
+          function confirma(){
+            return confirm('¿Confirmar que aceptas el Resguardo?')
+          }
+        </script>
     
 @endsection
+
+

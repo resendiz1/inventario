@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-12 m-1">
                             <b>Planta : </b>
-                            <span>Planta {{$usuario->planta}}</span>
+                            <span>{{$usuario->planta}}</span>
                         </div>
                     </div>
                 </div>

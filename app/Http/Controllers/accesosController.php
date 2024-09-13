@@ -12,8 +12,9 @@ class accesosController extends Controller
 {
     public function show(){
 
-        $sitios = Acceso::where('tipo', 'sitio')->get();
-        $software = Acceso::where('tipo', 'software')->get();
+        $user = User::findOrFail(Auth::user()->id);
+        $sitios = $user->accesos()->where('tipo', 'sitio')->get();
+        $software = $user->accesos()->where('tipo', 'software')->get();
 
         return view('user.control_accesos', compact('sitios', 'software'));
     }
@@ -45,7 +46,7 @@ class accesosController extends Controller
         $acceso->justificacion = request('justificacion_sitio');
 
         $acceso->save();
-
+        return response()->json(['success' => 'Datos guardados correctamente']);
         return back()->with('solicitado', 'El acceso fue solicitado');
 
     }
@@ -63,7 +64,7 @@ class accesosController extends Controller
         $acceso->nombre = request('software');
         $acceso->user_id = Auth::user()->id;
         $acceso->tipo = 'Software';
-        $acceso->justificacion = request('justificacion');
+        $acceso->justificacion = request('justificacion_software');
 
         $acceso->save();
 

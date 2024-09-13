@@ -48,6 +48,7 @@ class Controller extends BaseController
         $usuario->email = request('email');
         $usuario->puesto = request('puesto');
         $usuario->planta = request('planta');
+        $usuario->planta = request('celular');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
         $usuario->celular = request('celular');
@@ -152,11 +153,11 @@ class Controller extends BaseController
             $usuario->password = bcrypt(request('password_edit'));
         }
 
-        
-        
+
         request()->validate([
             'nombre_edit' => 'required',
-            'email_edit' => 'required|email',
+            'celular_edit' => 'required',
+            'email_edit' => 'required|email|unique:users,email',
             'puesto_edit' => 'required',
             'planta_edit' => 'required',
             'ubicacion_edit' => 'required',

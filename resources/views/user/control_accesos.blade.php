@@ -141,7 +141,7 @@
                         <td>
                             <div class="form-group">
                                 <label for="" class="font-weight-bold">Justificación: </label>
-                                <textarea name="justificacion" placeholder="Necesito Aspel SAE por que trabajo con los registros de la empresa" class="form-control w-100 h-25 suave">{{old('justificacion_software')}}</textarea>
+                                <textarea name="justificacion_software" placeholder="Necesito Aspel SAE por que trabajo con los registros de la empresa" class="form-control w-100 h-25 suave">{{old('justificacion_software')}}</textarea>
                                 {!!$errors->first('justificacion_software', '<small class="text-danger"> :message </small>')!!}<br>
                                 <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
                             </div>
@@ -183,7 +183,7 @@
 
 
                   <th scope="row d-flex items-align-center">
-                    <form action="{{route('peticion.sitio')}}" method="POST">
+                    <form action="{{route('peticion.sitio')}}" method="POST" id="sitio">
                         @csrf
                         <div class="form-group ">
                             <label for="">Sitio: </label>
@@ -262,6 +262,62 @@
 </div>
 
 
+
+
+
+
+
+<script>
+
+document.getElementById('sitio').addEventListener('submit', function(event){
+  event.preventDefault();  //evita el envio tradicional del formulario
+
+  const formData = new FormData(this);
+
+  const csrfToken = document.querySelector('input[name="_token"]');
+
+
+  //haiendo la peticion ajax
+
+  fetch(this.action, {
+    method: this.method,  //se usa el metodo que esta en el formulario
+    headers:{
+      'X-CSRF-TOKEN': csrfToken,
+      'Accept': 'application/json'
+    },
+
+    body:formData
+
+  })
+
+
+  .then(response => response.json()) //convierte la respuesta en json
+  .then(data =>{
+
+
+    //notidficacion de que si se armo
+    alert('Se envio correctamente el formulario');
+
+    console.log(data)
+    .catch(eror=>{
+
+      //manejoi de error3s
+      alert('Ocurrio un error al manejar el formulario');
+
+    })
+
+
+  })
+
+
+
+
+
+
+});
+
+
+</script>
 
 
 @endsection

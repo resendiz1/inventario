@@ -132,7 +132,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Tamaño de HDD</label>
-                            <input type="number" min="20"  placeholder="GB" name="size_hdd" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" min="0" placeholder="GB" name="size_hdd" class="form-control form-control-sm font-weight-bold">
                             @error('size_hdd')
                             <small class="text-danger p-1">
                                 {{$message}}

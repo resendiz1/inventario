@@ -71,9 +71,9 @@
                         <div class="form-group">
                             <label for="">Planta</label>
                             <select name="planta" id="" class="form-control form-control-sm">
-                                <option value="1">Planta 1</option>
-                                <option value="2">Planta 2</option>
-                                <option value="3">Planta 3</option>
+                                <option value="Planta 1">Planta 1</option>
+                                <option value="Planta 2">Planta 2</option>
+                                <option value="Planta 3">Planta 3</option>
                             </select>
                         </div>
 
@@ -102,6 +102,9 @@
             @if (session('editado'))
                 <h4 class="text-success font-weight-bold">{{session('editado')}}</h4>
             @endif
+            @foreach ($errors->all() as $error)
+                <h4 class="text-danger">{{$error}}</h4>
+            @endforeach
 
             <table class="table table-bordered table-responsive-sm p-0">
                 <thead class="thead-dark">
