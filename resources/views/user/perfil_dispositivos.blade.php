@@ -67,6 +67,9 @@
                 <div class="row">
                     <div class="col-12">
                         <h3>Impresora</h3>
+                        @if ($impresora->comparte != 'Con Nadie')
+                            <span><b> Comparte con: </b> <u> {{$impresora->comparte}} </u> </span>
+                        @endif
                     </div>
                     <div class="col-12 m-1">
                         <span><b> Marca: </b> {{$impresora->marca}}</span>

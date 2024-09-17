@@ -17,7 +17,7 @@ use Carbon\Carbon;
                         <h2>Ticket #{{$reporte->id}}</h2>
                         <a class="text-white font-weight-bold" href="{{route('tickets.show')}}">Volver</a>
                         @if (session('comentado'))
-                            <h2 class="text-success">{{session('comentado')}}</h2>
+                            <small class="text-success">{{session('comentado')}}</small>
                         @endif
                     </div>
                 </div>
@@ -98,7 +98,7 @@ use Carbon\Carbon;
                                         <b>{{Auth::user()->name}}: </b>
                                         <textarea name="comentario" class="form-control w-100 h-25" autofocus></textarea>
                                         @error('comentario')
-                                           <h1> {{ $message}} </h1>
+                                           <h6 class="mt-3 text-danger"> {{ $message}} </h6>
                                         @enderror
                                     </div>
                                     <div class="from-group">

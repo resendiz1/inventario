@@ -23,7 +23,7 @@
                         <label for="" class=" m-0 font-weight-bold">Titular del equipo</label>
                         <select name="usuario" id="" class="form-control form-control-sm">
                             @forelse ($usuarios as $usuario)
-                                <option value="{{$usuario->id}}">{{$usuario->name}}</option>
+                                <option value="{{$usuario->id}}">{{$usuario->name}} | {{ $usuario->puesto }}</option>
                             @empty
                                 <li>No hay datos</li>
                             @endforelse
@@ -36,7 +36,28 @@
                         @enderror
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+                        <label for="" class=" m-0 font-weight-bold">¿Comparte con alguien?</label>
+                        <select name="comparte" id="" class="form-control form-control-sm">
+                            <option value="Con Nadie">Nadie</option>
+                            @forelse ($usuarios as $usuario)
+                                <option value="{{$usuario->name}}">{{$usuario->name}} | {{ $usuario->puesto }}</option>
+                            @empty
+                                <li>No hay datos</li>
+                            @endforelse
+
+                        </select>
+                        @error('comparte')
+                        <small class="text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Marca</label>
                             <input type="text" name="marca" value="{{old('marca')}}" class="form-control form-control-sm">
@@ -50,7 +71,7 @@
 
                     
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Modelo</label>
                             <input type="text" name="modelo" value="{{'modelo'}}"  class="form-control form-control-sm">
@@ -62,12 +83,12 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
                         <div class="form-group">
                             <label for="" class=" m-0 font-weight-bold">Laser o Tinta</label>
                             <select name="tipo" class="form-control form-control-sm">
-                                <option value="laser">Laser</option>
-                                <option value="tinta">Tinta</option>
+                                <option value="Laser">Laser</option>
+                                <option value="Tinta">Tinta</option>
                             </select>
 
                             @error('tipo')
@@ -90,17 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label for="" class=" m-0 font-weight-bold">Observaciones</label>
-                            <input name="observaciones" value="{{old('observaciones')}}" class="form-control form-control-sm" value="{{old('observaciones')}}">
-                            @error('observaciones')
-                            <small class="text-danger">
-                                {{$message}}
-                            </small>
-                            @enderror
-                        </div>
-                    </div>
+
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3">
                         <div class="form-group">
@@ -118,6 +129,22 @@
                        
                         </div>
                     </div>
+
+
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label for="" class=" m-0 font-weight-bold">Observaciones</label>
+                            <input name="observaciones" value="{{old('observaciones')}}" class="form-control form-control-sm" value="{{old('observaciones')}}">
+                            @error('observaciones')
+                            <small class="text-danger">
+                                {{$message}}
+                            </small>
+                            @enderror
+                        </div>
+                    </div>
+
+
 
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-3 text-center">

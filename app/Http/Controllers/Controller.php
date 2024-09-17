@@ -29,7 +29,7 @@ class Controller extends BaseController
 
     public function registrar_usuarios(){
 
-       
+
         request()->validate([
             'nombre' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -48,7 +48,6 @@ class Controller extends BaseController
         $usuario->email = request('email');
         $usuario->puesto = request('puesto');
         $usuario->planta = request('planta');
-        $usuario->planta = request('celular');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
         $usuario->celular = request('celular');

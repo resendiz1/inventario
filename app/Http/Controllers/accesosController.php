@@ -46,7 +46,9 @@ class accesosController extends Controller
         $acceso->justificacion = request('justificacion_sitio');
 
         $acceso->save();
-        return response()->json(['success' => 'Datos guardados correctamente']);
+        
+        //return response()->json(['success' => 'Datos guardados correctamente']);
+
         return back()->with('solicitado', 'El acceso fue solicitado');
 
     }
@@ -124,6 +126,26 @@ class accesosController extends Controller
 
 
     }
+
+
+
+
+
+    public function ver_permisos_jefe(){
+
+        
+        return view('jefes.perfil');
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -108,3 +108,11 @@ Route::post('/user/resguardo/observaciones', [resguardoController::class, 'obser
 Route::get('/user/control_accesos', [accesosController::class, 'show'])->name('user.accesos')->middleware('auth');
 Route::post('/user/control_accesos/solicitar_sitio', [accesosController::class, 'solicita_sitio'])->name('peticion.sitio');
 Route::post('/user/control_accesos/solicitar_software', [accesosController::class, 'solicita_software'])->name('peticion.software');
+
+
+
+
+///Creando las rutas que van a ser de un jefe
+Route::get('/user/permisos', [accesosController::class, 'ver_permisos_jefe'])->name('permisos.show');
+
+

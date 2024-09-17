@@ -36,8 +36,6 @@
                     <span>{{Auth::user()->planta}}</span>
                 </div>
 
-
-
             </div>
         </div>
 
@@ -78,6 +76,16 @@
                         <h5 class="{{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }}">Reportes</h5>
                     </a>
                 </div>
+
+                @if (Auth::user()->jefe)
+                    <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                        <a href="{{route('permisos.show')}}" >
+                            <i class="fa-solid fa-users-rectangle fa-2x {{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }} "></i>
+                            <h5 class="{{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }}">Permisos</h5>
+                        </a>
+                    </div>
+                    
+                @endif
 
                
 

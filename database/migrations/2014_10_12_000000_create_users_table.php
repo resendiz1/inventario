@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('puesto');
             $table->string('planta');
             $table->string('extension');
+            $table->boolean('jefe')->nullable()->default(false);
             $table->boolean('resguardo_firmado')->default(false);
             $table->string('celular')->nullable()->default('No hay celular');
             $table->string('password');
@@ -28,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**

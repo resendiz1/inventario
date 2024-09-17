@@ -18,7 +18,7 @@
                 @csrf
                 <div class="row d-flex justify-content-center p-lg-4 p-sm-1 m-2">
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <label for="" class="font-weight-bold mb-0 mt-2">Usuario</label>
                         <select name="usuario"  class="form-control form-control-sm">
                             @forelse ($usuarios as $usuario)
@@ -88,9 +88,27 @@
                                 {{$message}}
                             </small>
                             @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold mb-0 mt-2" >Estado</label>
+                            <select name="estado" id="" class="form-select form-control form-control-sm">
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Usado">Usado</option>
+                            </select>
+                            
+                            @error('estado')
+                            <small class="text-danger">
+                                {{$message}}
+                            </small>
+                            @enderror
 
                         </div>
                     </div>
+
+
 
                     <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">

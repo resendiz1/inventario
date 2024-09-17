@@ -9,7 +9,7 @@ class Computadora extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['area', 'marca', 'modelo', 'pulgadas', 'touch', 'so', 'procesador', 'usuario', 'ip', 'mac', 'tipo', 'serie', 'size_hdd', 'size_ssd', 'imagen1', 'imagen2', 'imagen3', 'procesador', 'nuevo', 'ram', 'accesorios', 'estado'];
+    protected $fillable = ['area', 'marca', 'modelo', 'pulgadas', 'touch', 'so', 'procesador', 'usuario', 'ip', 'mac', 'tipo', 'serie', 'size_hdd', 'size_ssd', 'imagen1', 'imagen2', 'imagen3', 'procesador', 'nuevo', 'ram', 'accesorios', 'estado', 'observaciones'];
 
 
     

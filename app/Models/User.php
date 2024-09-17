@@ -20,6 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'planta',
+        'puesto',
+        'extension',
+        'celular',
+        'ubicacion',
+        'resguardo_firmado',
+
     ];
 
     /**

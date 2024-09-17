@@ -7,6 +7,17 @@
 
     <div class="row d-flex justify-content-center p-3 mt-2">
         <div class="col-12">
+            <h5>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            </h5>
             <div class="row">
                 <div class="col-4 col-xs-12 col-sm-12 col-md-6 col-lg-4">
                     {{-- <img src="{{asset('https://www.logo.wine/a/logo/Linux/Linux-Logo.wine.svg')}}" class="img-fluid w-50" alt=""> --}}
@@ -27,12 +38,26 @@
             <form action="{{route('pc.create')}}" method="POST" enctype="multipart/form-data" >
                 @csrf
                 <div class="row  m-lg-5 m-sm-2  ">
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-1 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Marca</label>
                             <input type="text"  class="form-control form-control-sm" name="marca">
 
                             @error('marca')
+                            <small class="text-danger p-1">
+                               {{$message}}
+                            </small>
+                            @enderror 
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold mb-0">Procesador</label>
+                            <input type="text"  class="form-control form-control-sm" name="procesador">
+
+                            @error('procesador')
                             <small class="text-danger p-1">
                                {{$message}}
                             </small>
@@ -186,11 +211,24 @@
                     </div>
 
 
-                    <div class="col-12  p-1">
+                    <div class="col-6  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Observaciones</label>
-                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100"></textarea>
+                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100 h-50"></textarea>
                             @error('observaciones')
+                            <small class="text-danger">
+                                {{$message}}
+                            </small>
+                            @enderror
+                       
+                        </div>
+                    </div>
+
+                    <div class="col-6  p-1">
+                        <div class="form-group">
+                            <label for="" class="font-weight-bold mb-0">Accesorios</label>
+                            <textarea name="accesorios" class="form-control form-control-sm font-weight-bold w-100 h-50"></textarea>
+                            @error('accesorios')
                             <small class="text-danger">
                                 {{$message}}
                             </small>

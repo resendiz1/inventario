@@ -183,7 +183,7 @@
 
 
                   <th scope="row d-flex items-align-center">
-                    <form action="{{route('peticion.sitio')}}" method="POST" id="sitio">
+                    <form action="{{route('peticion.sitio')}}" method="POST">
                         @csrf
                         <div class="form-group ">
                             <label for="">Sitio: </label>
@@ -191,9 +191,9 @@
                             <input type="text" placeholder="DOF (Diario Oficial de la Federación)" name="sitio" value="{{old('sitio')}}" class="form-control form-control-sm mt-3 suave"> <br>
                             {!!$errors->first('sitio', '<small class="text-danger"> :message </small>')!!}
                         </div>
-                    </th>
+                  </th>
                     
-                    <td>
+                  <td>
                         <div class="form-group">
                             <label for="" class="font-weight-bold">Justificación: </label>
                             <textarea name="justificacion_sitio" placeholder="Consulto diariamente este sitio saber el tipo de cambio" class="form-control w-100 h-25 suave" >{{old('justificacion_sitio')}}</textarea> 
@@ -201,7 +201,7 @@
                             <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
                         </div>
                     </form>
-                </td>
+                  </td>
                 </tbody>
               </table>
         </div>

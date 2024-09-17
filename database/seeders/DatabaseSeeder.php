@@ -58,6 +58,8 @@ class DatabaseSeeder extends Seeder
 
 
 
+
+
             Computadora::factory(2)->create([
                 'user_id' => $user->id
             ]);
@@ -69,7 +71,8 @@ class DatabaseSeeder extends Seeder
 
             
             Impresora::factory(1)->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'comparte' => $user->name
             ]);
 
             Telefono::factory(1)->create([

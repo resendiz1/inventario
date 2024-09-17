@@ -20,6 +20,7 @@ class impresoraFactory extends Factory
             'tipo' => $this->faker->randomElement(['Tinta', 'Tiner']),
             'estado' => $this->faker->randomElement(['Nuevo', 'Usado']),
             'serie' => $this->faker->text(10),
+            'comparte' => $this->faker->text(10),
             'observaciones' => $this->faker->text(20) ,
             'user_id' => $this->faker->randomNumber(),
             'imagen1' => $this->faker->randomElement(['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300']),

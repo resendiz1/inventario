@@ -18,15 +18,18 @@ class telefonoController extends Controller
     public function create(){
 
 
+
         request()->validate([
             'marca' => 'required',
             'modelo' => 'required',
             'serie' => 'required|unique:telefonos',
             'observaciones' => 'required',
             'tipo' => 'required',
+            'estado' => 'required',
             'imagen1' => 'required',
             'imagen2' => 'required',
             'imagen3' => 'required',
+            'estado' => 'required',
             'usuario' => 'required'
         ]);
 
@@ -40,6 +43,8 @@ class telefonoController extends Controller
             'user_id' => request('usuario'),
             'modelo' => request('modelo'),
             'serie' => request('serie'),
+            'tipo' => request('tipo'),
+            'estado' =>request('estado'),
             'observaciones' => request('observaciones'),
             'imagen1' => $imagen1,
             'imagen2' => $imagen2,

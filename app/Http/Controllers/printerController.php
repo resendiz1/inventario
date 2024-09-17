@@ -21,11 +21,14 @@ class printerController extends Controller
 
     public function create(){
 
+
+
         //validando los datos
         request()-> validate([
             'marca' => 'required',
             'usuario' => 'required',
             'modelo' => 'required',
+            'comparte' => 'required',
             'tipo' => 'required',
             'estado' => 'required', 
             'serie' => 'required|unique:impresoras',
@@ -49,6 +52,7 @@ class printerController extends Controller
             'modelo' => request('marca'),
             'tipo' => request('tipo'),
             'estado' =>request('estado'),
+            'comparte' => request('comparte'),
             'serie' => request('serie'),
             'observaciones' => request('observaciones'),
             'imagen1' => $imagen1,
