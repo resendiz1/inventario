@@ -1,7 +1,16 @@
+
 @extends('layout')
 @include('assets.nav')
 @section('contenido')
 @section('title', 'Agregar usuarios')
+
+{{-- esto es un crimen, perdon diosito por esta vida tan atrevida --}}
+@php
+use App\Models\User;
+@endphp
+
+{{-- esto es un crimen, perdon diosito por esta vida tan atrevida --}}
+
 
 <div class="container-fluid mt-5">
     
@@ -75,6 +84,22 @@
                                 <option value="Planta 2">Planta 2</option>
                                 <option value="Planta 3">Planta 3</option>
                             </select>
+                            {!!$errors->first('planta', '<small class="text-danger"> :message </small>')!!}
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="">Su jefe directo es: </label>
+                            <select name="jefe" id="" class="form-control form-control-sm">
+                                @forelse ($usuarios as $usuario)
+
+                                    <option value="{{$usuario->id}}">{{$usuario->name }} |{{ $usuario->puesto}}</option>
+
+                                @empty
+                                    <option value="No options">Sin opciones</option>
+                                @endforelse
+                            </select>
+                            {!!$errors->first('jefe', '<small class="text-danger"> :message </small>')!!}
                         </div>
 
                         <div class="form-group">
@@ -213,6 +238,29 @@
                                         <label for="">Extensión</label>
                                         <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuario->extension)}}" id="extension" class="form-control form-control-sm">
                                         {!!$errors->first('extension_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="">Su jefe directo es: </label>
+                                        <select name="jefe_edit"  class="form-control form-control-sm">
+                                            @forelse ($usuarios as $usuario)
+
+                                            @if (!$usuario->jefe)
+                                                
+                                            @else
+                                                
+                                            @endif
+
+                                                <option value="{{$usuario->id}}">{{$usuario->name }} |{{ $usuario->puesto}}</option>
+
+                                            @empty
+
+
+                                                <option value="No options">Sin opciones</option>
+                                            @endforelse
+                                        </select>
+                                        {!!$errors->first('jefe_edit', '<small class="text-danger"> :message </small>')!!}
                                     </div>
             
                                     <div class="form-group mx-3">

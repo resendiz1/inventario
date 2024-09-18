@@ -133,6 +133,9 @@ class accesosController extends Controller
 
     public function ver_permisos_jefe(){
 
+        // $solicitudes = Accesos::where('') 
+
+
         
         return view('jefes.perfil');
     }

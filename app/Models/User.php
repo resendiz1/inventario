@@ -24,6 +24,7 @@ class User extends Authenticatable
         'puesto',
         'extension',
         'celular',
+        'jefe',
         'ubicacion',
         'resguardo_firmado',
 

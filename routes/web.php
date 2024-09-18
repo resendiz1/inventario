@@ -113,6 +113,6 @@ Route::post('/user/control_accesos/solicitar_software', [accesosController::clas
 
 
 ///Creando las rutas que van a ser de un jefe
-Route::get('/user/permisos', [accesosController::class, 'ver_permisos_jefe'])->name('permisos.show');
+Route::get('/user/permisos', [accesosController::class, 'ver_permisos_jefe'])->name('permisos.show')->middleware('auth');
 
 

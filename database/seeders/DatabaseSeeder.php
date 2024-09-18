@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $usuario->puesto = "Encargado de sistemas";
         $usuario->planta = "Planta 1";
         $usuario->extension = "212";
+        $usuario->jefe = "Arturo Resendiz";
         $usuario->celular = "No hay celular";
         $usuario->password = bcrypt('password');
         $usuario->ubicacion = "Edificio administrativo tercer piso junto a servicarga";

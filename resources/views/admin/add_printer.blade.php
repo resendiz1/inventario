@@ -16,7 +16,7 @@
 
                 </div>
             </div>
-            <form action="{{route('printer.create')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('printer.create')}}" method="POST" enctype="multipart/form-data" id="formulario" onsubmit="deshabilita()">
                 @csrf
                 <div class="row   p-lg-4 p-sm-1 m-2">
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3">
@@ -179,7 +179,7 @@
 
                     <div class="col-12 mt-4">
                         <div class="form-group">
-                            <button class="btn btn-success w-25 font-weight-bold">
+                            <button class="btn btn-success w-25 font-weight-bold" id="login">
                                 Agregar
                             </button>
                         </div>
@@ -189,4 +189,30 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+{{-- aqui va el javascript --}}
+
+<script>
+    function deshabilita(){
+        consol
+
+        const $boton = document.getElementById('button');
+        $boton.disable = true;
+        $boton.textContent = "Procesando ...";
+
+
+
+    }
+</script>
+
+
+
+
+
 @endsection
