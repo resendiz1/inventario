@@ -6,70 +6,161 @@
 
 
 <div class="container">
+  <div class="row m-1">
+      <div class="col-12 h4 text-center">
+      {{-- notificacion --}}
+              @if (session('acceso_autorizado'))
+                  <span class="text-success"> {{session('acceso_autorizado')}} </span>
+              @endif
+              @if (session('acceso_desautorizado'))
+              <span class="text-success"> {{session('acceso_desautorizado')}} </span>
+          @endif
+      {{-- notificacion --}}
+      </div>
 
-    <div class="row justify-content-center">
-        <div class="col-12">
+  </div>
+</div>
+
+
+
+<div class="container my-4">
+
+    <div class="row justify-content-center mt-3">
+
+        <div class="col-sm-12 col-md-12 col-lg-12 scroll-tabla mt-2 bg-white p-5">
+          <h3 class="font-weight-bold">Sitios solicitado por las personas a su cargo</h3>
             <table class="table table-bordered table-responsive-md">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Fecha pedido</th>
-            <th scope="col">Fecha entrega</th>
-            <th scope="col">Insumos</th>
-            <th scope="col">Estado</th>
 
-        </tr>
-    </thead>
-    <tbody>
+              @if (count($sitios) > 0)
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre del software</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Justificación</th>
+                        <th scope="col">Autorizar</th>
+                    </tr>
+                </thead>
+              @endif
+    
+
+              <tbody>
         
-      @forelse ($pedidos as $pedido)
+              @forelse ($sitios as $sitio)
+
+              @if ($sitio->user->id  == Auth::user()->id)
+                  
+              @else
+                  
+              
+              <tr>
+                    <td>{{$sitio->user->name}}</td>
+                    <td>{{$sitio->nombre}}</td>
+                    <td>{{$sitio->status ? 'Autorizado' : 'No autorizado'}}</td>
+                    <td>{{$sitio->justificacion}}</td> 
+                    
+                    <td class="col-2">
+                      <div class="btn-group">
+                        <form action="{{route('autorizar.software.jefe', $sitio->id)}}" method="POST">
+                          @csrf @method('PATCH')                            
+                          <button class="btn btn-sm {{$sitio->status ? 'btn-secondary' : 'btn-success' }} " {{$sitio->status  ? 'disabled' : 'enable' }}>
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </form>
+
+                        <form action="{{route('desautorizar.software.jefe', $sitio->id)}}" method="POST">
+                          @csrf @method('PATCH')
+                          <button class="btn  btn-sm {{$sitio->status ? 'btn-danger' : 'btn-secondary' }}" {{!$sitio->status  ? 'disabled' : 'enable' }}>
+                            <i class="fa fa-xmark"></i>
+                          </button>
+                        </form>
+                        
+                      </div>
+                    </td>
+                    
+                  </tr>
+                  
+                  @endif
+
+                  @empty
+                  <li>No hay datos</li> 
+                @endforelse
+                
+              </tbody>
+          </table>
+        </div>   
+        {{-- aqui termina le div de la tabla --}}
 
 
-        @if($pedido->status != "pendiente")
 
-          <tr>
-            <td>{{$pedido->id}}</td>
-            <td>{{$pedido->numero == 'Otra' ? '' : $pedido->numero}} <b> {{$pedido->marca}} </b> <b> {{$pedido->cantidad}} </b> </td>
-            <td>{{$pedido->fecha_pedido}}</td>
-            <td>{{$pedido->fecha_entrega}}</td>
-            <td>{{ implode(', ', json_decode($pedido->colores, true)) }} </td>
-            <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td>                      
-          </tr>
 
-        @else
-        
 
-          <tr>
-            <td>{{$pedido->id}}</td>
-            <td>{{$pedido->numero == 'Otra' ? '' : $pedido->numero}} <b> {{$pedido->marca}} </b> <b> {{$pedido->cantidad}} </b> </td>
-            <td>{{$pedido->fecha_pedido}}</td>
-            <td>{{$pedido->fecha_entrega}}</td>
-            <td>{{ implode(', ', json_decode($pedido->colores, true)) }}</td>
+        <div class="col-sm-12 col-md-12 col-lg-12 scroll-tabla mt-2 bg-white p-5">
+          <h3 class="font-weight-bold">Software solicitado por las personas a su cargo</h3>
+          <table class="table table-bordered table-responsive-md">
+            @if (count($softwares) > 0 )
+              <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Nombre del software</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Justificación</th>
+                      <th scope="col">Autorizar</th>
+                  </tr>
+              </thead>
+            @endif
+            <tbody>
+      
+            @forelse ($softwares as $software)
+
+              @if ($software->user->id == Auth::user()->id)
+
+
+
+              @else
             
-            <td class="text-start">
-              <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                  Pendiente
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#c{{$pedido->id}}" style="cursor: pointer">Completo</a>
-                  {{-- <a class="dropdown-item" data-toggle="modal" data-target="#r{{$pedido->id}}" style="cursor: pointer">Reenviar petición</a> --}}
-                </div>
-              </div>                            
-            </td>                      
-          </tr>
+              <tr>
+                  <td>{{$software->user->name}}</td>
+                  <td>{{$software->nombre}}</td>
+                  <td>{{$software->status ? 'Autorizado' : 'No autorizado'}}</td>
+                  <td>{{$software->justificacion}}</td> 
+                  
+                  <td class="col-2">
+                    <div class="btn-group">
+                      <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST">
+                        @csrf @method('PATCH')                            
+                        <button class="btn btn-sm {{$software->status ? 'btn-secondary' : 'btn-success' }}  " {{$software->status  ? 'disabled' : 'enable' }}>
+                          <i class="fa fa-check"></i>
+                        </button>
+                      </form>
+                      
+                      <form action="{{route('desautorizar.software.jefe', $software->id)}}" method="POST">
+                        @csrf @method('PATCH')
+                        <button class="btn  btn-sm {{$software->status ? 'btn-danger' : 'btn-secondary' }} " {{!$software->status  ? 'disabled' : 'enable' }}>
+                          <i class="fa fa-xmark"></i>
+                        </button>
+                      </form>
+                      
+                    </div>
+                  </td>
+                  
+                </tr>
+              @endif
+                
+                @empty
+                <li>No hay datos</li> 
+                @endforelse
+                
+            </tbody>
+        </table>
+      </div>  
 
-        @endif
-        
 
-        @empty
-           <li>No hay datos</li> 
-        @endforelse
 
-    </tbody>
-</table>
-        </div>
+
+
+
+
     </div>
 
 

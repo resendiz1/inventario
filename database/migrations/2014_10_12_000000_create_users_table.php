@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('puesto');
             $table->string('planta');
             $table->string('extension');
-            $table->string('jefe')->nullable()->default('Sin jefe');
+            $table->boolean('jefe');
+            $table->string('id_jefe');
             $table->boolean('resguardo_firmado')->default(false);
             $table->string('celular')->nullable()->default('No hay celular');
             $table->string('password');

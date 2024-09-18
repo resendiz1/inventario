@@ -29,6 +29,7 @@ class Controller extends BaseController
 
     public function registrar_usuarios(){
 
+        
 
         request()->validate([
             'nombre' => 'required',
@@ -36,6 +37,7 @@ class Controller extends BaseController
             'puesto' => 'required',
             'password' => 'required',
             'planta' => 'required',
+            'id_jefe' => 'required',
             'jefe' => 'required',
             'ubicacion' => 'required',
             'extension' => 'required',
@@ -50,6 +52,7 @@ class Controller extends BaseController
         $usuario->puesto = request('puesto');
         $usuario->planta = request('planta');
         $usuario->jefe = request('jefe');
+        $usuario->id_jefe = request('id_jefe');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
         $usuario->celular = request('celular');
@@ -157,7 +160,7 @@ class Controller extends BaseController
 
         request()->validate([
             'nombre_edit' => 'required',
-            'celular_edit' => 'required',
+            // 'celular_edit' => 'required',
             // 'email_edit' => 'required|email|unique:users,email',
             'puesto_edit' => 'required',
             'planta_edit' => 'required',

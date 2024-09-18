@@ -114,5 +114,8 @@ Route::post('/user/control_accesos/solicitar_software', [accesosController::clas
 
 ///Creando las rutas que van a ser de un jefe
 Route::get('/user/permisos', [accesosController::class, 'ver_permisos_jefe'])->name('permisos.show')->middleware('auth');
-
+Route::patch('/user/permisos/autoriza_software/{id}', [accesosController::class, 'autoriza_software_jefe'])->name('autorizar.software.jefe');
+Route::patch('/user/permisos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software_jefe'])->name('desautorizar.software.jefe');
+Route::patch('/user/permisos/autorizar_sitio/{id}', [accesosController::class, 'autoriza_sitio_jefe'])->name('autorizar.sitio.jefe');
+Route::patch('/user/permisos/desautorizar_sitio/{id}', [accesosController::class, 'desautoriza_sitio_jefe'])->name('desautorizar.sitio.jefe');
 

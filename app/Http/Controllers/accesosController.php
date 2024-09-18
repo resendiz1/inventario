@@ -32,10 +32,11 @@ class accesosController extends Controller
 
     public function solicita_sitio(){
 
-
+ 
         request()->validate([
             'sitio' => 'required',
-            'justificacion_sitio' => 'required'
+            'justificacion_sitio' => 'required',
+ 
         ]);
 
         $acceso = new Acceso();
@@ -43,6 +44,7 @@ class accesosController extends Controller
         $acceso->nombre = request('sitio');
         $acceso->user_id = Auth::user()->id;
         $acceso->tipo = 'Sitio';
+        $acceso->id_jefe = Auth::user()->id_jefe;
         $acceso->justificacion = request('justificacion_sitio');
 
         $acceso->save();
@@ -53,19 +55,20 @@ class accesosController extends Controller
 
     }
 
-
-
     public function solicita_software(){
 
         request()->validate([
             'software' => 'required',
-            'justificacion_software' => 'required'
+            'justificacion_software' => 'required',
+
         ]);
+
 
         $acceso = new Acceso();
         $acceso->nombre = request('software');
         $acceso->user_id = Auth::user()->id;
         $acceso->tipo = 'Software';
+        $acceso->id_jefe = Auth::user()->id_jefe;
         $acceso->justificacion = request('justificacion_software');
 
         $acceso->save();
@@ -78,8 +81,6 @@ class accesosController extends Controller
 
     public function autoriza_software($id){
 
-        
-
         $software = Acceso::findOrFail($id);
 
         $software->status = true;
@@ -88,7 +89,6 @@ class accesosController extends Controller
 
 
         return back()->with('software_autorizado', 'El software se autorizo!');
-    
     
     }
 
@@ -103,6 +103,7 @@ class accesosController extends Controller
 
     }
 
+
     public function autoriza_sitio($id){
 
         $sitio = Acceso::findOrFail($id);
@@ -114,6 +115,8 @@ class accesosController extends Controller
 
 
     }
+
+
 
     public function desautoriza_sitio($id){
 
@@ -128,16 +131,80 @@ class accesosController extends Controller
     }
 
 
+    public function autoriza_sitio_jefe($id){
+
+        $sitio = Acceso::findOrFail($id);
+        $sitio->status = true;
+        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->save();
+
+        return back()->with('acceso_autorizado', 'El sitio fue autorizado');
+
+
+    }
+
+
+
+
+    public function desautoriza_sitio_jefe($id){
+
+        $sitio = Acceso::findOrFail($id);
+        $sitio->status = false;
+        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->save();
+
+        return back()->with('acceso_desautorizado', 'El sitio fue desautorizado');
+
+
+    }
+
+
+
+
+
+
+    public function autoriza_software_jefe($id){
+
+        $software = Acceso::findOrFail($id);
+        $software->status = true;
+        $software->autorizo = Auth::user()->name;
+        $software->save();
+
+
+        return back()->with('sofacceso_autorizado', 'El software se autorizo!');
+    
+    }
+
+
+    public function desautoriza_software_jefe($id){
+
+        $software = Acceso::findOrFail($id);
+        $software->status = false;
+        $software->autorizo = Auth::user()->name;
+        $software->save();
+
+        return back()->with('sofacceso_desautorizado', 'El software se desautorizo!');
+
+    }
+
+
+
+
+
+
+
 
 
 
     public function ver_permisos_jefe(){
 
-        // $solicitudes = Accesos::where('') 
+        $softwares = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Sitio')->get();
+        $sitios = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Software')->get();
 
 
         
-        return view('jefes.perfil');
+        return view('jefes.perfil', compact('softwares', 'sitios'));
+
     }
 
 

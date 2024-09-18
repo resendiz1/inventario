@@ -85,7 +85,7 @@
     <div class="row font-size-18 justify-content-center">
 
         <div class="col-4 text-center">
-            <b>Fecha: </b> <span> {{now()}} </span>
+            <b>Fecha: </b> <span> {{Auth::user()->created_at}} </span>
         </div>
 
         <div class="col-4 text-center">
@@ -108,8 +108,9 @@
             <table class="table border">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col-1">Software</th>
-                    <th scope="col-11">Justificación</th>
+                    <th scope="col-2">Software</th>
+                    <th scope="col-8">Justificación</th>
+                    <th scope="col-2">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,14 +118,13 @@
 
                     <tr>
                       <th class="col-2" >{{$soft->nombre}}</th>
-                      <td class="col-10"> {{$soft->justificacion}} </td>
+                      <td class="col-8"> {{$soft->justificacion}} </td>
+                      <td class="col-2"> {{$soft->status ? 'Autorizado' : 'No autorizado' }} </td>
                     </tr>
                         
                     @empty
                         <li>No hay datos</li>
                     @endforelse
-
-
 
                   <tr>
 
@@ -139,15 +139,19 @@
                         </th>
                         
                         <td>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label for="" class="font-weight-bold">Justificación: </label>
-                                <textarea name="justificacion_software" placeholder="Necesito Aspel SAE por que trabajo con los registros de la empresa" class="form-control w-100 h-25 suave">{{old('justificacion_software')}}</textarea>
+                                <input type="text" name="justificacion_software" placeholder="Necesito Aspel SAE por que trabajo con los registros de la empresa" class="form-control w-100 h-25 suave mt-2" value="{{old('justificacion_software')}}">
                                 {!!$errors->first('justificacion_software', '<small class="text-danger"> :message </small>')!!}<br>
-                                <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
-                            </div>
+                              </div>
+                            </td>
+                            
+                            <td>
+                              
+                              <button class="btn btn-dark btn-sm w-100 mt-5" id="button1">Solicitar</button>
                         </form>
-                    </td>
-
+                        </td>
+                          
                   </tr>
   
                 </tbody>
@@ -166,8 +170,9 @@
             <table class="table border">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col-1">Sitio</th>
-                    <th scope="col-11">Justificación</th>
+                    <th scope="col-2">Sitio</th>
+                    <th scope="col-8">Justificación</th>
+                    <th scope="col-2">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -176,6 +181,7 @@
                     <tr>
                         <th class="col-2">{{$sitio->nombre}}</th>
                         <td class="col-8" >{{$sitio->justificacion}}</td>
+                        <td class="col-2" >{{$sitio->status ? 'Autorizado'  :  'No Autorizado'}}</td>
                     </tr>
                 @empty
                     
@@ -187,21 +193,27 @@
                         @csrf
                         <div class="form-group ">
                             <label for="">Sitio: </label>
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="text" placeholder="DOF (Diario Oficial de la Federación)" name="sitio" value="{{old('sitio')}}" class="form-control form-control-sm mt-3 suave"> <br>
                             {!!$errors->first('sitio', '<small class="text-danger"> :message </small>')!!}
+                            <input type="hidden" name="id_jefe" value="{{Auth::user()->jefe}}" >
                         </div>
                   </th>
                     
-                  <td>
-                        <div class="form-group">
+                      <td>
+                        <div class="form-group ">
                             <label for="" class="font-weight-bold">Justificación: </label>
-                            <textarea name="justificacion_sitio" placeholder="Consulto diariamente este sitio saber el tipo de cambio" class="form-control w-100 h-25 suave" >{{old('justificacion_sitio')}}</textarea> 
+                            <input name="justificacion_sitio" placeholder="Consulto diariamente este sitio saber el tipo de cambio" class="form-control w-100 mt-2 h-25 suave" value="{{old('justificacion_sitio')}}""> 
                             {!!$errors->first('justificacion_sitio', '<small class="text-danger"> :message </small>')!!}<br>
-                            <button class="btn btn-dark btn-sm mt-3">Solicitar</button>
-                        </div>
-                    </form>
-                  </td>
+                          </div>
+                        </td>
+                        
+                        <td>
+                          
+                          <button class="btn btn-dark btn-sm mt-5 w-100" id="button2">Solicitar</button>
+                        </form>
+                      </td>
+
+
                 </tbody>
               </table>
         </div>
@@ -269,55 +281,106 @@
 
 <script>
 
-document.getElementById('sitio').addEventListener('submit', function(event){
-  event.preventDefault();  //evita el envio tradicional del formulario
+// document.getElementById('sitio').addEventListener('submit', function(event){
+//   event.preventDefault();  //evita el envio tradicional del formulario
 
-  const formData = new FormData(this);
+//   const formData = new FormData(this);
 
-  const csrfToken = document.querySelector('input[name="_token"]');
-
-
-  //haiendo la peticion ajax
-
-  fetch(this.action, {
-    method: this.method,  //se usa el metodo que esta en el formulario
-    headers:{
-      'X-CSRF-TOKEN': csrfToken,
-      'Accept': 'application/json'
-    },
-
-    body:formData
-
-  })
+//   const csrfToken = document.querySelector('input[name="_token"]');
 
 
-  .then(response => response.json()) //convierte la respuesta en json
-  .then(data =>{
+//   //haiendo la peticion ajax
+
+//   fetch(this.action, {
+//     method: this.method,  //se usa el metodo que esta en el formulario
+//     headers:{
+//       'X-CSRF-TOKEN': csrfToken,
+//       'Accept': 'application/json'
+//     },
+
+//     body:formData
+
+//   })
 
 
-    //notidficacion de que si se armo
-    alert('Se envio correctamente el formulario');
-
-    console.log(data)
-    .catch(eror=>{
-
-      //manejoi de error3s
-      alert('Ocurrio un error al manejar el formulario');
-
-    })
+//   .then(response => response.json()) //convierte la respuesta en json
+//   .then(data =>{
 
 
-  })
+//     //notidficacion de que si se armo
+//     alert('Se envio correctamente el formulario');
+
+//     console.log(data)
+//     .catch(eror=>{
+
+//       //manejoi de error3s
+//       alert('Ocurrio un error al manejar el formulario');
+
+//     })
 
 
+//   })
 
-
-
-
-});
+// });
 
 
 </script>
+
+
+
+{{-- //aqui va a ir el script para lo del scroll --}}
+
+<script>
+
+
+  document.getElementById('button1').addEventListener('click', function(){
+
+          const posicion = this.getBoundingClientRect().top + window.scrollY;
+          localStorage.setItem('scrollPosition', posicion)
+
+
+  });
+
+  document.getElementById('button2').addEventListener('click', function(){
+
+        const posicion = this.getBoundingClientRect().top + window.scrollY;
+        localStorage.setItem('scrollPosition', posicion)
+
+
+  });
+
+
+
+
+
+  window.addEventListener('load', function(){
+
+    const scrollPosition = localStorage.getItem('scrollPosition');
+    if(scrollPosition){
+
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+    });
+
+      localStorage.removeItem('scrollPosition');
+    }
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
 
 
 @endsection

@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
         $usuario->puesto = "Encargado de sistemas";
         $usuario->planta = "Planta 1";
         $usuario->extension = "212";
-        $usuario->jefe = "Arturo Resendiz";
+        $usuario->jefe = 1;
+        $usuario->id_jefe = "Gerencia";
         $usuario->celular = "No hay celular";
         $usuario->password = bcrypt('password');
         $usuario->ubicacion = "Edificio administrativo tercer piso junto a servicarga";
@@ -81,7 +82,8 @@ class DatabaseSeeder extends Seeder
             ]);
 
             Acceso::factory(2)->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'id_jefe' => $user->id
             ]);
 
         }

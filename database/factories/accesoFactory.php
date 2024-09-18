@@ -17,6 +17,7 @@ class accesoFactory extends Factory
             'nombre' => $this->faker->name(),
             'tipo' => $this->faker->randomElement(['Software', 'Sitio']) ,
             'status' => $this->faker->boolean(),
+            'id_jefe' => $this->faker->randomDigit(),
             'justificacion' => $this->faker->text(20),
             'user_id' => $this->faker->randomNumber()
         ];

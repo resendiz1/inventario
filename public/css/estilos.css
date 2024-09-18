@@ -136,7 +136,6 @@
 
       .scroll-tabla{
         height: 400px;
-        border: 1px solid #ccc;
         padding: 10px;
         overflow-y: scroll; /* Muestra el scroll vertical cuando el contenido excede la altura */
         overflow-x: hidden; /* Oculta el scroll horizontal */

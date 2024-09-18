@@ -89,15 +89,23 @@ use App\Models\User;
 
 
                         <div class="form-group">
-                            <label for="">Su jefe directo es: </label>
-                            <select name="jefe" id="" class="form-control form-control-sm">
+                            <label for="">Su jefe directo es:  </label>
+                            <select name="id_jefe" class="form-control form-control-sm">
                                 @forelse ($usuarios as $usuario)
-
-                                    <option value="{{$usuario->id}}">{{$usuario->name }} |{{ $usuario->puesto}}</option>
-
+                                    <option value="{{$usuario->id}}">{{$usuario->name }} |{{$usuario->puesto}}</option>
                                 @empty
                                     <option value="No options">Sin opciones</option>
                                 @endforelse
+                                    <option value="Gerencia">Es gerencia</option>
+                            </select>
+                            {!!$errors->first('jefe', '<small class="text-danger"> :message </small>')!!}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">¿Tiene gente acargo? </label>
+                            <select name="jefe" class="form-control form-control-sm">
+                                <option value="0">No</option>
+                                <option value="1">Si</option>
                             </select>
                             {!!$errors->first('jefe', '<small class="text-danger"> :message </small>')!!}
                         </div>
@@ -150,7 +158,7 @@ use App\Models\User;
                         <tr>
                             <td>{{$usuario->name}}</td>
                             <td>{{$usuario->email}}</td> 
-                            <td>{{$usuario->celular}}</td>
+                            <td>{{$usuario->celular ? $usuario->celular : 'No hay celular' }}</td>
                             <td>{{$usuario->planta}}</td>
                             <td> <a href="{{route('view.resguardo.admin', $usuario->id)}}"> Ver </a> </td>
                             <td> <a href="{{route('view.accesos.admin', $usuario->id)}}"> Ver </a> </td>
