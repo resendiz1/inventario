@@ -4,12 +4,6 @@
 @section('contenido')
 @section('title', 'Agregar usuarios')
 
-{{-- esto es un crimen, perdon diosito por esta vida tan atrevida --}}
-@php
-use App\Models\User;
-@endphp
-
-{{-- esto es un crimen, perdon diosito por esta vida tan atrevida --}}
 
 
 <div class="container-fluid mt-5">
@@ -92,7 +86,10 @@ use App\Models\User;
                             <label for="">Su jefe directo es:  </label>
                             <select name="id_jefe" class="form-control form-control-sm">
                                 @forelse ($usuarios as $usuario)
-                                    <option value="{{$usuario->id}}">{{$usuario->name }} |{{$usuario->puesto}}</option>
+                                    @if ($usuario->jefe)
+                                     <option value="{{$usuario->id}}">{{$usuario->name }} |{{$usuario->puesto}}</option>
+                                    @endif
+                                
                                 @empty
                                     <option value="No options">Sin opciones</option>
                                 @endforelse
@@ -177,8 +174,6 @@ use App\Models\User;
                     @empty
                         
                     @endforelse
-                    
-                    
                 </tbody>
             </table>
         </div>
@@ -254,17 +249,11 @@ use App\Models\User;
                                         <select name="jefe_edit"  class="form-control form-control-sm">
                                             @forelse ($usuarios as $usuario)
 
-                                            @if (!$usuario->jefe)
-                                                
-                                            @else
-                                                
+                                            @if ($usuario->jefe)
+                                            <option value="{{$usuario->id}}">{{$usuario->name }} | {{ $usuario->puesto}}</option>
                                             @endif
 
-                                                <option value="{{$usuario->id}}">{{$usuario->name }} |{{ $usuario->puesto}}</option>
-
                                             @empty
-
-
                                                 <option value="No options">Sin opciones</option>
                                             @endforelse
                                         </select>

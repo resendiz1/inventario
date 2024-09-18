@@ -89,27 +89,27 @@ const numeroInputs = document.getElementsByClassName('imagen');
 {
 
 
-document.addEventListener('contextmenu', function(e){
-  e.preventDefault();
+// document.addEventListener('contextmenu', function(e){
+//   e.preventDefault();
 
-  const menu = document.getElementById('menuContextual');
+//   const menu = document.getElementById('menuContextual');
 
-  //establecemos la posicion delm menu contextual
-  menu.style.left = e.pageX + 'px';
-  menu.style.top = e.pageY + 'px';
+//   //establecemos la posicion delm menu contextual
+//   menu.style.left = e.pageX + 'px';
+//   menu.style.top = e.pageY + 'px';
 
-  //mostrar el menu
-  menu.style.display = 'block';
+//   //mostrar el menu
+//   menu.style.display = 'block';
 
-})
+// })
 
 
 
-document.addEventListener('click', function(){
-  //que oculta el menu al hacer click en otra parte
-  const menu = document.getElementById('menuContextual')
-  menu.style.display = 'none';
-})
+// document.addEventListener('click', function(){
+//   //que oculta el menu al hacer click en otra parte
+//   const menu = document.getElementById('menuContextual')
+//   menu.style.display = 'none';
+// })
 
 
 
