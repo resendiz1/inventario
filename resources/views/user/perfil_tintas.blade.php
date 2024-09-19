@@ -45,7 +45,7 @@
 
     <div class="row d-flex justify-content-around">
         
-        <div class="col-11 mx-1 bg-white p-4 shadow shadow-sm">
+        <div class="col-12 mx-1 bg-white p-4 shadow shadow-sm">
             <button class="btn btn-dark btn-sm m-1 font-weight-bold"  data-toggle="modal" data-target="#pedido">
                 <i class="fa fa-plus"></i>
                 Realizar pedido
@@ -54,6 +54,7 @@
                 Pedidos de tintas realizados
             </h3>
             <table class="table table-bordered table-responsive-md">
+              @if (count($pedidos) > 0 )
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -62,9 +63,12 @@
                         <th scope="col">Fecha entrega</th>
                         <th scope="col">Insumos</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Respuesta</th>
 
                     </tr>
                 </thead>
+              @endif
+
                 <tbody>
                     
                   @forelse ($pedidos as $pedido)
@@ -78,7 +82,8 @@
                         <td>{{$pedido->fecha_pedido}}</td>
                         <td>{{$pedido->fecha_entrega}}</td>
                         <td>{{ implode(', ', json_decode($pedido->colores, true)) }} </td>
-                        <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td>                      
+                        <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td> 
+                        <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>                     
                       </tr>
 
                     @else
@@ -101,14 +106,23 @@
                               {{-- <a class="dropdown-item" data-toggle="modal" data-target="#r{{$pedido->id}}" style="cursor: pointer">Reenviar petición</a> --}}
                             </div>
                           </div>                            
-                        </td>                      
+                        </td> 
+                        <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>
+                        
                       </tr>
 
                     @endif
                     
     
                     @empty
-                       <li>No hay datos</li> 
+
+                      <div class="row justify-content-center p-5">
+                        <div class="col-8 text-center mt-5">
+                          <i class="fa-solid fa-droplet fa-4x m-3"></i>
+                          <h4>No se ha realizado ningun pedido</h4>
+                        </div>
+                      </div>
+
                     @endforelse
           
                 </tbody>

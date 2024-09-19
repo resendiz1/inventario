@@ -83,6 +83,17 @@ class ticketsController extends Controller
     }
 
 
+    public function detalle_reporte_admin($id){
+
+        
+        $reporte = Reporte::findOrFail($id);
+        $comentarios = Seguimiento::where('reporte_id', $id)->get();
+        return view('admin.detalle_reporte', compact('reporte', 'comentarios'));
+
+    }
+
+
+
 
 
     public function comentario_usuario($id){
@@ -108,10 +119,34 @@ class ticketsController extends Controller
         return back()->with('comentado', 'Listo! ');
 
 
+    }
+
+
+    public function comentario_admin($id){
+
+
+        $usuario = Auth::guard('admin')->user()->nombre;
+        $fecha = substr(Carbon::now(),0, 11);
+
+
+        request()->validate([
+            'comentario' => 'required'
+        ]);
+
+        //guardando los datos con la asignacion masiva
+        Seguimiento::create([
+            'usuario' => $usuario,
+            "fecha" => $fecha,
+            'reporte_id' => $id,
+            'comentario' => request('comentario')
+        ]);
+
+
+        return back()->with('comentado', 'Listo! ');
 
 
 
-    
+
 
     }
 

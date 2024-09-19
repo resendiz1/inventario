@@ -231,7 +231,7 @@
 
 
     @empty
-      <li>No hay datos</li>
+      <li>No hay datos de Computadoras</li>
     @endforelse
   {{-- conjunto de dartos del equipo de computo --}}
 
@@ -331,7 +331,7 @@
 
 
     @empty
-        <li>No hay datos</li>
+        <li>No hay datos de impresoras</li>
     @endforelse
     {{-- cionjunto de datos de la impresora --}}
 
@@ -346,7 +346,7 @@
       <h5 class="mt-2 font-weight-bold">Datos del Equipo de el Teléfono</h5>
     </div>
     <div class="col-3 mt-2">
-      <h5>  ¿Equipo Nuevo?  <b>
+      <h5>  ¿Equipo Nuevo?<b>
         @if ($telefono->nuevo)
           <i class="fa fa-check-circle mx-1 text-success"></i> Si               
         @else
@@ -420,7 +420,7 @@
 
 
   @empty
-      <li>No hay datos</li>
+      <li>No hay datos de telefonos</li>
   @endforelse
   
     {{-- conjunto de datos de el telefono --}}
@@ -450,52 +450,75 @@
   <div class="row p-3 justify-content-center">
 
 
-    <div class="col-12 text-center">
-      @if($usuario->resguardo_firmado == true)
+          @if (count($telefonos) == 0 && count($impresoras) == 0 && count($computadoras) ==0 )
 
-        <h4> 
-          <i class="fa fa-check-circle text-success"></i>
-          <b>Aceptado por: </b>   
-          {{$usuario->name}}
-        </h4>
-        
-      @else
-        
-        <div class="row justify-content-center">
-
-          <div class="col-12">
-            <h4>
-              <i class="fa fa-warning text-danger"></i>
-              Aún no es aceptado por el usuario
-            </h4>
+          <div class="col-6">
+            <h4 class="font-weight-bold">Aún no hay dispositivos para aceptar el resguardo</h4>
           </div>
+          
+          @else
 
-          <div class="col-2">
+          @if($usuario->resguardo_firmado == true)
 
-            <button class="btn btn-danger" data-toggle="modal" data-target="#msj">
-              <i class="fa fa-xmark"></i>
-              Rechazar
-            </button>
+            <div class="col-12 text-center">
 
-          </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4> 
+                    <i class="fa fa-check-circle text-success"></i>
+                    <b>Aceptado por: </b>   
+                    {{$usuario->name}}
+                  </h4>
 
-          <div class="col-2">
-            <form action="{{route('confirma.resguardo', $usuario->id)}}" onsubmit="return confirma()" method="POST">
-              @csrf
-              <button class="btn btn-success">
-                <i class="fa fa-check"></i>
-                Aceptar
-              </button>
-            </form>
-          </div>
+                </div>
+              </div>
+           @else
+            <div class="row justify-content-center">
 
+              <div class="col-12 text-center">
+                <h4>
+                  <i class="fa fa-warning text-danger"></i>
+                  Aún no es aceptado por el usuario
+                </h4>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-danger w-100" data-toggle="modal" data-target="#msj">
+                  <i class="fa fa-xmark"></i>
+                  Rechazar
+                </button>
+              </div>
+  
+              <div class="col-6">
+                <form action="{{route('confirma.resguardo', $usuario->id)}}" onsubmit="return confirma()" method="POST">
+                  @csrf
+                  <button class="btn btn-success w-100">
+                    <i class="fa fa-check"></i>
+                    Aceptar
+                  </button>
+                </form>
+              </div>
 
-        </div>
+            </div>
 
         @endif
+
+
+      
+          </div>
+          @endif
+        </div>
+
+    
         
       </div>
+
+
     </div>
+
+
+
+
+    
   </div>
 </div>{{--  este es el contenedor de todo --}}
 

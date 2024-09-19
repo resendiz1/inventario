@@ -117,10 +117,10 @@ class Controller extends BaseController
         $cantidad_telefonos = Telefono::count();
         $pedidos = Pedido::where('status', 'pendiente')->with('user')->get();
         $reportes = Reporte::where('status', 'pendiente')->get();
+        $usuarios = User::all();
 
 
-
-        return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes'));
+        return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes', 'usuarios'));
     }
 
 

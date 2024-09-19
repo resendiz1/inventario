@@ -19,6 +19,7 @@ class CreatePedidosTable extends Migration
             $table->json('colores');
             $table->string('marca')->nullable();
             $table->string('cantidad')->nullable();
+            $table->string('respuesta_admin');
             $table->string('status')->nullable()->default('pendiente');
             $table->string('fecha_pedido');
             $table->string('fecha_entrega')->nullable()->default('pendiente');

@@ -65,17 +65,6 @@ class tintasController extends Controller
         }
 
 
-
-
-
-            
-
-            
-
-
-
-
-
         $fecha_hoy = substr(Carbon::now(), 0, 10);
 
    
@@ -95,6 +84,24 @@ class tintasController extends Controller
 
         
     }
+
+
+    public function respuesta_admin($id){
+
+        
+        $pedido = Pedido::findOrFail($id);
+        $pedido->respuesta_admin = request('respuesta_admin');
+        $pedido->update();
+
+        return back()->with('respuesta', 'La respuesta fue enviada');
+
+
+    }
+
+
+
+
+
 
 
     public function pedido_completo($id){

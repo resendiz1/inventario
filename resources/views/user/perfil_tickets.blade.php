@@ -39,17 +39,19 @@
               Reportes realizados
             </h3>
             <table class="table table-bordered table-responsive-md" style="transition: 3s">
+              @if (count($reportes) > 0)
                 <thead class="thead-dark ">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Lo que falla</th>
-                        <th scope="col">Fecha de reporte</th>
-                        <th scope="col">Fecha de solución</th>
-                        <th scope="col">Detalles</th>
-                        <th scope="col">Estado</th>
+                  <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Lo que falla</th>
+                      <th scope="col">Fecha de reporte</th>
+                      <th scope="col">Fecha de solución</th>
+                      <th scope="col">Detalles</th>
+                      <th scope="col">Estado</th>
 
-                    </tr>
+                  </tr>
                 </thead>
+              @endif
                 <tbody>
                    
                 @forelse ($reportes as $reporte)
@@ -94,7 +96,13 @@
                   @endif
                 
                 @empty
-                    <li>No hay reportes</li>
+         
+                <div class="row justify-content-center p-5">
+                  <div class="col-8 text-center mt-5">
+                    <i class="fa-solid fa-pencil fa-4x m-3"></i>
+                    <h4>No hay reportes aqui</h4>
+                  </div>
+                </div>
                 @endforelse
 
 

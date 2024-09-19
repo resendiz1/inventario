@@ -5,7 +5,7 @@ use Carbon\Carbon;
 @extends('layout')
 @section('contenido')
 @section('title', 'Detalle reporte')
-@include('user.cabecera')
+@include('assets.nav')
 
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -14,8 +14,8 @@ use Carbon\Carbon;
             @if ($reporte->status == 'pendiente')
                 <div class="row">
                     <div class="col-12 bg-dark p-3 text-center text-white">
-                        <h2>Ticket #{{$reporte->id}}</h2>
-                        <a class="text-white font-weight-bold" href="{{route('tickets.show')}}">Volver</a>
+                        <h2>Ticket #{{$reporte->id}}</h2> <br>
+                        <a class="text-white font-weight-bold" href="{{route('perfil.admin')}}">Volver</a>
                         @if (session('comentado'))
                             <small class="text-success">{{session('comentado')}}</small>
                         @endif
@@ -77,7 +77,7 @@ use Carbon\Carbon;
                     <div class="row">
                         @forelse ($comentarios as $comentario)
                             <div class="col-12 my-4">
-                                <b class="font-size-18">{{($comentario->usuario == Auth::user()->name) ? 'Yo' : $comentario->usuario }}: </b>
+                                <b class="font-size-18">{{($comentario->usuario == Auth::guard('admin')->user()->nombre) ? 'Yo' : $comentario->usuario }}: </b>
                                 <p class="mb-0">{{$comentario->comentario}}</p>
                                 <small class="font-weight-bold bd-highlight">{{Carbon::parse($comentario->created_at)->diffForHumans()}}</small>
                             </div>
@@ -85,17 +85,13 @@ use Carbon\Carbon;
                             <li>Sin comentarios aún</li>
                         @endforelse
 
-
-
-
-
                         @if ($reporte->status != 'completado')
                             <div class="col-12 mt-5 ">
-                                <form action="{{route('comentario.reporte.usuario', $reporte->id)}}" method="POST">
+                                <form action="{{route('comentario.reporte.admin', $reporte->id)}}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <i class="fa fa-comment"></i>
-                                        <b>{{Auth::user()->name}}: </b>
+                                        <b>{{Auth::guard('admin')->user()->nombre}}: </b>
                                         <textarea name="comentario" class="form-control w-100 h-25" autofocus></textarea>
                                         @error('comentario')
                                            <h6 class="mt-3 text-danger"> {{ $message}} </h6>

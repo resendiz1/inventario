@@ -179,7 +179,7 @@
 
                     <div class="col-12 mt-4">
                         <div class="form-group">
-                            <button class="btn btn-success w-25 font-weight-bold" id="login">
+                            <button class="btn btn-dark w-25 font-weight-bold" id="login">
                                 Agregar
                             </button>
                         </div>

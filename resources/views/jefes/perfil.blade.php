@@ -83,8 +83,15 @@
                   @endif
 
                   @empty
-                  <li>No hay datos</li> 
-                @endforelse
+                  
+                  <div class="row p-5 justify-content-center">
+                    <div class="col-8 text-center mt-4">
+                      <i class="fa-solid fa-envelope-open-text fa-5x" ></i> <br>
+                      <h4>No hay solicitudes de acceso a sitios web</h4>
+                    </div>
+                  </div>
+
+                  @endforelse
                 
               </tbody>
           </table>
@@ -148,7 +155,14 @@
               @endif
                 
                 @empty
-                <li>No hay datos</li> 
+                  
+                <div class="row p-5 justify-content-center">
+                  <div class="col-8 text-center mt-4">
+                    <i class="fa-solid fa-envelope-open fa-5x" ></i> <br>
+                    <h4>No hay solicitudes de software</h4>
+                  </div>
+                </div>
+
                 @endforelse
                 
             </tbody>

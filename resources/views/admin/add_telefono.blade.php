@@ -167,7 +167,7 @@
                     </div>
                     <div class="col-12 text-start mt-3">
                         <div class="form-group">
-                            <button class="btn btn-success font-weight-bold">
+                            <button class="btn btn-dark  font-weight-bold">
                                 <i class="fas fa-plus-circle"></i>
                                  Agregar
                             </button>

@@ -283,7 +283,7 @@
                     </div>
 
                     <div class="col-3  mt-5">
-                        <button class="btn btn-success w-100 font-weight-bold">
+                        <button class="btn btn-dark w-100 font-weight-bold">
                             <i class="fa fa-plus-circle mr-2 "></i>
                             Agregar
                         </button>

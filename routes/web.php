@@ -16,6 +16,12 @@ use App\Http\Controllers\directorioController;
 
 
 
+//RESPUESTA A LOS PEDIDOS DE TINTAS
+
+Route::patch('/admin/respuesta/{id}', [tintasController::class, 'respuesta_admin'])->name('respuesta.admin');
+
+Route::get('/admin/reporte/{id}', [ticketsController::class, 'detalle_reporte_admin'])->name('detalle.reporte.admin');
+Route::post('/admin/reporte/comentario/{id}', [ticketsController::class, 'comentario_admin'])->name('comentario.reporte.admin');
 
 
 
@@ -48,40 +54,35 @@ Route::post('/agregando_users', [Controller::class, 'registrar_usuarios'])->name
 
 
 //rutas que se encargan de la gestions de las computadoras
-Route::get('/add_pc', [pcController::class, 'store'])->name('add_pc');
-Route::post('/add_pc', [pcController::class, 'create'])->name('pc.create');
+Route::get('/add_pc', [pcController::class, 'store'])->name('add_pc')->middleware('auth:admin');
+Route::post('/add_pc', [pcController::class, 'create'])->name('pc.create')->middleware('auth:admin');
 
 //rutas que se encargan de mostar los detalles de las computadoras 
-Route::get('/resultado_pc', [pcController::class, 'show'])->name('pc.show');
+Route::get('/resultado_pc', [pcController::class, 'show'])->name('pc.show')->middleware('auth:admin');
 
 
 
 
 //rutas que se encargan de los UPS
-Route::get('/add_telefono', [telefonoController::class, 'store'])->name('add.telefono');
-Route::post('/add_telefono', [telefonoController::class, 'create'])->name('telefono.create');
+Route::get('/add_telefono', [telefonoController::class, 'store'])->name('add.telefono')->middleware('auth:admin');
+Route::post('/add_telefono', [telefonoController::class, 'create'])->name('telefono.create')->middleware('auth:admin');
 
 //ruta que va a los detalles del regulador
-Route::get('/resultado_ups', [telefonoController::class, 'show'])->name('ups.show');
+Route::get('/resultado_ups', [telefonoController::class, 'show'])->name('ups.show')->middleware('auth:admin');
 
 
 
 
 
 //rutas que se encargan de las impresoras
-Route::get('/add_printer', [printerController::class, 'store'])->name('add_printer');
-Route::post('/add_printer', [printerController::class, 'create'])->name('printer.create');
-
-//ruta que va a los detalles de las impresoras
-
-Route::get('/resultado_printer', [printerController::class, 'show'])->name('printer.show');
+Route::get('/add_printer', [printerController::class, 'store'])->name('add_printer')->middleware('auth:admin');;
+Route::post('/add_printer', [printerController::class, 'create'])->name('printer.create')->middleware('auth:admin');;
 
 
-//Ruta que se encarga de mostrar todos los proyectos
 
 // Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');
 
-Route::get('/user/tickets/detalles/{id}', [ticketsController::class, 'detalle_reporte'])->name('detalle.reporte');
+Route::get('/user/tickets/detalles/{id}', [ticketsController::class, 'detalle_reporte'])->name('detalle.reporte')->middleware('auth');
 
 //Rutas que funcionan en el perfil de los usuarios
 Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
