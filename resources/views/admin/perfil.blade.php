@@ -96,7 +96,7 @@
                                     <td>{{$reporte->fecha_reporte}}</td>
                                     <td>{{$reporte->dispositivo}}</td>
                                     <td>{{$reporte->descripcion}}</td>  
-                                    <td> <a href="#" class="btn btn-success btn-sm">Seguimiento</a> </td>                     
+                                    <td> <a href="{{Route('detalle.reporte.admin', $reporte->id)}}" class="btn btn-success btn-sm">Seguimiento</a> </td>                                         
                                 </tr>     
                             @empty
 

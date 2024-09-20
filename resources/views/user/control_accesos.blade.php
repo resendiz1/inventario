@@ -105,7 +105,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-11 ">
             <h4>Software requerido</h4>
-            <table class="table border">
+            <table class="table border" id="userTable">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col-2">Software</th>
@@ -129,7 +129,7 @@
                   <tr>
 
                     <th scope="row d-flex items-align-center">
-                        <form action="{{route('peticion.software')}}" method="POST">
+                        <form id="software" action="{{route('peticion.software')}}" method="POST">
                             @csrf
                             <div class="form-group ">
                                 <label for="">Software: </label>
@@ -137,7 +137,7 @@
                                 {!!$errors->first('software', '<small class="text-danger"> :message </small>')!!}
                             </div>
                         </th>
-                        
+
                         <td>
                             <div class="form-group ">
                                 <label for="" class="font-weight-bold">Justificación: </label>
@@ -146,12 +146,14 @@
                               </div>
                             </td>
                             
-                            <td>
+                        <td>
                               
                               <button class="btn btn-dark btn-sm w-100 mt-5" id="button1">Solicitar</button>
-                        </form>
+                          </form>
+                            <div id="notification" class="alert alert-success d-none" role="alert">
+                              ¡Solicitud enviada correctamente!
+                            </div>
                         </td>
-                          
                   </tr>
   
                 </tbody>
@@ -167,7 +169,7 @@
     <div class="row justify-content-center mt-5 mb-5">
         <div class="col-11 ">
             <h4>Acceso a la web requerido</h4>
-            <table class="table border">
+            <table class="table border" id="sitioTable">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col-2">Sitio</th>
@@ -189,7 +191,7 @@
 
 
                   <th scope="row d-flex items-align-center">
-                    <form action="{{route('peticion.sitio')}}" method="POST">
+                    <form action="{{route('peticion.sitio')}}" id="sitio" method="POST">
                         @csrf
                         <div class="form-group ">
                             <label for="">Sitio: </label>
@@ -331,53 +333,163 @@
 {{-- //aqui va a ir el script para lo del scroll --}}
 
 <script>
+  {
+// Escuchar el evento de envío del formulario
+document.getElementById('software').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evitar el envío tradicional del formulario
+
+    var form = e.target; // Obtener el formulario
+    var formData = new FormData(form); // Obtener los datos del formulario
+
+    // Limpiar mensajes de error anteriores
+    document.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+
+    // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    
+    // Abrir la conexión a la ruta que maneja la solicitud
+    xhr.open('POST', form.action, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
+
+    // Manejar la respuesta de la solicitud
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+
+            if (response.success) {
+                // Crear una nueva fila <tr> con los datos del software y justificación
+                var newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <th class="col-2">${response.software.nombre}</th>
+                    <td class="col-8">${response.software.justificacion}</td>
+                    <td class="col-2">${response.software.status ? 'Autorizado' : 'No autorizado'}</td>
+                `;
+
+                // Obtener la fila que contiene el formulario
+                var formRow = document.getElementById('software').closest('tr');
+                var userTable = document.querySelector('#userTable tbody');
+
+                // Insertar la nueva fila antes de la fila del formulario
+                if (userTable.contains(formRow)) {
+                    userTable.insertBefore(newRow, formRow);
+                }
+
+                // Limpiar el formulario
+                form.reset();
+            }
+        } else if (xhr.status === 422) {
+            // Si hay errores de validación
+            var response = JSON.parse(xhr.responseText);
+
+            if (!response.success && response.errors) {
+                // Mostrar los errores de validación
+                for (var field in response.errors) {
+                    var errorMessage = response.errors[field][0];
+                    var errorField = document.querySelector(`[name="${field}"]`);
+                    var errorElement = document.createElement('small');
+                    errorElement.classList.add('text-danger');
+                    errorElement.textContent = errorMessage;
+                    
+                    // Insertar el mensaje de error debajo del campo
+                    errorField.parentNode.appendChild(errorElement);
+                }
+            }
+        } else {
+            console.error('Error en la solicitud AJAX');
+        }
+    };
+
+    // Manejar errores de red
+    xhr.onerror = function() {
+        console.error('Error de red');
+    };
+
+    // Enviar los datos del formulario
+    xhr.send(formData);
+});
+
+  }
 
 
-  document.getElementById('button1').addEventListener('click', function(){
+  {
 
-          const posicion = this.getBoundingClientRect().top + window.scrollY;
-          localStorage.setItem('scrollPosition', posicion)
+    document.getElementById('sitio').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evitar el envío tradicional del formulario
+
+    var form = e.target; // Obtener el formulario
+    var formData = new FormData(form); // Obtener los datos del formulario
+
+    // Limpiar mensajes de error anteriores
+    document.querySelectorAll('#sitio .text-danger').forEach(el => el.textContent = '');
+
+    // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    
+    // Abrir la conexión a la ruta que maneja la solicitud
+    xhr.open('POST', form.action, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
+
+    // Manejar la respuesta de la solicitud
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+
+            if (response.success) {
+                // Crear una nueva fila <tr> con los datos del sitio y justificación
+                var newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <th class="col-2">${response.sitio.nombre}</th>
+                    <td class="col-8">${response.sitio.justificacion}</td>
+                    <td class="col-2">${response.sitio.status ? 'Autorizado' : 'No Autorizado'}</td>
+                `;
+
+                // Obtener la fila que contiene el formulario
+                var formRow = document.getElementById('sitio').closest('tr');
+                var sitioTable = document.querySelector('#sitioTable tbody');
+
+                // Insertar la nueva fila antes de la fila del formulario
+                sitioTable.insertBefore(newRow, formRow);
+
+                // Limpiar el formulario
+                form.reset();
+            }
+        } else if (xhr.status === 422) {
+            // Si hay errores de validación
+            var response = JSON.parse(xhr.responseText);
+
+            if (!response.success && response.errors) {
+                // Mostrar los errores de validación
+                for (var field in response.errors) {
+                    var errorMessage = response.errors[field][0];
+                    var errorField = document.querySelector(`[name="${field}"]`);
+                    var errorElement = document.createElement('small');
+                    errorElement.classList.add('text-danger');
+                    errorElement.textContent = errorMessage;
+                    
+                    // Insertar el mensaje de error debajo del campo
+                    errorField.parentNode.appendChild(errorElement);
+                }
+            }
+        } else {
+            console.error('Error en la solicitud AJAX');
+        }
+    };
+
+    // Manejar errores de red
+    xhr.onerror = function() {
+        console.error('Error de red');
+    };
+
+    // Enviar los datos del formulario
+    xhr.send(formData);
+});
 
 
-  });
-
-  document.getElementById('button2').addEventListener('click', function(){
-
-        const posicion = this.getBoundingClientRect().top + window.scrollY;
-        localStorage.setItem('scrollPosition', posicion)
 
 
-  });
-
-
-
-
-
-  window.addEventListener('load', function(){
-
-    const scrollPosition = localStorage.getItem('scrollPosition');
-    if(scrollPosition){
-
-
-      window.scrollTo({
-        top: scrollPosition,
-        behavior: 'smooth'
-    });
-
-      localStorage.removeItem('scrollPosition');
-    }
-
-  });
-
-
-
-
-
-
-
-
-
-
+  }
 
 </script>
 

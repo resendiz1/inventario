@@ -124,7 +124,7 @@
 
 
 
-              @else
+              
             
               <tr>
                   <td>{{$software->user->name}}</td>
@@ -179,6 +179,9 @@
 
 
 </div>
+
+
+
 
 
 

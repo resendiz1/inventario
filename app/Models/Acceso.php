@@ -11,7 +11,7 @@ class Acceso extends Model
 
 
 
-    protected $fillable = ['nombre', 'tipo', 'justificacion', 'user_id'];
+    protected $fillable = ['nombre', 'tipo','status','autorizo', 'justificacion', 'user_id', 'id_jefe'];
 
 
     public function user(){

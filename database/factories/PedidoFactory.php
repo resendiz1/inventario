@@ -18,6 +18,7 @@ class PedidoFactory extends Factory
             'colores' => $this->faker->randomElement(['["amarillo"]', '[ "negro"]', '["azul"]']),
             'marca' => $this->faker->randomElement(['Epson', 'HP', 'Brother']),
             'cantidad' => $this->faker->randomNumber(),
+            'respuesta_admin' => $this->faker->text(15),
             'status' => $this->faker->randomElement(['pendiente', 'completado']) , 
             'fecha_pedido' => $this->faker->date(),
             'fecha_entrega' => $this->faker->date(),

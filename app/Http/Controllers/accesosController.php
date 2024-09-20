@@ -39,21 +39,44 @@ class accesosController extends Controller
  
         ]);
 
-        $acceso = new Acceso();
 
-        $acceso->nombre = request('sitio');
-        $acceso->user_id = Auth::user()->id;
-        $acceso->tipo = 'Sitio';
-        $acceso->id_jefe = Auth::user()->id_jefe;
-        $acceso->justificacion = request('justificacion_sitio');
 
-        $acceso->save();
+        $sitio = Acceso::create([
+
+            'nombre' => request('sitio'),
+            'user_id' => Auth::user()->id,
+            'tipo' => 'Sitio',
+            'id_jefe' => Auth::user()->id_jefe,
+            'justificacion' => request('justificacion_sitio')
+
+        ]);
+
+
+        // $acceso = new Acceso();
+
+        // $acceso->nombre = request('sitio');
+        // $acceso->user_id = Auth::user()->id;
+        // $acceso->tipo = 'Sitio';
+        // $acceso->id_jefe = Auth::user()->id_jefe;
+        // $acceso->justificacion = request('justificacion_sitio');
+
+        // $acceso->save();
         
-        //return response()->json(['success' => 'Datos guardados correctamente']);
+
+
+
+        return response()->json([
+
+            'success' => true,
+            'sitio' => $sitio,
+
+        ]);
 
         return back()->with('solicitado', 'El acceso fue solicitado');
 
     }
+
+
 
     public function solicita_software(){
 
@@ -64,19 +87,31 @@ class accesosController extends Controller
         ]);
 
 
-        $acceso = new Acceso();
-        $acceso->nombre = request('software');
-        $acceso->user_id = Auth::user()->id;
-        $acceso->tipo = 'Software';
-        $acceso->id_jefe = Auth::user()->id_jefe;
-        $acceso->justificacion = request('justificacion_software');
+     $software = Acceso::create([
 
-        $acceso->save();
+            'nombre' => request('software'),
+            'user_id' => Auth::user()->id,
+            'tipo' => 'Software',
+            'id_jefe' => Auth::user()->id_jefe,
+            'justificacion' => request('justificacion_software')
 
+        ]);
+
+
+
+
+        return response()->json([
+
+            'success' => true,
+            'software' => $software,
+
+        ]);
 
         return back()->with('solicitado', 'El acceso fue solicitado');
 
     }
+
+
 
 
     public function autoriza_software($id){
