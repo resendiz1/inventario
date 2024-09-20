@@ -119,7 +119,7 @@
                       <div class="row justify-content-center p-5">
                         <div class="col-8 text-center mt-5">
                           <i class="fa-solid fa-droplet fa-4x m-3"></i>
-                          <h4>No se ha realizado ningun pedido</h4>
+                          <h4>No hay pedidos pendientes</h4>
                         </div>
                       </div>
 

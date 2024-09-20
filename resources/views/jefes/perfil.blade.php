@@ -4,6 +4,9 @@
 @include('user.cabecera')
 
 
+@if (Auth::user()->jefe)
+    
+
 
 <div class="container">
   <div class="row m-1">
@@ -134,7 +137,7 @@
                   
                   <td class="col-2">
                     <div class="btn-group">
-                      <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST">
+                      <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST" class="form-ajax">
                         @csrf @method('PATCH')                            
                         <button class="btn btn-sm {{$software->status ? 'btn-secondary' : 'btn-success' }}  " {{$software->status  ? 'disabled' : 'enable' }}>
                           <i class="fa fa-check"></i>
@@ -182,10 +185,61 @@
 
 
 
+@else
+
+<div class="container mt-5 bg-white p-5">
+  <div class="row mt-4 justify-content-center p-5">
+    <div class="col-5 text-center">
+      <h4>No hay nada para ti aqui</h4>
+      <i class="fa-brands fa-fly fa-5x"></i>
+    </div>
+  </div>
+</div>
+
+@endif
 
 
 
+<script>
+  // Obtener todos los formularios con la clase 'form-ajax'
+var forms = document.querySelectorAll('.form-ajax');
 
+// Asignar un evento 'submit' a cada formulario
+forms.forEach(function(form) {
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar el comportamiento predeterminado del envío
+
+        var formData = new FormData(form); // Obtener los datos del formulario
+        var actionUrl = form.getAttribute('action'); // Obtener la URL de acción del formulario
+
+        // Crear una solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', actionUrl, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        // Manejar la respuesta
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Mostrar notificación de éxito o actualizar el estado del botón
+                console.log('Formulario enviado con éxito');
+                var response = JSON.parse(xhr.responseText);
+
+                if (response.success) {
+                    // Aquí podrías actualizar la tabla o el botón
+                    form.querySelector('button').disabled = true;
+                    form.querySelector('button').classList.add('btn-secondary');
+                    form.querySelector('button').classList.remove('btn-success');
+                }
+            } else {
+                console.error('Error en el envío del formulario');
+            }
+        };
+
+        xhr.send(formData); // Enviar los datos del formulario vía AJAX
+    });
+});
+
+</script>
 
 
 

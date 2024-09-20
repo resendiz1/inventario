@@ -173,6 +173,13 @@ class accesosController extends Controller
         $sitio->autorizo = Auth::guard('admin')->user()->nombre;
         $sitio->save();
 
+            // Retornar una respuesta JSON
+        return response()->json([
+            'success' => true,
+            'newStatus' => $sitio->status, // Aquí puedes retornar el nuevo estado
+            'message' => 'El sitio fue autorizado'
+        ]);
+
         return back()->with('acceso_autorizado', 'El sitio fue autorizado');
 
 

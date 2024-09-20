@@ -147,3 +147,20 @@
         padding: 10px; /* Espaciado interno */
         resize: vertical; /* Permite redimensionar solo verticalmente */
     }
+
+
+    .badge {
+      position: absolute;
+      top: 1; /* Ajusta la posición vertical */
+      left:2; /* Ajusta la posición horizontal */
+      transform: translate(50%, -50%);
+      background-color: red; /* Color del fondo del badge */
+      color: white; /* Color del texto */
+      border-radius: 50%; /* Hace el badge redondo */
+      padding: 5px 10px; /* Espaciado interno */
+      font-size: 0.75rem; /* Tamaño de fuente */
+  }
+  
+  .zoom_menu {
+      position: relative; /* Necesario para el badge */
+  }

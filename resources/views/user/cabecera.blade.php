@@ -48,29 +48,30 @@
             </div>
             <div class="row  mt-2 justify-content-center">
 
-                <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center  zoom_menu">
                     <a href="{{route('perfil.user')}}" >
                         <i class="fa-solid fa-computer fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
                         <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
+                        <span class="badge badge-notification">3</span> <!-- Badge de notificación -->
                     </a>
                 </div>
 
                 
-                <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('directorio.show')}}">
                         <i class="fa-solid fa-book fa-2x  {{request()->path() == 'user/directorio' ? 'negro' : '' }}"></i>
                         <h5 class="{{request()->path() == 'user/directorio' ? 'negro font-weight-bold' : '' }}">Directorio</h5>
                     </a>
                 </div>
 
-                <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('tintas.show')}}" >
                         <i class="fa-solid fa-palette fa-2x {{request()->path() == 'user/tintas' ? 'negro' : '' }}  "></i>
                         <h5 class="{{request()->path() == 'user/tintas' ? 'negro font-weight-bold' : '' }}">Tintas</h5>
                     </a>
                 </div>
 
-                <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('tickets.show')}}" >
                         <i class="fa-solid fa-laptop-medical fa-2x  {{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }} "></i>
                         <h5 class="{{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }}">Reportes</h5>
