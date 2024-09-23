@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title','Agregar impresora')
+@section('title','Agregar Telefono')
 @include('assets.nav')
 @section('contenido')
 <div class="container">

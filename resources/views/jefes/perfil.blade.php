@@ -31,14 +31,20 @@
     <div class="row justify-content-center mt-3">
 
         <div class="col-sm-12 col-md-12 col-lg-12 scroll-tabla mt-2 bg-white p-5">
-          <h3 class="font-weight-bold">Sitios solicitado por las personas a su cargo</h3>
+            <h3 class="font-weight-bold">Sitios solicitado por las personas a su cargo </h3>
+          @if (session('aut_sitio'))
+            <div class="alert alert-success">{!!session('aut_sitio')!!}</div>
+          @endif
+          @if (session('sitio_desautorizado'))
+            <div class="alert alert-secondary">{!!session('sitio_desautorizado')!!}</div>
+          @endif
             <table class="table table-bordered table-responsive-md">
 
               @if (count($sitios) > 0)
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Usuario</th>
-                        <th scope="col">Nombre del software</th>
+                        <th scope="col">Nombre del sitio</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Justificación</th>
                         <th scope="col">Autorizar</th>
@@ -51,9 +57,6 @@
         
               @forelse ($sitios as $sitio)
 
-              @if ($sitio->user->id  == Auth::user()->id)
-                  
-              @else
                   
               
               <tr>
@@ -64,14 +67,14 @@
                     
                     <td class="col-2">
                       <div class="btn-group">
-                        <form action="{{route('autorizar.software.jefe', $sitio->id)}}" method="POST">
+                        <form action="{{route('autorizar.sitio.jefe', $sitio->id)}}" method="POST">
                           @csrf @method('PATCH')                            
                           <button class="btn btn-sm {{$sitio->status ? 'btn-secondary' : 'btn-success' }} " {{$sitio->status  ? 'disabled' : 'enable' }}>
                             <i class="fa fa-check"></i>
                           </button>
                         </form>
 
-                        <form action="{{route('desautorizar.software.jefe', $sitio->id)}}" method="POST">
+                        <form action="{{route('desautorizar.sitio.jefe', $sitio->id)}}" method="POST">
                           @csrf @method('PATCH')
                           <button class="btn  btn-sm {{$sitio->status ? 'btn-danger' : 'btn-secondary' }}" {{!$sitio->status  ? 'disabled' : 'enable' }}>
                             <i class="fa fa-xmark"></i>
@@ -82,8 +85,7 @@
                     </td>
                     
                   </tr>
-                  
-                  @endif
+
 
                   @empty
                   
@@ -107,6 +109,12 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12 scroll-tabla mt-2 bg-white p-5">
           <h3 class="font-weight-bold">Software solicitado por las personas a su cargo</h3>
+          @if (session('software_autorizado'))
+          <div class="alert alert-success">{!!session('software_autorizado')!!}</div>
+          @endif
+          @if (session('software_desautorizado'))
+          <div class="alert alert-secondary">{!!session('software_desautorizado')!!}</div>
+          @endif
           <table class="table table-bordered table-responsive-md">
             @if (count($softwares) > 0 )
               <thead class="thead-dark">
@@ -198,7 +206,7 @@
 
 @endif
 
-
+{{-- 
 
 <script>
   // Obtener todos los formularios con la clase 'form-ajax'
@@ -239,7 +247,7 @@ forms.forEach(function(form) {
     });
 });
 
-</script>
+</script> --}}
 
 
 

@@ -214,7 +214,7 @@
                     <div class="col-6  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Observaciones</label>
-                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100 h-50"></textarea>
+                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('observaciones')}}</textarea>
                             @error('observaciones')
                             <small class="text-danger">
                                 {{$message}}
@@ -227,7 +227,7 @@
                     <div class="col-6  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Accesorios</label>
-                            <textarea name="accesorios" class="form-control form-control-sm font-weight-bold w-100 h-50"></textarea>
+                            <textarea name="accesorios" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('accesorios')}}</textarea>
                             @error('accesorios')
                             <small class="text-danger">
                                 {{$message}}

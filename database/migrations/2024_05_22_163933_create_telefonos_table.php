@@ -22,9 +22,9 @@ class CreateTelefonosTable extends Migration
             $table->string('serie');
             $table->string('tipo');
             $table->string('estado');
-            $table->string('imagen1');
-            $table->string('imagen2');
-            $table->string('imagen3');
+            $table->string('imagen1')->nullable()->default();
+            $table->string('imagen2')->nullable()->default();
+            $table->string('imagen3')->nullable()->default();
             $table->string('observaciones');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

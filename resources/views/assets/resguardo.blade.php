@@ -211,20 +211,31 @@
       </div>
 
       <div class="collapse multi-collapse" id="com{{$computadora->id}}">
-        <div class="row p-3">
+        <div class="row p-3 justify-content-center" >
       
-          <div class="col-4">
-            <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
+          <div class="col-4 text-center">
+            @if (!empty($computadora->imagen1) && Storage::exists($computadora->imagen1))
+              <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
+            @else
+              <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+            @endif
           </div>
-          
+
           <div class="col-4">
-            <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
+            @if (!empty($computadora->imagen2) && Storage::exists($computadora->imagen2))
+              <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
+            @else
+              <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+            @endif
           </div>
-      
+
           <div class="col-4">
-            <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
+            @if (!empty($computadora->imagen3) && Storage::exists($computadora->imagen3))
+              <img src="{{Storage::url($computadora->imagen3)}}" class="img-fluid" alt="">
+            @else
+              <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+            @endif
           </div>
-          
         </div>
       </div>
 
@@ -312,11 +323,19 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-6 text-center">
+            @if (!empty($impresora->imagen1) && Storage::exists($impresora->imagen1))
             <img src="{{Storage::url($impresora->imagen1)}}" class="img-fluid" alt="">
+            @else
+            <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+            @endif
           </div>
           
           <div class="col-6 text-center">
+            @if (!empty($impresora->imagen2) && Storage::exists($impresora->imagen2))
             <img src="{{Storage::url($impresora->imagen2)}}" class="img-fluid" alt="">
+            @else
+            <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+            @endif
           </div>
       
           
@@ -397,18 +416,35 @@
   
   <div class="row justify-content-center p-3">
     
+
     <div class="col-4">
-      <img src="{{Storage::url($telefono->imagen1)}}" class="img-fluid" alt="">
+      @if (!empty($telefono->imagen1) && Storage::exists($telefono->imagen1))
+        <img src="{{Storage::url($telefono->imagen1)}}" class="img-fluid" alt="">
+      @else
+        <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+      @endif
     </div>
     
+
+
     <div class="col-4">
-      <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">
+      @if (!empty($telefono->imagen2) && Storage::exists($telefono->imagen2))
+        <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">
+      @else
+        <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+      @endif
     </div>
   
+
+
     <div class="col-4">
-      <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">
+      @if (!empty($telefono->imagen3) && Storage::exists($telefono->imagen3))
+        <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">
+      @else
+        <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
+      @endif
     </div>
-    
+
   </div>
 
 </div>

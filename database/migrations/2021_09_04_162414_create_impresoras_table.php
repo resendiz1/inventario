@@ -24,8 +24,8 @@ class CreateImpresorasTable extends Migration
             $table->string('serie');
             $table->string('observaciones');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('imagen1');
-            $table->string('imagen2');
+            $table->string('imagen1')->nullable()->default();
+            $table->string('imagen2')->nullable()->default();
             $table->timestamps();
         });
     }

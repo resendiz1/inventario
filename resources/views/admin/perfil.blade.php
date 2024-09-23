@@ -137,29 +137,25 @@
 
 
             <div class="col-sm-12 col-md-5 col-lg-5 bg-white m-1 mt-2 border border-3 scroll-tabla">
-                <h4 class="text-center py-3 font-weight-bold" >Inventario de Dispositivos</h4>
+                <h4 class="text-center py-3 font-weight-bold" >Respuestas Reesguardos</h4>
                 
                 <table class="table table-bordered table-responsive-md p-0">
-                        @if (count($usuarios) > 0 )
+                            @if (count($respuestas_resguardos) > 0 )
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Usuario</th>
-                                    <th scope="col">Equipo de computo</th>
-                                    <th scope="col">Dispositivo</th>
-                                    <th scope="col">Descripción</th> 
-                                    <th scope="col">Seguimiento</th>        
+                                    <th scope="col">Puesto</th>    
+                                    <th scope="col">Observaciones</th>      
                                 </tr>
                             </thead>
-                        @endif
+                            @endif
                         <tbody>
                         
-                            @forelse ($usuarios as $usuario)                               
+                            @forelse ($respuestas_resguardos as $respuesta)                               
                                 <tr>
-                                    <td>{{var_dump($usuario->name)}}</td>
-                                    <td>{{$usuario->computadora}}</td>
-                                    <td>{{$usuario->impresora}}</td>
-                                    <td>{{$usuario->telefono}}</td>  
-                                    <td> <a href="{{Route('detalle.reporte.admin', $usuario->id)}}" class="btn btn-success btn-sm">Seguimiento</a> </td>                     
+                                    <td>{{$respuesta->user->name}}</td>
+                                    <td>{{$respuesta->user->puesto}}</td>
+                                    <td>{{$respuesta->observaciones}}</td>
                                 </tr>     
                             @empty
 

@@ -52,7 +52,7 @@
                     <a href="{{route('perfil.user')}}" >
                         <i class="fa-solid fa-computer fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
                         <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
-                        <span class="badge badge-notification">3</span> <!-- Badge de notificación -->
+                        {{-- <span class="badge badge-notification">3</span> <!-- Badge de notificación --> --}}
                     </a>
                 </div>
 

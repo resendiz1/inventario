@@ -33,16 +33,23 @@ class printerController extends Controller
             'estado' => 'required', 
             'serie' => 'required|unique:impresoras',
             'observaciones' => 'required',
-            'imagen1' => 'required',
-            'imagen2' => 'required'
         ]);
         //validando los datos
 
-        
-        //insertando la imagen
-        $imagen1 = request()->file('imagen1')->store('public');
-        $imagen2 = request()->file('imagen2')->store('public');
-        //insertando la imagen
+
+
+        $imagen1 = '';
+        $imagen2 = '';
+        $imagen3 = '';
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request()->file('imagen1')->store('public');
+        }
+
+        if(request()->hasFile('imagen2')){
+            $imagen2 = request()->file('imagen2')->store('public');
+        }
+
 
         
         //Agregando los datos a la BD   

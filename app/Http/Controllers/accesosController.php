@@ -19,14 +19,18 @@ class accesosController extends Controller
         return view('user.control_accesos', compact('sitios', 'software'));
     }
 
+
+
     public function show_admin($id){
 
         $user = User::findOrFail($id);
-        $sitios = $user->accesos()->where('tipo', 'sitio')->get();
-        $software = $user->accesos()->where('tipo', 'software')->get();
+        $sitios = $user->accesos()->where('tipo', 'Sitio')->get();
+        $software = $user->accesos()->where('tipo', 'Software')->get();
 
         return view('admin.control_accesos', compact('sitios', 'software', 'user'));
     }
+
+
 
 
 
@@ -166,21 +170,34 @@ class accesosController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     public function autoriza_sitio_jefe($id){
 
         $sitio = Acceso::findOrFail($id);
         $sitio->status = true;
-        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->autorizo = Auth::user()->name;
         $sitio->save();
 
             // Retornar una respuesta JSON
-        return response()->json([
-            'success' => true,
-            'newStatus' => $sitio->status, // Aquí puedes retornar el nuevo estado
-            'message' => 'El sitio fue autorizado'
-        ]);
+        // return response()->json([
+        //     'success' => true,
+        //     'newStatus' => $sitio->status, // Aquí puedes retornar el nuevo estado
+        //     'message' => 'El sitio fue autorizado'
+        // ]);
 
-        return back()->with('acceso_autorizado', 'El sitio fue autorizado');
+
+        return back()->with('aut_sitio', "El sitio <b> $sitio->nombre </b> fue autorizado");
 
 
     }
@@ -192,10 +209,10 @@ class accesosController extends Controller
 
         $sitio = Acceso::findOrFail($id);
         $sitio->status = false;
-        $sitio->autorizo = Auth::guard('admin')->user()->nombre;
+        $sitio->autorizo = Auth::user()->name;
         $sitio->save();
 
-        return back()->with('acceso_desautorizado', 'El sitio fue desautorizado');
+        return back()->with('sitio_desautorizado', "El sitio <b> $sitio->nombre </b> fue desautorizado");
 
 
     }
@@ -213,7 +230,7 @@ class accesosController extends Controller
         $software->save();
 
 
-        return back()->with('sofacceso_autorizado', 'El software se autorizo!');
+        return back()->with('software_autorizado', "El software <b> $software->nombre </b> se autorizo!");
     
     }
 
@@ -225,7 +242,7 @@ class accesosController extends Controller
         $software->autorizo = Auth::user()->name;
         $software->save();
 
-        return back()->with('sofacceso_desautorizado', 'El software se desautorizo!');
+        return back()->with('software_desautorizado', "El software <b>$software->nombre</b> se desautorizo!");
 
     }
 
@@ -240,8 +257,8 @@ class accesosController extends Controller
 
     public function ver_permisos_jefe(){
 
-        $softwares = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Sitio')->get();
-        $sitios = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Software')->get();
+        $softwares = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Software')->get();
+        $sitios = Acceso::where('id_jefe', Auth::user()->id)->where('tipo', 'Sitio')->get();
 
 
         

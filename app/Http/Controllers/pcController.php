@@ -28,20 +28,37 @@ class pcController extends Controller
             'procesador' => 'required',
             'size_ssd' => 'required',
             'size_ram' => 'required',
-            'imagen1' => 'required',
             'estado' => 'required',
-            'imagen2' => 'required',
             'accesorios' => 'required',
-            'imagen3' => 'required',
             'observaciones' => 'required'
 
         ]);
         
         
 
-        $imagen1 = request()->file('imagen1')->store('public');
-        $imagen2 = request()->file('imagen2')->store('public');
-        $imagen3 = request()->file('imagen3')->store('public');
+
+        if(request()->file('imagen1')){
+
+        }
+
+
+
+
+        $imagen1='';
+        $imagen2='';
+        $imagen3='';
+
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request()->file('imagen1')->store('public');
+        }
+        if(request()->hasFile('imagen2')){
+            $imagen2 = request()->file('imagen2')->store('public');
+        }
+        if(request()->hasFile('imagen3')){
+            $imagen3 = request()->file('imagen3')->store('public');
+        }
+
 
         
 

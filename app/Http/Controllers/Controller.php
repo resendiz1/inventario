@@ -7,6 +7,7 @@ use App\Models\Pedido;
 use App\Models\Reporte;
 use App\Models\Telefono;
 use App\Models\Impresora;
+use App\Models\Resguardo;
 use App\Models\Computadora;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -118,9 +119,10 @@ class Controller extends BaseController
         $pedidos = Pedido::where('status', 'pendiente')->with('user')->get();
         $reportes = Reporte::where('status', 'pendiente')->get();
         $usuarios = User::all();
+        $respuestas_resguardos = Resguardo::with('user')->get();
 
 
-        return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes', 'usuarios'));
+        return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes', 'usuarios', 'respuestas_resguardos'));
     }
 
 
