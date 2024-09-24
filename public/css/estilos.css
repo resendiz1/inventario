@@ -85,7 +85,7 @@
   }
 
   .tabla-usuarios-scroll{
-    height: 900px;
+    height: 1000px;
     border: 1px solid #ccc;
     padding: 10px;
     overflow-y: scroll; /* Muestra el scroll vertical cuando el contenido excede la altura */

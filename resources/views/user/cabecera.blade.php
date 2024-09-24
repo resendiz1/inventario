@@ -16,7 +16,7 @@
 </div>
     
 
-<div class="container-fluid">
+<div class="container-fluid d-print-none">
 
     <div class="row mt-5 mb-2 justify-content-center">
 

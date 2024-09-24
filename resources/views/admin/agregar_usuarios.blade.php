@@ -140,11 +140,12 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Usuario</th>
+                        <th scope="col">Puesto</th>
                         <th scope="col">Correo Electronico</th>
-                        <th scope="col">Celular</th>
+                        <th scope="col">Extensión</th>
                         <th scope="col">Planta</th>
                         <th scope="col">Resguardo</th>
-                        <th scope="col">Control Accesos</th>
+                        <th scope="col">Accesos</th>
                         <th scope="col">Acciones</th>
 
                     </tr>
@@ -153,9 +154,10 @@
                     
                     @forelse ($usuarios as $usuario)               
                         <tr>
-                            <td>{{$usuario->name}}</td>
+                            <td>{{$usuario->name}} </td>
+                            <td>{{$usuario->puesto}} </td>
                             <td>{{$usuario->email}}</td> 
-                            <td>{{$usuario->celular ? $usuario->celular : 'No hay celular' }}</td>
+                            <td>{{$usuario->extension}}</td> 
                             <td>{{$usuario->planta}}</td>
                             <td> <a href="{{route('view.resguardo.admin', $usuario->id)}}"> Ver </a> </td>
                             <td> <a href="{{route('view.accesos.admin', $usuario->id)}}"> Ver </a> </td>
@@ -164,7 +166,7 @@
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#e{{$usuario->id}}">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <button class="btn btn-dark" data-toggle="modal" data-target="#a{{$usuario->id}}">
+                                    <button class="btn btn-dark" data-toggle="modal" data-target="#ac{{$usuario->id}}">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </div>
@@ -183,10 +185,10 @@
 
 
 {{-- aqui van a estar los modales para la edicion y la eliminacion de los usuarios --}}
-@forelse ($usuarios as $usuario)
+@forelse ($usuarios as $usuarie)
     
     <!-- Modal -->
-    <div class="modal fade" id="e{{$usuario->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="e{{$usuarie->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
@@ -194,7 +196,7 @@
                 </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <form action="{{route('usuario.eliminar', $usuario->id)}}" method="POST">
+            <form action="{{route('usuario.eliminar', $usuarie->id)}}" method="POST">
                 @csrf @method('PATCH')
                 <button class="btn btn-success">
                     <i class="fa fa-check"></i>
@@ -210,36 +212,36 @@
 
 
         <!-- Modal -->
-    <div class="modal fade" id="a{{$usuario->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="ac{{$usuarie->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                      <div class="modal-header bg-dark text-white h5 ">Actualizando Usuario</div>
                         <div class="modal-body">
                             <div class="row">                                
-                            <form action="{{route('actualizar.usuario', $usuario->id)}}" method="POST">
+                            <form action="{{route('actualizar.usuario', $usuarie->id)}}" method="POST">
                                 @csrf @method('PATCH')
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="">Nombre completo</label>
-                                        <input type="text" name="nombre_edit" class="form-control form-control-sm" value="{{old('nombre_edit', $usuario->name)}}">
+                                        <input type="text" name="nombre_edit" class="form-control form-control-sm" value="{{old('nombre_edit', $usuarie->name)}}">
                                         {!!$errors->first('nombre_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="">Correo Electronico</label>
-                                        <input type="email" name="email_edit" value="{{old('email_edit', $usuario->email)}}" id="email" class="form-control form-control-sm">
+                                        <input type="email" name="email_edit" value="{{old('email_edit', $usuarie->email)}}" id="email" class="form-control form-control-sm">
                                         {!!$errors->first('email_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="">Celular</label>
-                                        <input type="tel" name="celular_edit" value="{{old('celular_edit', $usuario->celular)}}" id="celular" class="form-control form-control-sm">
+                                        <input type="tel" name="celular_edit" value="{{old('celular_edit', $usuarie->celular)}}" id="celular" class="form-control form-control-sm">
                                         {!!$errors->first('celular_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
             
                                     <div class="form-group">
                                         <label for="">Extensión</label>
-                                        <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuario->extension)}}" id="extension" class="form-control form-control-sm">
+                                        <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuarie->extension)}}" id="extension" class="form-control form-control-sm">
                                         {!!$errors->first('extension_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
 
@@ -266,7 +268,7 @@
                                                 <label for="">Contraseña</label>
                                             </div>
                                             <div class="col-9 p-0 m-0">
-                                                <input type="password" name="password_edit" id="password1" value="{{old('password_edit', $usuario->password)}}" class="form-control form-control-sm">
+                                                <input type="password" name="password_edit" id="password1" value="{{old('password_edit', $usuarie->password)}}" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-1 p-0 my-0 mx-3">
                                                 <input type="checkbox" id="view_password1">
@@ -279,28 +281,30 @@
                                     
                                     <div class="form-group">
                                         <label for="">Puesto</label>
-                                        <input type="text" name="puesto_edit" value="{{old('puesto_edit', $usuario->puesto)}}" class="form-control form-control-sm">
-                                        {!!$errors->first('puesto_edit', '<small class="text-danger"> :message </small>')!!}
+                                        <input type="tel" name="puesto_edit" value="{{old('puesto_edit', $usuarie->puesto)}}"  class="form-control form-control-sm">
+                                        {!!$errors->first('puesto_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
-                                    
+
                                     
                                     <div class="form-group">
-                                        <label for="">Planta</label>
-                                        <select name="planta_edit" value={{old('planta_edit', $usuario->planta)}} id="" class="form-control form-control-sm">
-                                            @if ($usuario->planta == 'Planta 1')
-                                                <option value="Planta 1" selected>Planta 1</option>
-                                                <option value="Planta 2">Planta 2</option>
+                                        <label for="">Planta </label>
+                                        <select name="planta_edit" value={{old('planta_edit', $usuarie->planta)}} id="" class="form-control form-control-sm">
+                                            @if ($usuarie->planta == 'Planta 3')
                                                 <option value="Planta 3">Planta 3</option>
-                                            @endif
-                                            @if ($usuario->planta == 'Planta 2')
-                                                <option value="Planta 2" selected>Planta 2</option>
-                                                <option value="Planta 1">Planta 1</option>
-                                                <option value="Planta 3">Planta 3</option>
-                                            @endif
-                                            @if ($usuario->planta == 'Planta 3')
-                                                <option value="Planta 3" selected>Planta 3</option>
                                                 <option value="Planta 2">Planta 2</option>
                                                 <option value="Planta 1">Planta 1</option>
+                                            @endif
+                                            
+                                            @if ($usuarie->planta == 'Planta 2')
+                                                <option value="Planta 2">Planta 2</option>
+                                                <option value="Planta 1">Planta 1</option>
+                                                <option value="Planta 3">Planta 3</option>
+                                            @endif
+
+                                            @if ($usuarie->planta == 'Planta 1')
+                                                <option value="Planta 1">Planta 1</option>
+                                                <option value="Planta 2">Planta 2</option>
+                                                <option value="Planta 3">Planta 3</option>
                                             @endif
 
                                         </select>
@@ -308,7 +312,7 @@
                                     
                                     <div class="form-group">
                                         <label for="">Ubicación</label>
-                                        <textarea name="ubicacion_edit" class="form-control form-control-sm w-100" >{{old('ubicacion_edit', $usuario->ubicacion)}}</textarea>
+                                        <textarea name="ubicacion_edit" class="form-control form-control-sm w-100" >{{old('ubicacion_edit', $usuarie->ubicacion)}}</textarea>
                                         {!!$errors->first('ubicacion_edit', '<small class="text-danger"> :message </small>')!!}
                                     </div>            
                                 </div>

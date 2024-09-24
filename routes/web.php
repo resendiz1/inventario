@@ -15,6 +15,8 @@ use App\Http\Controllers\directorioController;
 
 
 
+Route::get('/admin/lista_dispositivos', [Controller::class, 'lista_dispositivos'] )->name('lista.dispositivos');
+
 
 //RESPUESTA A LOS PEDIDOS DE TINTAS
 

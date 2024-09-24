@@ -204,5 +204,14 @@ class Controller extends BaseController
 
 
 
+    public function lista_dispositivos(){
+        
+        
+        return view('admin.lista_dispositivos');
+    }
+
+
+
+
 
 }

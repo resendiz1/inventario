@@ -19,7 +19,7 @@ class CreateImpresorasTable extends Migration
             $table->boolean('nuevo')->default(true);
             $table->string('modelo');
             $table->string('tipo');
-            $table->string('comparte');
+            $table->string('comparte')->nullable();
             $table->string('estado');
             $table->string('serie');
             $table->string('observaciones');

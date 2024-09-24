@@ -35,6 +35,11 @@
                         Agregar Impresoras
                     </a>
 
+                    <a href="{{route('lista.dispositivos')}}" class="dropdown-item font-weight-bold">
+                        <i class="fa fa-print  mr-2"></i>
+                        Lista de dispositivos
+                    </a>
+
 
                 </div>
               </div>
