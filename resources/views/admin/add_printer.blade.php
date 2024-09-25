@@ -117,8 +117,8 @@
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Estado</label>
                             <select name="estado"  class="form-control form-control-sm">
-                                <option value="Nuevo">Nuevo</option>
-                                <option value="Usado">Usado</option>
+                                <option value="1">Nuevo</option>
+                                <option value="0">Usado</option>
                             </select>   
 
                             @error('estado')

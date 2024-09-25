@@ -138,7 +138,7 @@
         </div>
         <div class="col-3 mt-2">
           <h5>  ¿Equipo Nuevo?  <b>
-            @if ($computadora->nuevo)
+            @if ($computadora->estado)
               <i class="fa fa-check-circle mx-1 text-success"></i> Si               
             @else
               <i class="fa fa-xmark mx-1 text-danger"></i> No               
@@ -273,7 +273,7 @@
 
         <div class="col-3 mt-2">
           <h5>  ¿Equipo Nuevo?  <b>
-            @if ($impresora->nuevo)
+            @if ($impresora->estado)
               <i class="fa fa-check-circle mx-1 text-success"></i> Si               
             @else
               <i class="fa fa-xmark mx-1 text-danger"></i> No               
@@ -366,7 +366,7 @@
     </div>
     <div class="col-3 mt-2">
       <h5>  ¿Equipo Nuevo?<b>
-        @if ($telefono->nuevo)
+        @if ($telefono->estado)
           <i class="fa fa-check-circle mx-1 text-success"></i> Si               
         @else
           <i class="fa fa-xmark mx-1 text-danger"></i> No               

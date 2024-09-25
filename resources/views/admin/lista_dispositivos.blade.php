@@ -9,10 +9,10 @@
 
 
 
-<div class="container mx-3 bg-white mt-5">
-    <div class="row p-5">
-        <div class="col-12">
-          <h4>Computadoras</h4>
+<div class="container ">
+    <div class="row p-5 justify-content-center">
+        <div class="col-12 bg-white p-5">
+          <h4 class="font-weight-bold mb-3">Computadoras</h4>
             <table class="table">
                 <thead>
                   <tr>
@@ -21,7 +21,6 @@
                     <th scope="col">Modelo</th>
                     <th scope="col">Procesador</th>
                     <th scope="col">Ram</th>
-                    <th scope="col">Accesorios</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Estado</th>
                   </tr>
@@ -34,7 +33,6 @@
                     <td>{{$computadora->modelo}}</td>
                     <td>{{$computadora->procesador}}</td>
                     <td>{{$computadora->ram}}</td>
-                    <td>{{$computadora->accesorios}}</td>
                     <td>{{$computadora->tipo}}</td>
                     <td>{{$computadora->estado}}</td>
 

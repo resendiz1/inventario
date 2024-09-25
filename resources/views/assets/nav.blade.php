@@ -62,7 +62,7 @@
         
 
 
-        <div class="col-sm-12 col-md-4 col-lg-2 mt-3 text-center">
+        <div class="col-sm-12 col-md-4 col-lg-2 mt-2 text-center">
             <form action="{{route('cerrar.session.admin')}}" method="POST" >
                 @csrf
                 <button type="submit" class="btn btn-light btn-sm">

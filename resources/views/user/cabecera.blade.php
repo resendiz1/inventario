@@ -48,7 +48,7 @@
             </div>
             <div class="row  mt-2 justify-content-center">
 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center  zoom_menu">
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
                     <a href="{{route('perfil.user')}}" >
                         <i class="fa-solid fa-computer fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
                         <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
