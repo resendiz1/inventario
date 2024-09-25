@@ -88,7 +88,25 @@ class pcController extends Controller
     }
 
 
-    public function show(){
-        return view('resultados.pc');
+    // public function show(){
+    //     return view('resultados.pc');
+    // }
+
+
+
+    public function lista_computadoras(){
+
+        $computadoras = Computadora::all();
+
+        return view('admin.dispositivos.computadoras', compact('computadoras'));
     }
+
+
+
+
+
+
+
+
+
 }

@@ -14,6 +14,15 @@ use App\Http\Controllers\resguardoController;
 use App\Http\Controllers\directorioController;
 
 
+//Rutas para ir a los dispositivos
+
+Route::get('/admin/lista_dispositivos/lista_computadoras/', [pcController::class, 'lista_computadoras'])->name('lista.computadoras');
+
+Route::get('/admin/lista_dispositivos/lista_impresoras/', [printerController::class, 'lista_impresoras'])->name('lista.impresoras');
+
+Route::get('/admin/lista_dispositivos/lista_telefonos/', [telefonoController::class, 'lista_telefonos'])->name('lista.telefonos');
+
+
 
 Route::get('/admin/lista_dispositivos', [Controller::class, 'lista_dispositivos'] )->name('lista.dispositivos');
 

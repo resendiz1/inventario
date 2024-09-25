@@ -210,9 +210,14 @@ class Controller extends BaseController
 
 
     public function lista_dispositivos(){
+    
+        $computadoras = Computadora::all();
+        $impresoras =   Impresora::all();
+        $telefonos  = Telefono::all();
+
+
         
-        
-        return view('admin.lista_dispositivos');
+        return view('admin.lista_dispositivos', compact('computadoras', 'impresoras', 'telefonos'));
     }
 
 
