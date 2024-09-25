@@ -15,7 +15,7 @@
         <div class="col-sm-12 col-md-6 col-lg-2 mt-2 text-center ">
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-computer"></i>
+                    <i class="fa fa-laptop"></i>
                     Gestionar Dispositivos
                 </button>
                 <div class="dropdown-menu">
