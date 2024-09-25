@@ -129,14 +129,7 @@
             @endif
             <tbody>
       
-            @forelse ($softwares as $software)
-
-              @if ($software->user->id == Auth::user()->id)
-
-
-
-              
-            
+            @forelse ($softwares as $software)   
               <tr>
                   <td>{{$software->user->name}}</td>
                   <td>{{$software->nombre}}</td>
@@ -163,7 +156,6 @@
                   </td>
                   
                 </tr>
-              @endif
                 
                 @empty
                   

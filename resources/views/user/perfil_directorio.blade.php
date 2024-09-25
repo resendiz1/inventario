@@ -13,7 +13,7 @@
     </div>
 
 
-    <div class="row justify-content-center" id="contenedor">
+    <div class="row justify-content-center" id="contenedor" >
             @forelse ($usuarios as $usuario)
                 
             <div class="col-sm-12 col-md-5 col-lg-3 border shadow shadow-sm  p-3 bg-white m-1">
@@ -25,7 +25,9 @@
                         </div>
                         <div class="col-12 m-1">
                             <b>Email : </b>
-                            <span>{{$usuario->email}}</span>
+                            <span>
+                                {{$usuario->correo}}
+                            </span>
                         </div>
                         <div class="col-12 m-1">
                             <b>Celular : </b> 

@@ -25,15 +25,20 @@ class telefonoController extends Controller
 
 
         request()->validate([
+
             'marca' => 'required',
             'modelo' => 'required',
-            'serie' => 'required|unique:telefonos',
+            'serie' => 'required',
             'observaciones' => 'required',
+            'comparte' => 'required',
             'tipo' => 'required',
             'estado' => 'required',
             'estado' => 'required',
             'usuario' => 'required'
+
         ]);
+
+
 
         $imagen1 = '';
         $imagen2 = '';
@@ -64,6 +69,7 @@ class telefonoController extends Controller
             'modelo' => request('modelo'),
             'serie' => request('serie'),
             'tipo' => request('tipo'),
+            'comparte' => request('comparte'),
             'estado' =>request('estado'),
             'observaciones' => request('observaciones'),
             'imagen1' => $imagen1,

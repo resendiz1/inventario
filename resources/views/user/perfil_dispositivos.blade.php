@@ -101,6 +101,9 @@
                 <div class="row">
                     <div class="col-12">
                         <h3>Teléfono</h3>
+                        @if ($telefono->comparte != 'Con Nadie')
+                            <span><b> Comparte con: </b> <u> {{$telefono->comparte}} </u> </span>
+                        @endif
                     </div>
                     <div class="col-12 m-1">
                         <span><b> Marca: </b> {{$telefono->marca}}</span>

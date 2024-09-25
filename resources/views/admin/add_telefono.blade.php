@@ -18,9 +18,9 @@
                 @csrf
                 <div class="row d-flex justify-content-center p-lg-4 p-sm-1 m-2">
 
-                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4">
                         <label for="" class="font-weight-bold mb-0 mt-2">Usuario</label>
-                        <select name="usuario"  class="form-control form-control-sm">
+                        <select name="usuario" value="{{old('usuario')}}"  class="form-control form-control-sm">
                             @forelse ($usuarios as $usuario)
                                 <option value="{{$usuario->id}}">{{$usuario->name}} | {{$usuario->puesto}}</option>  
                             @empty
@@ -62,6 +62,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0 mt-2">Número de serie</label>
@@ -75,6 +77,28 @@
 
                         </div>
                     </div>
+
+
+
+                    <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-5 mt-2">
+                        <label for="" class=" m-0 font-weight-bold">¿Comparte con alguien?</label>
+                        <select name="comparte" value="{{old('comparte')}}" id="" class="form-control form-control-sm">
+                            <option value="Con Nadie">Nadie</option>
+                            @forelse ($usuarios as $usuario)
+                                <option value="{{$usuario->name}}">{{$usuario->name}} | {{ $usuario->puesto }}</option>
+                            @empty
+                                <li>No hay datos</li>
+                            @endforelse
+
+                        </select>
+                        @error('comparte')
+                        <small class="text-danger">
+                            {{$message}}
+                        </small>
+                        @enderror
+                    </div>
+
+
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-2">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0 mt-2" >Tipo</label>

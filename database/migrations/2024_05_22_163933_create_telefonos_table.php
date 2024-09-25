@@ -20,6 +20,7 @@ class CreateTelefonosTable extends Migration
             $table->boolean('nuevo')->default(true);
             $table->string('modelo');
             $table->string('serie');
+            $table->string('comparte')->nullable();
             $table->string('tipo');
             $table->string('estado');
             $table->string('imagen1')->nullable()->default();

@@ -21,30 +21,33 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
+
     public function show_formulario(){
 
         $usuarios = User::all();
+        $jefes = User::where('jefe', true)->get();
 
-        return view('admin.agregar_usuarios', compact('usuarios'));
+        return view('admin.agregar_usuarios', compact('usuarios', 'jefes'));
     }
+
 
     public function registrar_usuarios(){
 
-        
-
+    
         request()->validate([
             'nombre' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,correo',
             'puesto' => 'required',
+            'correo' => 'required|email|',
             'password' => 'required',
             'planta' => 'required',
             'id_jefe' => 'required',
             'jefe' => 'required',
             'ubicacion' => 'required',
             'extension' => 'required',
-            
-
         ]);
+
+
 
         $usuario = new  User();
 
@@ -56,6 +59,7 @@ class Controller extends BaseController
         $usuario->id_jefe = request('id_jefe');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
+        $usuario->correo = request('correo');
         $usuario->celular = request('celular');
         $usuario->password = bcrypt(request('password'));
         $usuario->save();
@@ -77,7 +81,7 @@ class Controller extends BaseController
                 return redirect()->route('perfil.admin');            
             }
             else{
-                return back()->with('error', 'Las creadenciales de administrador son incorrectas');
+                return back()->with('error', 'Las credenciales de administrador son incorrectas');
             }
 
         }
@@ -90,7 +94,7 @@ class Controller extends BaseController
                 return redirect()->route('perfil.user');            
             }
             else{
-                return back()->with('error', 'Las creadenciales de usuario son incorrectas');
+                return back()->with('error', 'Las credenciales de usuario son incorrectas');
             }
         }
 
@@ -175,9 +179,10 @@ class Controller extends BaseController
         $usuario->email = request('email_edit');
         $usuario->puesto = request('puesto_edit');
         $usuario->planta = request('planta_edit');
+        $usuario->correo = request('correo_edit');
         $usuario->ubicacion = request('ubicacion_edit');
         $usuario->extension = request('extension_edit');
-        $usuario->jefe = request('jefe_edit');
+        $usuario->id_jefe = request('jefe_edit');
         $usuario->celular = request('celular_edit');
         $usuario->update();
 

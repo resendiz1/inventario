@@ -31,7 +31,7 @@ class printerController extends Controller
             'comparte' => 'required',
             'tipo' => 'required',
             'estado' => 'required', 
-            'serie' => 'required|unique:impresoras',
+            'serie' => 'required',
             'observaciones' => 'required',
         ]);
         //validando los datos

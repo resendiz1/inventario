@@ -30,9 +30,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Correo Electronico</label>
+                            <label for="">Correo Electronico inicio sesión</label>
                             <input type="email" name="email" value="{{old('email')}}" id="email" class="form-control form-control-sm">
                             {!!$errors->first('email', '<small class="text-danger"> :message </small> ')!!}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Correo Electronico para mostrar</label>
+                            <input type="email" name="correo" value="{{old('correo')}}" id="correo" class="form-control form-control-sm">
+                            {!!$errors->first('correo', '<small class="text-danger"> :message </small> ')!!}
                         </div>
 
                         <div class="form-group">
@@ -189,7 +195,7 @@
     
     <!-- Modal -->
     <div class="modal fade" id="e{{$usuarie->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
                     <h4>¿Desea eliminar al usuario? </h4>
@@ -228,9 +234,15 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="">Correo Electronico</label>
+                                        <label for="">Correo Electronico iniciar sesion</label>
                                         <input type="email" name="email_edit" value="{{old('email_edit', $usuarie->email)}}" id="email" class="form-control form-control-sm">
                                         {!!$errors->first('email_edit', '<small class="text-danger"> :message </small> ')!!}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Correo Electronico Mostrar</label>
+                                        <input type="email" name="correo_edit" value="{{old('correo_edit', $usuarie->correo)}}" id="email" class="form-control form-control-sm">
+                                        {!!$errors->first('correo_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">
@@ -245,23 +257,27 @@
                                         {!!$errors->first('extension_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <label for="">Su jefe directo es: </label>
+                                <div class="form-group">
+                                    <label for="">Su jefe directo es: </label>
                                         <select name="jefe_edit"  class="form-control form-control-sm">
-                                            @forelse ($usuarios as $usuario)
 
-                                            @if ($usuario->jefe)
-                                            <option value="{{$usuario->id}}">{{$usuario->name }} | {{ $usuario->puesto}}</option>
-                                            @endif
-
+                                            @if ($usuarie->id_jefe == 'Gerencia')
+                                                <option value="Gerencia">Es gerencia</option>  
+                                            @else
+                                                
+                                                
+                                            @forelse ($jefes as $usuario)
+                                                <option value="{{$usuario->id}}">{{$usuario->name }} | {{ $usuario->puesto}}</option>
                                             @empty
-                                                <option value="No options">Sin opciones</option>
-                                            @endforelse
+                                            @endforelse.
+                                            @endif
                                         </select>
+                                                
                                         {!!$errors->first('jefe_edit', '<small class="text-danger"> :message </small>')!!}
                                     </div>
             
+
+
                                     <div class="form-group mx-3">
                                         <div class="row d-flex align-items-center">
                                             <div class="col-12">
