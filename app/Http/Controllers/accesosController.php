@@ -157,6 +157,8 @@ class accesosController extends Controller
 
 
 
+
+
     public function desautoriza_sitio($id){
 
         $sitio = Acceso::findOrFail($id);
@@ -227,10 +229,20 @@ class accesosController extends Controller
         $software = Acceso::findOrFail($id);
         $software->status = true;
         $software->autorizo = Auth::user()->name;
-        $software->save();
+        $software->update();
+
+           // Devolver un JSON con la información actualizada
+        return response()->json([
+            'success' => true,
+            'status' => $software->status,
+            'nombre' => $software->nombre,
+            'message' => "El software <b> $software->nombre </b> ha sido autorizado!"
+        ]);
+
+        
 
 
-        return back()->with('software_autorizado', "El software <b> $software->nombre </b> se autorizo!");
+        // return back()->with('software_autorizado', "El software <b> $software->nombre </b> se autorizo!");
     
     }
 
@@ -241,6 +253,15 @@ class accesosController extends Controller
         $software->status = false;
         $software->autorizo = Auth::user()->name;
         $software->save();
+
+
+        return response()->json([
+            'success' => true,
+            'status' => $software->status,
+            'nombre' => $software->nombre,
+            'message' => "El software <b>$software->nombre</b> se desautorizo!"
+        ]);
+
 
         return back()->with('software_desautorizado', "El software <b>$software->nombre</b> se desautorizo!");
 

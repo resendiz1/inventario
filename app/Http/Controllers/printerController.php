@@ -56,7 +56,7 @@ class printerController extends Controller
         Impresora::create([
             'user_id' => request('usuario'),
             'marca' => request('marca'),
-            'modelo' => request('marca'),
+            'modelo' => request('modelo'),
             'tipo' => request('tipo'),
             'estado' =>request('estado'),
             'comparte' => request('comparte'),

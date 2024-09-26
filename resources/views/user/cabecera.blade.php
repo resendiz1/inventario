@@ -80,7 +80,6 @@
 
                 @if (Auth::user()->jefe)
                     <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
-                        {{Auth::user()->jefe}}
                         <a href="{{route('permisos.show')}}" >
                             <i class="fa-solid fa-users-rectangle fa-2x {{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }} "></i>
                             <h5 class="{{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }}">Permisos</h5>

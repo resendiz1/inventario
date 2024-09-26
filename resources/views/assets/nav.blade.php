@@ -25,14 +25,14 @@
                         Agregar PC
                     </a>
 
-                    <a href="{{route('add.telefono')}}" class="dropdown-item font-weight-bold">
-                        <i class="fa fa-charging-station  mr-2"></i>
-                        Agregar Teléfono
-                    </a>
-
                     <a href="{{route('add_printer')}}" class="dropdown-item font-weight-bold">
                         <i class="fa fa-print  mr-2"></i>
                         Agregar Impresoras
+                    </a>
+
+                    <a href="{{route('add.telefono')}}" class="dropdown-item font-weight-bold">
+                        <i class="fa fa-charging-station  mr-2"></i>
+                        Agregar Teléfono
                     </a>
 
                     <a href="{{route('lista.dispositivos')}}" class="dropdown-item font-weight-bold">

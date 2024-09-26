@@ -40,7 +40,7 @@
   <div class="container px-5 py-2 ">
       <div class="row border border-5">
         
-        <div class="col-sm-12 col-md-4  col-lg-4 centrar-verticalmente p-2 mt-2">
+        <div class="col-sm-12 col-md-4  col-lg-4 centrar-verticalmente p-2 mt-2 text-center">
           <img src="{{asset('img/logo.png')}}" class="mx-auto img-fluid" alt="">
         </div>
         

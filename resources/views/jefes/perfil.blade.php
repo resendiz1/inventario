@@ -138,7 +138,7 @@
                   
                   <td class="col-2">
                     <div class="btn-group">
-                      <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST" class="form-ajax">
+                      <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST" class="autorisa_software">
                         @csrf @method('PATCH')                            
                         <button class="btn btn-sm {{$software->status ? 'btn-secondary' : 'btn-success' }}  " {{$software->status  ? 'disabled' : 'enable' }}>
                           <i class="fa fa-check"></i>
@@ -198,48 +198,94 @@
 
 @endif
 
-{{-- 
+
+
 
 <script>
-  // Obtener todos los formularios con la clase 'form-ajax'
-var forms = document.querySelectorAll('.form-ajax');
 
-// Asignar un evento 'submit' a cada formulario
-forms.forEach(function(form) {
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evitar el comportamiento predeterminado del envío
+document.addEventListener('DOMContentLoaded', function(){
 
-        var formData = new FormData(form); // Obtener los datos del formulario
-        var actionUrl = form.getAttribute('action'); // Obtener la URL de acción del formulario
 
-        // Crear una solicitud AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', actionUrl, true);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  const forms = document.querySelectorAll('form'); //
 
-        // Manejar la respuesta
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // Mostrar notificación de éxito o actualizar el estado del botón
-                console.log('Formulario enviado con éxito');
-                var response = JSON.parse(xhr.responseText);
+  forms.forEach(form => {
 
-                if (response.success) {
-                    // Aquí podrías actualizar la tabla o el botón
-                    form.querySelector('button').disabled = true;
-                    form.querySelector('button').classList.add('btn-secondary');
-                    form.querySelector('button').classList.remove('btn-success');
-                }
-            } else {
-                console.error('Error en el envío del formulario');
-            }
-        };
+    //Itera sobre cada formulario
+    form.addEventListener('submit', function(e){
 
-        xhr.send(formData); // Enviar los datos del formulario vía AJAX
+
+      e.preventDefault();
+
+      const url = this.action; //Obtiene la ruta a donde van los datos del formulario
+      const formData = new FormData(this);
+      const row = this.closest('tr'); //encuentra la fila mas cercana a el formulario
+      const csrf = this.querySelector('input[name="_token"]')
+
+
+      fetch(url, {
+        method: 'POST',
+        body:formData,
+        headers:{
+          'X-Request-With': 'XMLHttpRequest',
+          'X-CSRF-TOKEN' : csrf,
+        }
+
+      })
+
+      .then(response => response.json()) //espera la respuesta json
+      .then(data =>{
+
+        if(data.success){
+          
+          const statusCell = row.querySelector('td:nth-child(3)') //selecciona la celda de 'estado' en la fila
+          statusCell.textContent = data.status ? 'Autorizado' : 'No autorizado';
+
+
+          const authorizeButton = row.querySelector('.btn-success'); // encuentra el boton de autorizar
+          const desauthorizedButton = row.querySelector('.btn-danger'); //encuentra el boton de desautorizar
+
+
+          //Si el estado es 'Autorizado'
+          if(data.status){
+
+            //cambia el boton de autorizar a gris y lo deshabilita
+            authorizeButton.classList.add('btn-secondary');
+            authorizeButton.classList.remove('btn-success');
+            authorizeButton.setAttribute('disable', true);
+
+
+
+          }
+
+
+
+
+
+        }
+
+
+      })
+
+
+
+
+
     });
+
+
+
+  });
+
+
+
 });
 
-</script> --}}
+
+</script>
+  
+
+
+
 
 
 
