@@ -3,7 +3,7 @@
 @section('contenido')
 @include('user.cabecera')    
 
-<div class="container-fluid ">
+<div class="container-fluid fade-out" id="content">
 
     <div class="row mb-2 my-4 justify-content-center">
         <div class="col-sm-12 col-md-9 col-lg-6 bg-white shadow shadow-sm p-3 text-center">

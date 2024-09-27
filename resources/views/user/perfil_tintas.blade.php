@@ -4,7 +4,7 @@
 @section('title', 'Pedido tintas')
     
 
-<div class="container">
+<div class="container fade-out" id="content" >
     <div class="row">
         <div class="col-12 text-center">
             @if ($errors->first('checkboxes'))

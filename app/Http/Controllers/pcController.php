@@ -101,6 +101,17 @@ class pcController extends Controller
         return view('admin.dispositivos.computadoras', compact('computadoras'));
     }
 
+    public function editar_computadora_show($id){
+
+
+        $computadora = Computadora::findOrFail($id);
+
+        return view('admin.dispositivos.editar_computadora');
+
+
+
+    }
+
 
 
 

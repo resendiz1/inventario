@@ -26,7 +26,7 @@
 
 
 
-<div class="container my-4">
+<div class="container my-4 fade-out" id="content">
 
     <div class="row justify-content-center mt-3">
 

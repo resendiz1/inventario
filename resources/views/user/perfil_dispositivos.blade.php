@@ -4,7 +4,7 @@
     
 @include('user.cabecera')
 
-<div class="container-fluid">
+<div class="container-fluid fade-out" id="content">
 
     <div class="row">
         <div class="col-12  text-center">

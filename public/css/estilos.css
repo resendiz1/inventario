@@ -169,3 +169,17 @@
   .table td, .table th {
     padding: 0.70rem; /* Ajusta el padding aquí */
   }
+
+
+
+  /* Inicialmente ocultar el contenido */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Mostrar el contenido con una transición suave */
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}

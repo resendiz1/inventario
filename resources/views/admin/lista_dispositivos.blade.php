@@ -23,6 +23,8 @@
                     <th scope="col">Ram</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Editar</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -35,7 +37,7 @@
                     <td>{{$computadora->ram}}</td>
                     <td>{{$computadora->tipo}}</td>
                     <td>{{$computadora->estado}}</td>
-
+                    <td><a href="{{route('editar.computadora', $computadora->id)}}">Editar</a></td>
 
                   </tr>
     

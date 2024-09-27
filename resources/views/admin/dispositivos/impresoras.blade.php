@@ -1,8 +1,58 @@
-@include('layout')
+@extends('layout')
 @section('contenido')
-@section('title', 'Impresoras disponibles')
+@section('title', 'Lista de dispositivos')
+@include('assets.nav')
 @include('assets.nav_dispositivos')
 
-<h1>Impresoras</h1>
+
+
+
+
+
+<div class="container ">
+    <div class="row p-5 justify-content-center">
+        <div class="col-12 bg-white p-5">
+          <h4 class="font-weight-bold mb-3">impresoras</h4>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Procesador</th>
+                    <th scope="col">Ram</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Editar</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                @forelse ($impresoras as $impresora)
+                  <tr>
+                    <th>{{$impresora->user->name}}</th>
+                    <td>{{$impresora->marca}}</td>
+                    <td>{{$impresora->modelo}}</td>
+                    <td>{{$impresora->procesador}}</td>
+                    <td>{{$impresora->ram}}</td>
+                    <td>{{$impresora->tipo}}</td>
+                    <td>{{$impresora->estado}}</td>
+                    <td><a href="{{route('editar.impresora', $impresora->id)}}">Editar</a></td>
+
+                  </tr>
     
+                @empty
+                    
+                @endforelse
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 @endsection

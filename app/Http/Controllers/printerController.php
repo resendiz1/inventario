@@ -17,8 +17,6 @@ class printerController extends Controller
     }
 
 
-
-
     public function create(){
 
 
@@ -78,4 +76,18 @@ class printerController extends Controller
     public function show(){
         return view('resultados.printer');
     }
+
+
+
+
+    public function lista_impresoras(){
+
+        $impresoras = Impresora::all();
+
+        return view('admin.dispositivos.impresoras', compact('impresoras'));
+
+    }
+
+
+
 }

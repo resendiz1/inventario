@@ -83,13 +83,22 @@ class telefonoController extends Controller
 
 
 
-
-
-
-
-
-
      public function show(){
          return view('resultados.ups');
      }
+
+
+     public function lista_telefonos(){
+
+        $telefonos = Telefono::all();
+
+
+        return view('admin.dispositivos.telefonos', compact('telefonos'));
+
+
+     }
+
+
+
+
 }

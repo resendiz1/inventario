@@ -25,7 +25,7 @@
 </div>
 
     
-<div class="container bg-white  p-2 ">
+<div class="container bg-white  p-2 fade-out" id="content">
 
   <!-- encabezado -->
   <div class="container px-5 py-2 m-3 ">

@@ -14,6 +14,15 @@ use App\Http\Controllers\resguardoController;
 use App\Http\Controllers\directorioController;
 
 
+//Rutas para editar dispositivos
+Route::get('/admin/lista_dispositivos/lista_computadoras/editar/{id}', [pcController::class, 'editar_computadora_show'])->name('editar.computadora');
+
+Route::get('/admin/lista_dispositivos/lista_impresoras/editar/{id}', [pcController::class, 'editar_impresora_show'])->name('editar.impresora');
+
+Route::get('/admin/lista_dispositivos/lista_telefonos/editar/{id}', [pcController::class, 'editar_telefono_show'])->name('editar.telefono');
+
+
+
 //Rutas para ir a los dispositivos
 
 Route::get('/admin/lista_dispositivos/lista_computadoras/', [pcController::class, 'lista_computadoras'])->name('lista.computadoras');

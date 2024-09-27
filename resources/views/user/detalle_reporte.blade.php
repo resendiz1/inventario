@@ -7,7 +7,7 @@ use Carbon\Carbon;
 @section('title', 'Detalle reporte')
 @include('user.cabecera')
 
-<div class="container mt-4">
+<div class="container mt-4 fade-out" id="content">
     <div class="row justify-content-center">
         <div class="col-9 bg-white shadow">
 
