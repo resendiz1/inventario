@@ -99,6 +99,15 @@
     </div>
 
 
+    <div class="row">
+      <div class="col-12">
+        @if (session('acceso_eliminado'))
+           <h4 class="text-center text-danger font-weight-bold">
+              {{session('acceso_eliminado')}}
+           </h4>
+        @endif
+      </div>
+    </div>
 
 
 
@@ -109,8 +118,9 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col-2">Software</th>
-                    <th scope="col-8">Justificación</th>
+                    <th scope="col-6">Justificación</th>
                     <th scope="col-2">Estado</th>
+                    <th scope="col-2">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,8 +128,16 @@
 
                     <tr>
                       <th class="col-2" >{{$soft->nombre}}</th>
-                      <td class="col-8"> {{$soft->justificacion}} </td>
+                      <td class="col-6"> {{$soft->justificacion}} </td>
                       <td class="col-2"> {{$soft->status ? 'Autorizado' : 'No autorizado' }} </td>
+                      <td class="col-2"> 
+                        <form action="{{route('eliminar.acceso', $soft->id)}}" method="POST">
+                          @csrf @method('DELETE')
+                          <button class="btn btn-dark btn-sm">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </form>
+                      </td>
                     </tr>
                         
                     @empty
@@ -173,17 +191,28 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col-2">Sitio</th>
-                    <th scope="col-8">Justificación</th>
+                    <th scope="col-6">Justificación</th>
                     <th scope="col-2">Estado</th>
+                    <th scope="col-2">Eliminar</th>
+
                   </tr>
                 </thead>
                 <tbody>
                 
                 @forelse ($sitios as $sitio)
                     <tr>
-                        <th class="col-2">{{$sitio->nombre}}</th>
-                        <td class="col-8" >{{$sitio->justificacion}}</td>
+                        <th class="col-2">{{$sitio->nombre}} </th>
+                        <td class="col-6" >{{$sitio->justificacion}}</td>
                         <td class="col-2" >{{$sitio->status ? 'Autorizado'  :  'No Autorizado'}}</td>
+                        <td class="col-2"> 
+                          <form action="{{route('eliminar.acceso', $sitio->id)}}" method="POST">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-dark btn-sm">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </form>
+
+                        </td>
                     </tr>
                 @empty
                     
@@ -221,55 +250,7 @@
         </div>
     </div>    
 
-
-
-{{-- ESTO ES EL GRUPO DE BOTONOS QUE DICEN SI ACEPTA EL USUARIO, JEFE DIRECTO Y SISTEMAS --}}
-    {{-- <div class="row justify-content-center mt-4">
-        <div class="col-3 text-center">
-
-            <button class="btn btn-secondary">
-                Acepta Encargado de Sistemas
-            </button>
-            <br>
-            <i class="fa fa-warning text-danger fa-2x mt-2"></i>
-            <h5>Aún no se acepta por el Encargado de Sistemas</h5>
-
-        </div>
-        <div class="col-3 text-center">
-
-            <button class="btn btn-secondary">
-                Acepta Titular el Equipo
-            </button>
-            <br>
-            <i class="fa fa-warning text-danger fa-2x mt-2"></i>
-            <h5>Aún no se acepta por el Titular el Equipo</h5>
-
-        </div>
-        <div class="col-3 text-center">
-
-            <button class="btn btn-secondary">
-                Acepta Jefe Directo
-            </button>
-            <br>            
-            <i class="fa fa-warning text-danger fa-2x mt-2"></i>
-            <h5>Aún no se acepta por el Acepta Jefe Directo</h5>
-
-        </div>
-    </div> --}}
-
-
-
   </div> {{-- cuerpo de el formato --}}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -281,52 +262,9 @@
 
 
 
-<script>
-
-// document.getElementById('sitio').addEventListener('submit', function(event){
-//   event.preventDefault();  //evita el envio tradicional del formulario
-
-//   const formData = new FormData(this);
-
-//   const csrfToken = document.querySelector('input[name="_token"]');
 
 
-//   //haiendo la peticion ajax
 
-//   fetch(this.action, {
-//     method: this.method,  //se usa el metodo que esta en el formulario
-//     headers:{
-//       'X-CSRF-TOKEN': csrfToken,
-//       'Accept': 'application/json'
-//     },
-
-//     body:formData
-
-//   })
-
-
-//   .then(response => response.json()) //convierte la respuesta en json
-//   .then(data =>{
-
-
-//     //notidficacion de que si se armo
-//     alert('Se envio correctamente el formulario');
-
-//     console.log(data)
-//     .catch(eror=>{
-
-//       //manejoi de error3s
-//       alert('Ocurrio un error al manejar el formulario');
-
-//     })
-
-
-//   })
-
-// });
-
-
-</script>
 
 
 
@@ -334,160 +272,164 @@
 
 <script>
   {
-// Escuchar el evento de envío del formulario
-document.getElementById('software').addEventListener('submit', function(e) {
-    e.preventDefault(); // Evitar el envío tradicional del formulario
+    // Escuchar el evento de envío del formulario
+    document.getElementById('software').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evitar el envío tradicional del formulario
 
-    var form = e.target; // Obtener el formulario
-    var formData = new FormData(form); // Obtener los datos del formulario
+        var form = e.target; // Obtener el formulario
+        var formData = new FormData(form); // Obtener los datos del formulario
 
-    // Limpiar mensajes de error anteriores
-    document.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+        // Limpiar mensajes de error anteriores
+        document.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
 
-    // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
-    var xhr = new XMLHttpRequest();
-    
-    // Abrir la conexión a la ruta que maneja la solicitud
-    xhr.open('POST', form.action, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
+        // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        
+        // Abrir la conexión a la ruta que maneja la solicitud
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
 
-    // Manejar la respuesta de la solicitud
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
+        // Manejar la respuesta de la solicitud
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
 
-            if (response.success) {
-                // Crear una nueva fila <tr> con los datos del software y justificación
-                var newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <th class="col-2">${response.software.nombre}</th>
-                    <td class="col-8">${response.software.justificacion}</td>
-                    <td class="col-2">${response.software.status ? 'Autorizado' : 'No autorizado'}</td>
-                `;
+                if (response.success) {
+                    // Crear una nueva fila <tr> con los datos del software y justificación
+                    var newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <th class="col-2">${response.software.nombre}</th>
+                        <td class="col-8">${response.software.justificacion}</td>
+                        <td class="col-2">${response.software.status ? 'Autorizado' : 'No autorizado'}</td>
+                    `;
 
-                // Obtener la fila que contiene el formulario
-                var formRow = document.getElementById('software').closest('tr');
-                var userTable = document.querySelector('#userTable tbody');
+                    // Obtener la fila que contiene el formulario
+                    var formRow = document.getElementById('software').closest('tr');
+                    var userTable = document.querySelector('#userTable tbody');
 
-                // Insertar la nueva fila antes de la fila del formulario
-                if (userTable.contains(formRow)) {
-                    userTable.insertBefore(newRow, formRow);
+                    // Insertar la nueva fila antes de la fila del formulario
+                    if (userTable.contains(formRow)) {
+                        userTable.insertBefore(newRow, formRow);
+                    }
+
+                    // Limpiar el formulario
+                    form.reset();
                 }
+            } else if (xhr.status === 422) {
+                // Si hay errores de validación
+                var response = JSON.parse(xhr.responseText);
 
-                // Limpiar el formulario
-                form.reset();
-            }
-        } else if (xhr.status === 422) {
-            // Si hay errores de validación
-            var response = JSON.parse(xhr.responseText);
-
-            if (!response.success && response.errors) {
-                // Mostrar los errores de validación
-                for (var field in response.errors) {
-                    var errorMessage = response.errors[field][0];
-                    var errorField = document.querySelector(`[name="${field}"]`);
-                    var errorElement = document.createElement('small');
-                    errorElement.classList.add('text-danger');
-                    errorElement.textContent = errorMessage;
-                    
-                    // Insertar el mensaje de error debajo del campo
-                    errorField.parentNode.appendChild(errorElement);
+                if (!response.success && response.errors) {
+                    // Mostrar los errores de validación
+                    for (var field in response.errors) {
+                        var errorMessage = response.errors[field][0];
+                        var errorField = document.querySelector(`[name="${field}"]`);
+                        var errorElement = document.createElement('small');
+                        errorElement.classList.add('text-danger');
+                        errorElement.textContent = errorMessage;
+                        
+                        // Insertar el mensaje de error debajo del campo
+                        errorField.parentNode.appendChild(errorElement);
+                    }
                 }
+            } else {
+                console.error('Error en la solicitud AJAX');
             }
-        } else {
-            console.error('Error en la solicitud AJAX');
-        }
-    };
+        };
 
-    // Manejar errores de red
-    xhr.onerror = function() {
-        console.error('Error de red');
-    };
+        // Manejar errores de red
+        xhr.onerror = function() {
+            console.error('Error de red');
+        };
 
-    // Enviar los datos del formulario
-    xhr.send(formData);
-});
+        // Enviar los datos del formulario
+        xhr.send(formData);
+    });
 
-  }
+      }
 
 
-  {
+      {
 
-    document.getElementById('sitio').addEventListener('submit', function(e) {
-    e.preventDefault(); // Evitar el envío tradicional del formulario
+        document.getElementById('sitio').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evitar el envío tradicional del formulario
 
-    var form = e.target; // Obtener el formulario
-    var formData = new FormData(form); // Obtener los datos del formulario
+        var form = e.target; // Obtener el formulario
+        var formData = new FormData(form); // Obtener los datos del formulario
 
-    // Limpiar mensajes de error anteriores
-    document.querySelectorAll('#sitio .text-danger').forEach(el => el.textContent = '');
+        // Limpiar mensajes de error anteriores
+        document.querySelectorAll('#sitio .text-danger').forEach(el => el.textContent = '');
 
-    // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
-    var xhr = new XMLHttpRequest();
-    
-    // Abrir la conexión a la ruta que maneja la solicitud
-    xhr.open('POST', form.action, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
+        // Crear un nuevo objeto XMLHttpRequest para la solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        
+        // Abrir la conexión a la ruta que maneja la solicitud
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Incluir el token CSRF
 
-    // Manejar la respuesta de la solicitud
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
+        // Manejar la respuesta de la solicitud
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
 
-            if (response.success) {
-                // Crear una nueva fila <tr> con los datos del sitio y justificación
-                var newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <th class="col-2">${response.sitio.nombre}</th>
-                    <td class="col-8">${response.sitio.justificacion}</td>
-                    <td class="col-2">${response.sitio.status ? 'Autorizado' : 'No Autorizado'}</td>
-                `;
+                if (response.success) {
+                    // Crear una nueva fila <tr> con los datos del sitio y justificación
+                    var newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <th class="col-2">${response.sitio.nombre}</th>
+                        <td class="col-8">${response.sitio.justificacion}</td>
+                        <td class="col-2">${response.sitio.status ? 'Autorizado' : 'No Autorizado'}</td>
+                        <td class="col-2">
+                        
+                            <button class="btn btn-dark btn-sm" disabled>
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          
+                        </td>
+                    `;
 
-                // Obtener la fila que contiene el formulario
-                var formRow = document.getElementById('sitio').closest('tr');
-                var sitioTable = document.querySelector('#sitioTable tbody');
+                    // Obtener la fila que contiene el formulario
+                    var formRow = document.getElementById('sitio').closest('tr');
+                    var sitioTable = document.querySelector('#sitioTable tbody');
 
-                // Insertar la nueva fila antes de la fila del formulario
-                sitioTable.insertBefore(newRow, formRow);
+                    // Insertar la nueva fila antes de la fila del formulario
+                    sitioTable.insertBefore(newRow, formRow);
 
-                // Limpiar el formulario
-                form.reset();
-            }
-        } else if (xhr.status === 422) {
-            // Si hay errores de validación
-            var response = JSON.parse(xhr.responseText);
-
-            if (!response.success && response.errors) {
-                // Mostrar los errores de validación
-                for (var field in response.errors) {
-                    var errorMessage = response.errors[field][0];
-                    var errorField = document.querySelector(`[name="${field}"]`);
-                    var errorElement = document.createElement('small');
-                    errorElement.classList.add('text-danger');
-                    errorElement.textContent = errorMessage;
-                    
-                    // Insertar el mensaje de error debajo del campo
-                    errorField.parentNode.appendChild(errorElement);
+                    // Limpiar el formulario
+                    form.reset();
                 }
+            } else if (xhr.status === 422) {
+                // Si hay errores de validación
+                var response = JSON.parse(xhr.responseText);
+
+                if (!response.success && response.errors) {
+                    // Mostrar los errores de validación
+                    for (var field in response.errors) {
+                        var errorMessage = response.errors[field][0];
+                        var errorField = document.querySelector(`[name="${field}"]`);
+                        var errorElement = document.createElement('small');
+                        errorElement.classList.add('text-danger');
+                        errorElement.textContent = errorMessage;
+                        
+                        // Insertar el mensaje de error debajo del campo
+                        errorField.parentNode.appendChild(errorElement);
+                    }
+                }
+            } else {
+                console.error('Error en la solicitud AJAX');
             }
-        } else {
-            console.error('Error en la solicitud AJAX');
-        }
-    };
+        };
 
-    // Manejar errores de red
-    xhr.onerror = function() {
-        console.error('Error de red');
-    };
+        // Manejar errores de red
+        xhr.onerror = function() {
+            console.error('Error de red');
+        };
 
-    // Enviar los datos del formulario
-    xhr.send(formData);
-});
-
-
-
+        // Enviar los datos del formulario
+        xhr.send(formData);
+    });
 
   }
 

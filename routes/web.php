@@ -131,3 +131,9 @@ Route::patch('/user/permisos/desautoriza_software/{id}', [accesosController::cla
 Route::patch('/user/permisos/autorizar_sitio/{id}', [accesosController::class, 'autoriza_sitio_jefe'])->name('autorizar.sitio.jefe');
 Route::patch('/user/permisos/desautorizar_sitio/{id}', [accesosController::class, 'desautoriza_sitio_jefe'])->name('desautorizar.sitio.jefe');
 
+
+
+//Rutas para elñiminar los accesos solicitados por sui se equivoca o se cansa de pedirlo
+
+Route::delete('/user/permisos/eliminar/{id}', [accesosController::class, 'eliminar_acceso'])->name('eliminar.acceso')->middleware('auth');
+

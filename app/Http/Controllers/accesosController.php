@@ -192,12 +192,13 @@ class accesosController extends Controller
         $sitio->save();
 
             // Retornar una respuesta JSON
-        // return response()->json([
-        //     'success' => true,
-        //     'newStatus' => $sitio->status, // Aquí puedes retornar el nuevo estado
-        //     'message' => 'El sitio fue autorizado'
-        // ]);
 
+        return response()->json([
+            'success' => true,
+            'status' => $sitio->status,
+            'nombre' => $sitio->nombre,
+            'message' => "El sitio <b> $sitio->nombre </b> ha sido autorizado!"
+        ]);
 
         return back()->with('aut_sitio', "El sitio <b> $sitio->nombre </b> fue autorizado");
 
@@ -213,6 +214,18 @@ class accesosController extends Controller
         $sitio->status = false;
         $sitio->autorizo = Auth::user()->name;
         $sitio->save();
+
+
+
+        return response()->json([
+            'success' => true,
+            'status' => $sitio->status,
+            'nombre' => $sitio->nombre,
+            'message' => "El sitio <b> $sitio->nombre </b> ha sido desautorizado!"
+        ]);
+
+
+
 
         return back()->with('sitio_desautorizado', "El sitio <b> $sitio->nombre </b> fue desautorizado");
 
@@ -263,7 +276,7 @@ class accesosController extends Controller
         ]);
 
 
-        return back()->with('software_desautorizado', "El software <b>$software->nombre</b> se desautorizo!");
+        // return back()->with('software_desautorizado', "El software <b>$software->nombre</b> se desautorizo!");
 
     }
 
@@ -284,6 +297,22 @@ class accesosController extends Controller
 
         
         return view('jefes.perfil', compact('softwares', 'sitios'));
+
+    }
+
+
+
+
+    public function eliminar_acceso($id){
+
+        $acceso = Acceso::findOrFail($id);
+        $acceso->delete();
+
+        return back()->with('acceso_eliminado', 'El acceso fue eliminado');
+
+
+
+
 
     }
 

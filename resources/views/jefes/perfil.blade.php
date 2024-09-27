@@ -44,7 +44,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Usuario</th>
-                        <th scope="col">Nombre del sitio</th>
+                        <th scope="col">Sitio Web</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Justificación</th>
                         <th scope="col">Autorizar</th>
@@ -69,14 +69,14 @@
                       <div class="btn-group">
                         <form action="{{route('autorizar.sitio.jefe', $sitio->id)}}" method="POST">
                           @csrf @method('PATCH')                            
-                          <button class="btn btn-sm {{$sitio->status ? 'btn-secondary' : 'btn-success' }} " {{$sitio->status  ? 'disabled' : 'enable' }}>
+                          <button class="btn btn-sm autoriza {{$sitio->status ? 'btn-secondary' : 'btn-success' }} " {{$sitio->status  ? 'disabled' : 'enable' }}>
                             <i class="fa fa-check"></i>
                           </button>
                         </form>
 
                         <form action="{{route('desautorizar.sitio.jefe', $sitio->id)}}" method="POST">
                           @csrf @method('PATCH')
-                          <button class="btn  btn-sm {{$sitio->status ? 'btn-danger' : 'btn-secondary' }}" {{!$sitio->status  ? 'disabled' : 'enable' }}>
+                          <button class="btn desautoriza btn-sm {{$sitio->status ? 'btn-danger' : 'btn-secondary' }}" {{!$sitio->status  ? 'disabled' : 'enable' }}>
                             <i class="fa fa-xmark"></i>
                           </button>
                         </form>
@@ -120,7 +120,7 @@
               <thead class="thead-dark">
                   <tr>
                       <th scope="col">Usuario</th>
-                      <th scope="col">Nombre del software</th>
+                      <th scope="col">Software</th>
                       <th scope="col">Estado</th>
                       <th scope="col">Justificación</th>
                       <th scope="col">Autorizar</th>
@@ -140,14 +140,14 @@
                     <div class="btn-group">
                       <form action="{{route('autorizar.software.jefe', $software->id)}}" method="POST" class="autorisa_software">
                         @csrf @method('PATCH')                            
-                        <button class="btn btn-sm {{$software->status ? 'btn-secondary' : 'btn-success' }}  " {{$software->status  ? 'disabled' : 'enable' }}>
+                        <button class="btn btn-sm autoriza {{$software->status ? 'btn-secondary' : 'btn-success' }}  " {{$software->status  ? 'disabled' : 'enable' }}>
                           <i class="fa fa-check"></i>
                         </button>
                       </form>
                       
                       <form action="{{route('desautorizar.software.jefe', $software->id)}}" method="POST">
                         @csrf @method('PATCH')
-                        <button class="btn  btn-sm {{$software->status ? 'btn-danger' : 'btn-secondary' }} " {{!$software->status  ? 'disabled' : 'enable' }}>
+                        <button class="btn btn-sm desautoriza {{$software->status ? 'btn-danger' : 'btn-secondary' }} " {{!$software->status  ? 'disabled' : 'enable' }}>
                           <i class="fa fa-xmark"></i>
                         </button>
                       </form>
@@ -240,19 +240,105 @@ document.addEventListener('DOMContentLoaded', function(){
           const statusCell = row.querySelector('td:nth-child(3)') //selecciona la celda de 'estado' en la fila
           statusCell.textContent = data.status ? 'Autorizado' : 'No autorizado';
 
+          
 
-          const authorizeButton = row.querySelector('.btn-success'); // encuentra el boton de autorizar
-          const desauthorizedButton = row.querySelector('.btn-danger'); //encuentra el boton de desautorizar
+
+          const authorizeButton = row.querySelector('.autoriza'); // encuentra el boton de autorizar
+          const desauthorizedButton = row.querySelector('.desautoriza'); //encuentra el boton de desautorizar
 
 
           //Si el estado es 'Autorizado'
+
+          // if(data.status){
+
+
+          //   if(authorizeButton){
+          //     //cambia el boton de autorizar a gris y lo deshabilita
+          //     authorizeButton.setAttribute('disable', true);
+              
+          //     authorizeButton.classList.add('btn-secondary');
+          //     authorizeButton.classList.remove('btn-success');
+
+          //   }
+
+          //   if(desauthorizedButton){
+
+          //     desauthorizedButton.classList.remove('btn-secondary');
+          //     desauthorizedButton.classList.remove('btn-danger');
+          //     desauthorizedButton.removeAttribute('disable');
+
+          //   }
+
+
+          // }
+
+
+          // else{
+
+          //   if(desauthorizedButton){
+              
+          //     desauthorizedButton.classList.add('btn-secondary');
+          //     desauthorizedButton.classList.remove('btn-danger');
+          //     desauthorizedButton.setAttribute('disable', true);
+
+          //   }
+
+          //   if(authorizeButton){
+
+          //     authorizeButton.classList.remove('btn-secondary');
+          //     authorizeButton.classList.add('btn-success');
+          //     authorizeButton.removeAttribute('disable');
+
+
+          //   }
+
+          // }
+
+
           if(data.status){
 
-            //cambia el boton de autorizar a gris y lo deshabilita
-            authorizeButton.classList.add('btn-secondary');
-            authorizeButton.classList.remove('btn-success');
-            authorizeButton.setAttribute('disable', true);
 
+            statusCell.classList.add('cascadia', 'font-weight-bold')
+
+
+            if(authorizeButton){
+
+                authorizeButton.setAttribute('disabled', true);
+                authorizeButton.classList.add('btn-secondary');
+                authorizeButton.classList.remove('btn-success');
+
+              
+            }
+
+            if(desauthorizedButton){
+
+              desauthorizedButton.classList.add('btn-danger');
+              desauthorizedButton.removeAttribute('disabled');
+              desauthorizedButton.classList.remove('btn-secondary');
+ 
+            }
+
+          }
+
+          else{
+
+            statusCell.classList.add('cascadia', 'font-weight-bold')
+
+            if(authorizeButton){
+
+                authorizeButton.removeAttribute('disabled');
+                authorizeButton.classList.remove('btn-secondary');
+                authorizeButton.classList.add('btn-success');
+              
+            }
+
+            if(desauthorizedButton){
+
+              desauthorizedButton.classList.remove('btn-danger');
+              desauthorizedButton.setAttribute('disabled', true);
+              desauthorizedButton.classList.add('btn-secondary');
+
+            }
 
 
           }
@@ -261,23 +347,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-        }
+        }//cierra el if de la respuesta
 
 
-      })
-
-
-
-
-
+      });
     });
-
-
-
   });
-
-
-
 });
 
 

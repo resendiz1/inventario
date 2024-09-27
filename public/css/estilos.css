@@ -164,3 +164,8 @@
   .zoom_menu {
       position: relative; /* Necesario para el badge */
   }
+
+
+  .table td, .table th {
+    padding: 0.70rem; /* Ajusta el padding aquí */
+  }
