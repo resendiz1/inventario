@@ -22,7 +22,6 @@
                     <th scope="col">Procesador</th>
                     <th scope="col">Ram</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,9 +33,6 @@
                     <td>{{$computadora->procesador}}</td>
                     <td>{{$computadora->ram}}</td>
                     <td>{{$computadora->tipo}}</td>
-                    <td>{{$computadora->estado}}</td>
-
-
                   </tr>
     
                 @empty

@@ -88,6 +88,42 @@ class pcController extends Controller
     }
 
 
+
+    public function fotos_computadora_usuario($id){
+
+        $computadora = Computadora::findOrFail($id);
+
+        $imagen1= $computadora->imagen1;
+        $imagen2= $computadora->imagen2;
+        $imagen3= $computadora->imagen3;
+
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request()->file('imagen1')->store('public');
+        }
+        if(request()->hasFile('imagen2')){
+            $imagen2 = request()->file('imagen2')->store('public');
+        }
+        if(request()->hasFile('imagen3')){
+            $imagen3 = request()->file('imagen3')->store('public');
+        }
+
+
+        $computadora->imagen1 = $imagen1;
+        $computadora->imagen2 = $imagen2;
+        $computadora->imagen3 = $imagen3;
+
+        $computadora->update();
+
+        return back()->with('fotos_subidas', 'Muchas gracias');
+
+
+    }
+
+
+
+
+
     // public function show(){
     //     return view('resultados.pc');
     // }
@@ -101,6 +137,8 @@ class pcController extends Controller
         return view('admin.dispositivos.computadoras', compact('computadoras'));
     }
 
+
+
     public function editar_computadora_show($id){
 
 
@@ -108,9 +146,11 @@ class pcController extends Controller
 
         return view('admin.dispositivos.editar_computadora');
 
-
-
     }
+
+
+
+
 
 
 

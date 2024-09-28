@@ -1,8 +1,10 @@
 @extends('layout')
-@section('contenido')
 @section('title', 'Control de Accesos')
+@section('contenido')
 @include('user.cabecera')
-
+@php
+    use Carbon\Carbon;
+@endphp
 
 <div class="container">
     <div class="row m-1">
@@ -22,6 +24,18 @@
         </div>
 
     </div>
+
+
+    <div class="row">
+      <div class="col-12">
+        @if (session('acceso_eliminado'))
+           <h4 class="text-center text-danger font-weight-bold">
+              {{session('acceso_eliminado')}}
+           </h4>
+        @endif
+      </div>
+    </div>
+
 </div>
 
     
@@ -85,7 +99,7 @@
     <div class="row font-size-18 justify-content-center">
 
         <div class="col-4 text-center">
-            <b>Fecha: </b> <span> {{Auth::user()->created_at}} </span>
+            <b>Fecha: </b> <span> {{Carbon::parse(Auth::user()->created_at)->translatedFormat('l, d F Y');}} </span>
         </div>
 
         <div class="col-4 text-center">
@@ -98,16 +112,6 @@
 
     </div>
 
-
-    <div class="row">
-      <div class="col-12">
-        @if (session('acceso_eliminado'))
-           <h4 class="text-center text-danger font-weight-bold">
-              {{session('acceso_eliminado')}}
-           </h4>
-        @endif
-      </div>
-    </div>
 
 
 
@@ -302,6 +306,7 @@
                         <th class="col-2">${response.software.nombre}</th>
                         <td class="col-8">${response.software.justificacion}</td>
                         <td class="col-2">${response.software.status ? 'Autorizado' : 'No autorizado'}</td>
+                        <td class="col-2"> <button class="btn btn-dark btn-sm" onclick="alert('recarga la pagina')"> <i class="fa fa-trash"></i> </button> </td>
                     `;
 
                     // Obtener la fila que contiene el formulario

@@ -13,7 +13,7 @@
             
             <div class="form-group m-0">
                 <label for="email" class="m-0 p-0">Usuario</label>
-                <input type="text" value="resendiz.galleta@gmail.com"  name="email" class="form-control" id="email" >
+                <input type="text"   name="email" class="form-control" id="email" >
 
             </div>
 

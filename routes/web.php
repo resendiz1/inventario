@@ -146,3 +146,14 @@ Route::patch('/user/permisos/desautorizar_sitio/{id}', [accesosController::class
 
 Route::delete('/user/permisos/eliminar/{id}', [accesosController::class, 'eliminar_acceso'])->name('eliminar.acceso')->middleware('auth');
 
+
+
+//Rutas que hacen que el usuario cargue las imagenes de los dispositivos
+
+Route::patch('/user/resguardo/imagenes_pc/{id}', [pcController::class, 'fotos_computadora_usuario'])->name('fotos.computadora.usuario');
+Route::patch('/user/resguardo/imagenes_printer/{id}', [printerController::class, 'fotos_impresora_usuario'])->name('fotos.impresora.usuario');
+Route::patch('/user/resguardo/imagenes_phone/{id}', [telefonoController::class, 'fotos_telefono_usuario'])->name('fotos.telefono.usuario');
+
+
+
+

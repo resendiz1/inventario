@@ -196,15 +196,15 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-4 text-center">
-            <img src="{{$computadora->imagen1}}" class="img-fluid" alt="">
+            <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
           </div>
           
           <div class="col-4 text-center">
-            <img src="{{$computadora->imagen2}}" class="img-fluid" alt="">
+            <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
           </div>
       
           <div class="col-4 text-center">
-            <img src="{{$computadora->imagen3}}" class="img-fluid" alt="">
+            <img src="{{Storage::url($computadora->imagen3)}}" class="img-fluid" alt="">
           </div>
           
         </div>
@@ -294,11 +294,11 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-6 text-center">
-            <img src="{{$impresora->imagen1}}" class="img-fluid" alt="">
+            <img src="{{Storage::url($impresora->imagen1)}}" class="img-fluid" alt="">
           </div>
           
           <div class="col-6 text-center">
-            <img src="{{$impresora->imagen2}}" class="img-fluid" alt="">
+            <img src="{{Storage::url($impresora->imagen2)}}" class="img-fluid" alt="">
           </div>
       
           
@@ -380,15 +380,15 @@
   <div class="row p-3 justify-content-center">
     
     <div class="col-4 text-center">
-      <img src="{{$telefono->imagen1}}" class="img-fluid" alt="">
+      <img src="{{Storage::url($telefono->imagen1)}}" class="img-fluid" alt="">
     </div>
     
     <div class="col-4 text-center">
-      <img src="{{$telefono->imagen2}}" class="img-fluid" alt="">
+      <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">
     </div>
   
     <div class="col-4 text-center">
-      <img src="{{$telefono->imagen3}}" class="img-fluid" alt="">
+      <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">
     </div>
     
   </div>

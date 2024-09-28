@@ -93,6 +93,27 @@
             </div>
         </div>
     </div>
+
+
+    <div class="row my-2">
+        <div class="col-12  text-center">
+            <h2>Dispositivos</h2>
+
+            <a href="{{route('user.resguardo')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">
+                <i class="fa fa-lock mx-2"></i>
+                Resguardo de dispositivos
+            </a>
+
+            <a href="{{route('user.accesos')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">
+                <i class="fa fa-paperclip mx-2"></i>
+                Control de Accesos
+            </a>
+
+        </div>
+    </div>
+
+
+
  </div> {{-- este div cierra todo el cabezote --}}
 
 

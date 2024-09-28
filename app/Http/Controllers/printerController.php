@@ -90,4 +90,46 @@ class printerController extends Controller
 
 
 
+
+    public function fotos_impresora_usuario($id){
+
+        $impresora = Impresora::findOrFail($id);
+
+        $imagen1= $impresora->imagen1;
+        $imagen2= $impresora->imagen2;
+
+
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request()->file('imagen1')->store('public');
+        }
+        if(request()->hasFile('imagen2')){
+            $imagen2 = request()->file('imagen2')->store('public');
+        }
+
+
+        $impresora->imagen1 = $imagen1;
+        $impresora->imagen2 = $imagen2;
+
+
+        $impresora->update();
+
+
+
+        return back()->with('fotos_subidas', 'Muchas gracias');
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }

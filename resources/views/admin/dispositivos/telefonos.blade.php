@@ -20,7 +20,6 @@
                     <th scope="col">Marca</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Procesador</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Editar</th>
 
                   </tr>
@@ -32,7 +31,6 @@
                     <td>{{$telefono->marca}}</td>
                     <td>{{$telefono->modelo}}</td>
                     <td>{{$telefono->tipo}}</td>
-                    <td>{{$telefono->estado}}</td>
                     <td><a href="{{route('editar.telefono', $telefono->id)}}">Editar</a></td>
 
                   </tr>
