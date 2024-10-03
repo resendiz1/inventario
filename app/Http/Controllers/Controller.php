@@ -202,7 +202,7 @@ class Controller extends BaseController
         $usuario->save();
 
 
-        return back()->with('aceptado', 'Gracias por aceptar le resguardo!');
+        return back()->with('aceptado', 'Gracias por aceptar el resguardo!');
     
     }
 

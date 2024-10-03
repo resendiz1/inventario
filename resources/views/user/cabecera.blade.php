@@ -64,12 +64,15 @@
                     </a>
                 </div>
 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
-                    <a href="{{route('tintas.show')}}" >
-                        <i class="fa-solid fa-palette fa-2x {{request()->path() == 'user/tintas' ? 'negro' : '' }}  "></i>
-                        <h5 class="{{request()->path() == 'user/tintas' ? 'negro font-weight-bold' : '' }}">Tintas</h5>
-                    </a>
-                </div>
+                @if (Auth::user()->impresoras[0]->marca)
+                    <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                        <a href="{{route('tintas.show')}}" >
+                            <i class="fa-solid fa-palette fa-2x {{request()->path() == 'user/tintas' ? 'negro' : '' }}  "></i>
+                            <h5 class="{{request()->path() == 'user/tintas' ? 'negro font-weight-bold' : '' }}">Tintas</h5>
+                        </a>
+                    </div>
+                @endif
+
 
                 <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('tickets.show')}}" >

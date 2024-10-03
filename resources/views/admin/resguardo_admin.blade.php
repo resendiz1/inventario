@@ -183,7 +183,7 @@
         </div>
 
         <div class="col-12 text-center p-1 font-size-18">
-          <a  data-toggle="collapse" href="#com{{$computadora->id}}" role="button" aria-expanded="false" aria-controls="collapseExample" 
+          <a  data-toggle="collapse" href="#c{{$computadora->id}}" role="button" aria-expanded="false" aria-controls="collapseExample" 
             aria-controls="multiCollapseExample1">
             <i class="fa fa-image"></i>
             Ver fotos
@@ -192,7 +192,7 @@
 
       </div>
 
-      <div class="collapse multi-collapse" id="com{{$computadora->id}}">
+      <div class="collapse multi-collapse" id="c{{$computadora->id}}">
         <div class="row p-3 justify-content-center">
       
           <div class="col-4 text-center">

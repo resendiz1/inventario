@@ -19,7 +19,7 @@
                     <th scope="col">Responsable</th>
                     <th scope="col">Marca</th>
                     <th scope="col">Modelo</th>
-                    <th scope="col">Procesador</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Editar</th>
 
                   </tr>

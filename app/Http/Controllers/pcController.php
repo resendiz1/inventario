@@ -89,6 +89,8 @@ class pcController extends Controller
 
 
 
+
+
     public function fotos_computadora_usuario($id){
 
         $computadora = Computadora::findOrFail($id);
@@ -139,12 +141,17 @@ class pcController extends Controller
 
 
 
+
+
+
     public function editar_computadora_show($id){
 
 
         $computadora = Computadora::findOrFail($id);
+        $usuarios = User::all();
 
-        return view('admin.dispositivos.editar_computadora');
+
+        return view('admin.dispositivos.editar_computadora', compact('computadora', 'usuarios'));
 
     }
 

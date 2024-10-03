@@ -733,10 +733,73 @@
         </div>
         <!-- Modal -->
 
+
+
+
+
         <script>
+
+
           function confirma(){
             return confirm('¿Confirmar que aceptas el Resguardo?')
           }
+
+
+          
+            
+            function mostrarVistPrevia(input, previewElement){
+
+              if(input.files && input.files[0] ){
+
+                const reader = new FileReader();
+
+                //este evento se dispara cuando el archivo ha sido leido
+                reader.onload = function(e){
+                  
+                  //se obtiene la url de la imagen
+                  previewElement.src = e.target.result;
+
+                  }
+
+                  //inica la lectura del archivo como una URL 
+
+                  reader.readAsDataURL(input.files[0]);
+                }
+              }
+
+
+        
+        
+        //selecciona todos los inputs del tipo  'file' del documento
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+
+          //encuentra el elemento de imagen justo antes del input (en el DOM seria el hermano anterior)
+          const imgPreview = input.previousElementSibling; //Toma la etiqueta IMG que esta cerca del input
+
+          //se agrega un listener
+
+          input.addEventListener('change', function(){
+            mostrarVistPrevia(this, imgPreview)
+          })
+
+
+          
+        });
+
+
+
+
+
+
+
+
+
+            
+
+          
+
+
+
         </script>
     
 @endsection
