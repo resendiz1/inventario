@@ -64,7 +64,7 @@
                     </a>
                 </div>
 
-                @if (Auth::user()->impresoras[0]->marca)
+                @if (Auth::user()->impresoras)
                     <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                         <a href="{{route('tintas.show')}}" >
                             <i class="fa-solid fa-palette fa-2x {{request()->path() == 'user/tintas' ? 'negro' : '' }}  "></i>

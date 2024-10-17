@@ -120,6 +120,17 @@ class printerController extends Controller
 
 
 
+    }
+
+
+
+    public function editar_impresora_show($id){
+        
+        $impresora = Impresora::findOrFail($id);
+        $usuarios = User::all();
+
+        return view('admin.dispositivos.editar_impresora', compact('impresora', 'usuarios'));
+        
 
 
 

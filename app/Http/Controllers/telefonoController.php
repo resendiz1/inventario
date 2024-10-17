@@ -140,4 +140,14 @@ class telefonoController extends Controller
 
 
 
+    public function editar_telefono_show($id){
+   
+         $telefono = Telefono::findOrFail($id);
+        
+            
+   
+    }
+
+
+
 }

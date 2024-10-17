@@ -1,12 +1,12 @@
 @extends('layout')
 @include('assets.nav')
-@section('title', 'Agregando PC')
+@section('title', 'Editando PC')
 @section('contenido')
 
-<div class="container">
 
+<div class="container">
     <div class="row d-flex justify-content-center p-3 ">
-        <div class="col-12">
+        <div class="col-8 text-center">
             <h5>
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -16,16 +16,18 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
+                @endif
             </h5>
-            <div class="row">
-                <div class="col-4 col-xs-12 col-sm-12 col-md-6 col-lg-4">
+
+            
+            <div class="row justify-content-center">
+                <div class="col-4 col-xs-12 col-sm-12 col-md-6 col-lg-8">
                     {{-- <img src="{{asset('https://www.logo.wine/a/logo/Linux/Linux-Logo.wine.svg')}}" class="img-fluid w-50" alt=""> --}}
                 </div>
-                <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 text-center pt-4">
-                    @if (session('agregada'))
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-8 text-center pt-4">
+                    @if (session('actualizado'))
                         <div class="alert-success text-start font-weight-bold mt-3 p-3">
-                           <i class="fa fa-check-circle mr-2"></i>  {{session('agregada')}}
+                           <i class="fa fa-check-circle mr-2"></i>  {{session('actualizado')}}
                         </div>
                     @endif
                 </div>
@@ -35,24 +37,11 @@
 
         <div class="col-12 border bg-white  p-3">
             <h2 class="m-3 text-center">Editar Computadora</h2>
-            <form action="#" method="POST" enctype="multipart/form-data" >
-                @csrf
+            <form action="{{route('actualizar.computadora', $computadora->id)}}" method="POST" enctype="multipart/form-data" >
+                @csrf @method('PATCH')
                 <div class="row  m-lg-5 m-sm-2  ">
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-1 p-1">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Marca</label>
-                            <input type="text" value="{{old('marca', $computadora->marca)}}"  class="form-control form-control-sm" name="marca">
 
-                            @error('marca')
-                            <small class="text-danger p-1">
-                               {{$message}}
-                            </small>
-                            @enderror 
-
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
+                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Procesador</label>
                             <input type="text" value="{{old('procesador', $computadora->procesador)}}"  class="form-control form-control-sm" name="procesador">
@@ -66,25 +55,12 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Modelo</label>
-                            <input type="text" value="{{old('modelo', $computadora->modelo)}}"  class="form-control form-control-sm" name="modelo">
-
-                            @error('modelo')
-                            <small class="text-danger p-1">
-                                {{$message}}
-                             </small>
-                            @enderror
-                        </div>
-                    </div>
-
 
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Sistema Operativo</label>
-                            <input type="text"  class="form-control form-control-sm" value="{{old('so', $computadora->so)}}"  name="so">
+                            <input type="text"  class="form-control form-control-sm" value="{{old('so', $computadora->SO)}}"  name="so">
                         
                             @error('so')
                             <small class="text-danger p-1">
@@ -99,10 +75,10 @@
 
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 p-1">
                         <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Usuario</label>
+                            <label for="" class="font-weight-bold mb-0">Usuario actual: <u> {{$computadora->user->name}} </u>  </label>
                             <select name="usuario" id="" class="form-control form-control-sm">
                                 @forelse ($usuarios as $usuario)
-                                    <option value="{{$usuario->id}}">{{$usuario->name}} - {{$usuario->puesto}}</option>
+                                    <option value="{{$usuario->id}}" {{($computadora->user->name == $usuario->name ) ? 'selected' : '' }} >{{$usuario->name}} - {{$usuario->puesto}}</option>
                                 @empty
                                     
                                 @endforelse
@@ -118,46 +94,11 @@
                     </div>
 
 
-
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Tipo</label>
-                            <select name="tipo" id="" class="form-control form-control-sm">
-                                <option value="AIO">AIO</option>
-                                <option value="Escritorio">Escritorio</option>
-                                <option value="Laptop">Laptop</option>
-                            </select>
-                            
-                            @error('tipo')
-                            <small class="text-danger p-1">
-                                {{$message}}
-                            </small>
-                            @enderror
-                        
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-3 p-1">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Número de serie</label>
-                            <input type="text" value="{{old('numero_serie')}}"  class="form-control form-control-sm" name="numero_serie">
-                        
-                        @error('numero_serie')
-                        <small class="text-danger p-1">
-                            {{$message}}
-                        </small>   
-                        @enderror
-                        
-                        </div>
-                    </div>
-
-
-
                     
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Tamaño de HDD</label>
-                            <input type="number" value="{{old('size_hdd')}}" min="0" placeholder="GB" name="size_hdd" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" value="{{old('size_hdd', $computadora->size_hdd)}}" min="0" placeholder="GB" name="size_hdd" class="form-control form-control-sm font-weight-bold">
                             @error('size_hdd')
                             <small class="text-danger p-1">
                                 {{$message}}
@@ -169,9 +110,9 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-1 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">RAM</label>
-                            <input type="number" value="{{old('size_ram')}}"  min="1" name="size_ram" placeholder="GB" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" value="{{old('ram', $computadora->ram)}}"  min="1" name="ram" placeholder="GB" class="form-control form-control-sm font-weight-bold">
 
-                            @error('slot4_ram')
+                            @error('ram')
                             <small class="text-danger p-1">
                                 {{$message}}
                             </small>
@@ -183,7 +124,7 @@
                     <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Tamaño de SSD</label>
-                            <input type="number" value="{{old('size_ssd')}}"  name="size_ssd" placeholder="GB" class="form-control form-control-sm font-weight-bold">
+                            <input type="number" value="{{old('size_ssd', $computadora->size_ssd)}}"  name="size_ssd" placeholder="GB" class="form-control form-control-sm font-weight-bold">
                             
                             @error('size_ssd')
                             <small class="text-danger p-1">
@@ -194,27 +135,13 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-xs-6 col-sm-6 col-md-4 col-lg-2 p-1">
-                        <div class="form-group">
-                            <label for="" class="font-weight-bold mb-0">Estado</label>
-                            <select name="estado"  class="form-control form-control-sm">
-                                <option value="1">Nuevo</option>
-                                <option value="0">Usado</option>
-                            </select>   
-                            @error('estado')
-                            <small class="text-danger p-1">
-                                {{$message}}
-                            </small>
-                            @enderror
-                       
-                        </div>
-                    </div>
+
 
 
                     <div class="col-6  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Observaciones</label>
-                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('observaciones')}}</textarea>
+                            <textarea name="observaciones" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('observaciones', $computadora->observaciones)}}</textarea>
                             @error('observaciones')
                             <small class="text-danger">
                                 {{$message}}
@@ -227,7 +154,7 @@
                     <div class="col-6  p-1">
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Accesorios</label>
-                            <textarea name="accesorios" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('accesorios')}}</textarea>
+                            <textarea name="accesorios" class="form-control form-control-sm font-weight-bold w-100 h-50">{{old('accesorios', $computadora->accesorios)}}</textarea>
                             @error('accesorios')
                             <small class="text-danger">
                                 {{$message}}
@@ -244,7 +171,7 @@
                         <div class="form-group">
                             <input type="file"  name="imagen1" class="imagen form-control font-weight-bold" id="imagen0">
                             <div class="col-12 p-2 shadow" id="previa0">
-                                <img class="img-fluid" id="img_tag0" alt="">
+                                <img class="img-fluid" src="{{Storage::url($computadora->imagen1)}}" id="img_tag0" alt="">
                             </div>
                             @error('imagen1')
                             <small class="text-danger p-1">
@@ -285,7 +212,7 @@
                     <div class="col-3  mt-5">
                         <button class="btn btn-dark w-100 font-weight-bold">
                             <i class="fa fa-plus-circle mr-2 "></i>
-                            Agregar
+                            Actualizar
                         </button>
                     </div>
          

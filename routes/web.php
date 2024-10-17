@@ -14,22 +14,32 @@ use App\Http\Controllers\resguardoController;
 use App\Http\Controllers\directorioController;
 
 
-//Rutas para editar dispositivos
-Route::get('/admin/lista_dispositivos/lista_computadoras/editar/{id}', [pcController::class, 'editar_computadora_show'])->name('editar.computadora');
-
-Route::get('/admin/lista_dispositivos/lista_impresoras/editar/{id}', [pcController::class, 'editar_impresora_show'])->name('editar.impresora');
-
-Route::get('/admin/lista_dispositivos/lista_telefonos/editar/{id}', [pcController::class, 'editar_telefono_show'])->name('editar.telefono');
-
-
-
 //Rutas para ir a los dispositivos
-
 Route::get('/admin/lista_dispositivos/lista_computadoras/', [pcController::class, 'lista_computadoras'])->name('lista.computadoras');
+Route::get('admin/lista_dispositivos/lista_computadoras/{id}', [pcController::class, 'editar_computadora_show'])->name('editar.computadora');
+Route::patch('/admin/listas_dispositivos/lista_computadoras/actualizar/{id}', [pcController::class, 'editar_computadora_update'] )->name('actualizar.computadora');
+
+
+Route::get('/admin/lista_dispositivos/lista_impresoras/editar/{id}', [printerController::class, 'editar_impresora_show'])->name('editar.impresora');
+
+
+
+
 
 Route::get('/admin/lista_dispositivos/lista_impresoras/', [printerController::class, 'lista_impresoras'])->name('lista.impresoras');
 
 Route::get('/admin/lista_dispositivos/lista_telefonos/', [telefonoController::class, 'lista_telefonos'])->name('lista.telefonos');
+
+//Rutas para editar dispositivos
+
+Route::get('/admin/lista_dispositivos/lista_telefonos/editar/{id}', [telefonoController::class, 'editar_telefono_show'])->name('editar.telefono');
+
+// Route::get('/admin/lista_dispositivos/lista_computadoras/{id}/editar', [pcController::class, 'editar_computadora_show'])->name('editar.computadora');
+
+
+
+
+
 
 
 
@@ -53,9 +63,9 @@ Route::post('/admin', [Controller::class, 'cerrar_session'])->name('cerrar.sessi
 
 //  Ingreso de usuarios
 
-Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar');
-Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario');
-Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin');
+Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'eliminar_usuario'])->name('usuario.eliminar')->middleware('auth:admin');
+Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario')->middleware('auth:admin');
+Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin')->middleware('auth:admin');
 Route::get('/admin/agregando_users/accesos/{id}', [accesosController::class, 'show_admin'] )->name('view.accesos.admin')->middleware('auth:admin');
 Route::patch('/admin/agregando_users/accesos/autoriza_software/{id}', [accesosController::class, 'autoriza_software'])->name('autorizar.software');
 Route::patch('/admin/agregando_users/accesos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software'])->name('desautorizar.software');

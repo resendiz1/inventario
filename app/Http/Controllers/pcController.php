@@ -146,12 +146,60 @@ class pcController extends Controller
 
     public function editar_computadora_show($id){
 
-
         $computadora = Computadora::findOrFail($id);
         $usuarios = User::all();
 
 
         return view('admin.dispositivos.editar_computadora', compact('computadora', 'usuarios'));
+
+    }
+
+
+    public function editar_computadora_update($id){
+
+        $imagen1="";
+        $imagen2="";
+        $imagen3="";
+
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request('imegen1')->store('public');
+        }
+        if(request()->hasFile('imagen2')){
+            $imagen2 = request('imagen2')->store('public');
+        }
+
+        if(request()->hasFile('imagen3')){
+            $imagen3 = request('imagen3')->store('public');
+        }
+
+        request()->validate([
+
+
+
+
+        ]);
+
+
+
+        $computadora = Computadora::findOrFail($id);
+
+        $computadora->procesador = request('procesador');
+        $computadora->so = request('so');
+        $computadora->user_id = request('usuario');
+        $computadora->size_hdd = request('size_hdd');
+        $computadora->size_ssd = request('size_ssd');
+        $computadora->ram = request('ram');
+        $computadora->observaciones = request('observaciones');
+        $computadora->accesorios = request('accesorios');
+        $computadora->imagen1 = $imagen1;
+        $computadora->imagen2 = $imagen2;
+        $computadora->imagen3 = $imagen3;
+        
+        $computadora->update();
+    
+
+        return back()->with('actualizado', 'Los datos fueron actualizados');
 
     }
 
