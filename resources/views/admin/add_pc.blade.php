@@ -101,6 +101,7 @@
                         <div class="form-group">
                             <label for="" class="font-weight-bold mb-0">Usuario</label>
                             <select name="usuario" id="" class="form-control form-control-sm">
+                                    <option value="" selected>Selecciona un usuario</option>
                                 @forelse ($usuarios as $usuario)
                                     <option value="{{$usuario->id}}">{{$usuario->name}} - {{$usuario->puesto}}</option>
                                 @empty

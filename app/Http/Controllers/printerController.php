@@ -132,7 +132,45 @@ class printerController extends Controller
         return view('admin.dispositivos.editar_impresora', compact('impresora', 'usuarios'));
         
 
+    }
 
+    public function editar_impresora_update($id){
+    
+        $imagen0 = "";
+        $imagen1= "" ;
+
+
+        if(request()->hasFile('imagen0')){
+            $imagen0 = request('imagen0')->store('public');
+        }
+
+
+
+        if(request()->hasFile('imagen1')){
+            $imagen1 = request('imagen1')->store('public');
+        }
+
+
+
+
+
+        $impresora = Impresora::findOrFail($id);
+
+        $impresora->user_id = request('usuario');
+        $impresora->comparte = request('comparte');
+        $impresora->estado = request('estado');
+        $impresora->modelo = request('modelo');
+        $impresora->marca = request('marca');
+        $impresora->serie = request('serie');
+        $impresora->tipo = request('tipo');
+        $impresora->observaciones = request('observaciones');
+        $impresora->imagen1 = $imagen0;
+        $impresora->imagen2 = $imagen1;
+
+
+        $impresora->update();
+
+        return back()->with('actualizado', 'La impresora fue actualizada');
 
     }
 

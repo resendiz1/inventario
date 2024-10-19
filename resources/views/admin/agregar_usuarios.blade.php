@@ -219,47 +219,47 @@
 
         <!-- Modal -->
     <div class="modal fade" id="ac{{$usuarie->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-md ">
                 <div class="modal-content">
                      <div class="modal-header bg-dark text-white h5 ">Actualizando Usuario</div>
                         <div class="modal-body">
-                            <div class="row">                                
+                            <div class="row justify-content-center">                                
                             <form action="{{route('actualizar.usuario', $usuarie->id)}}" method="POST">
                                 @csrf @method('PATCH')
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="">Nombre completo</label>
-                                        <input type="text" name="nombre_edit" class="form-control form-control-sm" value="{{old('nombre_edit', $usuarie->name)}}">
+                                        <input type="text" name="nombre_edit" class="form-control " value="{{old('nombre_edit', $usuarie->name)}}">
                                         {!!$errors->first('nombre_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="">Correo Electronico iniciar sesion</label>
-                                        <input type="email" name="email_edit" value="{{old('email_edit', $usuarie->email)}}" id="email" class="form-control form-control-sm">
+                                        <input type="email" name="email_edit" value="{{old('email_edit', $usuarie->email)}}" id="email" class="form-control ">
                                         {!!$errors->first('email_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Correo Electronico Mostrar</label>
-                                        <input type="email" name="correo_edit" value="{{old('correo_edit', $usuarie->correo)}}" id="email" class="form-control form-control-sm">
+                                        <input type="email" name="correo_edit" value="{{old('correo_edit', $usuarie->correo)}}" id="email" class="form-control ">
                                         {!!$errors->first('correo_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="">Celular</label>
-                                        <input type="tel" name="celular_edit" value="{{old('celular_edit', $usuarie->celular)}}" id="celular" class="form-control form-control-sm">
+                                        <input type="tel" name="celular_edit" value="{{old('celular_edit', $usuarie->celular)}}" id="celular" class="form-control ">
                                         {!!$errors->first('celular_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
             
                                     <div class="form-group">
                                         <label for="">Extensión</label>
-                                        <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuarie->extension)}}" id="extension" class="form-control form-control-sm">
+                                        <input type="tel" name="extension_edit" value="{{old('extension_edit', $usuarie->extension)}}" id="extension" class="form-control ">
                                         {!!$errors->first('extension_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
 
                                 <div class="form-group">
                                     <label for="">Su jefe directo es: </label>
-                                        <select name="jefe_edit"  class="form-control form-control-sm">
+                                        <select name="jefe_edit"  class="form-control ">
 
                                             @if ($usuarie->id_jefe == 'Gerencia')
                                                 <option value="Gerencia">Es gerencia</option>  
@@ -267,7 +267,7 @@
                                                 
                                                 
                                             @forelse ($jefes as $usuario)
-                                                <option value="{{$usuario->id}}">{{$usuario->name }} | {{ $usuario->puesto}}</option>
+                                                <option value="{{$usuario->id}}" {{($usuario->id == $usuarie->id_jefe) ? 'selected' : ''}}>{{$usuario->name}} | {{ $usuario->puesto}}</option>
                                             @empty
                                             @endforelse.
                                             @endif
@@ -284,7 +284,7 @@
                                                 <label for="">Contraseña</label>
                                             </div>
                                             <div class="col-9 p-0 m-0">
-                                                <input type="password" name="password_edit" id="password1" value="{{old('password_edit', $usuarie->password)}}" class="form-control form-control-sm">
+                                                <input type="password" name="password_edit" id="password1" value="{{old('password_edit', $usuarie->password)}}" class="form-control ">
                                             </div>
                                             <div class="col-1 p-0 my-0 mx-3">
                                                 <input type="checkbox" id="view_password1">
@@ -297,14 +297,14 @@
                                     
                                     <div class="form-group">
                                         <label for="">Puesto</label>
-                                        <input type="tel" name="puesto_edit" value="{{old('puesto_edit', $usuarie->puesto)}}"  class="form-control form-control-sm">
+                                        <input type="tel" name="puesto_edit" value="{{old('puesto_edit', $usuarie->puesto)}}"  class="form-control ">
                                         {!!$errors->first('puesto_edit', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
 
                                     
                                     <div class="form-group">
                                         <label for="">Planta </label>
-                                        <select name="planta_edit" value={{old('planta_edit', $usuarie->planta)}} id="" class="form-control form-control-sm">
+                                        <select name="planta_edit" value={{old('planta_edit', $usuarie->planta)}} id="" class="form-control ">
                                             @if ($usuarie->planta == 'Planta 3')
                                                 <option value="Planta 3">Planta 3</option>
                                                 <option value="Planta 2">Planta 2</option>

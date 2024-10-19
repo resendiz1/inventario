@@ -12,7 +12,7 @@
 <div class="container ">
     <div class="row p-5 justify-content-center">
         <div class="col-12 bg-white p-5">
-          <h4 class="font-weight-bold mb-3">telefonos</h4>
+          <h4 class="font-weight-bold mb-3">Telefonos</h4>
             <table class="table">
                 <thead>
                   <tr>

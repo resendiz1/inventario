@@ -22,6 +22,7 @@
                     <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-3">
                         <label for="" class=" m-0 font-weight-bold">Titular del equipo</label>
                         <select name="usuario" id="" class="form-control form-control-sm">
+                            <option value="" selected>Selecciona un usuario</option>
                             @forelse ($usuarios as $usuario)
                                 <option value="{{$usuario->id}}">{{$usuario->name}} | {{ $usuario->puesto }}</option>
                             @empty

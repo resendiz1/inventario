@@ -20,7 +20,6 @@
                     <th scope="col">Marca</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Editar</th>
 
                   </tr>
@@ -32,7 +31,6 @@
                     <td>{{$impresora->marca}}</td>
                     <td>{{$impresora->modelo}}</td>
                     <td>{{$impresora->tipo}}</td>
-                    <td>{{$impresora->estado}}</td>
                     <td><a href="{{route('editar.impresora', $impresora->id)}}">Editar</a></td>
 
                   </tr>
