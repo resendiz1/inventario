@@ -8,5 +8,5 @@ Se necesita un gestor de bd ya sea
 <li>git clone </li> <br>
 <li>composer install </li><br>
 <li>cp .env.example .env</li><br>
-<li>php artisan key:generato</li>  <br>
+<li>php artisan key:generate</li>  <br>
 <li>php artisan migrate --seed </li> <br>
