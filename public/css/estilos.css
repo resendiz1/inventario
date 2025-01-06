@@ -137,7 +137,7 @@
       .scroll-tabla{
         height: 400px;
         padding: 10px;
-        overflow-y: scroll; /* Muestra el scroll vertical cuando el contenido excede la altura */
+        overflow-y: hidden; /* Muestra el scroll vertical cuando el contenido excede la altura */
         overflow-x: hidden; /* Oculta el scroll horizontal */
       }
 
@@ -178,8 +178,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+
 /* Mostrar el contenido con una transición suave */
 .fade-in {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
+
+

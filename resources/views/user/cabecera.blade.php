@@ -50,8 +50,17 @@
 
                 <div class="col-sm-2 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
                     <a href="{{route('perfil.user')}}" >
-                        <i class="fa-solid fa-computer fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
-                        <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
+                        <i class="fa-solid fa-globe fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Herramientas web</h5>
+                        {{-- <span class="badge badge-notification">3</span> <!-- Badge de notificación --> --}}
+                    </a>
+                </div>
+
+
+                <div class="col-sm-2 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
+                    <a href="{{route('dispositivos.show')}}" >
+                        <i class="fa-solid fa-computer fa-2x {{ Request::is('user/dispositivos') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user/dispositivos') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
                         {{-- <span class="badge badge-notification">3</span> <!-- Badge de notificación --> --}}
                     </a>
                 </div>
@@ -99,8 +108,7 @@
 
 
     <div class="row my-2">
-        <div class="col-12  text-center">
-            <h2>Dispositivos</h2>
+        <div class="col-12  text-center py-4">
 
             <a href="{{route('user.resguardo')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">
                 <i class="fa fa-lock mx-2"></i>

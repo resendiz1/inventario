@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class tintasController extends Controller
 {
+    
     public function show(){
 
         $pedidos = Pedido::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->simplePaginate(7);

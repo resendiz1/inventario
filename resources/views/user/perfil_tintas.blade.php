@@ -168,7 +168,7 @@
                         <option value="544">544</option>
                         <option value="504">504</option>
                         <option value="664">664</option>
-                        <option value="Otra">Mi impresora es de otra marca</option>
+                        <option value="Otra">Mi impresora es de otra marca y/o otro tipo</option>
                         <option value="Cintas">Cintas para impresora de bascula</option>
                     </select>
 
@@ -182,7 +182,7 @@
 
                 <div class="form-group" style="display: none" id="marca">
                   <label for="" class="m-0">Marca Impresora</label>
-                  <input type="text" name="marca" placeholder="HP, Brother, Canon, ¿Sho que se?" id="marca"  min="0" class="form-control " >
+                  <input type="text" name="marca" placeholder="Ejemplo: HP W1102W de toner" id="marca"  min="0" class="form-control " >
                 </div>
 
 

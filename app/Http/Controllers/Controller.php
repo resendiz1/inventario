@@ -101,8 +101,8 @@ class Controller extends BaseController
         
     }
 
-    public function perfil_user(){
 
+    public function dispositivos_show(){
 
         $user = User::find(Auth::user()->id);
         $computadoras = $user->computadoras;
@@ -110,7 +110,24 @@ class Controller extends BaseController
         $telefonos = $user->telefonos;
 
         return view('user.perfil_dispositivos', compact('computadoras', 'impresoras', 'telefonos'));
+
+
     }
+
+
+
+    public function perfil_user(){
+
+
+        // $user = User::find(Auth::user()->id);
+        // $computadoras = $user->computadoras;
+        // $impresoras = $user->impresoras;
+        // $telefonos = $user->telefonos;
+
+        return view('user.perfil_links');
+    }
+
+
 
 
     public function perfil_admin(){

@@ -20,9 +20,7 @@
                     <th scope="col">Marca</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Procesador</th>
-                    <th scope="col">Ram</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col-2">Ram</th>
                     <th scope="col">Editar</th>
 
                   </tr>
@@ -34,9 +32,7 @@
                     <td>{{$computadora->marca}}</td>
                     <td>{{$computadora->modelo}}</td>
                     <td>{{$computadora->procesador}}</td>
-                    <td>{{$computadora->ram}}</td>
-                    <td>{{$computadora->tipo}}</td>
-                    <td>{{$computadora->estado}}</td>
+                    <td>{{$computadora->ram}} GB</td>
                     <td><a href="{{route('editar.computadora', $computadora->id)}}">Editar</a></td>
 
                   </tr>

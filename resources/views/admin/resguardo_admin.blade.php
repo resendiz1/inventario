@@ -196,7 +196,6 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-4 text-center">
-            {{Storage::url($computadora->imagen1)}}
             <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
           </div>
           
