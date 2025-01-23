@@ -196,15 +196,27 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-4 text-center">
-            <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
+            @if (strlen(Storage::url($computadora->imagen1)) > 9 )
+              <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">  
+            @else
+              <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+            @endif
           </div>
           
           <div class="col-4 text-center">
-            <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
+            @if (strlen(Storage::url($computadora->imagen2)) > 9 )
+              <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">  
+            @else
+              <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+            @endif
           </div>
-      
+
           <div class="col-4 text-center">
-            <img src="{{Storage::url($computadora->imagen3)}}" class="img-fluid" alt="">
+            @if (strlen(Storage::url($computadora->imagen3)) > 9 )
+              <img src="{{Storage::url($computadora->imagen3)}}" class="img-fluid" alt="">  
+            @else
+              <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+            @endif
           </div>
           
         </div>
@@ -294,11 +306,19 @@
         <div class="row p-3 justify-content-center">
       
           <div class="col-6 text-center">
-            <img src="{{Storage::url($impresora->imagen1)}}" class="img-fluid" alt="">
+            @if (strlen(Storage::url($impresora->imagen1)) > 9 )
+              <img src="{{Storage::url($impresora->imagen1)}}" class="img-fluid" alt="">  
+            @else
+              <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+            @endif
           </div>
           
           <div class="col-6 text-center">
-            <img src="{{Storage::url($impresora->imagen2)}}" class="img-fluid" alt="">
+            @if (strlen(Storage::url($impresora->imagen2)) > 9 )
+              <img src="{{Storage::url($impresora->imagen2)}}" class="img-fluid" alt="">  
+            @else
+              <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+            @endif
           </div>
       
           
@@ -380,16 +400,30 @@
   <div class="row p-3 justify-content-center">
     
     <div class="col-4 text-center">
-      <img src="{{Storage::url($telefono->imagen1)}}" class="img-fluid" alt="">
+      @if (strlen(Storage::url($telefono->imagen1)) > 9 )
+        <img src="{{Storage::url($telefono->imagen1)}}" class="img-fluid" alt="">  
+      @else
+        <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+      @endif
+    </div>
+
+    <div class="col-4 text-center">
+      @if (strlen(Storage::url($telefono->imagen2)) > 9 )
+        <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">  
+      @else
+        <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+      @endif
+    </div>
+
+    <div class="col-4 text-center">
+      @if (strlen(Storage::url($telefono->imagen3)) > 9 )
+        <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">  
+      @else
+        <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" class="img-fluid" alt="">
+      @endif
     </div>
     
-    <div class="col-4 text-center">
-      <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">
-    </div>
-  
-    <div class="col-4 text-center">
-      <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">
-    </div>
+
     
   </div>
 

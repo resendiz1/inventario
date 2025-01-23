@@ -10,6 +10,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h3>Agregar Impresora</h3>
+                    {{$errors->any()}}
                     @if (session('agregado'))
                        <li class="text-success fw-bold"> {{session('agregado')}}</li>
                     @endif

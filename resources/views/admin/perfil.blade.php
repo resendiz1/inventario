@@ -145,7 +145,8 @@
                                 <tr>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Puesto</th>    
-                                    <th scope="col">Observaciones</th>      
+                                    <th scope="col">Observaciones</th>   
+                                    <th scope="col">Estatus</th>   
                                 </tr>
                             </thead>
                             @endif
@@ -156,6 +157,7 @@
                                     <td>{{$respuesta->user->name}}</td>
                                     <td>{{$respuesta->user->puesto}}</td>
                                     <td>{{$respuesta->observaciones}}</td>
+                                    <td><button class="btn btn-success" data-toggle="modal" data-target="#res{{$respuesta->id}}" >Resuelto</button></td>
                                 </tr>     
                             @empty
 
@@ -219,7 +221,38 @@
         </div>
     </div>
     <!-- Modal -->
-    @empty
+@empty
+    
+@endforelse
+
+
+
+@forelse ($respuestas_resguardos as $respuesta)
+    {{-- modal de la respuesta --}}
+
+  
+    <!-- Modal -->
+    <div class="modal fade" id="res{{$respuesta->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            {{$respuesta->user->name}}
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    {{-- modal de la respuesta --}}
+@empty
     
 @endforelse
     

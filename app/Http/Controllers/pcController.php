@@ -163,14 +163,14 @@ class pcController extends Controller
 
 
         if(request()->hasFile('imagen1')){
-            $imagen1 = request('imegen1')->store('public');
+            $imagen1 = request()->file('imagen1')->store('public');
         }
         if(request()->hasFile('imagen2')){
-            $imagen2 = request('imagen2')->store('public');
+            $imagen2 = request()->file('imagen2')->store('public');
         }
 
         if(request()->hasFile('imagen3')){
-            $imagen3 = request('imagen3')->store('public');
+            $imagen3 = request()->file('imagen3')->store('public');
         }
 
         request()->validate([

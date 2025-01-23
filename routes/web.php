@@ -68,7 +68,7 @@ Route::patch('/admin/agregando_users/{id}/eliminado', [Controller::class, 'elimi
 Route::patch('/admin/agregando_users/{id}/editado',[Controller::class, 'actualizar_usuario'] )->name('actualizar.usuario')->middleware('auth:admin');
 Route::get('/admin/agregando_users/resguardo/{id}', [resguardoController::class, 'show_admin'])->name('view.resguardo.admin')->middleware('auth:admin');
 Route::get('/admin/agregando_users/accesos/{id}', [accesosController::class, 'show_admin'] )->name('view.accesos.admin')->middleware('auth:admin');
-Route::patch('/admin/agregando_users/accesos/autoriza_software/{id}', [accesosController::class, 'autoriza_software'])->name('autorizar.software');
+Route::patch('/admin/agregando_users/accesos/autoriza_software/{id}', [accesosController::class, 'autoriza_software'])->middleware('auth:admin')->name('autorizar.software');
 Route::patch('/admin/agregando_users/accesos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software'])->name('desautorizar.software');
 Route::patch('/admin/agregando_users/accesos/autorizar_sitio/{id}', [accesosController::class, 'autoriza_sitio'])->name('autorizar.sitio');
 Route::patch('/admin/agregando_users/accesos/desautorizar_sitio/{id}', [accesosController::class, 'desautoriza_sitio'])->name('desautorizar.sitio');
