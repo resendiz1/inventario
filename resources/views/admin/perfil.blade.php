@@ -25,8 +25,8 @@
         <div class="row justify-content-center">
 
 
-            <div class="col-sm-12 col-md-5 col-lg-4 bg-white m-1 border border-5 mt-5 scroll-tabla">
-                <h4 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios</h4>
+            <div class="col-sm-12 col-md-12 col-lg-12 bg-white m-1 border border-5 mt-5 scroll-tabla">
+                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios</h2>
                 @if (session('respuesta'))
                     <h6 class="text-danger">{{session('respuesta')}}</h6>
                 @endif
@@ -76,8 +76,8 @@
 
 
 
-            <div class="col-sm-12 col-md-5 col-lg-7 bg-white m-1 mt-5 border border-3 scroll-tabla">
-                <h4 class="text-center py-3 font-weight-bold" >Reportes de usuarios</h4>
+            <div class="col-sm-12 col-md-12 col-lg-12 bg-white m-1 mt-5 border border-3 scroll-tabla">
+                <h2 class="text-center py-3 font-weight-bold" >Reportes de usuarios</h2>
                 
                 <table class="table table-bordered table-responsive-md p-0">
                         @if (count($reportes) > 0 )
@@ -139,8 +139,8 @@
 
 
 
-            <div class="col-sm-12 col-md-12 col-lg-11 bg-white m-1 mt-2 border border-3 scroll-tabla">
-                <h4 class="text-center py-3 font-weight-bold" >Respuestas Resguardos</h4>
+            <div class="col-sm-12 col-md-12 col-lg-12 bg-white m-1 mt-2 border border-3 scroll-tabla">
+                <h2 class="text-center py-3 font-weight-bold" >Respuestas Resguardos</h2>
                 
                 <table class="table table-bordered table-responsive-md p-0">
                             @if (count($respuestas_resguardos) > 0 )
