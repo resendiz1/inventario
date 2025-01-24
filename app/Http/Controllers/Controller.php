@@ -238,6 +238,13 @@ class Controller extends BaseController
     }
 
 
+    public function perfil_home(){
+
+
+        return view('user.home');
+    } 
+
+
 
 
 

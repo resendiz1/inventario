@@ -13,6 +13,7 @@ class pcController extends Controller
 
         $usuarios = User::all();
         return view('admin.add_pc', compact('usuarios'));
+        
     }
 
 
@@ -162,6 +163,8 @@ class pcController extends Controller
         $imagen3="";
 
 
+        
+
         if(request()->hasFile('imagen1')){
             $imagen1 = request()->file('imagen1')->store('public');
         }
@@ -172,6 +175,9 @@ class pcController extends Controller
         if(request()->hasFile('imagen3')){
             $imagen3 = request()->file('imagen3')->store('public');
         }
+
+
+
 
         request()->validate([
 

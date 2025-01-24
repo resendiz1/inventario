@@ -12,7 +12,15 @@
             </a>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-2 mt-2 text-center ">
+        
+        <div class="col-sm-12 col-md-6 col-lg-1 mt-3 text-center ">
+            <a href="{{route('gestionar.publicaciones')}}" class=" font-weight-bold">
+                <i class="fa fa-newspaper  mr-2"></i>
+                Publicaciones
+            </a>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-1 mt-2 text-center ">
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-laptop"></i>
@@ -40,7 +48,6 @@
                         Lista de dispositivos
                     </a>
 
-
                 </div>
               </div>
         </div>
@@ -62,7 +69,7 @@
         
 
 
-        <div class="col-sm-12 col-md-4 col-lg-2 mt-2 text-center">
+        <div class="col-sm-12 col-md-4 col-lg-1 mt-2 text-center">
             <form action="{{route('cerrar.session.admin')}}" method="POST" >
                 @csrf
                 <button type="submit" class="btn btn-light btn-sm">

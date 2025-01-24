@@ -48,25 +48,26 @@
             </div>
             <div class="row  mt-2 justify-content-center">
 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
-                    <a href="{{route('perfil.user')}}" >
-                        <i class="fa-solid fa-globe fa-2x {{ Request::is('user') ? 'negro font-weight-bold' : '' }} "></i>
-                        <h5 class="{{ Request::is('user') ? 'negro font-weight-bold' : '' }}">Herramientas web</h5>
+
+                <div class="col-sm-6 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
+                    <a href="{{route('perfil.home')}}" >
+                        <i class="fa-solid fa-home fa-2x {{ Request::is('user/home') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user/home') ? 'negro font-weight-bold' : '' }}">Home</h5>
                         {{-- <span class="badge badge-notification">3</span> <!-- Badge de notificación --> --}}
                     </a>
                 </div>
 
 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
-                    <a href="{{route('dispositivos.show')}}" >
-                        <i class="fa-solid fa-computer fa-2x {{ Request::is('user/dispositivos') ? 'negro font-weight-bold' : '' }} "></i>
-                        <h5 class="{{ Request::is('user/dispositivos') ? 'negro font-weight-bold' : '' }}">Dispositivos</h5>
+                <div class="col-sm-6 col-md-4 col-lg-2 text-center  pt-2 zoom_menu">
+                    <a href="{{route('perfil.user')}}" >
+                        <i class="fa-solid fa-globe fa-2x {{ Request::is('user/web-tools') ? 'negro font-weight-bold' : '' }} "></i>
+                        <h5 class="{{ Request::is('user/web-tools') ? 'negro font-weight-bold' : '' }}">Web Tools</h5>
                         {{-- <span class="badge badge-notification">3</span> <!-- Badge de notificación --> --}}
                     </a>
                 </div>
 
                 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-6 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('directorio.show')}}">
                         <i class="fa-solid fa-book fa-2x  {{request()->path() == 'user/directorio' ? 'negro' : '' }}"></i>
                         <h5 class="{{request()->path() == 'user/directorio' ? 'negro font-weight-bold' : '' }}">Directorio</h5>
@@ -74,7 +75,7 @@
                 </div>
 
                 @if (Auth::user()->impresoras)
-                    <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                    <div class="col-sm-6 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                         <a href="{{route('tintas.show')}}" >
                             <i class="fa-solid fa-palette fa-2x {{request()->path() == 'user/tintas' ? 'negro' : '' }}  "></i>
                             <h5 class="{{request()->path() == 'user/tintas' ? 'negro font-weight-bold' : '' }}">Tintas</h5>
@@ -83,7 +84,7 @@
                 @endif
 
 
-                <div class="col-sm-2 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                <div class="col-sm-6 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                     <a href="{{route('tickets.show')}}" >
                         <i class="fa-solid fa-laptop-medical fa-2x  {{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }} "></i>
                         <h5 class="{{ Request::is('user/tickets*') ? 'negro font-weight-bold' : '' }}">Reportes</h5>
@@ -91,7 +92,7 @@
                 </div>
 
                 @if (Auth::user()->jefe)
-                    <div class="col-sm-4 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
+                    <div class="col-sm-6 col-md-4 col-lg-2 text-center pt-2 zoom_menu">
                         <a href="{{route('permisos.show')}}" >
                             <i class="fa-solid fa-users-rectangle fa-2x {{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }} "></i>
                             <h5 class="{{ Request::is('user/permisos') ? 'negro font-weight-bold' : '' }}">Permisos</h5>
@@ -113,6 +114,11 @@
             <a href="{{route('user.resguardo')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">
                 <i class="fa fa-lock mx-2"></i>
                 Resguardo de dispositivos
+            </a>
+
+            <a href="{{route('dispositivos.show')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">
+                <i class="fa fa-computer mx-2"></i>
+                Mis dispositivos
             </a>
 
             <a href="{{route('user.accesos')}}" class="font-weight-bold mx-3 btn btn-light btn-sm">

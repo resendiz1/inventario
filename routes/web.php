@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\accesosController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pcController;
@@ -7,11 +6,13 @@ use App\Http\Controllers\upsController;
 use App\Http\Controllers\areaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\tintasController;
+use App\Http\Controllers\accesosController;
 use App\Http\Controllers\printerController;
 use App\Http\Controllers\ticketsController;
 use App\Http\Controllers\telefonoController;
 use App\Http\Controllers\resguardoController;
 use App\Http\Controllers\directorioController;
+use App\Http\Controllers\publicacionesController;
 
 
 //Rutas para ir a los dispositivos
@@ -111,12 +112,29 @@ Route::post('admin/add_printer', [printerController::class, 'create'])->name('pr
 
 
 
+
+//rutas del panekl de control de las publicaciones
+Route::get('admin/publicaciones', [publicacionesController::class, 'show'])->name('gestionar.publicaciones');
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Route::get('/dispositivo{serie}', [homeController::class, 'show'])->name('device.show');
 
 Route::get('/user/tickets/detalles/{id}', [ticketsController::class, 'detalle_reporte'])->name('detalle.reporte')->middleware('auth');
 
 //Rutas que funcionan en el perfil de los usuarios
-Route::get('/user', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
+Route::get('/user/home', [Controller::class, 'perfil_home'])->name('perfil.home')->middleware('auth');
+Route::get('/user/web-tools', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
 Route::get('/user/dispositivos', [Controller::class, 'dispositivos_show'])->name('dispositivos.show')->middleware('auth');
 Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show')->middleware('auth');
 Route::get('/user/tickets', [ticketsController::class, 'show'])->name('tickets.show')->middleware('auth');
