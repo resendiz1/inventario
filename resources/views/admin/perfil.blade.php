@@ -39,6 +39,8 @@
                                 <th scope="col">Colores</th>
                                 <th scope="col">Número</th>
                                 <th scope="col">Acciones</th>
+                                <th scope="col">Respuesta Admin</th>
+
         
                             </tr>
                         </thead>
@@ -50,7 +52,8 @@
                                     <td>{{$pedido->fecha_pedido}}</td>
                                     <td>{{implode(', ',json_decode($pedido->colores, true))}}</td>
                                     <td>{{$pedido->numero}}</td>   
-                                    <td> <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#r{{$pedido->id}}">Responder</button> </td>               
+                                    <td> <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#r{{$pedido->id}}">Responder</button> </td>  
+                                    <td>{{$pedido->respuesta_admin}}</td>             
                                 </tr>     
                             @empty
                                 
@@ -146,7 +149,7 @@
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Puesto</th>    
                                     <th scope="col">Observaciones</th>   
-                                    <th scope="col">Estatus</th>   
+                                    {{-- <th scope="col">Estatus</th>    --}}
                                 </tr>
                             </thead>
                             @endif
@@ -157,7 +160,7 @@
                                     <td>{{$respuesta->user->name}}</td>
                                     <td>{{$respuesta->user->puesto}}</td>
                                     <td>{{$respuesta->observaciones}}</td>
-                                    <td><button class="btn btn-success" data-toggle="modal" data-target="#res{{$respuesta->id}}" >Resuelto</button></td>
+                                    {{-- <td><button class="btn btn-success" data-toggle="modal" data-target="#res{{$respuesta->id}}" >Resuelto</button></td> --}}
                                 </tr>     
                             @empty
 
