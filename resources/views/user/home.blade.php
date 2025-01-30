@@ -8,6 +8,11 @@
     <div class="row justify-content-center">
         <div class="col-7 text-center bg-white shadow-sm py-2">
             <h2 class="font-arimo">Publicaciones</h2>
+            <h1>@php
+                if(Auth::viaRemember()){
+                    return "session recordada";
+                }
+            @endphp</h1>
         </div>
     </div>
 

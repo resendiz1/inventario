@@ -68,15 +68,18 @@ class Controller extends BaseController
 
     }
 
+
+
     public function ingreso_admin(){
 
 
         $credenciales = request()->only('email', 'password');
+        $remember = request('remember');
 
 
         if(request('tipo') == 'administrador' ){
             
-            if(Auth::guard('admin')->attempt($credenciales)){
+            if(Auth::guard('admin')->attempt($credenciales, $remember)){
                 request()->session()->regenerate();
                 return redirect()->route('perfil.admin');            
             }
@@ -89,7 +92,7 @@ class Controller extends BaseController
 
 
         if(request('tipo') == 'usuario'){
-            if(Auth::attempt($credenciales)){
+            if(Auth::attempt($credenciales, $remember)){
                 request()->session()->regenerate();
                 return redirect()->route('perfil.user');            
             }
@@ -100,6 +103,9 @@ class Controller extends BaseController
 
         
     }
+
+
+
 
 
     public function dispositivos_show(){
