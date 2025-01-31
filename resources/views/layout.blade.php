@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+    
     <style>
         body{
             background-color: aliceblue;
@@ -32,6 +36,15 @@
       content.classList.add('fade-in');
     });
   </script>
+
+<script>
+  const quill = new Quill('#articulo', {
+    theme: 'snow',
+    modules:{
+      toolbar: '#toolbar'
+    }
+  });
+</script>
 
 
 </body>

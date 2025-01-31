@@ -86,6 +86,15 @@ public function accesos(){
 }
 
 
+public function comentarios(){
+    return  $this->hasMany(Comentario::class);
+}
+
+public function reacciones(){
+    return $this->hasMany(Reaccion::class);
+}
+
+
 
 
 

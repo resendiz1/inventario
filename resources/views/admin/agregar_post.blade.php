@@ -16,16 +16,16 @@
         <div class="col-11 bg-white p-5">
             <div class="row">
 
-                <div class="col-sm-12 col-md-8 col-lg-6">
+                <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="form-group">
-                        <label for="font-weight-bold">Titulo de la publicación: </label>
+                        <label for="font-weight-bold" class="font-weight-bold">Titulo de la publicación: </label>
                         <input type="text" class="form-control" id="titulo">
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8 col-lg-6">
+                <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="form-group">
-                        <label for="font-weight-bold">Categoria: </label>
+                        <label for="" class="font-weight-bold">Categoria: </label>
                         <select name="categoria" id="" class="form-control">
                             <option value="Categoria 1">Categoria 1</option>
                             <option value="Categoria 3">Categoria 3</option>
@@ -38,26 +38,51 @@
 
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="font-weight-bold">Parrafo 1: </label>
+                        <label for="font-weight-bold" class="font-weight-bold">Introducción: </label>
                         <textarea name="parrafo1" class="form-control"  ></textarea>
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8 col-lg-6">
+                <div class="col-12">
+                    <label for="" class="font-weight-bold">Portada del articulo</label>
                     <div class="form-group">
-                        <label for="">
-
-                        </label>
+                        <input type="file" class="form-control">
                     </div>
                 </div>
 
+                <div class="col-12 mb-4">
+                    <div id="toolbar">
+                        <select class="ql-font"></select>
+                        <select class="ql-size"></select>
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                        <button class="ql-strike"></button>
+                        <select class="ql-color"></select>
+                        <select class="ql-background"></select>
+                        <button class="ql-blockquote"></button>
+                        <button class="ql-code-block"></button>
+                        <button class="ql-image"></button>
+                    </div>
+
+                    <div id="articulo" class="ql-editor"></div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-8 col-lg-4 mt-5">
+                    <button class="btn btn-success">
+                        <i class="fa fa-plus"></i>
+                        Agregar Publicación
+                    </button>
+                </div>
+
             </div>
+
         </div>
     </div>
 
 
 </div>
-
 
 
 
