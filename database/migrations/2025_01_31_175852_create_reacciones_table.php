@@ -26,7 +26,7 @@ class CreateReaccionesTable extends Migration
                   ->on('publicaciones');
 
             //definicion de la relacion con la tabla usuarios
-            $table->foregn('users_id')
+            $table->foreign('users_id')
                   ->references('id')
                   ->on('users');
 

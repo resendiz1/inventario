@@ -44,6 +44,11 @@
       toolbar: '#toolbar'
     }
   });
+
+  quill.on('text-change', function(){
+    document.getElementById('contenido').value = quill.root.innerHTML;
+  })
+
 </script>
 
 

@@ -116,7 +116,7 @@ Route::post('admin/add_printer', [printerController::class, 'create'])->name('pr
 //rutas del panekl de control de las publicaciones
 Route::get('admin/publicaciones', [publicacionesController::class, 'show'])->name('gestionar.publicaciones')->middleware('auth:admin');
 Route::get('admin/publicaciones/nueva', [publicacionesController::class, 'agregar_post'])->name('agregar.post')->middleware('auth:admin');
-
+Route::post('admin/publicaciones/nueva/post', [publicacionesController::class, 'post_store'])->name('post.store')->middleware('auth:admin');
 
 
 

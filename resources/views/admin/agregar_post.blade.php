@@ -5,6 +5,8 @@
 
 
 
+<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center p-3 bg-white shadows m-3 ">
@@ -15,11 +17,10 @@
     <div class="row justify-content-center">
         <div class="col-11 bg-white p-5">
             <div class="row">
-
                 <div class="col-sm-12 col-md-12 col-lg-6">
                     <div class="form-group">
                         <label for="font-weight-bold" class="font-weight-bold">Titulo de la publicación: </label>
-                        <input type="text" class="form-control" id="titulo">
+                        <input type="text" name="titulo" class="form-control" id="titulo">
                     </div>
                 </div>
 
@@ -39,14 +40,14 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="font-weight-bold" class="font-weight-bold">Introducción: </label>
-                        <textarea name="parrafo1" class="form-control"  ></textarea>
+                        <textarea name="introduccion" class="form-control"  ></textarea>
                     </div>
                 </div>
 
                 <div class="col-12">
                     <label for="" class="font-weight-bold">Portada del articulo</label>
                     <div class="form-group">
-                        <input type="file" class="form-control">
+                        <input type="file" name="portada" class="form-control">
                     </div>
                 </div>
 
@@ -66,7 +67,9 @@
                     </div>
 
                     <div id="articulo" class="ql-editor"></div>
+                    <input type="hidden"  name="contenido" id="contenido">
                 </div>
+
 
 
                 <div class="col-sm-12 col-md-8 col-lg-4 mt-5">
@@ -75,15 +78,15 @@
                         Agregar Publicación
                     </button>
                 </div>
-
             </div>
-
+            
         </div>
     </div>
-
-
+    
+    
 </div>
 
+</form>
 
 
 
