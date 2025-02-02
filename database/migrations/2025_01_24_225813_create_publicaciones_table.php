@@ -20,6 +20,7 @@ class CreatePublicacionesTable extends Migration
             $table->string('introduccion');
             $table->string('portada');
             $table->mediumtext('cuerpo');
+            $table->string('autor');
             $table->timestamps();
         });
     }

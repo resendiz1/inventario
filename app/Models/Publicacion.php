@@ -11,7 +11,7 @@ class Publicacion extends Model
 
 
     protected $table = 'publicaciones';
-    protected $fillable= ['titulo', 'categoria', 'introduccion', 'portada', 'cuerpo'];
+    protected $fillable= ['titulo', 'categoria', 'introduccion', 'portada', 'cuerpo', 'autor'];
 
 
     public function comentarios(){

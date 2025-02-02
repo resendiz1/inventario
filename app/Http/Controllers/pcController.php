@@ -35,12 +35,7 @@ class pcController extends Controller
 
         ]);
         
-        
 
-
-        if(request()->file('imagen1')){
-
-        }
 
 
 

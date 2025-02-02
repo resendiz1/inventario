@@ -5,12 +5,27 @@
 
 
 
-<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('post.store')}}" enctype="multipart/form-data" method="POST">
     @csrf
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center p-3 bg-white shadows m-3 ">
             <h3 class="font-weight-bold titulo_publicaciones">Agregar Publicación</h3>
+            @if (session('publicacion_agregada'))
+                <div class="alert alert-success">
+                    {{session('publicacion_agregada')}}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                
+            @endif
         </div>
     </div>
 
@@ -47,7 +62,7 @@
                 <div class="col-12">
                     <label for="" class="font-weight-bold">Portada del articulo</label>
                     <div class="form-group">
-                        <input type="file" name="portada" class="form-control">
+                        <input type="file" name="portada_imagen" class="form-control">
                     </div>
                 </div>
 
