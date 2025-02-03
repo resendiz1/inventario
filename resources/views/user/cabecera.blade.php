@@ -20,7 +20,7 @@
 
     <div class="row mt-5 mb-2 justify-content-center">
 
-        <div class="col-sm-12 col-md-12 col-lg-4 bg-white shadow shadow-sm mx-1 p-3 py-4 border border-5">
+        <div class="col-sm-12 col-md-12 col-lg-3 bg-white shadow shadow-sm mx-1 p-3 py-4 border border-5">
             <div class="row justify-content-center">
 
                 <div class="col-12 text-center">
@@ -40,7 +40,7 @@
         </div>
 
 
-        <div class="col-sm-12 col-md-12 col-lg-7 bg-white shadow shadow-sm  p-3  text-center">
+        <div class="col-sm-12 col-md-12 col-lg-8 bg-white shadow shadow-sm  p-3  text-center">
             <div class="row">
                 <div class="col-12">
                     <h3><u> Menú </u> </h3>

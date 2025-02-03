@@ -27,6 +27,10 @@ class User extends Authenticatable
         'jefe',
         'ubicacion',
         'resguardo_firmado',
+        'aspel',
+        'camaras',
+        'soporte',
+        'telefonia',
 
     ];
 

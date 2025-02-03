@@ -29,10 +29,14 @@
                                 {{$usuario->correo}}
                             </span>
                         </div>
+
+                        @if ($usuario->celular)
                         <div class="col-12 m-1">
                             <b>Celular : </b> 
                             <span>{{$usuario->celular}}</span>
                         </div>
+                        @endif
+
                         <div class="col-12 m-1">
                             <b>Extensión : </b> 
                             <span>{{$usuario->extension}}</span>

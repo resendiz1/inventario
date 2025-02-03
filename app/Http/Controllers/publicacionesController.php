@@ -57,6 +57,14 @@ class publicacionesController extends Controller
     }
 
 
+    public function mostrar_post($id){
+
+        $publicacion = Publicacion::find($id);
+        return view('user.perfil_post', compact('publicacion'));
+
+    }
+
+
 
 
 

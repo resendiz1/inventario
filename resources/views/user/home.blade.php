@@ -28,13 +28,12 @@
 
                     <div class="col-12">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi repellat voluptatum, itaque aspernatur illo harum veritatis quisquam soluta quam qui. Earum nihil accusamus dolore porro quisquam voluptate. Autem, repellat ducimus.
                             {{$publicacion->introduccion}}
                         </p>
                     </div>
 
                     <div class="col-12 m-3 text-center">
-                        <a href="#" class="h5">Ir a la publicación</a>
+                        <a href="{{route('mostrar.post', $publicacion->id)}}" class="h5">Ir a la publicación</a>
                     </div>
 
                     <div class="col-12 text-center mt-1 p-3">
