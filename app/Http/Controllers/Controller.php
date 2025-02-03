@@ -9,6 +9,7 @@ use App\Models\Telefono;
 use App\Models\Impresora;
 use App\Models\Resguardo;
 use App\Models\Computadora;
+use App\Models\Publicacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -246,8 +247,9 @@ class Controller extends BaseController
 
     public function perfil_home(){
 
+        $publicaciones = Publicacion::all();
 
-        return view('user.home');
+        return view('user.home', compact('publicaciones'));
     } 
 
 

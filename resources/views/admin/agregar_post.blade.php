@@ -62,7 +62,7 @@
                 <div class="col-12">
                     <label for="" class="font-weight-bold">Portada del articulo</label>
                     <div class="form-group">
-                        <input type="file" name="portada_imagen" class="form-control">
+                        <input type="file" name="portada" class="form-control">
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                     </div>
 
                     <div id="articulo" class="ql-editor"></div>
-                    <input type="hidden"  name="contenido" id="contenido">
+                    <input type="hidden"  name="cuerpo" value="{{old('cuerpo')}}" id="contenido">
                 </div>
 
 

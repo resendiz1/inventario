@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publicacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,11 @@ class publicacionesController extends Controller
 {
     
     public function show(){
-        return view('admin.gestionar_publicaciones');
+
+        $publicaciones = Publicacion::all();
+        return view('admin.gestionar_publicaciones', compact('publicaciones'));
+
+
     }
 
     public function agregar_post(){
@@ -21,15 +26,16 @@ class publicacionesController extends Controller
     public function post_store(){
 
 
-        if(request()->hasFile('portada_imagen')){
-            return $portada = request()->file('portada_imagen')->store('public');
+
+        if(request()->hasFile('portada')){
+            $portada = request()->file('portada')->store('public');
         }
 
 
         request()->validate([
             'titulo' => 'required',
-            'descripcion' => 'required',
-            'contenido' => 'required',
+            'introduccion' => 'required',
+            'cuerpo' => 'required',
             'portada' => 'required',
             'categoria' => 'required',
         ]);
@@ -37,12 +43,11 @@ class publicacionesController extends Controller
         $publicacion = new Publicacion();
 
         $publicacion->titulo = request('titulo');
-        $publicacion->descripcion = request('descripcion'); 
-        $publicacion->contenido = request('contenido');
-        $publicacion->imagen = $portada;
+        $publicacion->introduccion = request('introduccion'); 
+        $publicacion->cuerpo = request('cuerpo');
+        $publicacion->portada = $portada;
         $publicacion->categoria = request('categoria');
-        $publicacion->fecha = request('fecha');
-        $oublicacion->autor = Auth::guard("admin")->user()->nombre;
+        $publicacion->autor = Auth::guard("admin")->user()->nombre;
 
         $publicacion->save();
 
@@ -50,6 +55,9 @@ class publicacionesController extends Controller
 
         return back()->with('publicacion_agregada', 'Publicacion agregada correctamente');
     }
+
+
+
 
 
 }

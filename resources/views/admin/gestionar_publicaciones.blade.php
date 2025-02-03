@@ -20,32 +20,38 @@
             <h2 class="p-3 font-weight-bold bg-dark text-white m-2">Publicaciones realizadas</h2>
             <table class="table">
                 <thead>
-                  <tr>
-                    <th scope="col">#</th>
+                  <tr class="text-uppercase">
                     <th scope="col">Titulo</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">introduccion</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                  @forelse ($publicaciones as $publicacion)
+                    <tr>
+                      <th>{{$publicacion->titulo}}</th>
+                      <td>{{$publicacion->introduccion}}</td>
+                      <td>{{$publicacion->created_at}}</td>
+                      <td class="text-underline"> 
+                        <i class="fa fa-pencil mx-2"></i>
+                        {{$publicacion->autor}}
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-danger">
+                            <i class="fa fa-eraser"></i>
+                          </button>
+                          <button class="btn btn-dark">
+                            <i class="fa fa-edit"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  @empty
+                      <li>No hay ni madres</li>
+                  @endforelse
                 </tbody>
               </table>
         </div>
