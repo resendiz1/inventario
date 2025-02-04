@@ -37,20 +37,26 @@
                     </div>
 
                     <div class="col-12 text-center mt-1 p-3">
-                        <div class="btn-group">
-                            <button class="btn btn-danger d-block">
-                                <i class="fa fa-heart text-white"></i>
-                                80
-                            </button>
-                            <button class="btn btn-primary d-block">
-                                <i class="fa fa-thumbs-up"></i>
-                                30
-                            </button>
-                            <button class="btn btn-secondary d-block">
-                                <i class="fa-solid fa-thumbs-down"></i>
-                                20
-                            </button>
-                        </div>
+                        <form action="{{route('reaccion.store')}}" method="POST" >
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="publicacion_id" value="{{$publicacion->id}}">
+
+                            <div class="btn-group">
+                                <button class="btn btn-danger d-block" name="reaccion" value="loveit">
+                                    <i class="fa fa-heart text-white"></i>
+                                    80
+                                </button>
+                                <button class="btn btn-primary d-block" name="reaccion" value="like">
+                                    <i class="fa fa-thumbs-up"></i>
+                                    30
+                                </button>
+                                <button class="btn btn-secondary d-block" name="reaccion" value="dislike">
+                                    <i class="fa-solid fa-thumbs-down"></i>
+                                    20
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>

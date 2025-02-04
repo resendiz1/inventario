@@ -16,8 +16,8 @@ class CreateReaccionesTable extends Migration
         Schema::create('reacciones', function (Blueprint $table) {
             $table->id();
             $table->string('reaccion');
-            $table->unsignedBigInteger('publicaciones_id'); //esta es la llave foranea a la tabla de publicaciones
-            $table->unsignedBigInteger('users_id');//esta es la llave foranea a la tabla de los usuarios
+            $table->unsignedBigInteger('publicacion_id'); //esta es la llave foranea a la tabla de publicaciones
+            $table->unsignedBigInteger('user_id');//esta es la llave foranea a la tabla de los usuarios
             $table->timestamps();
             
             //definiendo la relacion

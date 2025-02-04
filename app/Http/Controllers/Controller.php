@@ -32,6 +32,7 @@ class Controller extends BaseController
     }
 
 
+
     public function registrar_usuarios(){
 
     
@@ -245,12 +246,19 @@ class Controller extends BaseController
     }
 
 
+
+
+
+
     public function perfil_home(){
 
-        $publicaciones = Publicacion::all();
+      return  $publicaciones = Publicacion::with('reacciones')->get();
+
 
         return view('user.home', compact('publicaciones'));
     } 
+
+
 
 
 
