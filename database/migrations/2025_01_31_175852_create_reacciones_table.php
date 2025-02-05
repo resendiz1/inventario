@@ -19,16 +19,19 @@ class CreateReaccionesTable extends Migration
             $table->unsignedBigInteger('publicacion_id'); //esta es la llave foranea a la tabla de publicaciones
             $table->unsignedBigInteger('user_id');//esta es la llave foranea a la tabla de los usuarios
             $table->timestamps();
-            
+                
             //definiendo la relacion
-            $table->foreign('publicaciones_id')
+            $table->foreign('publicacion_id')
                   ->references('id')
                   ->on('publicaciones');
 
             //definicion de la relacion con la tabla usuarios
-            $table->foreign('users_id')
+            $table->foreign('user_id')
                   ->references('id')
                   ->on('users');
+
+            //evitar reacciones duplicadas
+            $table->unique(['publicacion_id', 'user_id']);
 
         });
     }

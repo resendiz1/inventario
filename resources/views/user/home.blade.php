@@ -41,21 +41,23 @@
                             @csrf
                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                             <input type="hidden" name="publicacion_id" value="{{$publicacion->id}}">
+      
+                                    <div class="btn-group">
+                                        <button class="btn btn-danger d-block" tooltip="Ya diste iloveit" name="reaccion" value="loveit">
+                                            <i class="fa fa-heart text-white"></i>
+                                            {{$publicacion->loveit_count}}
+                                        </button>
 
-                            <div class="btn-group">
-                                <button class="btn btn-danger d-block" name="reaccion" value="loveit">
-                                    <i class="fa fa-heart text-white"></i>
-                                    80
-                                </button>
-                                <button class="btn btn-primary d-block" name="reaccion" value="like">
-                                    <i class="fa fa-thumbs-up"></i>
-                                    30
-                                </button>
-                                <button class="btn btn-secondary d-block" name="reaccion" value="dislike">
-                                    <i class="fa-solid fa-thumbs-down"></i>
-                                    20
-                                </button>
-                            </div>
+                                        <button class="btn btn-primary d-block" name="reaccion" value="like">
+                                            <i class="fa fa-thumbs-up"></i>
+                                            {{$publicacion->like_count}}
+                                        </button>
+
+                                        <button class="btn btn-secondary d-block" name="reaccion" value="dislike">
+                                            <i class="fa-solid fa-thumbs-down"></i>
+                                            {{$publicacion->dislike_count}}
+                                        </button>
+                                    </div>
                         </form>
                     </div>
 

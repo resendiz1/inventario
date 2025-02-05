@@ -252,7 +252,12 @@ class Controller extends BaseController
 
     public function perfil_home(){
 
-      return  $publicaciones = Publicacion::with('reacciones')->get();
+        $publicaciones = Publicacion::withCount([
+            'reacciones as loveit_count' => fn($q) => $q->where('reaccion', 'loveit'),
+            'reacciones as like_count' => fn($q) => $q->where('reaccion', 'like'),
+            'reacciones as dislike_count' => fn($q) => $q->where('reaccion', 'dislike') 
+        ])->with('comentarios.user')->latest()->get();
+        
 
 
         return view('user.home', compact('publicaciones'));

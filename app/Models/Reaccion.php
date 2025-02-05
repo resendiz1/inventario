@@ -12,7 +12,7 @@ class Reaccion extends Model
 
 
     protected $table = 'reacciones';
-    protected $fillable = ['reaccion', 'users_id', 'publicaciones_id'];
+    protected $fillable = ['reaccion', 'user_id', 'publicacion_id'];
 
 
 

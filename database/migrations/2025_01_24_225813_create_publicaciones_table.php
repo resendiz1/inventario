@@ -17,7 +17,7 @@ class CreatePublicacionesTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('categoria');
-            $table->string('introduccion');
+            $table->mediumtext('introduccion');
             $table->string('portada');
             $table->mediumtext('cuerpo');
             $table->string('autor');
