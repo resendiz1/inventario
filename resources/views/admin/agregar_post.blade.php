@@ -106,3 +106,20 @@
 
 
 @endsection
+
+
+@section('scripts')
+<script>
+    const quill = new Quill('#articulo', {
+      theme: 'snow',
+      modules:{
+        toolbar: '#toolbar'
+      }
+    });
+  
+    quill.on('text-change', function(){
+      document.getElementById('contenido').value = quill.root.innerHTML;
+    })
+  
+  </script>
+@endsection
