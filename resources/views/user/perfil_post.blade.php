@@ -37,14 +37,16 @@
         </div>
         
         <div class="col-12 text-center mt-2">
-            {{dd($reaccion)}}
-            {{-- @if (isset($reaccion[0]  && $reaccion[0]->reaccion))
+            
+            @php $reaccionUsuario = optional($reaccion->first())->reaccion; @endphp
+
+            @if ($reaccionUsuario)
                 <span class="fw-bold h3 bg-light p-3 border border-4">
-                    {!!$reaccion[0]->reaccion == 'like' ?  '<i class="fa fa-thumbs-up text-primary text-underline"></i> You Like This' : '' !!}
-                    {!!$reaccion[0]->reaccion == 'dislike' ?  '<i class="fa fa-thumbs-down text-secondary text-underline"></i> You Dislike This' : '' !!}
-                    {!!$reaccion[0]->reaccion == 'loveit' ?  '<i class="fa fa-heart text-danger text-underline"></i>  You Love This' : '' !!}
+                    {!! $reaccionUsuario == 'like' ? '<i class="fa fa-thumbs-up text-primary text-underline"></i> You Like This' : '' !!}
+                    {!! $reaccionUsuario == 'dislike' ? '<i class="fa fa-thumbs-down text-secondary text-underline"></i> You Dislike This' : '' !!}
+                    {!! $reaccionUsuario == 'loveit' ? '<i class="fa fa-heart text-danger text-underline"></i> You Love This' : '' !!}
                 </span>
-            @endif --}}
+            @endif
 
         </div>
         
