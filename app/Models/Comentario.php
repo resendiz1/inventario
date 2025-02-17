@@ -18,7 +18,7 @@ class Comentario extends Model
     }
 
     public function user(){
-        return $this->belongsTo(Publicacion::class);
+        return $this->belongsTo(Publicacion::class, 'id_users', 'id');
     }
 
 

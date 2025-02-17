@@ -20,14 +20,16 @@ class reaccionesController extends Controller
         
 
         //verificar si ya existe el registro
-        $reaccion = DB::select("SELECT*FROM reacciones WHERE user_id LIKE $user_id AND publicacion_id LIKE $publicacion_id");
-
+       $reaccion = DB::select("SELECT*FROM reacciones WHERE user_id LIKE $user_id AND publicacion_id LIKE $publicacion_id");
+        
 
         if($reaccion){
-
+            
             $actualiza_reaccion = Reaccion::findOrFail($reaccion[0]->id);
-            $actualiza_reaccion->reaccion = 'like';
+            $actualiza_reaccion->reaccion = $reaccion_nueva;
             $actualiza_reaccion->update();
+            
+            return back();
 
         }
 

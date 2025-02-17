@@ -10,7 +10,7 @@ class directorioController extends Controller
 
     public function show(){
 
-        $usuarios = User::all();
+        $usuarios = User::orderBy('created_at', 'desc')->get();
 
         return view('user.perfil_directorio', compact('usuarios'));
 

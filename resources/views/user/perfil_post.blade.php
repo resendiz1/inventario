@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('layout')
 @section('title', 'Publicaciones')
 @section('contenido')
@@ -6,37 +9,55 @@
 <div class="container  bg-white shadow shadow-sm fade-out" id="content">
 
     <div class="row justify-content-center">
-        <div class="col-6 text-center  my-5">
+        <div class="col-6 text-center  my-3 mt-5">
             <h1 class="titulo-post" >{{$publicacion->titulo}}</h1>
             <span class="text-sub">Recuperado de internet por: <u> {{$publicacion->autor}} <i class="fa fa-heart"></i> </u> </span>
         </div>
+        <div class="col-12 text-center my-3 p-0 mt-1">
+            <form action="{{route('reaccion.store')}}" method="POST">
+                @csrf
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <input type="hidden" name="publicacion_id" value="{{$publicacion->id}}">
+                <h5>Reacciones: </h5>
+                <div class="btn-group">
+                    <button class="btn btn-danger d-block btn-sm" name="reaccion" value="loveit">
+                        <i class="fa fa-heart text-white"></i>
+                        {{$contador_loveit}}
+                    </button>
+                    <button class="btn btn-primary d-block btn-sm" name="reaccion" value="like">
+                        <i class="fa fa-thumbs-up"></i>
+                        {{$contador_likes}}
+                    </button>
+                    <button class="btn btn-secondary d-block btn-sm" name="reaccion" value="dislike">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        {{$contador_dislikes}}
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-12 text-center mt-2">
+            {{dd($reaccion)}}
+            {{-- @if (isset($reaccion[0]  && $reaccion[0]->reaccion))
+                <span class="fw-bold h3 bg-light p-3 border border-4">
+                    {!!$reaccion[0]->reaccion == 'like' ?  '<i class="fa fa-thumbs-up text-primary text-underline"></i> You Like This' : '' !!}
+                    {!!$reaccion[0]->reaccion == 'dislike' ?  '<i class="fa fa-thumbs-down text-secondary text-underline"></i> You Dislike This' : '' !!}
+                    {!!$reaccion[0]->reaccion == 'loveit' ?  '<i class="fa fa-heart text-danger text-underline"></i>  You Love This' : '' !!}
+                </span>
+            @endif --}}
 
-        {{-- <div class="col-12 text-center my-3 p-0 mt-1">
-            <h5>Reacciones: </h5>
-            <div class="btn-group">
-                <button class="btn btn-danger d-block btn-sm">
-                    <i class="fa fa-heart text-white"></i>
-                    80
-                </button>
-                <button class="btn btn-primary d-block btn-sm">
-                    <i class="fa fa-thumbs-up"></i>
-                    30
-                </button>
-                <button class="btn btn-secondary d-block btn-sm">
-                    <i class="fa-solid fa-thumbs-down"></i>
-                    20
-                </button>
-            </div>
-        </div> --}}
-
-        <div class="col-10">
-            <p>{{$publicacion->introduccion}}</p>
+        </div>
+        
+        
+        <div class="col-10 mt-5">
+            <b>Introducción: </b>
+            <p>{{$publicacion->introduccion}}</p> 
         </div>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-8 text-center m-3">
-            <img src="{{Storage::url($publicacion->portada)}}" class="img-fluid w-75 m-5" alt="">
+            <img src="{{asset(Storage::url($publicacion->portada))}}" class="img-fluid w-75 m-5" alt="">
         </div>
     </div>
 
@@ -55,20 +76,43 @@
 
 <div class="container mt-4 bg-white shadow p-4">
 
-    <div class="row mb-5">
+    <div class="row ">
         <div class="col-12">
             <h4 class="titulos">Comentarios</h4>
         </div>
     </div>  
-    <hr>
+
+
+    <div class="row mt-3" id="comentariosContenedor">
+        @forelse ($publicacion->comentarios as $comentario)
+            <div class="col-12 MB-5">
+                <div class="form-group">
+                    <b class="text-secondary">@php $nombre = DB::table('users')->where('id',  $comentario->user_id )->get(); echo $nombre[0]->name;@endphp</b> <br>
+
+                    <p class="bg-gray px-3">
+                        {{$comentario->comentario}}
+                    </p>
+
+                    <small>{{$comentario->created_at->diffForHumans()}}</small>
+                </div>
+                <hr style="width: 95%; height: 2px; background-color: gray; border: none; margin: 5px auto;">
+            </div>
+        @empty
+        <li>No hay comentarios</li>
+        @endforelse
+    </div>
+
+
     <div class="row ">
         <div class="col-12">
             <div class="form-group">
-                <b>Arturo Resendiz López</b>
-                <form action="{{route('comentario.store')}}" method="POST" id="comentarioFormulario" >
+                <b>{{Auth()->user()->name}}</b>
+                <form action="{{route('comentario.store')}}" method="POST" id="comentario" >
                     @csrf
+                    <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="id_publicacion" value="{{$publicacion->id}}">
                     <textarea name="comentario" class="w-100 form-control my-2"  placeholder="Comentario ... " ></textarea>
-                    <button class="btn btn-success">Comentar</button>
+                    <button class="btn btn-success" type="submit">Comentar</button>
                 </form>
             </div>
         </div>
@@ -76,17 +120,7 @@
 
 
 
-    <div class="row mt-5" id="comentariosContenedor">
-        <div class="col-12">
-            <div class="form-group">
-                <b>Arturo Resendiz López</b> <br>
-                <p class="bg-gray border py-2">
-                    Este es un comentario de prueba para poder hacer bulto con el texto y mirar masomenos como va a quedar el diseño, recien se le esta dando funcionalidad a esto.
-                </p>
-                <small>Hace 2 horas</small>
-            </div>
-        </div>
-    </div>
+
 
 
 
@@ -95,57 +129,55 @@
 @endsection
 
 
-@section('scripts')
 <script>
-    document.addEventListener("DOMContentLoaded", function(){
-
-        document.getElementById('comentariosFormulario').addEventListener('submit', function(e){
-            e.preventDefault();
-
-            let form = this;
-            let formData = new formData(form);
-
-            //se envia la solicitud a fethcAPI
-            fetch("{{route('comentario.store')}}",{
-                method: "POST",
-                headers:{
-                    "X-CSRF-TOKEN": document.querySelector('input[name=_token]').value
+    document.addEventListener("DOMContentLoaded", function () { 
+        // Esperamos a que la página cargue completamente antes de ejecutar el código
+    
+        document.getElementById("comentario").addEventListener("submit", function (e) {
+            e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+            let form = this; // Referencia al formulario
+            let formData = new FormData(form); // Creamos un objeto FormData con los datos del formulario
+    
+            // Enviamos la solicitud con Fetch API
+            fetch("{{ route('comentario.store') }}", {
+                method: "POST", // Método HTTP
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value // Token CSRF para seguridad
                 },
-                body: formData // se envian los datos del formulario
+                body: formData // Enviamos los datos del formulario
             })
-            .then(response => response.json()); //se convierte la respuesta en un json
+
+            .then(response => response.json()) // Convertimos la respuesta a JSON
             .then(data => {
-
-                if(data.success){ //si el comentario se agrego correctamente
-
-                    let comentariosContenedor = document.getElementById('comentariosContenedor');
-                    let nuevoComentario = document.createElement("div");
-                    nuevoComentario.classList.add("row", "mt-3");
-
-                    //se agrega el nue vo comentario al HTML
+                if (data.success) { 
+                    // Si el comentario se guardó correctamente, lo agregamos a la lista sin recargar
+    
+                    let comentariosContainer = document.getElementById("comentariosContenedor"); // Contenedor de comentarios
+                    
+                    let nuevoComentario = document.createElement("div"); // Creamos un nuevo div para el comentario
+                    nuevoComentario.classList.add("row", "mt-3"); // Agregamos clases para darle estilo
+    
+                    // Agregamos el contenido del comentario en formato HTML
                     nuevoComentario.innerHTML = `
                         <div class="col-12">
                             <div class="form-group">
-                                <b>Arturo Resendiz López</b> <br>
+                                <b>{{Auth::user()->name}}</b> <br>
                                 <p class="bg-gray border py-2">${data.comentario}</p>
                                 <small>Hace un momento</small>
                             </div>
                         </div>
-                `;
-
-                comentariosContenedor.prepend(nuevoComentario); //Agregar comentario
-
-                form.reset();
-                }
-                else{
-                    alert('Error al enviar comentario')
+                    `;
+    
+                    comentariosContainer.append(nuevoComentario); // Agregamos el nuevo comentario al inicio de la lista
+                    form.reset(); // Limpiamos el textarea después de enviar el comentario
+                } 
+                
+                else {
+                    alert("Error al enviar el comentario." +  response.json()); // Si algo sale mal, mostramos una alerta
                 }
             })
-            .catch(error => console.error("Error AJAX:" , error));
+            .catch(error => alert("Error en AJAX:", error)); // Capturamos y mostramos errores en la consola
         });
     });
-
-</script>
-
-
-@endsection
+    </script>
+    

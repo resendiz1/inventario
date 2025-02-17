@@ -230,7 +230,7 @@
             </div>
 
             <div class="modal-footer">
-              <button class="btn btn-success">
+              <button class="btn btn-dark">
                 <i class="fa fa-check"></i>
                 Confirmar
               </button>

@@ -8,7 +8,6 @@
 
 <div class="container-fluid mt-5">
     
-    
     <div class="row justify-content-center">
         {{-- div que encierra el formulario del usuario --}}
         <div class="col-sm-12 col-md-4  col-lg-2 bg-white p-4 mx-1 border border-5">

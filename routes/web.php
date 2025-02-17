@@ -190,5 +190,5 @@ Route::patch('/user/resguardo/imagenes_phone/{id}', [telefonoController::class, 
 
 //Rutas que se encargan de mostrar los post hechois por el area de sistemas
 Route::get('/user/home/post/{id}', [publicacionesController::class, 'mostrar_post'])->name('mostrar.post')->middleware('auth');
-// Route::post('/user/home/reaccion', [reaccionesController::class, 'reaccion_store'])->name('reaccion.store')->middleware('auth');
+Route::post('/user/home/post/reaccion', [reaccionesController::class, 'reaccion_store'])->name('reaccion.store')->middleware('auth');
 Route::post('/user/home/post/comentario', [comentariosController::class, 'store'])->name('comentario.store')->middleware('auth');
