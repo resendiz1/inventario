@@ -79,6 +79,8 @@ class Controller extends BaseController
         $remember = request('remember');
 
 
+
+
         if(request('tipo') == 'administrador' ){
             
             if(Auth::guard('admin')->attempt($credenciales, $remember)){
@@ -92,6 +94,21 @@ class Controller extends BaseController
         }
 
 
+        if(request('tipo') == 'autoriza'){
+
+            if(Auth::guard('admin')->attempt($credenciales, $remember)){
+                request()->session()->regenerate();
+                return redirect()->route('perfil.autoriza_tintas');
+            }
+
+            else{
+                return back()->with('error', 'Las Credenciales del Administrador * no son correctas');
+            }
+            
+        }
+
+
+
 
         if(request('tipo') == 'usuario'){
             if(Auth::attempt($credenciales, $remember)){
@@ -102,6 +119,8 @@ class Controller extends BaseController
                 return back()->with('error', 'Las credenciales de usuario son incorrectas');
             }
         }
+
+
 
         
     }

@@ -40,6 +40,7 @@
                                 <th scope="col">Número</th>
                                 <th scope="col">Acciones</th>
                                 <th scope="col">Respuesta Admin</th>
+                                <th scope="col">Foto</th>
 
         
                             </tr>
@@ -51,9 +52,10 @@
                                     <td>{{$pedido->user->name}}</td>
                                     <td>{{$pedido->fecha_pedido}}</td>
                                     <td>{{implode(', ',json_decode($pedido->colores, true))}}</td>
-                                    <td>{{$pedido->numero}}</td>   
+                                    <td>{{$pedido->numero}}</td>
                                     <td> <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#r{{$pedido->id}}">Responder</button> </td>  
                                     <td>{{$pedido->respuesta_admin}}</td>             
+                                    <td> <button class="btn btn-secondary btn-sm"  data-toggle="modal" data-target="#ped{{$pedido->id}}" >Ver foto</button> </td>   
                                 </tr>     
                             @empty
                                 
@@ -251,4 +253,27 @@
 @endforelse
     
     
+
+
+
+@forelse ($pedidos as $pedido)
+    {{-- modal de las fotos de los pedidos, para eso bvoy a usar el mismo cicle que use en la tabla pedidos --}}
+    <!-- Modal -->
+    <div class="modal fade" id="ped{{$pedido->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <img src="{{str_replace('storage/Public/', 'storage/', Storage::url($pedido->foto_tintas))}}" class="img-fluid" alt="">
+        </div>
+        </div>
+    </div>
+@empty
+    
+@endforelse
+
+
+
+
+
+
+
 @endsection

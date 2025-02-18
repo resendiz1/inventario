@@ -112,7 +112,8 @@ Route::get('/resultado_ups', [telefonoController::class, 'show'])->name('ups.sho
 Route::get('admin/add_printer', [printerController::class, 'store'])->name('add_printer')->middleware('auth:admin');;
 Route::post('admin/add_printer', [printerController::class, 'create'])->name('printer.create')->middleware('auth:admin');;
 
-
+//las credenciales para que entre alguien a autorizar las tintas
+Route::get('admin/autoriza_tintas', [tintasController::class, 'autorizar_tintas'])->name('perfil.autoriza_tintas');
 
 
 //rutas del panekl de control de las publicaciones
@@ -192,3 +193,4 @@ Route::patch('/user/resguardo/imagenes_phone/{id}', [telefonoController::class, 
 Route::get('/user/home/post/{id}', [publicacionesController::class, 'mostrar_post'])->name('mostrar.post')->middleware('auth');
 Route::post('/user/home/post/reaccion', [reaccionesController::class, 'reaccion_store'])->name('reaccion.store')->middleware('auth');
 Route::post('/user/home/post/comentario', [comentariosController::class, 'store'])->name('comentario.store')->middleware('auth');
+

@@ -25,6 +25,9 @@ class tintasController extends Controller
     public function pedido(){
 
 
+        if(request()->hasFile('foto_tintas')){
+             $foto_tintas = request()->file('foto_tintas')->store('Public');
+        }
 
         
         if(request('numero') == 'Cintas'){
@@ -45,6 +48,7 @@ class tintasController extends Controller
                 'numero' => 'required',
                 'marca' => 'required',
                 'checkboxes' => 'required|array|min:1',
+                'foto_tintas' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
                ]);
 
 
@@ -77,7 +81,8 @@ class tintasController extends Controller
             'fecha_pedido' => $fecha_hoy,
             'user_id' => Auth::user()->id,
             'marca' => request('marca'),
-            'cantidad' => request('cantidad')
+            'cantidad' => request('cantidad'),
+            'foto_tintas' => $foto_tintas
         ]);
 
         return back()->with('pedido_enviado', 'El pedido fue enviado!');
@@ -118,6 +123,17 @@ class tintasController extends Controller
         return back()->with('completado', 'Se marco el pedido como completado');
 
 
+    }
+
+
+    //metodo que me ayuda a que se autoricen las tintas, a parti de aqui se va a escribir ese codigo
+
+
+    public function autorizar_tintas(){
+
+        $pedidos = Pedido::all();
+
+        return view('admin.perfil_consejo_directivo', compact('pedidos'));
     }
 
 

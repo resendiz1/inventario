@@ -34,6 +34,7 @@
                 <select class="form-control" name="tipo" id="">
                     <option value="usuario" >Usuario</option>
                     <option value="administrador" >Administrador</option>
+                    <option value="autoriza" >Autorizar Tintas</option>
                 </select>
             </div>
 

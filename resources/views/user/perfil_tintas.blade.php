@@ -17,7 +17,11 @@
 
             @if ($errors->first('marca'))
                 <h5 class="text-danger font-weight-bold">Debe poner la marca de la impresora</h5>
-            @endif            
+            @endif  
+            
+            @if ($errors->first('foto_tintas'))
+                <h5 class="text-danger font-weight-bold">Debe poner la marca de la impresora</h5>
+            @endif  
 
 
 
@@ -158,7 +162,7 @@
               </h5>
             </div>
             <div class="modal-body">
-              <form method="POST" action="{{route('tintas.pedido')}}" class="form">
+              <form method="POST" action="{{route('tintas.pedido')}}" class="form" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group ">
@@ -209,6 +213,16 @@
                             <label for="amarillo" class="m-0 h4" style="color: rgb(170, 170, 40)">Y</label> <br>
                             <input type="checkbox" value="Amarillo" id="amarillo" name="checkboxes[]">
                         </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-12">
+                        <input type="file" name="foto_tintas" class="form-control" id="foto_tintas">
+                      </div>
+                      
+                      <div class="col-8" id="contenedor_foto">
+
+                      </div>
+
                     </div>
                 </div>
 
@@ -333,6 +347,40 @@
       marca_impresora.style.display = 'none';
       cantidad_cintas.style.display ='none';
     }
+
+  });
+
+</script>
+
+
+
+{{-- //este hace que la imagen del pedido tnga una vista previa --}}
+<script>
+
+  document.getElementById('foto_tintas').addEventListener("change", function(event){
+    const contenedor = document.getElementById('contenedor_foto');
+    
+    contenedor.innerHTML = "";
+    const archivo = event.target.files[0];
+
+    if(archivo){
+      
+      const reader = new FileReader();
+      reader.onload = function(e){
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.classList.add("img-fluid", "mt-2");
+        img.style.maxWidht = "100%";
+        img.style.border = "2px solid #ccc";
+        img.style.borderRadius= "8px";
+        contenedor.appendChild(img);
+      }
+
+      reader.readAsDataURL(archivo);
+
+    }
+
+
 
   });
 
