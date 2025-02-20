@@ -6,6 +6,13 @@
         <div class="row justify-content-center">
             <div class="col-10 text-center bg-white mt-2 p-5 shadow-sm">
                 <h1 class="fw-bold">PEDIDOS REALIZADOS</h1>
+                <form action="{{route('cerrar.session.admin')}}" method="POST" >
+                    @csrf
+                    <button type="submit" class="btn btn-light btn-sm">
+                        <i class="fa fa-power-off  mr-2"></i>
+                        Cerrar Session
+                    </button>
+                </form>
             </div>
         </div>
     </div>

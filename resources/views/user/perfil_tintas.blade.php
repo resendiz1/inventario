@@ -68,6 +68,8 @@
                         <th scope="col">Insumos</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Respuesta</th>
+                        <th scope="col">Foto</th>
+
 
                     </tr>
                 </thead>
@@ -87,7 +89,8 @@
                         <td>{{$pedido->fecha_entrega}}</td>
                         <td>{{ implode(', ', json_decode($pedido->colores, true)) }} </td>
                         <td class="text-start"> <i class="fa fa-check-circle"></i> Completado</td> 
-                        <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>                     
+                        <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>      
+                        <td> <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#fo{{$pedido->id}}" >Foto</button> </td>               
                       </tr>
 
                     @else
@@ -112,7 +115,7 @@
                           </div>                            
                         </td> 
                         <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>
-                        
+                        <td> <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#fo{{$pedido->id}}" >Foto</button> </td>               
                       </tr>
 
                     @endif
@@ -216,7 +219,7 @@
                     </div>
                     <div class="row justify-content-center">
                       <div class="col-12">
-                        <input type="file" name="foto_tintas" class="form-control" id="foto_tintas">
+                        <input type="file" name="foto_tintas" class="form-control" id="foto_tintas" required>
                       </div>
                       
                       <div class="col-8" id="contenedor_foto">
@@ -260,6 +263,19 @@
                   Reenviar
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+
+
+
+        {{-- modal que contiene la foto --}}
+        <!-- Modal -->
+        <div class="modal fade" id="fo{{$pedido->id}}"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <img src="{{str_replace('storage/Public/', 'storage/', Storage::url($pedido->foto_tintas))}}" class="img-fluid" alt="">
             </div>
           </div>
         </div>

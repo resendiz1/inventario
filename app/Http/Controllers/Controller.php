@@ -113,7 +113,7 @@ class Controller extends BaseController
         if(request('tipo') == 'usuario'){
             if(Auth::attempt($credenciales, $remember)){
                 request()->session()->regenerate();
-                return redirect()->route('perfil.user');            
+                return redirect()->route('perfil.home');            
             }
             else{
                 return back()->with('error', 'Las credenciales de usuario son incorrectas');

@@ -12,6 +12,7 @@
         <div class="col-6 text-center  my-3 mt-5">
             <h1 class="titulo-post" >{{$publicacion->titulo}}</h1>
             <span class="text-sub">Recuperado de internet por: <u> {{$publicacion->autor}} <i class="fa fa-heart"></i> </u> </span>
+
         </div>
         <div class="col-12 text-center my-3 p-0 mt-1">
             <form action="{{route('reaccion.store')}}" method="POST">
@@ -65,7 +66,23 @@
 
 
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-12 text-center my-3">
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="leerTexto()">
+                    <i class="fa fa-play"></i>
+                    Leer Articulo
+                </button>
+                {{-- <button class="btn btn-success" onclick="leerTexto()">
+                    <i class="fa fa-pause"></i>
+                </button>
+                <button class="btn btn-warning" onclick="leerTexto()">
+                    <i class="fa fa-play"></i>
+                    <i class="fa fa-pause"></i>
+
+                </button> --}}
+            </div>
+        </div>
+        <div class="col-8" id="texto">
             {!!$publicacion->cuerpo!!}
         </div>
     </div>
@@ -100,7 +117,7 @@
                 <hr style="width: 95%; height: 2px; background-color: gray; border: none; margin: 5px auto;">
             </div>
         @empty
-        <li>No hay comentarios</li>
+
         @endforelse
     </div>
 
@@ -129,6 +146,49 @@
 </div>
     
 @endsection
+
+
+
+<script>
+
+    let speech = new SpeechSynthesisUtterance();
+    let synth = window.speechSynthesis;
+    let palabras = [];
+    let indicePalabra = 0;
+
+    function leerTexto() {
+        let div = document.getElementById("texto");
+        palabras = div.innerText.split(" "); // Dividir el texto en palabras
+        indicePalabra = 0;
+
+        speech.text = div.innerText;
+        speech.lang = "es-ES"; // Configurar idioma a español
+        speech.rate = 1; // Velocidad normal
+        speech.pitch = 1; // Tono normal
+        speech.volume = 1; // Volumen máximo
+
+        // Evento cuando empieza a hablar
+        speech.onboundary = (event) => {
+            if (event.name === "word") {
+                resaltarPalabra(indicePalabra);
+                indicePalabra++;
+            }
+        };
+
+        synth.speak(speech);
+    }
+
+
+
+    function resaltarPalabra(index) {
+        let div = document.getElementById("texto");
+        let nuevoTexto = palabras.map((palabra, i) => {
+            return i === index ? `<span style="background-color: yellow;">${palabra}</span>` : palabra;
+        }).join(" ");
+        div.innerHTML = nuevoTexto;
+    }
+
+</script>
 
 
 <script>

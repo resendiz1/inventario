@@ -42,10 +42,9 @@
               @if (count($reportes) > 0)
                 <thead class="thead-dark ">
                   <tr>
-                      <th scope="col">ID</th>
+                      <th scope="col">ID Ticket</th>
                       <th scope="col">Lo que falla</th>
                       <th scope="col">Fecha de reporte</th>
-                      <th scope="col">Fecha de solución</th>
                       <th scope="col">Detalles</th>
                       <th scope="col">Estado</th>
 
@@ -64,7 +63,6 @@
                           </a>
                         </td>
                         <td><small>{{$reporte->fecha_reporte}}</small></td>
-                        <td><small>{{$reporte->fecha_solucion}}</small></td>
                         <td>{{$reporte->descripcion}}</td>
 
                         <td class="text-start">
@@ -88,9 +86,8 @@
                           </a>
                         </td>
                         <td><small>{{$reporte->fecha_reporte}}</small></td>
-                        <td><small>{{$reporte->fecha_solucion}}</small></td>
                         <td>{{$reporte->descripcion}}</td>
-                        <td class="text-start"> <i class="fa fa-check-circle"></i> Completado </td>                      
+                        <td class="text-start"> <i class="fa fa-check-circle"></i> Resuelto </td>                      
                       </tr>     
                       
                   @endif

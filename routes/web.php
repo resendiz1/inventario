@@ -113,7 +113,7 @@ Route::get('admin/add_printer', [printerController::class, 'store'])->name('add_
 Route::post('admin/add_printer', [printerController::class, 'create'])->name('printer.create')->middleware('auth:admin');;
 
 //las credenciales para que entre alguien a autorizar las tintas
-Route::get('admin/autoriza_tintas', [tintasController::class, 'autorizar_tintas'])->name('perfil.autoriza_tintas');
+Route::get('admin/autoriza_tintas', [tintasController::class, 'autorizar_tintas'])->name('perfil.autoriza_tintas')->middleware('auth:admin');
 
 
 //rutas del panekl de control de las publicaciones

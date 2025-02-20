@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row mt-5 justify-content-center">
         <div class="col-3 mt-5 border border-3 bg-white p-4">
-         <form action="{{route('ingreso.admin')}}" method="POST">
+         <form action="{{route('ingreso.admin')}}" method="POST" id="login">
             @csrf
             <h3>Login</h3>
             @if (session('error'))
@@ -23,13 +23,6 @@
             </div>
 
             <div class="form-group m-0 mt-3">
-                <label for="remember"> 
-                    <input type="checkbox" id="remember" name="remember" {{old('remember') ? checked : ''}} >
-                    Recordar usuario
-                </label>
-            </div>
-
-            <div class="form-group m-0 mt-3">
                 <label for="" class="m-0 p-0">Tipo de usuario:</label>
                 <select class="form-control" name="tipo" id="">
                     <option value="usuario" >Usuario</option>
@@ -39,7 +32,7 @@
             </div>
 
             <div class="form-group m-0 mt-3">
-                <button class="btn btn-dark">
+                <button type="submit" class="btn btn-dark" id="boton">
                     Entrar
                 </button>
             </div>
@@ -49,5 +42,16 @@
 </div>
 
 
+
+<script>
+   document.getElementById('login').addEventListener('submit', function(){
+    let boton = document.getElementById('boton');
+
+    boton.disabled = true;
+    boton.style.cursor = "not-allowed";
+    boton.style.opacity = "0.6";
+
+})
+</script>
 
 @endsection
