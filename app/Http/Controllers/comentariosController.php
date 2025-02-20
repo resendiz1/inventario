@@ -24,6 +24,19 @@ class comentariosController extends Controller
     $comentario->save(); // Guardamos el comentario en la base de datos
 
 
+    //vamos a ver a los usuarios que ya comentaron
+    $usuarios = Comentario::where('publicacion_id', $comentario->publicacion_id)
+                            ->where('user_id', '!=', Auth::user()->id)
+                            ->distinc()->pluck('user_id');
+
+    //Enviando la notificacion a esos usuarios
+    User::whereIn('id', $usuarios)->each(function ($usuario) use ($comentario) {
+        $usuario->notify(new PostInteractionNotification(Auth()->user()->id, $comentario->publicacion, 'comentado' ));
+    });
+
+
+
+
     // Retornamos una respuesta JSON para que JavaScript la pueda manejar
     return response()->json([
         'success' => true, // Indicamos que la operación fue exitosa

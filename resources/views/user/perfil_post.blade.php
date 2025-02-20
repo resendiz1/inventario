@@ -15,26 +15,48 @@
 
         </div>
         <div class="col-12 text-center my-3 p-0 mt-1">
-            <form action="{{route('reaccion.store')}}" method="POST">
+            <form action="{{ route('reaccion.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                <input type="hidden" name="publicacion_id" value="{{$publicacion->id}}">
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="publicacion_id" value="{{ $publicacion->id }}">
                 <h5>Reacciones: </h5>
                 <div class="btn-group">
-                    <button class="btn btn-danger d-block btn-sm" name="reaccion" value="loveit">
+                    <button type="submit" 
+                        class="btn btn-danger d-block btn-sm" 
+                        name="reaccion" 
+                        value="loveit"
+                        data-toggle="tooltip" 
+                        data-placement="top"
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'loveit') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
                         <i class="fa fa-heart text-white"></i>
                         {{$contador_loveit}}
                     </button>
-                    <button class="btn btn-primary d-block btn-sm" name="reaccion" value="like">
+            
+                    <button type="submit" 
+                        class="btn btn-primary d-block btn-sm" 
+                        name="reaccion" 
+                        value="like"
+                        data-toggle="tooltip" 
+                        data-placement="top"
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'like') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
                         <i class="fa fa-thumbs-up"></i>
                         {{$contador_likes}}
                     </button>
-                    <button class="btn btn-secondary d-block btn-sm" name="reaccion" value="dislike">
+            
+                    <button type="submit" 
+                        class="btn btn-secondary d-block btn-sm" 
+                        name="reaccion" 
+                        value="dislike"
+                        data-toggle="tooltip" 
+                        data-placement="top"
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'dislike') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
                         <i class="fa-solid fa-thumbs-down"></i>
                         {{$contador_dislikes}}
                     </button>
                 </div>
             </form>
+            
+            
         </div>
         
         <div class="col-12 text-center mt-2">
@@ -104,7 +126,7 @@
 
     <div class="row mt-3" id="comentariosContenedor">
         @forelse ($publicacion->comentarios as $comentario)
-            <div class="col-12 MB-5">
+            <div class="col-12 ">
                 <div class="form-group">
                     <b class="text-secondary">@php $nombre = DB::table('users')->where('id',  $comentario->user_id )->get(); echo $nombre[0]->name;@endphp</b> <br>
 
@@ -112,7 +134,7 @@
                         {{$comentario->comentario}}
                     </p>
 
-                    <small>{{$comentario->created_at->diffForHumans()}}</small>
+                    <small class="p-0">{{$comentario->created_at->diffForHumans()}}</small>
                 </div>
                 <hr style="width: 95%; height: 2px; background-color: gray; border: none; margin: 5px auto;">
             </div>
@@ -146,6 +168,13 @@
 </div>
     
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    });
+</script>
 
 
 
