@@ -4,7 +4,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
+#play, #pause { 
+  font-size: 18px; 
+  padding: 10px 20px; 
+  cursor: pointer; 
+  margin: 5px; 
+}
 
+#pause { display: none; } /* Ocultar botón Pause al inicio */
+
+.flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0042e8;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.flotante:hover {
+  background-color: #0076e4;
+  color: rgb(214, 214, 214);
+}
 
 .titulo-post{
   font-family: "Luckiest Guy", serif;

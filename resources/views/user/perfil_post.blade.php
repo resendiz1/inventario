@@ -6,7 +6,16 @@
 @section('contenido')
 @include('user.cabecera')
 
+
+
+{{-- <button class="btn btn-dark" data-toggle="tooltip" data-placement="top"
+title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
+    <i class="fa fa-pause"></i>
+</button> --}}
+
+
 <div class="container  bg-white shadow shadow-sm fade-out" id="content">
+
 
     <div class="row justify-content-center">
         <div class="col-6 text-center  my-3 mt-5">
@@ -59,7 +68,7 @@
             
         </div>
         
-        <div class="col-12 text-center mt-2">
+        {{-- <div class="col-12 text-center mt-2">
             
             @php $reaccionUsuario = optional($reaccion->first())->reaccion; @endphp
 
@@ -71,7 +80,7 @@
                 </span>
             @endif
 
-        </div>
+        </div> --}}
         
         
         <div class="col-10 mt-5">
@@ -90,10 +99,6 @@
     <div class="row justify-content-center">
         <div class="col-12 text-center my-3">
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="leerTexto()">
-                    <i class="fa fa-play"></i>
-                    Leer Articulo
-                </button>
                 {{-- <button class="btn btn-success" onclick="leerTexto()">
                     <i class="fa fa-pause"></i>
                 </button>
@@ -158,54 +163,72 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
 </div>
-    
+
+
+{{-- el boton flotante que le da play a la lectura del texto --}}
+{{-- <button class="btn flotante" data-toggle="tooltip" data-placement="left"
+title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
+    <i class="fa fa-play"></i>
+</button> --}}
+
+<button id="play" class="flotante" data-toggle="tooltip" data-placement="top" title="Leer {{$publicacion->titulo}}"  onclick="leerTexto()">
+    <i class="fa fa-play"></i>
+</button>
+<button id="pause" class="flotante"  onclick="pausarTexto()">
+    <i class="fa fa-pause"></i>
+</button>
+
+
+
 @endsection
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-    });
-</script>
-
-
 
 <script>
 
-    let speech = new SpeechSynthesisUtterance();
-    let synth = window.speechSynthesis;
-    let palabras = [];
-    let indicePalabra = 0;
+let speech = new SpeechSynthesisUtterance();
+        let synth = window.speechSynthesis;
+        let palabras = [];
+        let indicePalabra = 0;
+        let enPausa = false;
 
-    function leerTexto() {
-        let div = document.getElementById("texto");
-        palabras = div.innerText.split(" "); // Dividir el texto en palabras
-        indicePalabra = 0;
+        function leerTexto() {
+            synth.cancel();
+            let div = document.getElementById("texto");
+            palabras = div.innerText.split(" "); // Dividir texto en palabras
+            indicePalabra = 0;
 
-        speech.text = div.innerText;
-        speech.lang = "es-ES"; // Configurar idioma a español
-        speech.rate = 1; // Velocidad normal
-        speech.pitch = 1; // Tono normal
-        speech.volume = 1; // Volumen máximo
+            speech.text = div.innerText;
+            speech.lang = "es-ES";
+            speech.rate = 1;
+            speech.pitch = 1;
+            speech.volume = 1;
 
-        // Evento cuando empieza a hablar
-        speech.onboundary = (event) => {
-            if (event.name === "word") {
-                resaltarPalabra(indicePalabra);
-                indicePalabra++;
+            speech.onboundary = (event) => {
+                if (event.name === "word") {
+                    resaltarPalabra(indicePalabra);
+                    indicePalabra++;
+                }
+            };
+
+            // Ocultar Play y mostrar Pause
+            document.getElementById("play").style.display = "none";
+            document.getElementById("pause").style.display = "inline-block";
+
+            synth.speak(speech);
+            enPausa = false;
+        }
+
+        function pausarTexto() {
+            if (!enPausa) {
+                synth.pause();
+                document.getElementById("pause").innerText = "▶";
+                enPausa = true;
+            } else {
+                synth.resume();
+                document.getElementById("pause").innerText = "⏸";
+                enPausa = false;
             }
-        };
-
-        synth.speak(speech);
-    }
+        }
 
 
 
@@ -221,54 +244,63 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () { 
-        // Esperamos a que la página cargue completamente antes de ejecutar el código
-    
-        document.getElementById("comentario").addEventListener("submit", function (e) {
-            e.preventDefault(); // Evita que la página se recargue al enviar el formulario
-            let form = this; // Referencia al formulario
-            let formData = new FormData(form); // Creamos un objeto FormData con los datos del formulario
-    
-            // Enviamos la solicitud con Fetch API
-            fetch("{{ route('comentario.store') }}", {
-                method: "POST", // Método HTTP
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value // Token CSRF para seguridad
-                },
-                body: formData // Enviamos los datos del formulario
-            })
+document.addEventListener("DOMContentLoaded", function () { 
+    // Esperamos a que la página cargue completamente antes de ejecutar el código
 
-            .then(response => response.json()) // Convertimos la respuesta a JSON
-            .then(data => {
-                if (data.success) { 
-                    // Si el comentario se guardó correctamente, lo agregamos a la lista sin recargar
-    
-                    let comentariosContainer = document.getElementById("comentariosContenedor"); // Contenedor de comentarios
-                    
-                    let nuevoComentario = document.createElement("div"); // Creamos un nuevo div para el comentario
-                    nuevoComentario.classList.add("row", "mt-3"); // Agregamos clases para darle estilo
-    
-                    // Agregamos el contenido del comentario en formato HTML
-                    nuevoComentario.innerHTML = `
-                        <div class="col-12">
-                            <div class="form-group">
-                                <b>{{Auth::user()->name}}</b> <br>
-                                <p class="bg-gray border py-2">${data.comentario}</p>
-                                <small>Hace un momento</small>
-                            </div>
-                        </div>
-                    `;
-    
-                    comentariosContainer.append(nuevoComentario); // Agregamos el nuevo comentario al inicio de la lista
-                    form.reset(); // Limpiamos el textarea después de enviar el comentario
-                } 
+    document.getElementById("comentario").addEventListener("submit", function (e) {
+        e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+        let form = this; // Referencia al formulario
+        let formData = new FormData(form); // Creamos un objeto FormData con los datos del formulario
+
+        // Enviamos la solicitud con Fetch API
+        fetch("{{ route('comentario.store') }}", {
+            method: "POST", // Método HTTP
+            headers: {
+                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value // Token CSRF para seguridad
+            },
+            body: formData // Enviamos los datos del formulario
+        })
+
+        .then(response => response.json()) // Convertimos la respuesta a JSON
+        .then(data => {
+            if (data.success) { 
+                // Si el comentario se guardó correctamente, lo agregamos a la lista sin recargar
+
+                let comentariosContainer = document.getElementById("comentariosContenedor"); // Contenedor de comentarios
                 
-                else {
-                    alert("Error al enviar el comentario." +  response.json()); // Si algo sale mal, mostramos una alerta
-                }
-            })
-            .catch(error => alert("Error en AJAX:", error)); // Capturamos y mostramos errores en la consola
-        });
+                let nuevoComentario = document.createElement("div"); // Creamos un nuevo div para el comentario
+                nuevoComentario.classList.add("row", "mt-3"); // Agregamos clases para darle estilo
+
+                // Agregamos el contenido del comentario en formato HTML
+                nuevoComentario.innerHTML = `
+                    <div class="col-12">
+                        <div class="form-group">
+                            <b>{{Auth::user()->name}}</b> <br>
+                            <p class="bg-gray border py-2">${data.comentario}</p>
+                            <small>Hace un momento</small>
+                        </div>
+                    </div>
+                `;
+
+                comentariosContainer.append(nuevoComentario); // Agregamos el nuevo comentario al inicio de la lista
+                form.reset(); // Limpiamos el textarea después de enviar el comentario
+            } 
+            
+            else {
+                alert("Error al enviar el comentario." +  response.json()); // Si algo sale mal, mostramos una alerta
+            }
+        })
+        .catch(error => alert("Error en AJAX:", error)); // Capturamos y mostramos errores en la consola
     });
-    </script>
+});
+</script>
     
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+    });
+</script>

@@ -131,7 +131,7 @@ class tintasController extends Controller
 
     public function autorizar_tintas(){
 
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::with('user')->where('status', 'pendiente')->get();
 
         return view('admin.perfil_consejo_directivo', compact('pedidos'));
     }

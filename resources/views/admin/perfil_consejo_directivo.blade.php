@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-10 text-center bg-white mt-2 p-5 shadow-sm">
-                <h1 class="fw-bold">PEDIDOS REALIZADOS</h1>
+                <h1 class="fw-bold">PEDIDOS PENDIENTES</h1>
                 <form action="{{route('cerrar.session.admin')}}" method="POST" >
                     @csrf
                     <button type="submit" class="btn btn-light btn-sm">
@@ -27,50 +27,49 @@
                 <div class="row h4">
                     <div class="col-3">
                         <b>Nombre: </b> <br>
-                        Arturo Resendiz López
+                        {{$pedido->user->name}}
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <b>Puesto: </b> <br>
-                        Encargado del Area de Sistemas
+                        {{$pedido->user->puesto}}
                     </div>
                     <div class="col-3">
                         <b>Tintas: </b> <br>
-                        Negra, Rosa, Azul
-                    </div>
-                    <div class="col-1">
-                        <b>Tipo: </b> <br>
-                         544
+                        {{implode(', ' ,json_decode($pedido->colores, true))}}
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-dark btn-sm mt-3">
+                        <button class="btn btn-dark btn-sm mt-3" data-toggle="modal" data-target="#fo{{$pedido->id}}">
                             <i class="fa fa-eye"></i>
                             Ver Foto
                         </button>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-10 text-center mt-5">
-                        <div class="btn-group">
-                            <button class="btn btn-success btn-lg h3">
-                                <i class="fa fa-check-circle mx-3"></i>
-                                Autorizar
-                            </button>
-                            <button class="btn btn-danger btn-lg h3">
-                                <i class="fa fa-clock mx-3"></i>
-                                Pendiente para la proxima semana
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
+         </div>
         @empty
-            
+            <h1>No hay pedidos pendientes.</h1>
         @endforelse
 
-
-
     </div>
+
+
+
+
+
+    {{-- aqui va a ir los modales --}}
+
+    @forelse ($pedidos as $pedido)
+    <div class="modal fade" id="fo{{$pedido->id}}"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <img src="{{str_replace('storage/Public/', 'storage/', Storage::url($pedido->foto_tintas))}}" class="img-fluid" alt="">
+          </div>
+        </div>
+    </div>
+    @empty
+        
+    @endforelse
+
 
     
 
