@@ -20,7 +20,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
     <div class="row justify-content-center">
         <div class="col-6 text-center  my-3 mt-5">
             <h1 class="titulo-post" >{{$publicacion->titulo}}</h1>
-            <span class="text-sub">Recuperado de internet por: <u> {{$publicacion->autor}} <i class="fa fa-heart"></i> </u> </span>
+            <span class="text-sub">Recuperado de internet por: <u> {{$publicacion->autor}} <i class="fa fa-check-circle mx-1"></i> </u> </span>
 
         </div>
         <div class="col-12 text-center my-3 p-0 mt-1">
@@ -36,7 +36,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
                         value="loveit"
                         data-toggle="tooltip" 
                         data-placement="top"
-                        title="@foreach($publicacion->reacciones->where('reaccion', 'loveit') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'loveit') as $reaccion) {!! $reaccion->user->name . ' - ' !!} @endforeach">
                         <i class="fa fa-heart text-white"></i>
                         {{$contador_loveit}}
                     </button>
@@ -47,7 +47,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
                         value="like"
                         data-toggle="tooltip" 
                         data-placement="top"
-                        title="@foreach($publicacion->reacciones->where('reaccion', 'like') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'like') as $reaccion) {!! $reaccion->user->name . ' - ' !!} @endforeach">
                         <i class="fa fa-thumbs-up"></i>
                         {{$contador_likes}}
                     </button>
@@ -58,7 +58,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
                         value="dislike"
                         data-toggle="tooltip" 
                         data-placement="top"
-                        title="@foreach($publicacion->reacciones->where('reaccion', 'dislike') as $reaccion) {{ $reaccion->user->name }}, @endforeach">
+                        title="@foreach($publicacion->reacciones->where('reaccion', 'dislike') as $reaccion) {!! $reaccion->user->name . ' - ' !!} @endforeach">
                         <i class="fa-solid fa-thumbs-down"></i>
                         {{$contador_dislikes}}
                     </button>
@@ -83,7 +83,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
         </div> --}}
         
         
-        <div class="col-10 mt-5">
+        <div class="col-10 mt-5 text-justify">
             <b>Introducción: </b>
             <p>{{$publicacion->introduccion}}</p> 
         </div>
@@ -109,7 +109,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
                 </button> --}}
             </div>
         </div>
-        <div class="col-8" id="texto">
+        <div class="col-8 text-justify" id="texto">
             {!!$publicacion->cuerpo!!}
         </div>
     </div>
@@ -150,7 +150,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
 
 
     <div class="row ">
-        <div class="col-12">
+        <div class="col-12 p-4">
             <div class="form-group">
                 <b>{{Auth()->user()->name}}</b>
                 <form action="{{route('comentario.store')}}" method="POST" id="comentario" >
@@ -172,7 +172,7 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
     <i class="fa fa-play"></i>
 </button> --}}
 
-<button id="play" class="flotante" data-toggle="tooltip" data-placement="top" title="Leer {{$publicacion->titulo}}"  onclick="leerTexto()">
+<button id="play" class="flotante" data-toggle="tooltip" data-placement="top" title="Leer:  {{$publicacion->titulo}}"  onclick="leerTexto()">
     <i class="fa fa-play"></i>
 </button>
 <button id="pause" class="flotante"  onclick="pausarTexto()">
@@ -235,10 +235,15 @@ let speech = new SpeechSynthesisUtterance();
     function resaltarPalabra(index) {
         let div = document.getElementById("texto");
         let nuevoTexto = palabras.map((palabra, i) => {
-            return i === index ? `<span style="background-color: yellow;">${palabra}</span>` : palabra;
+            return i === index ? `<span style="background-color: black; color:white;">${palabra}</span>` : palabra;
         }).join(" ");
         div.innerHTML = nuevoTexto;
     }
+
+    window.addEventListener("beforeunload", () => {
+        synth.cancel();
+    })
+
 
 </script>
 
@@ -254,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Enviamos la solicitud con Fetch API
         fetch("{{ route('comentario.store') }}", {
+            
             method: "POST", // Método HTTP
             headers: {
                 "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value // Token CSRF para seguridad
