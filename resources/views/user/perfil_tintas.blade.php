@@ -115,7 +115,9 @@
                           </div>                            
                         </td> 
                         <td>{{$pedido->respuesta_admin ? $pedido->respuesta_admin : 'Aún no hay respuesta'}}</td>
-                        <td> <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#fo{{$pedido->id}}" >Foto</button> </td>               
+                                              
+                        <td> <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#fo{{$pedido->id}}" >Foto</button> </td>     
+
                       </tr>
 
                     @endif
@@ -219,7 +221,7 @@
                     </div>
                     <div class="row justify-content-center">
                       <div class="col-12">
-                        <input type="file" name="foto_tintas" class="form-control" id="foto_tintas" required>
+                        <input type="file" accept="image/*" name="foto_tintas" class="form-control" id="foto_tintas" required>
                       </div>
                       
                       <div class="col-8" id="contenedor_foto">

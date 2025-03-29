@@ -22,11 +22,11 @@
 
     <div class="container-fluid">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center d-flex align-items-center">
 
 
-            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 border border-5 mt-5 scroll-tabla">
-                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios</h2>
+            <div class="col-sm-12 col-md-12 col-lg-5 bg-white m-1 border border-5 mt-5 ">
+                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios pendientes</h2>
                 @if (session('respuesta'))
                     <h6 class="text-danger">{{session('respuesta')}}</h6>
                 @endif
@@ -35,14 +35,9 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Usuario</th>
-                                <th scope="col">Fecha Pedido</th>
-                                <th scope="col">Colores</th>
-                                <th scope="col">Número</th>
                                 <th scope="col">Acciones</th>
                                 <th scope="col">Respuesta Admin</th>
-                                <th scope="col">Foto</th>
-
-        
+                                <th scope="col">Detalles</th>
                             </tr>
                         </thead>
                         @endif
@@ -50,12 +45,20 @@
                             @forelse ($pedidos as $pedido)
                                 <tr>
                                     <td>{{$pedido->user->name}}</td>
-                                    <td>{{$pedido->fecha_pedido}}</td>
+                                    {{-- <td>{{$pedido->fecha_pedido}}</td>
                                     <td>{{implode(', ',json_decode($pedido->colores, true))}}</td>
-                                    <td>{{$pedido->numero}}</td>
-                                    <td> <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#r{{$pedido->id}}">Responder</button> </td>  
+                                    <td>{{$pedido->numero}}</td> --}}
+                                    <td> 
+                                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#r{{$pedido->id}}">
+                                            <i class="fa fa-comment"></i>
+                                        </button> 
+                                    </td>  
                                     <td>{{$pedido->respuesta_admin}}</td>             
-                                    <td> <button class="btn btn-secondary btn-sm"  data-toggle="modal" data-target="#ped{{$pedido->id}}" >Ver foto</button> </td>   
+                                    <td> 
+                                        <button class="btn btn-secondary btn-sm"  data-toggle="modal" data-target="#ped{{$pedido->id}}" >
+                                            <i class="fa fa-eye"></i>    
+                                        </button> 
+                                        </td>   
                                 </tr>     
                             @empty
                                 
@@ -73,6 +76,17 @@
                 </table>
 
             </div>
+
+
+            <div class="col-sm-12 col-md-12 col-lg-5 bg-white m-1 border border-5 mt-5 ">
+                <h2 class="text-center mt-2 font-arimo"> Areas que mas piden tinta </h2>
+
+                  <div class="p-5">
+                    <canvas id="grafica"></canvas>
+                  </div>
+            </div>
+
+
 
 
 
@@ -262,7 +276,11 @@
     <div class="modal fade" id="ped{{$pedido->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <img src="{{str_replace('storage/Public/', 'storage/', Storage::url($pedido->foto_tintas))}}" class="img-fluid" alt="">
+            <div class="modal-body p-3">
+                <img src="{{str_replace('storage/Public/', 'storage/', Storage::url($pedido->foto_tintas))}}" class="img-fluid" alt="">
+            </div>
+
+
         </div>
         </div>
     </div>
@@ -274,6 +292,31 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+  const ctx = document.getElementById('grafica');
+
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+
+
+        }]
+    },
+    options: {
+        scales: {
+        y: {
+            beginAtZero: true
+        }
+        }
+    }
+    });
+</script>
 
 @endsection

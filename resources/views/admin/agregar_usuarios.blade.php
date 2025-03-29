@@ -68,6 +68,11 @@
 
 
                         </div>
+
+                        <div class="form-group">
+                            <label for="">Direccion IP</label>
+                            <input type="text" class="form-control form-control-sm" name="ip" >
+                        </div>
                         
                         <div class="form-group">
                             <label for="">Puesto</label>
@@ -305,6 +310,12 @@
                                         </div>
                                         
                                         
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Dirección IP</label>
+                                        <input type="text" class="form-control" name="ip_update" value="{{old('ip_update', $usuarie->direccion_ip)}}" >
+                                        {!!$errors->first('ip_update', '<small class="text-danger"> :message </small> ')!!}
                                     </div>
                                     
                                     <div class="form-group">

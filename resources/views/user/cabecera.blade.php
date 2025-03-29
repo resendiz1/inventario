@@ -35,6 +35,12 @@
                 <div class="col-12  text-center">
                     <span>{{Auth::user()->planta}}</span>
                 </div>
+                <div class="col-12  text-center">
+                   <button class="btn btn-dark btn-sm py-0" data-toggle="modal" data-target="#ip">
+                    <i class="fa fa-wifi mx-2"></i>
+                    Show me my IP
+                </button>
+                </div>
 
             </div>
 
@@ -137,5 +143,74 @@
 
 
  </div> {{-- este div cierra todo el cabezote --}}
+
+
+
+ {{-- por qui voy a agregar los modales --}}
+<!-- Button trigger modal -->
+<div class="modal fade" id="ip" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white h4 font-weight-bold">
+            Comprobando tu dirección IP.
+        </div>
+        <div class="modal-body">
+            <h4>IP desde donde nos visitas: </h4>
+            <h4 class="font-weight-bold">{{request()->ip()}}</h4>
+            <hr>
+        @if (Auth::user()->direccion_ip != '0.0.0.0')
+        <h4>IP asignada a tu equipo: </h4>
+        <h4 class="font-weight-bold">{{Auth::user()->direccion_ip}}</h4> 
+        <hr>
+        <h4>Tu Computadora es una: </h4>
+        <h4>
+
+            @forelse (Auth::user()->computadoras as $computadora)
+
+               <h4 class="font-weight-bold"> {{ $computadora->marca }} {{ $computadora->modelo }} </h4>
+
+            @empty
+                <h4 class="font-weight-bold" >Aún no tenemos registros de tu computadora.</h4>
+            @endforelse
+        </h4>
+
+
+        <div class="alert alert-danger">
+            <div class="row d-flex align-items-center">
+                <div class="col-1 mx-1">
+                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                </div>
+                <div class="col-10">
+                    Si las direcciones IP no coinciden favor de avisar al Area de Sistemas.
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="row d-flex align-items-center">
+                <div class="col-1 mx-1">
+                    <i class="fa fa-info-circle fa-2x"></i>
+                </div>
+                <div class="col-10">
+                    Haz caso omiso si estas abriendo tu usuario desde una computadora diferente a la que se te asigno.
+                </div>
+            </div>
+        </div>
+        @endif
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Cerrar</button>
+          {{-- <button type="button" class="btn btn-success">
+            <i class="fa fa-paper-plane"></i>
+            Reportar
+          </button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
+
 
 

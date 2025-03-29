@@ -89,6 +89,10 @@ class pcController extends Controller
 
     public function fotos_computadora_usuario($id){
 
+
+
+
+
         $computadora = Computadora::findOrFail($id);
 
         $imagen1= $computadora->imagen1;

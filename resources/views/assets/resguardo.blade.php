@@ -243,7 +243,7 @@
                 <img src="{{Storage::url($computadora->imagen1)}}" class="img-fluid" alt="">
               @else
                 <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-                <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+                <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
               @endif
             </div>
 
@@ -252,7 +252,7 @@
                 <img src="{{Storage::url($computadora->imagen2)}}" class="img-fluid" alt="">
               @else
                 <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-                <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+                <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
               @endif
             </div>
 
@@ -261,7 +261,7 @@
                 <img src="{{Storage::url($computadora->imagen3)}}" class="img-fluid" alt="">
               @else
                 <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-                <input type="file" name="imagen3" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+                <input type="file" name="imagen3" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
               @endif
             </div>
 
@@ -382,7 +382,7 @@
                 <img src="{{Storage::url($impresora->imagen1)}}" class="img-fluid" alt="">
                 @else
                 <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-                <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+                <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
                 @endif
               </div>
               
@@ -391,7 +391,7 @@
                 <img src="{{Storage::url($impresora->imagen2)}}" class="img-fluid" alt="">
                 @else
                 <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-                <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+                <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
                 @endif
               </div>
           
@@ -502,7 +502,7 @@
 
           @else
             <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-            <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+            <input type="file" name="imagen1" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
           @endif
         </div>
         
@@ -513,7 +513,7 @@
             <img src="{{Storage::url($telefono->imagen2)}}" class="img-fluid" alt="">
           @else
             <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-            <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+            <input type="file" name="imagen2" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
           @endif
         </div>
       
@@ -524,7 +524,7 @@
           <img src="{{Storage::url($telefono->imagen3)}}" class="img-fluid" alt="">
           @else
             <img src="https://static.thenounproject.com/png/11204-200.png" class="img-fluid" alt="">
-            <input type="file" name="imagen3" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp">
+            <input type="file" name="imagen3" class="form-control" accept=".jpg, .jpeg, .png, .gif, .svg, .webp" required>
           @endif
         </div>
 
@@ -624,21 +624,11 @@
               <div class="col-6">
                 <form action="{{route('confirma.resguardo', $usuario->id)}}" onsubmit="return confirma()" method="POST">
                   @csrf
-
-                  @if (!empty($computadora->imagen1)  && !empty($computadora->imagen2) && !empty($computadora->imagen3) && !empty($telefono->imagen1) &&  !empty($telefono->imagen2)  &&  !empty($telefono->imagen3) && !empty($impresora->imagen1) && !empty($impresora->imagen2)  )
-
                     <button class="btn btn-success w-100">
                       <i class="fa fa-check"></i>
                       Aceptar
                     </button>
-                  
-                  @else
-
-                    <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#notificacion">
-                      <i class="fa fa-check"></i>
-                      Aceptar
-                    </button>
-                  
+                                 
                   
                   @endif
 
@@ -652,7 +642,6 @@
 
       
           </div>
-          @endif
         </div>
 
     

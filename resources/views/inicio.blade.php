@@ -3,7 +3,7 @@
 
 <div class="container mt-5">
     <div class="row mt-5 justify-content-center">
-        <div class="col-3 mt-5 border border-3 bg-white p-4">
+        <div class="col-sm-8 col-md-6 col-lg-3 mt-5 border border-3 bg-white p-4">
          <form action="{{route('ingreso.admin')}}" method="POST" id="login">
             @csrf
             <h3>Login</h3>

@@ -23,14 +23,14 @@ Route::get('/admin/lista_dispositivos/lista_computadoras/{id}', [pcController::c
 Route::patch('/admin/listas_dispositivos/lista_computadoras/actualizar/{id}', [pcController::class, 'editar_computadora_update'] )->name('actualizar.computadora');
 
 
-Route::get('/admin/lista_dispositivos/lista_impresoras/', [printerController::class, 'lista_impresoras'])->name('lista.impresoras');
-Route::get('/admin/lista_dispositivos/lista_impresoras/editar/{id}', [printerController::class, 'editar_impresora_show'])->name('editar.impresora');
-Route::patch('/admin/lista_dispositivos/lista_impresoras/actualizar/{id}', [printerController::class, 'editar_impresora_update'])->name('impresora.actualizar');
+Route::get('/admin/lista_dispositivos/lista_impresoras/', [printerController::class, 'lista_impresoras'])->name('lista.impresoras')->middleware('auth:admin');
+Route::get('/admin/lista_dispositivos/lista_impresoras/editar/{id}', [printerController::class, 'editar_impresora_show'])->name('editar.impresora')->middleware('auth:admin');
+Route::patch('/admin/lista_dispositivos/lista_impresoras/actualizar/{id}', [printerController::class, 'editar_impresora_update'])->name('impresora.actualizar')->middleware('auth:admin');
 
 
-Route::get('/admin/lista_dispositivos/lista_telefonos/', [telefonoController::class, 'lista_telefonos'])->name('lista.telefonos');
-Route::get('/admin/lista_dispositivos/lista_telefonos/editar/{id}', [telefonoController::class, 'editar_telefono_show'])->name('editar.telefono');
-Route::patch('/admin/lista_dispositivos/lista_telefonos/editar/actualizado/{id}', [telefonoController::class, 'editar_telefono_update'])->name('telefono.update');
+Route::get('/admin/lista_dispositivos/lista_telefonos/', [telefonoController::class, 'lista_telefonos'])->name('lista.telefonos')->middleware('auth:admin');
+Route::get('/admin/lista_dispositivos/lista_telefonos/editar/{id}', [telefonoController::class, 'editar_telefono_show'])->name('editar.telefono')->middleware('auth:admin');
+Route::patch('/admin/lista_dispositivos/lista_telefonos/editar/actualizado/{id}', [telefonoController::class, 'editar_telefono_update'])->name('telefono.update')->middleware('auth:admin');
 
 
 

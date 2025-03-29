@@ -45,6 +45,7 @@ class Controller extends BaseController
             'planta' => 'required',
             'id_jefe' => 'required',
             'jefe' => 'required',
+            'ip' => 'required|ip',
             'ubicacion' => 'required',
             'extension' => 'required',
         ]);
@@ -61,6 +62,7 @@ class Controller extends BaseController
         $usuario->id_jefe = request('id_jefe');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
+        $usuario->direccio_ip = request('ip');
         $usuario->correo = request('correo');
         $usuario->celular = request('celular');
         $usuario->password = bcrypt(request('password'));
@@ -213,6 +215,7 @@ class Controller extends BaseController
             // 'celular_edit' => 'required',
             // 'email_edit' => 'required|email|unique:users,email',
             'puesto_edit' => 'required',
+            'ip_update' => 'required',
             'planta_edit' => 'required',
             'ubicacion_edit' => 'required',
             'extension_edit' => 'required',
@@ -224,6 +227,7 @@ class Controller extends BaseController
         $usuario->puesto = request('puesto_edit');
         $usuario->planta = request('planta_edit');
         $usuario->correo = request('correo_edit');
+        $usuario->direccion_ip = request('ip_update');
         $usuario->ubicacion = request('ubicacion_edit');
         $usuario->extension = request('extension_edit');
         $usuario->id_jefe = request('jefe_edit');

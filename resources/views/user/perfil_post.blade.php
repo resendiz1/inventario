@@ -183,72 +183,93 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
 
 @endsection
 
+{{-- <script>
+    const synth = window.speechSynthesis
+    let texto = "Hola mundo desde api de js"
+    const utterThis = new SpeechSynthesisUtterance(texto)
+
+    synth.speak(utterThis)
+
+</script> --}}
+
+
+
 <script>
 
-let speech = new SpeechSynthesisUtterance();
-        let synth = window.speechSynthesis;
-        let palabras = [];
-        let indicePalabra = 0;
-        let enPausa = false;
 
-        function leerTexto() {
-            synth.cancel();
-            let div = document.getElementById("texto");
-            palabras = div.innerText.split(" "); // Dividir texto en palabras
-            indicePalabra = 0;
+    window.speechSynthesis.cancel()
 
-            speech.text = div.innerText;
-            speech.lang = "es-ES";
-            speech.rate = 1;
-            speech.pitch = 1;
-            speech.volume = 1;
-
-            speech.onboundary = (event) => {
-                if (event.name === "word") {
-                    resaltarPalabra(indicePalabra);
-                    indicePalabra++;
-                }
-            };
-
-            // Ocultar Play y mostrar Pause
-            document.getElementById("play").style.display = "none";
-            document.getElementById("pause").style.display = "inline-block";
-
-            synth.speak(speech);
-            enPausa = false;
-        }
-
-        function pausarTexto() {
-            if (!enPausa) {
-                synth.pause();
-                document.getElementById("pause").innerText = "▶";
-                enPausa = true;
-            } else {
-                synth.resume();
-                document.getElementById("pause").innerText = "⏸";
+    let speech = new SpeechSynthesisUtterance();
+            let synth = window.speechSynthesis;
+            let palabras = [];
+            let indicePalabra = 0;
+            let enPausa = false;
+    
+            function leerTexto() {
+                synth.cancel();
+                let div = document.getElementById("texto");
+                palabras = div.innerText.split(" "); // Dividir texto en palabras
+                indicePalabra = 0;
+    
+                speech.text = div.innerText;
+                speech.lang = "es-ES";
+                speech.rate = 1;
+                speech.pitch = 1;
+                speech.volume = 1;
+    
+                speech.onboundary = (event) => {
+                    if (event.name === "word") {
+                        resaltarPalabra(indicePalabra);
+                        indicePalabra++;
+                    }
+                };
+    
+                // Ocultar Play y mostrar Pause
+                document.getElementById("play").style.display = "none";
+                document.getElementById("pause").style.display = "inline-block";
+    
+                synth.speak(speech);
                 enPausa = false;
             }
+    
+            function pausarTexto() {
+                if (!enPausa) {
+                    synth.pause();
+                    document.getElementById("pause").innerText = "▶";
+                    enPausa = true;
+                } else {
+                    synth.resume();
+                    document.getElementById("pause").innerText = "⏸";
+                    enPausa = false;
+                }
+            }
+    
+    
+    
+        function resaltarPalabra(index) {
+            let div = document.getElementById("texto");
+            let nuevoTexto = palabras.map((palabra, i) => {
+                return i === index ? `<span style="background-color: black; color:white;">${palabra}</span>` : palabra;
+            }).join(" ");
+            div.innerHTML = nuevoTexto;
         }
+    
+        window.addEventListener("beforeunload", () => {
+            synth.cancel();
+        })
+    
+    
+    </script>
 
-
-
-    function resaltarPalabra(index) {
-        let div = document.getElementById("texto");
-        let nuevoTexto = palabras.map((palabra, i) => {
-            return i === index ? `<span style="background-color: black; color:white;">${palabra}</span>` : palabra;
-        }).join(" ");
-        div.innerHTML = nuevoTexto;
-    }
-
-    window.addEventListener("beforeunload", () => {
-        synth.cancel();
-    })
 
 
 </script>
 
 
+
+
 <script>
+    
 document.addEventListener("DOMContentLoaded", function () { 
     // Esperamos a que la página cargue completamente antes de ejecutar el código
 
