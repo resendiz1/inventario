@@ -35,6 +35,7 @@ Route::patch('/admin/lista_dispositivos/lista_telefonos/editar/actualizado/{id}'
 
 
 
+
 //Rutas para editar dispositivos
 
 
@@ -54,7 +55,7 @@ Route::get('/admin/lista_dispositivos', [Controller::class, 'lista_dispositivos'
 
 Route::patch('/admin/respuesta/{id}', [tintasController::class, 'respuesta_admin'])->name('respuesta.admin');
 
-Route::get('/admin/reporte/{id}', [ticketsController::class, 'detalle_reporte_admin'])->name('detalle.reporte.admin');
+Route::get('/admin/reporte/{id}', [ticketsController::class, 'detalle_reporte_admin'])->name('detalle.reporte.admin')->middleware('auth:admin');
 Route::post('/admin/reporte/comentario/{id}', [ticketsController::class, 'comentario_admin'])->name('comentario.reporte.admin');
 
 

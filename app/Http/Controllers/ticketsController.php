@@ -27,7 +27,8 @@ class ticketsController extends Controller
             request()->validate([
                 'descripcion' => 'required',
                 'otro' => 'required',
-                'prioridad' => 'required'
+                'prioridad' => 'required',
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20000',
             ]);
 
         }
@@ -38,12 +39,13 @@ class ticketsController extends Controller
             request()->validate([
                 'descripcion' => 'required',
                 'dispositivo' => 'required',
-                'prioridad' => 'required'
+                'prioridad' => 'required',
+                'imagen' => 'required',
             ]);
         }
 
 
-
+        $imagen = request()->file('imagen')->store('Public'); 
 
     
 
@@ -54,6 +56,7 @@ class ticketsController extends Controller
             'fecha_reporte' => substr(Carbon::now(), 0, 10),
             'otro' => request('otro'),
             'user_id' => Auth::user()->id,
+            'img' => $imagen
         ]);
 
 

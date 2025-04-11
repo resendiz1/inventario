@@ -38,7 +38,7 @@ use Carbon\Carbon;
                 <div class="col-6 p-3">
                     <div class="row">
                         <div class="col-12 m-2">
-                            <b>Dispositivo: </b>
+                            <b>Dispositivo: </b> <br>
                             <span>{{$reporte->dispositivo}}</span>
                         </div>
 
@@ -46,24 +46,27 @@ use Carbon\Carbon;
                         
                         @if ($reporte->dispositivo == 'Otro')
                         <div class="col-12 m-2">
-                            <b>Falla en: </b> 
-                            <span>{{$reporte->otro}}</span>
+                            <b>Falla en: </b> <br>
+                            <i>{{$reporte->otro}}</i>
                         </div>
                         @endif
     
                         <div class="col-12 m-2">
-                            <b>Descripción: </b> 
-                            <span>{{$reporte->descripcion}}.</span>
+                            <b>Descripción: </b> <br>
+                            <i>{{$reporte->descripcion}}.</i>
                         </div>
     
                         <div class="col-12 m-2">
-                            <b>Estado: </b> 
-                            <span>{{$reporte->status}}</span>
+                            <b>Estado: </b> <br>
+                            <i>{{$reporte->status}}</i>
                         </div>
 
                         <div class="col-12 m-2">
-                            <b>Prioridad: </b> 
-                            <span>{{$reporte->prioridad}}</span>
+                            <b>Prioridad: </b> <br>
+                            <i>{{$reporte->prioridad}}</i>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <img src="{{str_replace('Public/', '', Storage::url($reporte->img))}}"  data-toggle="modal" data-target="#img{{$reporte->id}}" class="img-fluid zoom" alt="">
                         </div>
 
 
@@ -118,6 +121,19 @@ use Carbon\Carbon;
     </div>
 </div>
 
+
+
+
+
+{{-- aqui esta el modal --}}
+  <!-- Modal -->
+<div class="modal fade" id="img{{$reporte->id}}"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img src="{{str_replace('Public/', '', Storage::url($reporte->img))}}" class="img-fluid" alt="">
+          </div>
+    </div>
+</div>
 
 
     

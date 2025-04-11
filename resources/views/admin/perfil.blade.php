@@ -20,13 +20,13 @@
 
 
 
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="row justify-content-center d-flex align-items-center">
 
 
-            <div class="col-sm-12 col-md-12 col-lg-5 bg-white m-1 border border-5 mt-5 ">
-                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios pendientes</h2>
+            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 border border-5 mt-5 ">
+                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios </h2>
                 @if (session('respuesta'))
                     <h6 class="text-danger">{{session('respuesta')}}</h6>
                 @endif
@@ -78,13 +78,13 @@
             </div>
 
 
-            <div class="col-sm-12 col-md-12 col-lg-5 bg-white m-1 border border-5 mt-5 ">
+            {{-- <div class="col-sm-12 col-md-12 col-lg-5 bg-white m-1 border border-5 mt-5 ">
                 <h2 class="text-center mt-2 font-arimo"> Areas que mas piden tinta </h2>
 
                   <div class="p-5">
                     <canvas id="grafica"></canvas>
                   </div>
-            </div>
+            </div> --}}
 
 
 

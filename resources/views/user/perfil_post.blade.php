@@ -110,7 +110,14 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
             </div>
         </div>
         <div class="col-8 text-justify" id="texto">
+            @if ($publicacion->id == 14)
+
+             <iframe width="100%" height="500" src="https://www.youtube.com/embed/oTu2GQP5-u8" title="Table with Graph Dynamic - No Talking" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+            @else
+
             {!!$publicacion->cuerpo!!}
+            
+            @endif
         </div>
     </div>
     <br>

@@ -15,7 +15,7 @@ use Carbon\Carbon;
                 <div class="row">
                     <div class="col-12 bg-dark p-3 text-center text-white">
                         <h2>Ticket #{{$reporte->id}}</h2> <br>
-                        <a class="text-white font-weight-bold" href="{{route('perfil.admin')}}">Volver</a>
+                        <a class="text-white font-weight-bold" href="{{route('perfil.admin')}}">Volver</a> <br>
                         @if (session('comentado'))
                             <small class="text-success">{{session('comentado')}}</small>
                         @endif
@@ -66,6 +66,11 @@ use Carbon\Carbon;
                             <span>{{$reporte->prioridad}}</span>
                         </div>
 
+                        <div class="col-12">
+                            <img src="{{str_replace('Public/', '', Storage::url($reporte->img))}}"  data-toggle="modal" data-target="#img{{$reporte->id}}" class="img-fluid zoom" alt="">
+
+                        </div>
+
 
                     </div>
                 </div>
@@ -114,6 +119,15 @@ use Carbon\Carbon;
     </div>
 </div>
 
+{{-- aqui esta el modal --}}
+  <!-- Modal -->
+  <div class="modal fade" id="img{{$reporte->id}}"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img src="{{str_replace('Public/', '', Storage::url($reporte->img))}}" class="img-fluid" alt="">
+          </div>
+    </div>
+</div>
 
 
     

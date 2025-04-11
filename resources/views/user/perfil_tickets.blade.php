@@ -8,7 +8,22 @@
 <div class="container">
   <iframe src="https://www.milenio.com/" width="100%" height="700px"></iframe>
 </div> --}}
+<style>
+  select.color-select option.green {
+    background-color: #d4edda;
+    color: #155724;
+  }
 
+  select.color-select option.red {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  select.color-select option.yellow {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+</style>
 
 <div class="container fade-out" id="content">
 
@@ -35,6 +50,17 @@
                 <i class="fa fa-plus"></i>
                 Realizar reporte
             </button>
+
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+
             <h3 class="text-center">
               Reportes realizados
             </h3>
@@ -183,7 +209,7 @@
               <h5>Nuevo reporte</h5>
             </div>
             <div class="modal-body">
-              <form action="{{route('reporte.post')}}" method="post">
+              <form action="{{route('reporte.post')}}" enctype="multipart/form-data" method="post">
                 @csrf @method('post')
                 <div class="form-group">
                     <label for="" class="m-0">Descripción de la falla</label>
@@ -193,9 +219,9 @@
                     <label for="" class="m-0">Dispositivo que fallo</label>
 
                     <select name="dispositivo" id="dispositivo" class="form-control">
-                      <option value="computadora">Computadora</option>
-                      <option value="impresora">Impresora</option>
-                      <option value="Otro">Otro</option>
+                      <option value="computadora">💻​ Computadora</option>
+                      <option value="impresora">🖨️​ Impresora</option>
+                      <option value="Otro">💣​ Otro</option>
                     </select>
 
                   </div>
@@ -214,11 +240,19 @@
                     <label for="" class="m-0">Prioridad</label>
 
                     <select name="prioridad" class="form-control">
-                      <option value="Baja">Baja</option>
-                      <option value="Media">Media</option>
-                      <option value="Alta">Alta</option>
+                      <option class="green"  value="Baja">🟢 Baja</option>
+                      <option class="yellow"  value="Media">🟡 Media</option>
+                      <option class="red" value="Alta">🔴 Alta</option>
                     </select>
 
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Foto o captura del problema</label>
+                    <input type="file" name="imagen" class="form-control" id="falla_picture">
+                    <div class="col-12 text-center p-4" id="container_falla_picture">
+
+                    </div>
                   </div>
 
 
@@ -258,6 +292,8 @@
 
 <script>
 
+
+
 document.getElementById('dispositivo').addEventListener('change', function(){
   
   const otro = document.getElementById('otra_falla');
@@ -268,12 +304,60 @@ document.getElementById('dispositivo').addEventListener('change', function(){
   else{
     otro.style.display = 'none';
   }
-
-
-
 })
 
 </script>
+
+<script>
+  //aqui va el JS de la vista previa de la imagen
+  // Escuchamos el evento 'change' del input de tipo file
+  document.getElementById('falla_picture').addEventListener('change', function (e) {
+    
+    // Obtenemos el archivo seleccionado por el usuario
+    const file = e.target.files[0];
+
+    // Obtenemos el contenedor donde se mostrará la vista previa
+    const previewContainer = document.getElementById('container_falla_picture');
+
+    // Limpiamos cualquier vista previa anterior
+    previewContainer.innerHTML = '';
+
+    // Verificamos que haya un archivo y que sea una imagen
+    if (file && file.type.startsWith('image/')) {
+      
+      // Creamos un lector de archivos
+      const reader = new FileReader();
+
+      // Cuando el archivo se haya leído completamente
+      reader.onload = function (e) {
+
+        // Creamos un elemento de imagen
+        const img = document.createElement('img');
+
+        // Establecemos la fuente de la imagen como el resultado del lector
+        img.src = e.target.result;
+
+        // Agregamos clases de Bootstrap para que la imagen se vea bien
+        img.classList.add('img-fluid', 'rounded');
+
+        // Establecemos una altura máxima para que no sea muy grande
+        img.style.maxHeight = '300px';
+
+        // Agregamos la imagen al contenedor
+        previewContainer.appendChild(img);
+      };
+
+      // Leemos el archivo como una URL base64 (Data URL)
+      reader.readAsDataURL(file);
+
+    } else {
+      // Si el archivo no es una imagen válida, mostramos un mensaje de error
+      previewContainer.innerHTML = '<p class="text-danger">El archivo no es una imagen válida.</p>';
+    }
+  });
+</script>
+
+
 
 @endsection
     
