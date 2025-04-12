@@ -27,7 +27,7 @@ use Carbon\Carbon;
                 <div class="row">
                     <div class="col-12 bg-success p-3 text-center text-white">
                         <h2>Ticket #{{$reporte->id}}</h2>
-                        <a class="text-white font-weight-bold" href="{{route('tickets.show')}}">Volver</a>
+                        <a class="text-white font-weight-bold" href="{{route('perfil.admin')}}">Volver</a>
                     </div>
                 </div>
             @endif

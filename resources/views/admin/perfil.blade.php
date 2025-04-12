@@ -20,13 +20,13 @@
 
 
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row justify-content-center d-flex align-items-center">
 
 
             <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 border border-5 mt-5 ">
-                <h2 class="py-3 font-weight-bold text-center" >Pedidos de los usuarios </h2>
+                <h1 class="py-3 font-weight-bold" >Pedidos de Tintas </h1>
                 @if (session('respuesta'))
                     <h6 class="text-danger">{{session('respuesta')}}</h6>
                 @endif
@@ -92,29 +92,31 @@
 
 
 
-            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 mt-5 border border-3 scroll-tabla">
-                <h2 class="text-center py-3 font-weight-bold" >Reportes de usuarios</h2>
+            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 mt-5 border border-3 ">
+                <h1 class=" py-3 font-weight-bold" >Solicitudes de Soporte Tecnico</h1>
                 
                 <table class="table table-bordered table-responsive-md p-0">
                         @if (count($reportes) > 0 )
-                            <thead class="thead-light">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Dispositivo</th>
-                                    <th scope="col">Descripción</th> 
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Estado</th> 
                                     <th scope="col">Seguimiento</th>        
                                 </tr>
                             </thead>
                         @endif
                         <tbody>
-                        
-                            @forelse ($reportes as $reporte)                               
+                            @forelse ($reportes as $reporte)   
+
                                 <tr>
                                     <td>{{$reporte->user->name}}</td>
-                                    <td>{{$reporte->fecha_reporte}}</td>
+                                    <td>{{$reporte->fecha_larga}}</td>
                                     <td>{{$reporte->dispositivo}}</td>
                                     <td>{{$reporte->descripcion}}</td>  
+                                    <td class=" font-weight-bold {{$reporte->status == 'completado' ? 'text-success' : 'text-danger'}}" >{{$reporte->status}}</td>
                                     <td> <a href="{{Route('detalle.reporte.admin', $reporte->id)}}" class="btn btn-success btn-sm">Seguimiento</a> </td>                                         
                                 </tr>     
                             @empty
@@ -146,8 +148,8 @@
 
 
 
-            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 mt-2 border border-3 scroll-tabla">
-                <h2 class="text-center py-3 font-weight-bold" >Respuestas Resguardos</h2>
+            <div class="col-sm-12 col-md-12 col-lg-10 bg-white m-1 mt-2 border border-3">
+                <h1 class="py-3 font-weight-bold" >Respuestas Resguardos</h1>
                 
                 <table class="table table-bordered table-responsive-md p-0">
                             @if (count($respuestas_resguardos) > 0 )

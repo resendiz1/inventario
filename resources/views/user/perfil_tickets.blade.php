@@ -209,13 +209,16 @@
               <h5>Nuevo reporte</h5>
             </div>
             <div class="modal-body">
-              <form action="{{route('reporte.post')}}" enctype="multipart/form-data" method="post">
+              <form action="{{route('reporte.post')}}" id="reporte_send" enctype="multipart/form-data" method="post">
                 @csrf @method('post')
                 <div class="form-group">
                     <label for="" class="m-0">Descripción de la falla</label>
-                        <textarea type="text" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
+                        <textarea type="text" id="descripcion" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
                 </div>
                   <div class="form-group">
+                    <input type="hidden" id="cc_email" name="cc_email" value="{{$reporte->user->correo}}">
+                    <input type="hidden" name="nombre_usuario" value="{{$reporte->user->name}}" id="nombre_usuario">
+                    <input type="hidden" id="to_email" name="to_email" value="arturo.resendiz@grupopabsa.com">
                     <label for="" class="m-0">Dispositivo que fallo</label>
 
                     <select name="dispositivo" id="dispositivo" class="form-control">
@@ -229,7 +232,7 @@
 
                   <div class="form-group" style="display: none"  id="otra_falla">
                     <label for="">¿Que es lo que falla?</label>
-                    <input type="text" class="form-control" name="otro">
+                    <input type="text" class="form-control" id="otro" name="otro">
                     <p class="text-danger">Recuerda que los sistemas Aspel, Teléfonos  y el enlace de red de planta a planta son de los proveedores externos. </p>
                   </div>
 
@@ -239,7 +242,7 @@
 
                     <label for="" class="m-0">Prioridad</label>
 
-                    <select name="prioridad" class="form-control">
+                    <select name="prioridad" id="prioridad" class="form-control">
                       <option class="green"  value="Baja">🟢 Baja</option>
                       <option class="yellow"  value="Media">🟡 Media</option>
                       <option class="red" value="Alta">🔴 Alta</option>
@@ -290,6 +293,9 @@
 
 {{-- aqui van los scripts de esta seccion --}}
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
 <script>
 
 
@@ -312,49 +318,61 @@ document.getElementById('dispositivo').addEventListener('change', function(){
   //aqui va el JS de la vista previa de la imagen
   // Escuchamos el evento 'change' del input de tipo file
   document.getElementById('falla_picture').addEventListener('change', function (e) {
-    
-    // Obtenemos el archivo seleccionado por el usuario
     const file = e.target.files[0];
-
-    // Obtenemos el contenedor donde se mostrará la vista previa
     const previewContainer = document.getElementById('container_falla_picture');
-
-    // Limpiamos cualquier vista previa anterior
     previewContainer.innerHTML = '';
-
-    // Verificamos que haya un archivo y que sea una imagen
     if (file && file.type.startsWith('image/')) {
-      
-      // Creamos un lector de archivos
       const reader = new FileReader();
-
-      // Cuando el archivo se haya leído completamente
       reader.onload = function (e) {
-
-        // Creamos un elemento de imagen
         const img = document.createElement('img');
-
-        // Establecemos la fuente de la imagen como el resultado del lector
         img.src = e.target.result;
-
-        // Agregamos clases de Bootstrap para que la imagen se vea bien
         img.classList.add('img-fluid', 'rounded');
-
-        // Establecemos una altura máxima para que no sea muy grande
         img.style.maxHeight = '300px';
-
-        // Agregamos la imagen al contenedor
         previewContainer.appendChild(img);
       };
-
-      // Leemos el archivo como una URL base64 (Data URL)
       reader.readAsDataURL(file);
-
     } else {
-      // Si el archivo no es una imagen válida, mostramos un mensaje de error
       previewContainer.innerHTML = '<p class="text-danger">El archivo no es una imagen válida.</p>';
     }
   });
+</script>
+
+
+
+
+{{-- Aqui va le codigo para enviar el Email --}}
+
+
+
+<script>
+
+(function(){
+    emailjs.init("mvA2hTi9RX5iDG6Ry"); // tu public key de EmailJS
+})();
+
+const form = document.getElementById('reporte_send');
+
+document.getElementById('reporte_send').addEventListener('submit', function(e){
+
+  e.preventDefault();
+  emailjs.sendForm('service_qcc7wza', 'template_9mc060d', form)
+    .then(function(response){
+      alert('El correo fue enviado')
+      form.submit();
+    }, function(error){
+      alert('Error al enviar correo, dale al boton aceptar' )
+      form.submit();
+    }
+  )
+});
+
+
+
+
+
+
+
+
 </script>
 
 

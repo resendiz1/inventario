@@ -16,6 +16,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Carbon\Carbon;
 
 class Controller extends BaseController
 {
@@ -162,14 +163,20 @@ class Controller extends BaseController
     public function perfil_admin(){
 
 
+        \Carbon\Carbon::setLocale('es');
         //ojala esto lo pudiera extraer en un archivo aparte
         $cantidad_computadoras = Computadora::count();
         $cantidad_impresoras = Impresora::count();
         $cantidad_telefonos = Telefono::count();
         $pedidos = Pedido::where('status', 'pendiente')->with('user')->get();
-        $reportes = Reporte::where('status', 'pendiente')->get();
+        $reportes = Reporte::all();
         $usuarios = User::all();
         $respuestas_resguardos = Resguardo::with('user')->get();
+
+        foreach($reportes as $reporte){
+            $reporte->fecha_larga = Carbon::parse($reporte->fecha_reporte)->translatedFormat('l, d \d\e F \d\e Y');
+        }
+
 
 
         return view('admin.perfil', compact('cantidad_computadoras', 'cantidad_impresoras', 'cantidad_telefonos', 'pedidos', 'reportes', 'usuarios', 'respuestas_resguardos'));
