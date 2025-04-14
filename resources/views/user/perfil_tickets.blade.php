@@ -196,89 +196,96 @@
         </div>
       </div>
       <!-- Modal -->
+
+
+
+
       
 @empty
 @endforelse
       
 
-    <!-- Modal -->
-    <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
-              <h5>Nuevo reporte</h5>
-            </div>
-            <div class="modal-body">
-              <form action="{{route('reporte.post')}}" id="reporte_send" enctype="multipart/form-data" method="post">
-                @csrf @method('post')
-                <div class="form-group">
-                    <label for="" class="m-0">Descripción de la falla</label>
-                        <textarea type="text" id="descripcion" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="reporte" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                  <h5>Nuevo reporte</h5>
                 </div>
-                  <div class="form-group">
-                    <input type="hidden" id="cc_email" name="cc_email" value="{{$reporte->user->correo}}">
-                    <input type="hidden" name="nombre_usuario" value="{{$reporte->user->name}}" id="nombre_usuario">
-                    <input type="hidden" id="to_email" name="to_email" value="arturo.resendiz@grupopabsa.com">
-                    <label for="" class="m-0">Dispositivo que fallo</label>
-
-                    <select name="dispositivo" id="dispositivo" class="form-control">
-                      <option value="computadora">💻​ Computadora</option>
-                      <option value="impresora">🖨️​ Impresora</option>
-                      <option value="Otro">💣​ Otro</option>
-                    </select>
-
-                  </div>
-
-
-                  <div class="form-group" style="display: none"  id="otra_falla">
-                    <label for="">¿Que es lo que falla?</label>
-                    <input type="text" class="form-control" id="otro" name="otro">
-                    <p class="text-danger">Recuerda que los sistemas Aspel, Teléfonos  y el enlace de red de planta a planta son de los proveedores externos. </p>
-                  </div>
-
-
-
-                  <div class="form-group">
-
-                    <label for="" class="m-0">Prioridad</label>
-
-                    <select name="prioridad" id="prioridad" class="form-control">
-                      <option class="green"  value="Baja">🟢 Baja</option>
-                      <option class="yellow"  value="Media">🟡 Media</option>
-                      <option class="red" value="Alta">🔴 Alta</option>
-                    </select>
-
-                  </div>
-
-                  <div class="form-group">
-                    <label for="">Foto o captura del problema</label>
-                    <input type="file" name="imagen" class="form-control" id="falla_picture">
-                    <div class="col-12 text-center p-4" id="container_falla_picture">
-
+                <div class="modal-body">
+                  <form action="{{route('reporte.post')}}" id="reporte_send" enctype="multipart/form-data" method="post">
+                    @csrf @method('post')
+                    <div class="form-group">
+                        <label for="" class="m-0">Descripción de la falla</label>
+                            <textarea type="text" id="descripcion" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
                     </div>
-                  </div>
-
-
-          
-
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn btn-dark">
-                <i class="fa fa-check"></i>
-                Confirmar
-              </button>
-            </form>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <div class="form-group">
+                        <input type="hidden" id="cc_email" name="cc_email" value="{{Auth()->user()->correo}}">
+                        <input type="hidden" name="nombre_usuario" value="{{Auth()->user()->name}}" id="nombre_usuario">
+                        <input type="hidden" id="to_email" name="to_email" value="arturo.resendiz@grupopabsa.com">
+                        <label for="" class="m-0">Dispositivo que fallo</label>
+      
+                        <select name="dispositivo" id="dispositivo" class="form-control">
+                          <option value="computadora">💻​ Computadora</option>
+                          <option value="impresora">🖨️​ Impresora</option>
+                          <option value="Otro">💣​ Otro</option>
+                        </select>
+      
+                      </div>
+      
+      
+                      <div class="form-group" style="display: none"  id="otra_falla">
+                        <label for="">¿Que es lo que falla?</label>
+                        <input type="text" class="form-control" id="otro" name="otro">
+                        <p class="text-danger">Recuerda que los sistemas Aspel, Teléfonos  y el enlace de red de planta a planta son de los proveedores externos. </p>
+                      </div>
+      
+      
+      
+                      <div class="form-group">
+      
+                        <label for="" class="m-0">Prioridad</label>
+      
+                        <select name="prioridad" id="prioridad" class="form-control">
+                          <option class="green"  value="Baja">🟢 Baja</option>
+                          <option class="yellow"  value="Media">🟡 Media</option>
+                          <option class="red" value="Alta">🔴 Alta</option>
+                        </select>
+      
+                      </div>
+      
+                      <div class="form-group">
+                        <label for="">Foto o captura del problema</label>
+                        <input type="file" name="imagen" class="form-control" id="falla_picture">
+                        <div class="col-12 text-center p-4" id="container_falla_picture">
+      
+                        </div>
+                      </div>
+      
+      
+              
+      
+                </div>
+      
+                <div class="modal-footer">
+                  <button class="btn btn-dark">
+                    <i class="fa fa-check"></i>
+                    Confirmar
+                  </button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- Modal -->
+          <!-- Modal -->
 
 
 
-{{-- aqui esta el html de mi menu contextual --}}
+
+      {{-- aqui esta el html de mi menu contextual --}}
 <div class="menu-contextual" id="menuContextual">
   <ul>
       <li>
