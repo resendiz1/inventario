@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Visita;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Publicacion extends Model
 {
@@ -20,6 +21,10 @@ class Publicacion extends Model
 
     public function reacciones(){
         return $this->hasMany(Reaccion::class);
+    }
+
+    public function visitas(){
+        return $this->hasMany(Visita::class);
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visita;
 use App\Models\Publicacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,9 @@ class publicacionesController extends Controller
     public function show(){
 
         $publicaciones = Publicacion::all();
-        return view('admin.gestionar_publicaciones', compact('publicaciones'));
+        $visitas = Visita::with('user')->get();
+        
+        return view('admin.gestionar_publicaciones', compact('publicaciones', 'visitas'));
 
 
     }
@@ -59,7 +62,17 @@ class publicacionesController extends Controller
 
     public function mostrar_post($id){
 
-    //    $publicacion = Publicacion::find($id);
+
+
+        $id_user = Auth()->user()->id;
+
+        $visita = new Visita();
+
+        $visita->user_id = $id_user;
+        $visita->publicacion_id = $id;
+
+        $visita->save();
+
 
         //contador de los likes 
        $contador_likes = DB::table('reacciones')->where('publicacion_id', $id)->where('reaccion', 'like')->count();
