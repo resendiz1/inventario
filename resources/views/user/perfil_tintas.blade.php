@@ -231,12 +231,12 @@
                     </div>
                 </div>
 
-                <button  class="btn btn-success m-2 w-100">
+                <button  class="btn btn-success m-2 w-100" id="confirmar">
                   <i class="fa fa-check"></i>
                   Confirmar
                 </button>
               </form>
-              <button type="button" class="btn btn-secondary m-2 w-100" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="close_modal" class="btn btn-secondary m-2 w-100" data-dismiss="modal">Cerrar</button>
 
 
             </div>
@@ -369,6 +369,27 @@
   });
 
 </script>
+
+
+
+<script>
+  const confirmar = document.getElementById('confirmar')
+  const close = document.getElementById('close_modal')
+
+  confirmar.addEventListener('click', function(){
+
+    confirmar.innerHTML = '<img src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif" class="img-fluid" style="width:10px;">'
+    close.disable = true
+
+
+  })
+
+
+
+
+
+</script>
+
 
 
 

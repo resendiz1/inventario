@@ -219,7 +219,7 @@
                     @csrf @method('post')
                     <div class="form-group">
                         <label for="" class="m-0">Descripción de la falla</label>
-                            <textarea type="text" id="descripcion" name="descripcion" class="form-control h-25 w-100">{{old('descripcion')}}</textarea>
+                            <textarea type="text" id="descripcion" name="descripcion" class="form-control h-25 w-100" required>{{old('descripcion')}}</textarea>
                     </div>
                       <div class="form-group">
                         <input type="hidden" id="cc_email" name="cc_email" value="{{Auth()->user()->correo}}">
@@ -258,7 +258,7 @@
       
                       <div class="form-group">
                         <label for="">Foto o captura del problema</label>
-                        <input type="file" name="imagen" class="form-control" id="falla_picture">
+                        <input type="file" name="imagen" class="form-control" id="falla_picture" accept="image/*" required >
                         <div class="col-12 text-center p-4" id="container_falla_picture">
       
                         </div>
@@ -270,18 +270,17 @@
                 </div>
       
                 <div class="modal-footer">
-                  <button class="btn btn-dark">
+                  <button class="btn btn-dark" id="enviar_reporte">
                     <i class="fa fa-check"></i>
                     Confirmar
                   </button>
                 </form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="cerrar_formulario_ticket" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
           <!-- Modal -->
-
 
 
 
@@ -325,6 +324,8 @@ document.getElementById('dispositivo').addEventListener('change', function(){
   //aqui va el JS de la vista previa de la imagen
   // Escuchamos el evento 'change' del input de tipo file
   document.getElementById('falla_picture').addEventListener('change', function (e) {
+
+
     const file = e.target.files[0];
     const previewContainer = document.getElementById('container_falla_picture');
     previewContainer.innerHTML = '';
@@ -357,23 +358,38 @@ document.getElementById('dispositivo').addEventListener('change', function(){
     emailjs.init("mvA2hTi9RX5iDG6Ry"); // tu public key de EmailJS
 })();
 
+
 const form = document.getElementById('reporte_send');
+const imagen = document.getElementById('falla_picture');
+const enviar_reporte = document.getElementById('enviar_reporte');
+const cerrar = document.getElementById('cerrar_formulario_ticket');
+
 
 document.getElementById('reporte_send').addEventListener('submit', function(e){
+
+  imagen.disabled = true;
+  enviar_reporte.innerHTML = '<img src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif" class="img-fluid" style="width:20px;">'
+  enviar_reporte.disabled=true;
+  cerrar.disabled=true
+ 
+
 
   e.preventDefault();
   emailjs.sendForm('service_qcc7wza', 'template_9mc060d', form)
     .then(function(response){
-      alert('El correo fue enviado')
+      imagen.disabled = false;
+
+      
       form.submit();
+
     }, function(error){
-      alert('Error al enviar correo, dale al boton aceptar' )
+
       form.submit();
     }
   )
 });
 
-
+form.addEventListener('submit', handleSubmit);
 
 
 

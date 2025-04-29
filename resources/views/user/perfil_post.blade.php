@@ -15,8 +15,6 @@ title="Leer Ariculo: {{$publicacion->titulo}}" onclick="leerTexto()">
 
 
 <div class="container  bg-white shadow shadow-sm fade-out" id="content">
-
-
     <div class="row justify-content-center">
         <div class="col-6 text-center  my-3 mt-5">
             <h1 class="titulo-post" >{{$publicacion->titulo}}</h1>

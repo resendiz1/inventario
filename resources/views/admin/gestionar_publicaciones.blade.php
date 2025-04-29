@@ -25,15 +25,14 @@
                     <th scope="col">Fecha</th>
                     <th scope="col">Autor</th>
                     <th scope="col">Acciones</th>
-                    <th scope="col">Visitas</th>
                   </tr>
                 </thead>
                 <tbody>
+
                   @forelse ($publicaciones as $publicacion)
                     <tr>
                       <th>{{$publicacion->titulo}}</th>
                       <td>{{$publicacion->created_at}}</td>
-                      <td></td>
                       <td class="text-underline"> 
                         <i class="fa fa-pencil mx-2"></i>
                         {{$publicacion->autor}}
@@ -52,6 +51,7 @@
                   @empty
                       <li>No hay ni madres</li>
                   @endforelse
+                  
                 </tbody>
               </table>
         </div>
