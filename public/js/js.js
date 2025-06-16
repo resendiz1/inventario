@@ -41,12 +41,34 @@ const numeroInputs = document.getElementsByClassName('imagen');
     }
 
 
+{
+
+
+    function loadMessages() {
+        $.get('{{route("receiver", $receiver->id)}}', function(data) {
+            $('#chat-box').html('');
+                console.log("📦 RESPUESTA DEL BACKEND:", data); // 👈 Mira qué devuelve
+            data.forEach(msg => {
+                $('#chat-box').append(`<div><strong>${msg.sender_id == {{ auth()->id() }} ? 'Yo' : '{{ $receiver->name }}'}:</strong> ${msg.content}</div>`);
+            });
+        });
+    }
+
+    $('#message-form').submit(function(e) {
+        e.preventDefault();
+        $.post("{{route('reaccion.store')}}", $(this).serialize(), function() {
+            loadMessages();
+            $('input[name="content"]').val('');
+        });
+    });
+
+    setInterval(loadMessages, 3000); // Recarga cada 3 segundos
+    loadMessages();
 
 
 
-
-
-
+}
+    
 
 
 

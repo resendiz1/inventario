@@ -71,7 +71,7 @@
 
                         <div class="form-group">
                             <label for="">Direccion IP</label>
-                            <input type="text" class="form-control form-control-sm" name="ip" >
+                            <input type="text" class="form-control form-control-sm" name="ip" value="{{old('ip')}}" >
                         </div>
                         
                         <div class="form-group">
@@ -91,19 +91,7 @@
                             {!!$errors->first('planta', '<small class="text-danger"> :message </small>')!!}
                         </div>
 
-                        <div class="form-group">
-                            <h4>Evaluaciones</h4>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-                              
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-                              
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-                            </div>
-                        </div>
+
 
                         <div class="form-group">
                             <label for="">Su jefe directo es:  </label>
@@ -132,7 +120,7 @@
 
                         <div class="form-group">
                             <label for="">Ubicación</label>
-                            <textarea name="ubicacion" class="form-control form-control-sm w-100" ></textarea>
+                            <textarea name="ubicacion" class="form-control form-control-sm w-100" >{{old('ubicacion')}}</textarea>
                             {!!$errors->first('ubicacion', '<small class="text-danger"> :message </small>')!!}
                         </div>
 

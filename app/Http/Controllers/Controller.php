@@ -63,7 +63,7 @@ class Controller extends BaseController
         $usuario->id_jefe = request('id_jefe');
         $usuario->ubicacion = request('ubicacion');
         $usuario->extension = request('extension');
-        $usuario->direccio_ip = request('ip');
+        $usuario->direccion_ip = request('ip');
         $usuario->correo = request('correo');
         $usuario->celular = request('celular');
         $usuario->password = bcrypt(request('password'));
@@ -282,27 +282,14 @@ class Controller extends BaseController
 
     public function perfil_home(){
 
-        // $publicaciones = Publicacion::withCount([
-        //     'reacciones as loveit_count' => fn($q) => $q->where('reaccion', 'loveit'),
-        //     'reacciones as like_count' => fn($q) => $q->where('reaccion', 'like'),
-        //     'reacciones as dislike_count' => fn($q) => $q->where('reaccion', 'dislike') 
-        // ])->with('comentarios.user')->latest()->get();
 
-        $publicaciones = Publicacion::with([
-            'reacciones.user', // Cargar la relación de reacciones con los usuarios
-            'comentarios.user'
-        ])
-        ->withCount([
-            'reacciones as loveit_count' => fn($q) => $q->where('reaccion', 'loveit'),
-            'reacciones as like_count' => fn($q) => $q->where('reaccion', 'like'),
-            'reacciones as dislike_count' => fn($q) => $q->where('reaccion', 'dislike') 
-        ])
-        ->latest()
-        ->get();
+        $publicaciones = Publicacion::where('categoria', 'articulos')->get();
+
+        $tutoriales = Publicacion::where('categoria', 'tutoriales')->get();
         
 
 
-        return view('user.home', compact('publicaciones'));
+        return view('user.home', compact('publicaciones', 'tutoriales'));
     } 
 
 

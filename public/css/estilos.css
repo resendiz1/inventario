@@ -3,6 +3,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap');
+
+
+.cascadia{
+  font-family: "Cascadia Mono", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.publi{
+  text-decoration: none;
+}
 
 #play, #pause { 
   font-size: 18px; 
@@ -133,9 +146,21 @@
     font-size: 30px;
   }
 
+  .zoom_seguridad_info{
+    transition: transform .5s ease;
+  }
+
+  .zoom_seguridad_info:hover{
+    transform: scale(1.05);
+  }
+
+
+
+
   .zoom_menu{
     transition: transform 0.4s ease;
   }
+
 
   .zoom_menu:hover{
     transform: scale(1.2);

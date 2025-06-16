@@ -32,21 +32,27 @@
     <div class="row justify-content-center">
         <div class="col-11 bg-white p-5">
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="col-sm-12 col-md-12 col-lg-4">
                     <div class="form-group">
                         <label for="font-weight-bold" class="font-weight-bold">Titulo de la publicación: </label>
                         <input type="text" name="titulo" class="form-control" id="titulo">
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-12 col-lg-6">
+                <div class="col-sm-12 col-md-12 col-lg-4">
                     <div class="form-group">
                         <label for="" class="font-weight-bold">Categoria: </label>
                         <select name="categoria" id="" class="form-control">
-                            <option value="Categoria 1">Categoria 1</option>
-                            <option value="Categoria 3">Categoria 3</option>
-                            <option value="Categoria 2">Categoria 2</option>
+                            <option value="tutoriales">Tutoriales</option>
+                            <option value="articulos">Articulos</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <div class="form-group">
+                        <label for="" class="font-weight-bold"">Link YouTube: </label>
+                        <input type="text" class="form-control">
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\areaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\tintasController;
 use App\Http\Controllers\accesosController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\printerController;
 use App\Http\Controllers\ticketsController;
 use App\Http\Controllers\telefonoController;
@@ -169,10 +170,10 @@ Route::post('/user/control_accesos/solicitar_software', [accesosController::clas
 
 ///Creando las rutas que van a ser de un jefe
 Route::get('/user/permisos', [accesosController::class, 'ver_permisos_jefe'])->name('permisos.show')->middleware('auth');
-Route::patch('/user/permisos/autoriza_software/{id}', [accesosController::class, 'autoriza_software_jefe'])->name('autorizar.software.jefe');
-Route::patch('/user/permisos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software_jefe'])->name('desautorizar.software.jefe');
-Route::patch('/user/permisos/autorizar_sitio/{id}', [accesosController::class, 'autoriza_sitio_jefe'])->name('autorizar.sitio.jefe');
-Route::patch('/user/permisos/desautorizar_sitio/{id}', [accesosController::class, 'desautoriza_sitio_jefe'])->name('desautorizar.sitio.jefe');
+Route::patch('/user/permisos/autoriza_software/{id}', [accesosController::class, 'autoriza_software_jefe'])->name('autorizar.software.jefe')->middleware('auth');
+Route::patch('/user/permisos/desautoriza_software/{id}', [accesosController::class, 'desautoriza_software_jefe'])->name('desautorizar.software.jefe')->middleware('auth');
+Route::patch('/user/permisos/autorizar_sitio/{id}', [accesosController::class, 'autoriza_sitio_jefe'])->name('autorizar.sitio.jefe')->middleware('auth');
+Route::patch('/user/permisos/desautorizar_sitio/{id}', [accesosController::class, 'desautoriza_sitio_jefe'])->name('desautorizar.sitio.jefe')->middleware('auth');
 
 
 
@@ -194,4 +195,24 @@ Route::patch('/user/resguardo/imagenes_phone/{id}', [telefonoController::class, 
 Route::get('/user/home/post/{id}', [publicacionesController::class, 'mostrar_post'])->name('mostrar.post')->middleware('auth');
 Route::post('/user/home/post/reaccion', [reaccionesController::class, 'reaccion_store'])->name('reaccion.store')->middleware('auth');
 Route::post('/user/home/post/comentario', [comentariosController::class, 'store'])->name('comentario.store')->middleware('auth');
+
+
+
+
+
+
+//rutas de el chat
+
+Route::middleware('auth')->group(function () {
+    Route::get('user/receiver/{userId}', [MessageController::class, 'index'])->name('receiver');
+    Route::post('user/some/chat/', [MessageController::class, 'store'])->name('sent');
+});
+
+
+
+Route::get('user/chat/{user}', function(App\Models\User $user) {
+    return view('user.chat', ['receiver' => $user]);
+})->middleware('auth');
+//rutas de el chat
+
 

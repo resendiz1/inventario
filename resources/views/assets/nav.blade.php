@@ -70,9 +70,9 @@
 
 
         <div class="col-sm-12 col-md-4 col-lg-1 mt-2 text-center">
-            <form action="{{route('cerrar.session.admin')}}" method="POST" >
+            <form action="{{route('cerrar.session.admin')}}" method="POST" id="form-cerrar-session" >
                 @csrf
-                <button type="submit" class="btn btn-light btn-sm">
+                <button type="submit" id="cerrar_session" class="btn btn-light btn-sm">
                     <i class="fa fa-power-off  mr-2"></i>
                     Cerrar Session
                 </button>
@@ -84,3 +84,5 @@
 
     </div>
 </div>
+
+

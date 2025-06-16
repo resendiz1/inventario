@@ -5,78 +5,83 @@
 
 <div class="container-fluid fade-out" id="content">
 
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-12 col-lg-7 text-center bg-white shadow-sm py-2">
-            <h2 class="font-arimo">Seguridad Informática</h2>
-        </div>
+
+
+
+    <div class="row justify-content-around mt-5 bg-light py-5">
+      <div class="col-8 ">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="font-arimo text-center">Articulos de Seguridad Informatica</h2>
+                </div>
+
+            @forelse ($publicaciones as $publicacion)
+
+            <div class="col-6 zoom_seguridad_info">
+
+                    <a href="{{route('mostrar.post', $publicacion->id)}}" class="text-decoration-none">
+                        <div class="row d-flex align-items-center justify-content-center m-4  bg-white shadow p-4">
+                        <div class="col-12 text-center p-2">
+                            <h3 class="font-maker">{{$publicacion->titulo}}</h3>
+                        </div>
+                        <div class="col-12 p-4">
+                            <img src="{{Storage::url($publicacion->portada)}}" class="img-fluid w-100" alt="">
+                        </div>
+                        
+                        
+                        <div class="col-12 text-center" >
+                            <p style="text-align: justify" class="text_cut font-arimo h5">
+                                {{$publicacion->introduccion}}
+                            </p>
+                        </div>                            
+                    </div>
+                </a>
+            </div>
+                        
+
+            @empty
+            <li>No hay nada</li>
+            @endforelse
+            </div>
     </div>
 
 
-    <div class="row justify-content-around mt-5 mx-2">
 
-   
-        @forelse ($publicaciones as $publicacion)
-            <div class="col-sm-12 col-md-9 col-lg-3 bg-white shadow m-2">
-                <div class="row justify-content-center">
-                    <div class="col-12 p-0">
-                        <img src="{{Storage::url($publicacion->portada)}}" class="img-fluid w-100" alt="">
+
+    <div class="col-4">
+            <h2 class="font-arimo text-center">Tutoriales</h2>
+
+            @forelse ($tutoriales as $tutorial)
+                <a href="{{route('mostrar.post', $tutorial->id)}}" class="text-decoration-none text-dark shadow ">
+                    <div class="row m-4 bg-white p-2 d-flex align-items-center zoom_seguridad_info shadow-sm">
+                        <div class="col-12 text-center">
+                            <h3 class="cascadia" >{{$tutorial->titulo}}</h3>
+                        </div>
+                        <div class="col-3">
+                            <img src="{{Storage::url($tutorial->portada)}}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-9">
+                            <p style="text-align: justify" class="text_cut font-arimo h5">
+                                {{$tutorial->introduccion}}
+                            </p>
+                        </div>
                     </div>
+                </a>                
+            @empty
 
-                    <div class="col-12 m-2">
-                        <h1 class="font-maker">{{$publicacion->titulo}}</h1>
-                    </div>
-
-                    <div class="col-12">
-                        <p>
-                            {{$publicacion->introduccion}}
-                        </p>
-                    </div>
-
-                    <div class="col-12 m-3 text-center">
-                        <a href="{{route('mostrar.post', $publicacion->id)}}" class=" btn btn-secondary h3 ">
-                            <i class="fa fa-eye mx-2"></i>
-                            Ir a la publicación
-                        </a>
-                    </div>
-
-                    {{-- Dejamos pendientes las reacciones --}}
-
-                    {{-- <div class="col-12 text-center mt-1 p-3">
-                        <form action="{{route('reaccion.store')}}" method="POST" id="reaccion_formulario" >
-                            @csrf
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                            <input type="hidden" name="publicacion_id" value="{{$publicacion->id}}">
-      
-                                    <div class="btn-group">
-                                        <button class="btn btn-danger d-block reaccion_boton" id="loveit_count" name="reaccion" value="loveit">
-                                            <i class="fa fa-heart text-white"></i>
-                                            {{$publicacion->loveit_count}}
-                                        </button>
-
-                                        <button class="btn btn-primary d-block reaccion_boton" id="like_count" name="reaccion" value="like">
-                                            <i class="fa fa-thumbs-up"></i>
-                                            {{$publicacion->like_count}}
-                                        </button>
-
-                                        <button class="btn btn-secondary d-block reaccion_boton" id="dislike_count" name="reaccion" value="dislike">
-                                            <i class="fa-solid fa-thumbs-down"></i>
-                                            {{$publicacion->dislike_count}}
-                                        </button>
-                                    </div>
-                        </form>
-                    </div> --}}
-
-                    {{-- Dejamos pendientes las reacciones --}}
-
-
+            <div class="row">
+                <div class="col-12 text-center p-5">
+                    <h3 class="m-4">Sin Tutoriales</h3>
+                    <i class="fa fa-magic fa-5x"></i>
                 </div>
             </div>
-        @empty
-            <li>No hay nada</li>
-        @endforelse
+                
+            @endforelse
 
 
-        
+
+
+    </div>
 
     </div>
 
@@ -121,5 +126,25 @@
             })
         })
     })
+</script>
+
+
+
+
+<script>
+
+
+  const maxPalabras = 15;
+  const divs = document.querySelectorAll('.text_cut');
+
+  divs.forEach(div => {
+    const palabras = div.innerText.trim().split(/\s+/);
+    if (palabras.length > maxPalabras) {
+      const recorte = palabras.slice(0, maxPalabras).join(" ") + '...';
+      div.innerText = recorte;
+    }
+  });
+
+
 </script>
 @endsection

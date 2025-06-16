@@ -25,9 +25,8 @@
 
                 <div class="col-12 text-center">
                     <h3 class="m-0 p-0">  {{Auth::user()->name}} </h3>
-                    <h5>{{Auth::user()->puesto}}</h5>
                 </div>
-
+                    
                 <div class="col-12  text-center ">
                     <span>{{Auth::user()->email}}</span>
                 </div>
