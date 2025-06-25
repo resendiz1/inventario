@@ -283,14 +283,27 @@ class Controller extends BaseController
     public function perfil_home(){
 
 
-        $publicaciones = Publicacion::where('categoria', 'articulos')->get();
 
-        $tutoriales = Publicacion::where('categoria', 'tutoriales')->get();
         
 
 
-        return view('user.home', compact('publicaciones', 'tutoriales'));
+        return view('user.muro');
     } 
+
+
+
+    public function perfil_articles(){
+
+
+        $publicaciones = Publicacion::where('categoria', 'articulos')->get();
+
+        $tutoriales = Publicacion::where('categoria', 'tutoriales')->get();
+
+        return view('user.articles', compact('publicaciones', 'tutoriales'));
+
+
+
+    }
 
 
 

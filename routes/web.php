@@ -139,6 +139,7 @@ Route::get('/user/tickets/detalles/{id}', [ticketsController::class, 'detalle_re
 
 //Rutas que funcionan en el perfil de los usuarios
 Route::get('/user/home', [Controller::class, 'perfil_home'])->name('perfil.home')->middleware('auth');
+Route::get('/user/articles', [Controller::class, 'perfil_articles'])->name('perfil.articles')->middleware('auth');
 Route::get('/user/web-tools', [Controller::class, 'perfil_user'])->name('perfil.user')->middleware('auth');
 Route::get('/user/dispositivos', [Controller::class, 'dispositivos_show'])->name('dispositivos.show')->middleware('auth');
 Route::get('/user/tintas', [tintasController::class, 'show'])->name('tintas.show')->middleware('auth');

@@ -5,9 +5,6 @@
 
 <div class="container-fluid fade-out" id="content">
 
-
-
-
     <div class="row justify-content-around mt-5 bg-light py-5">
       <div class="col-8 ">
             <div class="row">
@@ -40,7 +37,12 @@
                         
 
             @empty
-            <li>No hay nada</li>
+            <div class="row">
+                <div class="col-12 text-center p-5">
+                    <h3 class="m-4">Sin Articulos</h3>
+                    <i class="fa fa-magic fa-5x"></i>
+                </div>
+            </div>
             @endforelse
             </div>
     </div>
