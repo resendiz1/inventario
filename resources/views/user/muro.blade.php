@@ -31,7 +31,7 @@
                     </div>
 
                     <div id="articulo" class="ql-editor"></div>
-                    <input type="hidden"  name="publicacion" value="{{old('publicacion')}}" id="contenido">
+                    <input type="hidden"  name="publicacion_usuario" value="{{old('publicacion')}}" id="contenido">
                     <button class="btn btn-dark my-2  btn-sm">
                         <i class="fa fa-paper-plane me-2"></i>
                         Publicar
