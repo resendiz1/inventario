@@ -10,6 +10,7 @@ use App\Http\Controllers\accesosController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\printerController;
 use App\Http\Controllers\ticketsController;
+use App\Http\Controllers\postUserController;
 use App\Http\Controllers\telefonoController;
 use App\Http\Controllers\resguardoController;
 use App\Http\Controllers\directorioController;
@@ -199,21 +200,11 @@ Route::post('/user/home/post/comentario', [comentariosController::class, 'store'
 
 
 
+//rutas de los post en el muro
 
 
-
-//rutas de el chat
-
-Route::middleware('auth')->group(function () {
-    Route::get('user/receiver/{userId}', [MessageController::class, 'index'])->name('receiver');
-    Route::post('user/some/chat/', [MessageController::class, 'store'])->name('sent');
-});
+Route::post('/user/home', [postUserController::class, 'postUser'])->name('post.user.store');
 
 
-
-Route::get('user/chat/{user}', function(App\Models\User $user) {
-    return view('user.chat', ['receiver' => $user]);
-})->middleware('auth');
-//rutas de el chat
-
+//rutas de los post en el muro
 

@@ -16,4 +16,17 @@ class CommentPostUser extends Model
 
 
 
+
+    public function postUser(){
+
+        return $this->belongsTo(PostUser::class);
+
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+
 }

@@ -20,27 +20,26 @@
         </button>
       </div>
       <div class="modal-body px-0">
-
-                <div class="col-12 ">
-                    <div id="toolbar">
+        <form action="{{route('post.user.store')}}" method="post">
+            @csrf
+            <div class="col-12 ">
+                
+                <div id="toolbar">
                         <select class="ql-font"></select>
-                        <select class="ql-size"></select>
                         <button class="ql-bold"></button>
                         <button class="ql-italic"></button>
                         <button class="ql-underline"></button>
-                    </div>
-
+                        <button class="ql-link"></button>
+                 </div>
+                    
                     <div id="articulo" class="ql-editor"></div>
-                    <input type="hidden"  name="publicacion_usuario" value="{{old('publicacion')}}" id="contenido">
+                    <input type="hidden"  name="post_body" value="{{old('post_body')}}" id="contenido">
                     <button class="btn btn-dark my-2  btn-sm">
                         <i class="fa fa-paper-plane me-2"></i>
                         Publicar
                     </button>
                 </div>
-
-
-
-
+        </form>        
       </div>
 
     </div>
@@ -59,205 +58,72 @@
 
         <div class="col-12">
 
-            <div class="row border border-dark  border-5 rounded p-4">
-                <div class="col-12">
-                    <h3 class="p-0">Titulo de la publicacion</h3>
-                    <small class="p-0">Autor de la publicacion - hace tres meses</small>
+            @forelse ($postUsers  as $post)
+                <div class="row border border-dark   border-5 rounded p-4 mt-4">
+                    <div class="col-12">
+                        <h4 class="p-0 font-weight-bold">{{$post->user->name}}</h4>
+                        <i class="p-0 italic"> {{$post->created_at}}</i>
+                    </div>
+                    <div class="col-12">
+                        <p>{!!$post->post_body!!}</p>
+                    </div>
+                    
+
+                    <div class="col-12">
+                        <div class="btn-group">
+                            <button class="btn btn-primary btn-sm reaction-btn " data-reaction="like" data-post-id="{{$post->id}}">
+                                <i class="fa fa-thumbs-up"></i>
+                                <span class="dislike-count">{{$post->likeCount}}</span>
+                            </button>
+                            <button class="btn btn-danger btn-sm reaction-btn " data-reaction="dislike" data-post-id="{{$post->id}}">
+                                <i class="fa fa-thumbs-down"></i>
+                                <span class="like-count">{{$post->dislikeCount}}</span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 mt-3 bg-light py-3">
+                        <a class="text-dark h5 font-wieght-bold" data-toggle="collapse" href="#p{{$post->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Todos los comentarios
+                        </a>
+
+                        <div class="collapse mt-3" id="p{{$post->id}}">
+
+                            <div class="card card-body border-0 mt-2">
+                                <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
+                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            </div>   
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <h5>Comenta: </h5>
+                        <textarea name="" class="form-control w-100 " placeholder="Escribe un comentario para esta publicación..."></textarea>
+                    </div>
+
                 </div>
-                <div class="col-12">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deserunt aut, facere explicabo ducimus quos eaque voluptatum, harum reiciendis corrupti doloribus repellendus recusandae delectus, natus voluptates reprehenderit perspiciatis. Neque, illo?</p>
-                </div>
-                
+            @empty
 
-
-
-                <div class="col-12">
-                    <div class="btn-group">
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fa fa-thumbs-up"></i>
-                            32
-                        </button>
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa fa-thumbs-down"></i>
-                            25
-                        </button>
+                <div class="row justify-content-center ">
+                    <div class="col-8 text-center">
+                        <h1>
+                            <i class="fa fa-magic me-3 text-center p-5" ></i>
+                            No hay publicaciones para mostrar
+                        </h1>
                     </div>
                 </div>
 
-
-                <div class="col-12 mt-3 bg-light py-3">
-                    <a class="text-dark h5 font-wieght-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Todos los comentarios
-                    </a>
-
-                    <div class="collapse mt-3" id="collapseExample">
-                        
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                                                <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>   
-
-                    </div>
-                </div>
-
-                <div class="col-12 mt-2">
-                    <h5>Comenta: </h5>
-                    <textarea name="" class="form-control w-100" placeholder="Escribe un comentario para esta publicación..."></textarea>
-                </div>
+            @endforelse
 
 
 
-            </div>
 
-            <div class="row border border-dark  border-5 rounded p-4 mt-4">
-                <div class="col-12">
-                    <h3 class="p-0">Titulo de la publicacion</h3>
-                    <small class="p-0">Autor de la publicacion - hace tres meses</small>
-                </div>
-                <div class="col-12">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deserunt aut, facere explicabo ducimus quos eaque voluptatum, harum reiciendis corrupti doloribus repellendus recusandae delectus, natus voluptates reprehenderit perspiciatis. Neque, illo?</p>
-                </div>
-                
-
-
-
-                <div class="col-12">
-                    <div class="btn-group">
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fa fa-thumbs-up"></i>
-                            32
-                        </button>
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa fa-thumbs-down"></i>
-                            25
-                        </button>
-                    </div>
-                </div>
-
-
-                <div class="col-12 mt-3 bg-light py-3">
-                    <a class="text-dark h5 font-wieght-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Todos los comentarios
-                    </a>
-
-                    <div class="collapse mt-3" id="collapseExample">
-                        
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                                                <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>   
-
-                    </div>
-                </div>
-
-                <div class="col-12 mt-2">
-                    <h5>Comenta: </h5>
-                    <textarea name="" class="form-control w-100" placeholder="Escribe un comentario para esta publicación..."></textarea>
-                </div>
-
-
-
-            </div>
-
-            <div class="row border border-dark   border-5 rounded p-4 mt-4">
-                <div class="col-12">
-                    <h3 class="p-0">Titulo de la publicacion</h3>
-                    <small class="p-0">Autor de la publicacion - hace tres meses</small>
-                </div>
-                <div class="col-12">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi deserunt aut, facere explicabo ducimus quos eaque voluptatum, harum reiciendis corrupti doloribus repellendus recusandae delectus, natus voluptates reprehenderit perspiciatis. Neque, illo?</p>
-                </div>
-                
-
-
-
-                <div class="col-12">
-                    <div class="btn-group">
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fa fa-thumbs-up"></i>
-                            32
-                        </button>
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa fa-thumbs-down"></i>
-                            25
-                        </button>
-                    </div>
-                </div>
-
-
-                <div class="col-12 mt-3 bg-light py-3">
-                    <a class="text-dark h5 font-wieght-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Todos los comentarios
-                    </a>
-
-                    <div class="collapse mt-3" id="collapseExample">
-                        
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                                                <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-
-                        <div class="card card-body border-0 mt-2">
-                            <h6 class=""> <u> Segundo Usuario Dice: </u></h6>
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>   
-
-                    </div>
-                </div>
-
-                <div class="col-12 mt-2">
-                    <h5>Comenta: </h5>
-                    <textarea name="" class="form-control w-100" placeholder="Escribe un comentario para esta publicación..."></textarea>
-                </div>
-
-
-
-            </div>
 
 
 
         </div>
-
     </div>
 
 
@@ -271,10 +137,54 @@
 
 
 <script>
+
+document.querySelectorAll('.reaction-btn').forEach( btn => {
+
+
+    btn.addEventListener('click', function(){
+        
+        const pstId = btn.dataset.postId;
+        const reaction = btn.satase.reaction;
+
+        
+        fetch(`/post/${postId}/reaction`, {
+            
+            method:POST,
+            headers:{
+                'Content-Type': 'aplication/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({reaction})
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            //Actualizar los controladores 
+            const postDiv = document.querySelector(`.post[data-post-id="${postId}"]`);
+            postDiv.querySelector('.like-count')
+
+        });
+
+
+
+    })
+
+
+})
+
+
+
+</script>
+
+
+
+<script>
     const quill = new Quill('#articulo', {
       theme: 'snow',
       modules:{
-        toolbar: '#toolbar'
+        toolbar: '#toolbar',
+        
+
       }
     });
   

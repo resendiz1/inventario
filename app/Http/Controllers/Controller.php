@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Pedido;
 use App\Models\Reporte;
+use App\Models\PostUser;
 use App\Models\Telefono;
 use App\Models\Impresora;
 use App\Models\Resguardo;
@@ -16,7 +18,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Carbon\Carbon;
 
 class Controller extends BaseController
 {
@@ -283,11 +284,11 @@ class Controller extends BaseController
     public function perfil_home(){
 
 
-
+        $postUsers = PostUser::get();
         
 
 
-        return view('user.muro');
+        return view('user.muro', ['postUsers' => $postUsers]);
     } 
 
 
