@@ -14,7 +14,10 @@
   <div class="modal-dialog modal-lg modal-dialog-centered ">
     <div class="modal-content">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="exampleModalLabel">Crear nueva publicación</h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa-solid fa-bullhorn"></i>
+            Crear nueva publicación
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -50,7 +53,7 @@
 
 
 
-<div class="container bg-white shadow shadown-sm">
+<div class="container ">
 
 
 
@@ -59,29 +62,43 @@
         <div class="col-12">
 
             @forelse ($postUsers  as $post)
-                <div class="row border border-dark   border-5 rounded p-4 mt-4">
+                <div class="row p-4 mt-4 bg-white shadow shadown-sm">
                     <div class="col-12">
                         <h4 class="p-0 font-weight-bold">{{$post->user->name}}</h4>
                         <i class="p-0 italic"> {{$post->created_at}}</i>
                     </div>
-                    <div class="col-12">
-                        <p>{!!$post->post_body!!}</p>
+                    <div class="col-12 border rounded ">
+                        <p class="">{!!$post->post_body!!}</p>
                     </div>
                     
 
-                    <div class="col-12">
+                    <div class="col-12 py-3">
                         <div class="btn-group">
                             <button class="btn btn-primary btn-sm reaction-btn " data-reaction="like" data-post-id="{{$post->id}}">
                                 <i class="fa fa-thumbs-up"></i>
-                                <span class="dislike-count">{{$post->likeCount}}</span>
+                                <span class="dislike-count">{{$post->likeCount()}}</span>
                             </button>
                             <button class="btn btn-danger btn-sm reaction-btn " data-reaction="dislike" data-post-id="{{$post->id}}">
                                 <i class="fa fa-thumbs-down"></i>
-                                <span class="like-count">{{$post->dislikeCount}}</span>
+                                <span class="like-count">{{$post->dislikeCount()}}</span>
                             </button>
                         </div>
                     </div>
 
+
+                    <div class="col-12 mt-2">
+                        <div class="row d-flex align-items-center justify-content-center">
+                            <div class="col-12 px-0">
+                                <h5 class="font-arimo">Comenta: </h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-11 px-0 mx-0">
+                                <textarea name="" class="form-control w-100 comentario_user" placeholder="Escribe un comentario para esta publicación..." ></textarea>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-1 px-2 mx-0 mt-md-3 mt-lg-0">
+                                <button class="btn btn-dark rounded rounded-pill">Comentar</button>
+                            </div>
+                        </div>
+                    </div>                   
 
                     <div class="col-12 mt-3 bg-light py-3">
                         <a class="text-dark h5 font-wieght-bold" data-toggle="collapse" href="#p{{$post->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -98,12 +115,8 @@
                         </div>
                     </div>
 
-                    <div class="col-12 mt-2">
-                        <h5>Comenta: </h5>
-                        <textarea name="" class="form-control w-100 " placeholder="Escribe un comentario para esta publicación..."></textarea>
-                    </div>
-
                 </div>
+                <hr>
             @empty
 
                 <div class="row justify-content-center ">
@@ -161,7 +174,8 @@ document.querySelectorAll('.reaction-btn').forEach( btn => {
 
             //Actualizar los controladores 
             const postDiv = document.querySelector(`.post[data-post-id="${postId}"]`);
-            postDiv.querySelector('.like-count')
+            postDiv.querySelector('.like-count').textContent = data.likes;
+            postDiv.querySelector('.dislike-count').textContent = data.dislikes;
 
         });
 

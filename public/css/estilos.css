@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+.comentario_user{
+  background-color: aliceblue;
+}
+.comentario_user:focus{
+  background-color: #ece8e8;
+  font-family: "Cascadia Mono", sans-serif;
+}
+
 
 .publi{
   text-decoration: none;

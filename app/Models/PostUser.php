@@ -44,11 +44,13 @@ class PostUser extends Model
     }
 
 
-    
+
     public function dislikeCount(){
         return $this->reactionPostUser()->where('reaction', 'dislike')->count();
     }
 
+
+    
 
 
 
